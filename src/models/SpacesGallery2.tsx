@@ -9,6 +9,7 @@ import { GLTFLoader, GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { draco } from "drei";
 import { loadModel } from "../services/loader";
 import { ModelProps } from "../types/model";
+import { useCompoundBody } from "use-cannon";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -41,6 +42,7 @@ export default function Model(props: ModelProps) {
   );
   materials["Mat.1"].metalness = 0;
   materials["Mat.1"].side = THREE.DoubleSide;
+
   return (
     <group name="gallery" ref={group} {...props} dispose={null}>
       <group scale={[400, 400, 400]}>

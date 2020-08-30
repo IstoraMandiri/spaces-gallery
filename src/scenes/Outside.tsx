@@ -7,6 +7,8 @@ import { SceneComponent } from "types/scene";
 import HDRISky from "three-components/HDRI/HDRISky";
 
 import Gallery from "../models/SpacesGallery2";
+import Gallery3 from "../models/Gallery3";
+import Gallery4 from "../models/Gallery4";
 
 const physicsProps = {
   iterations: 20,
@@ -27,7 +29,8 @@ const Outside: SceneComponent = (props) => {
           <Player useEnvStore={useEnvStore} />
           <pointLight position={[0, 10, 0]} intensity={2} color={0xe2cbff} />
           <Suspense fallback={null}>
-            <Gallery useEnvStore={useEnvStore} />
+            {/*<Gallery useEnvStore={useEnvStore} />*/}
+            <Gallery4 useEnvStore={useEnvStore} />
           </Suspense>
         </Physics>
       </Canvas>
