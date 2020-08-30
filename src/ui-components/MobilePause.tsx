@@ -22,9 +22,12 @@ const Window = styled.div`
   width: 60px;
   height: 60px;
   margin: 10px;
-  background: url("https://dwvo2npct47gg.cloudfront.net/gifs/awge-space/menu-icon.gif")
-    center center no-repeat;
-  background-size: contain;
+  background-color: white;
+  border-radius: 50%;
+  text-align: center;
+  //background: url("https://dwvo2npct47gg.cloudfront.net/gifs/awge-space/menu-icon.gif")
+  //  center center no-repeat;
+  //background-size: contain;
 `;
 
 type MobilePauseProps = {
@@ -42,7 +45,7 @@ const MobilePause = (props: MobilePauseProps) => {
   return (
     <Container paused={paused}>
       <ClickContainer onClick={togglePause} />
-      {!paused ? <Window /> : null}
+      {!paused ? <Window>Pause</Window> : null}
     </Container>
   );
 };

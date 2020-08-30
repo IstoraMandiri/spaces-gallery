@@ -1,10 +1,12 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Physics } from "use-cannon";
 import { Canvas } from "react-three-fiber";
 import InfinitePlane from "three-components/InfinitePlane";
 import Player from "core/Player";
 import { SceneComponent } from "types/scene";
 import HDRISky from "three-components/HDRI/HDRISky";
+
+import Gallery from "../models/SpacesGallery2";
 
 const physicsProps = {
   iterations: 20,
@@ -22,8 +24,11 @@ const Outside: SceneComponent = (props) => {
         <Physics {...physicsProps}>
           <InfinitePlane height={-0.001} />
           <HDRISky />
-          <Player useEnvStore={useEnvStore} initPos={[0, 1, 20]} />
+          <Player useEnvStore={useEnvStore} />
           <pointLight position={[0, 10, 0]} intensity={2} color={0xe2cbff} />
+          <Suspense fallback={null}>
+            <Gallery useEnvStore={useEnvStore} />
+          </Suspense>
         </Physics>
       </Canvas>
     </>
