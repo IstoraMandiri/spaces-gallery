@@ -16,6 +16,7 @@ import OutsideLighting from "./components/OutsideLighting";
 import HectorRoom from "./components/HectorRoom";
 import JustinRoom from "./components/JustinRoom";
 import OutsideAudio from "./components/OutsideAudio";
+import SantiRoom from "./components/SantiRoom";
 
 const physicsProps = {
   iterations: 20,
@@ -48,6 +49,7 @@ const Outside: SceneComponent = (props) => {
           <HectorRoom useEnvStore={useEnvStore} />
           <ZachRoom />
           <JustinRoom useEnvStore={useEnvStore} />
+          <SantiRoom useEnvStore={useEnvStore} />
           <DennisRoom useEnvStore={useEnvStore} />
           <OutsideAudio
             url="https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/audio/LucidMondayMix.mp3"

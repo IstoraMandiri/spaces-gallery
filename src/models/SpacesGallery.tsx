@@ -63,10 +63,10 @@ export default function Model(props: ModelProps) {
   return (
     <group ref={group} {...props} dispose={null}>
       <group position={[0, 0.5, 0]} scale={[100, 100, 100]}>
-        <mesh
-          material={materials["GALLERY.FULL"]}
-          geometry={nodes.GALLERYFULL.geometry}
-        />
+        {/*<mesh*/}
+        {/*  material={materials["GALLERY.FULL"]}*/}
+        {/*  geometry={nodes.GALLERYFULL.geometry}*/}
+        {/*/>*/}
         <mesh
           material={materials["ROOF.LIP"]}
           geometry={nodes.ROOFLIP.geometry}
