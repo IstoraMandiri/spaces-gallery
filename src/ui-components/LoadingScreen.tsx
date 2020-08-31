@@ -17,7 +17,7 @@ const Container = styled.div<{ finished: boolean; landing: boolean }>`
   opacity: ${(props) => (props.finished ? 0 : 1)};
   pointer-events: ${(props) => (props.finished ? "none" : "all")};
   display: flex;
-  justify-content: ${(props) => (props.landing ? "center" : "flex-end")};
+  justify-content: center;
   align-items: center;
   flex-direction: column;
 `;
