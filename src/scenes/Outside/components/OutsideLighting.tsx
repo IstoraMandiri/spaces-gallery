@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { SpotLight } from "three";
 
-const LIGHT_INTENSITY = 2;
+const LIGHT_INTENSITY = 4;
 const LIGHT_DISTANCE = 30;
 const LIGHT_COLOR = 0xffffff;
 

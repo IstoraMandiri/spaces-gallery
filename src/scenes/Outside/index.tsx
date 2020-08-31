@@ -14,13 +14,14 @@ import ZachRoom from "./components/ZachRoom";
 import DennisRoom from "./components/DennisRoom";
 import OutsideLighting from "./components/OutsideLighting";
 import HectorRoom from "./components/HectorRoom";
+import JustinRoom from "./components/JustinRoom";
 import OutsideAudio from "./components/OutsideAudio";
 
 const physicsProps = {
   iterations: 20,
   size: 10,
   allowSleep: false,
-  gravity: [0, -40, 0],
+  gravity: [0, -30, 0],
   defaultContactMaterial: {
     friction: 0,
     // restitution?: number
@@ -46,6 +47,7 @@ const Outside: SceneComponent = (props) => {
           <RobertRoom />
           <HectorRoom useEnvStore={useEnvStore} />
           <ZachRoom />
+          <JustinRoom useEnvStore={useEnvStore} />
           <DennisRoom useEnvStore={useEnvStore} />
           <OutsideAudio
             url="https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/audio/LucidMondayMix.mp3"
