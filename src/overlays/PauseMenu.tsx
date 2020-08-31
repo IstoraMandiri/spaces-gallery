@@ -36,103 +36,104 @@ const Window = styled.div`
   max-width: 400px;
   height: 91vw;
   max-height: 400px;
-  padding: 25px 15px;
-  background: url("https://dwvo2npct47gg.cloudfront.net/images/awge-space/menu-sign.png")
-    center center no-repeat;
-  background-size: contain;
+  padding: 25px 25px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   position: relative;
-  text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.5);
+  font-family: "MyriadPro";
   font-size: 1em;
+  border: blue solid 3px;
+  background-color: white;
 `;
 
-const TextContainer = styled.div`
+const Header = styled.div`
   width: 70%;
-  height: 66%;
+  height: auto;
+  color: black;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  //border: red dashed 2px;
+`;
+
+const Version = styled.a`
+  position: absolute;
+  top: 0;
+  right: 5px;
+  font-size: 0.6em;
+`;
+
+const Instagram = styled.img`
+  position: absolute;
+  top: 0;
+  left: 5px;
+  width: 25px;
+  height: 25px;
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+const SubHeader = styled.div`
+  font-size: 0.5em;
+`;
+
+const Controls = styled.div`
+  width: 80%;
+  height: auto;
+  padding: 10px 0 10px 0;
+  //border: blue 2px dashed;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 1.1em;
+  justify-content: flex-start;
+  color: black;
+  font-size: 1em;
   @media screen and (max-width: 500px) {
-    font-size: 1em;
+    font-size: 0.9em;
     width: 75%;
   }
 `;
 
-const LinksContainer = styled.div`
+const ControlSet = styled.div`
   width: 100%;
-  position: absolute;
-  bottom: 20px;
+  margin-left: 25px;
+  padding-top: 25px;
+  //border: purple dashed 1px;
+  font-size: 0.7em;
   display: flex;
-  align-items: center;
-  flex-direction: column;
-`;
-
-const Text = styled.div`
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const LinkText = styled.a`
-  text-decoration: underline;
-  font-size: 0.8em;
-  cursor: pointer;
-  color: #0c665c;
-  text-shadow: none;
-`;
-
-const TextRow = styled(Text)`
-  width: 100%;
-  margin-bottom: 7px;
   flex-direction: row;
-  justify-content: stretch;
-`;
-
-const Return = styled.button`
-  border: 3px solid black;
-  width: 88%;
-  max-width: 391.1px;
-  padding: 5px 10px;
-  margin-top: 25px;
-  border-radius: 8px;
-  color: black;
-  font-size: 0.8em;
-  background-color: #fbd30d;
-  font-family: "Merchant Copy Wide", "Merchant Copy", sans-serif;
-
+  justify-content: space-between;
   @media screen and (max-width: 500px) {
-    font-size: 0.7em;
+    margin-left: 10px;
   }
 `;
 
-const VersionText = styled.p`
-  position: absolute;
-  top: 13px;
-  right: 15px;
-  font-size: 0.8em;
-  color: white;
+const Key = styled.div`
+  font-weight: bold;
 `;
 
-const YearText = styled(VersionText)`
-  left: 15px;
-  right: inherit;
+const Binding = styled.div`
+  width: 45%;
+  //border: orange solid 2px;
+  text-align: start;
 `;
 
-const Line = styled.div`
-  height: 0.375em;
-  border-bottom: 3px dashed white;
-  flex: 1 0 5px;
-`;
-
-const Spacer = styled.div`
-  width: 5%;
+const Continue = styled.div`
+  width: 70%;
+  height: auto;
+  margin-top: 5px;
+  padding: 2px 0 2px 0;
+  //border: green dashed 2px;
+  text-align: center;
+  color: black;
+  font-size: 1.1em;
+  :hover {
+    color: red;
+    cursor: pointer;
+  }
 `;
 
 type OverlayProps = {
@@ -158,35 +159,25 @@ const PauseMenu: React.FC<OverlayProps> = (props) => {
     <Container paused={paused}>
       <ClickContainer id="click-container" onClick={closeOverlay} />
       <Window>
-        <YearText>{`© ${year}`}</YearText>
-        <VersionText>{`v${NEXT_PUBLIC_VERSION}`}</VersionText>
-        <TextContainer>
-          <TextRow>
-            <p>Move</p>
-            <Spacer />
-            <Line />
-            <Spacer />
-            <p>{isMobile ? "Joystick" : "WASD"}</p>
-          </TextRow>
-          <TextRow>
-            <p>Look</p>
-            <Spacer />
-            <Line />
-            <Spacer />
-            <p>{isMobile ? "Drag" : "Mouse"}</p>
-          </TextRow>
-          <TextRow>
-            <p>Pause</p>
-            <Spacer />
-            <Line />
-            <Spacer />
-            <p>{isMobile ? "Menu Button" : "Esc"}</p>
-          </TextRow>
-        </TextContainer>
+        <Version>v 1.0.0</Version>
+        <Header>S P A C E S</Header>
+        <Controls>
+          <SubHeader>3D on the Web</SubHeader>
+          <ControlSet>
+            <Key>Move Around:</Key>
+            <Binding>{isMobile ? "Joystick" : "W, A, S, D"}</Binding>
+          </ControlSet>
+          <ControlSet>
+            <Key>Look Around:</Key>
+            <Binding>{isMobile ? "Drag" : "Mouse"}</Binding>
+          </ControlSet>
+          <ControlSet>
+            <Key>Pause:</Key>
+            <Binding>{isMobile ? "Menu Button" : "Esc"}</Binding>
+          </ControlSet>
+        </Controls>
+        <Continue onClick={closeOverlay}>CONTINUE</Continue>
       </Window>
-      <Return id="pause-button" onClick={closeOverlay}>
-        {`${isMobile ? "TAP" : "CLICK"} HERE TO RETURN`}
-      </Return>
     </Container>
   );
 };

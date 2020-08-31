@@ -29,6 +29,7 @@
     "react": "16.13.1",
     "react-device-detect": "^1.13.1",
     "react-dom": "16.13.1",
+    "react-facebook-pixel": "^1.0.3",
     "react-three-fiber": "^4.2.10",
     "shopify-buy": "^2.11.0",
     "three": "^0.117.1",
