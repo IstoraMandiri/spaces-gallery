@@ -9,7 +9,7 @@ import DesktopControls from "./Controls/DesktopControls";
 import { EnvironmentStoreHook } from "stores/environment";
 import RaycasterUtil from "./RaycasterUtil";
 
-const VELOCITY_FACTOR = 200;
+const VELOCITY_FACTOR = 350;
 const SHOW_PLAYER_HITBOX = false;
 
 type PlayerProps = {
@@ -35,9 +35,10 @@ const Player = (props: PlayerProps) => {
 
   // physical body
   const [bodyRef, bodyApi] = useSphere(() => ({
-    mass: 5,
+    mass: 500,
     position: initPos,
     args: 1,
+    fixedRotation: true,
     onCollide: (e: Event) => {
       if (e?.body?.name.includes("teleport")) {
         const coords = e.body.name.replace("teleport-", "").split(",");
