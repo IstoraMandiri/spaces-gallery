@@ -10,6 +10,8 @@ type FramedVideoProps = JSX.IntrinsicElements["group"] & {
   src: string;
   ratio: [number, number];
   sizeScale: number;
+  audioPosition: [number, number, number];
+  audioRotation: [number, number, number];
   frameless?: boolean;
   emissive?: boolean;
 };
@@ -28,6 +30,8 @@ const FramedVideo = (props: FramedVideoProps) => {
     rotation = [0, 0, 0],
     frameless = false,
     emissive,
+    audioPosition,
+    audioRotation,
   } = props;
 
   const { camera, scene } = useThree();
@@ -67,7 +71,7 @@ const FramedVideo = (props: FramedVideoProps) => {
       video.playsInline = true;
       video.crossOrigin = "anonymous";
       video.preload = "auto";
-      video.autoplay = false;
+      video.autoplay = true;
       video.style.position = "absolute";
       video.style.opacity = "0";
       video.style.pointerEvents = "none";
@@ -118,15 +122,23 @@ const FramedVideo = (props: FramedVideoProps) => {
 
       speaker.current = new THREE.PositionalAudio(listener.current);
       speaker.current.setMediaElementSource(videoRef.current);
-      speaker.current.setRefDistance(10);
-      speaker.current.setVolume(0.2);
+      speaker.current.setRefDistance(4);
+      speaker.current.setVolume(2);
       speaker.current.setDirectionalCone(180, 230, 0.1);
       // @ts-ignore due to bad types, it's an array though
-      speaker.current.position.set(position[0], position[1], position[2]);
+      speaker.current.position.set(
+        audioPosition[0],
+        audioPosition[1],
+        audioPosition[2]
+      );
       // @ts-ignore due to bad types, it's an array though
-      speaker.current.rotation.set(rotation[0], rotation[1], rotation[2]);
+      speaker.current.rotation.set(
+        audioRotation[0],
+        audioRotation[1],
+        audioRotation[2]
+      );
 
-      // const helper = new PositionalAudioHelper(speaker.current);
+      const helper = new PositionalAudioHelper(speaker.current);
       // speaker.current.add(helper);
 
       scene.add(speaker.current);
