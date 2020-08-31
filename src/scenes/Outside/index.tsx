@@ -12,6 +12,7 @@ import HDRISky from "three-components/HDRI/HDRISky";
 import Effects from "core/Effects";
 import ZachRoom from "./components/ZachRoom";
 import DennisRoom from "./components/DennisRoom";
+import OutsideLighting from "./components/OutsideLighting";
 import HectorRoom from "./components/HectorRoom";
 
 const physicsProps = {
@@ -41,13 +42,11 @@ const Outside: SceneComponent = (props) => {
           <HDRISky />
           <InfinitePlane height={-0.001} />
           <Player useEnvStore={useEnvStore} />
-          <ambientLight intensity={0.1} color={0xffffff} />
-          {/*<pointLight intensity={2} position={[0, 3, 0]} color={0xff0000} />*/}
           <RobertRoom />
           <HectorRoom useEnvStore={useEnvStore} />
           <ZachRoom />
           <DennisRoom useEnvStore={useEnvStore} />
-          <pointLight position={[0, 10, 0]} intensity={2} color={0xe2cbff} />
+          <OutsideLighting />
           <Suspense fallback={null}>
             <SpacesGallery useEnvStore={useEnvStore} />
           </Suspense>

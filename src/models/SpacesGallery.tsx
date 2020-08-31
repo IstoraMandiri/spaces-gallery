@@ -34,9 +34,11 @@ export default function Model(props: ModelProps) {
     loadModel(setLoading)
   );
 
-  // materials["INSIDE"].metalness = 0.4;
-  // // materials["INSIDE"].refractionRatio = 0.3;
-  // materials["INSIDE"].side = THREE.DoubleSide;
+  materials["GALLERY.FULL"].metalness = 0.3;
+  materials["GALLERY.FULL"].refractionRatio = 0.5;
+
+  materials["ROOF.LIP"].metalness = 0.3;
+  materials["ROOF.LIP"].refractionRatio = 0.5;
 
   const floorGeo = useMemo(() => {
     return new THREE.Geometry().fromBufferGeometry(
