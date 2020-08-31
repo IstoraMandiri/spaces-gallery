@@ -151,7 +151,7 @@ const FramedVideo = (props: FramedVideoProps) => {
 
       speaker.current = new THREE.PositionalAudio(listener.current);
       speaker.current.setMediaElementSource(videoRef.current);
-      speaker.current.setRefDistance(1);
+      speaker.current.setRefDistance(0.75);
       speaker.current.setRolloffFactor(1);
       speaker.current.setVolume(1);
       speaker.current.setDirectionalCone(180, 230, 0.1);
