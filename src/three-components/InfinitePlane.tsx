@@ -18,8 +18,8 @@ const InfinitePlane = (props: InfinitePlaneProps) => {
 
   return (
     <mesh ref={ref}>
-      <planeBufferGeometry attach="geometry" args={size} />
-      <meshPhongMaterial attach="material" color="#666" />
+      {/*<planeBufferGeometry attach="geometry" args={size} />*/}
+      {/*<meshPhongMaterial attach="material" color="#660000" />*/}
     </mesh>
   );
 };

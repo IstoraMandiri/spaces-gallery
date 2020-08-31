@@ -6,7 +6,6 @@ import Player from "core/Player";
 import { SceneComponent } from "types/scene";
 import HDRISky from "three-components/HDRI/HDRISky";
 
-import Gallery from "../models/SpacesGallery2";
 import Gallery3 from "../models/Gallery3";
 import Gallery4 from "../models/Gallery4";
 
