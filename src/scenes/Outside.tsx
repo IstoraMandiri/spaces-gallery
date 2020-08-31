@@ -6,8 +6,8 @@ import Player from "core/Player";
 import { SceneComponent } from "types/scene";
 import HDRISky from "three-components/HDRI/HDRISky";
 
-import Gallery3 from "../models/Gallery3";
 import Gallery4 from "../models/Gallery4";
+import Analytics from "ui-components/Analytics";
 
 const physicsProps = {
   iterations: 20,
@@ -20,6 +20,7 @@ const Outside: SceneComponent = (props) => {
 
   return (
     <>
+      <Analytics />
       <Canvas {...defaultCanvasProps}>
         {children}
         <Physics {...physicsProps}>
