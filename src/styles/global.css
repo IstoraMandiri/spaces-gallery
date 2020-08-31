@@ -1,6 +1,7 @@
-// compile
-@import "fonts";
-
+@font-face {
+  font-family: "MyriadPro";
+  src: url("/fonts/Myriad_Pro_Light.otf");
+}
 html {
   position: fixed;
   height: 100%;
@@ -18,7 +19,11 @@ body {
   -webkit-overflow-scrolling: touch;
   font-family: "MyriadPro", sans-serif;
   font-size: 27px;
-  @media screen and (max-width: 500px) {
+}
+@media screen and (max-width: 500px) {
+  body {
     font-size: 24px;
   }
 }
+
+/*# sourceMappingURL=global.css.map */
