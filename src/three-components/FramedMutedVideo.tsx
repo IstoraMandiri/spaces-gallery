@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { useFrame, useThree } from "react-three-fiber";
 import { Vector2 } from "three";
 import { EnvironmentStoreHook } from "stores/environment";
-import { PositionalAudioHelper } from "three/examples/jsm/helpers/PositionalAudioHelper";
+import { Group } from "three";
 
 type FramedVideoProps = JSX.IntrinsicElements["group"] & {
   useEnvStore: EnvironmentStoreHook;
@@ -11,11 +11,15 @@ type FramedVideoProps = JSX.IntrinsicElements["group"] & {
   ratio: [number, number];
   sizeScale: number;
   frameless?: boolean;
+  floating?: boolean;
 };
 
 const frameWidth = 0.3;
 const frameDepth = 0.1;
+const borderThickness = 0.2;
+const borderDepth = 0.2;
 const meshOffset = 0.0005;
+const floatHeight = 0.05;
 
 const FramedMutedVideo = (props: FramedVideoProps) => {
   const {
@@ -25,10 +29,13 @@ const FramedMutedVideo = (props: FramedVideoProps) => {
     useEnvStore,
     position = [0, 0, 0],
     rotation = [0, 0, 0],
-    frameless = false,
+    frameless,
+    floating,
   } = props;
 
   const { camera, scene } = useThree();
+  const group = useRef<Group>();
+  const uuid = useRef(Math.random());
 
   // video state
   const videoRef = useRef<HTMLVideoElement>();
@@ -38,11 +45,32 @@ const FramedMutedVideo = (props: FramedVideoProps) => {
   const container = useEnvStore((st) => st.container);
   const paused = useEnvStore((st) => st.paused);
 
-  useFrame(() => {
+  useFrame(({ clock }) => {
     if (!texReady && videoRef?.current && videoRef?.current?.currentTime > 0) {
       setTexReady(true);
     }
+
+    if (group.current && floating) {
+      group.current.position.y =
+        floatHeight *
+        2 *
+        (Math.sin(
+          clock.getElapsedTime() * (uuid.current / 10 + 0.9) +
+            uuid.current * 1000
+        ) -
+          0.5);
+    }
   });
+
+  const material = useMemo(
+    () =>
+      new THREE.MeshStandardMaterial({
+        color: 0x111111,
+        roughness: 0.8,
+        metalness: 0.05,
+      }),
+    []
+  );
 
   // sizing
   const normalizedRatio = new Vector2(ratio[0], ratio[1]).normalize();
@@ -106,21 +134,80 @@ const FramedMutedVideo = (props: FramedVideoProps) => {
 
   return (
     <group {...props}>
-      {texReady && (
-        <mesh>
-          <planeBufferGeometry attach="geometry" args={[width, height]} />
-          <meshStandardMaterial attach="material" map={textureRef.current} />
-        </mesh>
-      )}
-      {!frameless && (
-        <mesh position={[0, 0, -0.1 - meshOffset]}>
-          <boxBufferGeometry
-            attach="geometry"
-            args={[width + frameWidth, height + frameWidth, frameDepth]}
-          />
-          <meshStandardMaterial attach="material" color="#4a4a4a" />
-        </mesh>
-      )}
+      <group ref={group}>
+        {texReady && (
+          <mesh>
+            <planeBufferGeometry attach="geometry" args={[width, height]} />
+            <meshStandardMaterial attach="material" map={textureRef.current} />
+          </mesh>
+        )}
+        {!frameless && (
+          <>
+            <mesh position={[0, 0, -0.1 - meshOffset]} material={material}>
+              <boxBufferGeometry
+                attach="geometry"
+                args={[width + frameWidth, height + frameWidth, frameDepth]}
+              />
+            </mesh>
+            {/* top */}
+            <mesh
+              position={[
+                0,
+                height / 2 + frameWidth / 2 - borderThickness / 2,
+                0,
+              ]}
+              material={material}
+            >
+              <boxBufferGeometry
+                attach="geometry"
+                args={[width + frameWidth, borderThickness, borderDepth]}
+              />
+            </mesh>
+            {/* bottom */}
+            <mesh
+              position={[
+                0,
+                -height / 2 - frameWidth / 2 + borderThickness / 2,
+                0,
+              ]}
+              material={material}
+            >
+              <boxBufferGeometry
+                attach="geometry"
+                args={[width + frameWidth, borderThickness, borderDepth]}
+              />
+            </mesh>
+            {/* left */}
+            <mesh
+              position={[
+                -width / 2 - frameWidth / 2 + borderThickness / 2,
+                0,
+                0,
+              ]}
+              material={material}
+            >
+              <boxBufferGeometry
+                attach="geometry"
+                args={[borderThickness, height + frameWidth, borderDepth]}
+              />
+            </mesh>
+            {/* right */}
+            <mesh
+              position={[
+                width / 2 + frameWidth / 2 - borderThickness / 2,
+                0,
+                0,
+              ]}
+              material={material}
+            >
+              <boxBufferGeometry
+                attach="geometry"
+                args={[borderThickness, height + frameWidth, borderDepth]}
+              />
+            </mesh>
+          </>
+        )}
+      </group>
     </group>
   );
 };

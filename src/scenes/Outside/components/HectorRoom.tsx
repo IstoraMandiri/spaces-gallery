@@ -30,11 +30,12 @@ const HectorRoom = (props: Props) => {
           useEnvStore={useEnvStore}
           src="https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/content/opening/hector/TravisVideo.mp4"
           ratio={[1260, 720]}
-          sizeScale={3}
+          sizeScale={4}
           rotation={[0, -Math.PI / 3, 0]}
           position={[8, 2, 4]}
           audioPosition={[-34.5, 4.5, 11]}
           audioRotation={[0, (1 / 3) * Math.PI, 0]}
+          floating
         />
       </group>
     </group>

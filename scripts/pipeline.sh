@@ -4,7 +4,7 @@ NAME=$1
 FILE=$2
 
 STAGED_FOLDER="public/staging/${NAME}"
-STAGED_FILE="${STAGED_FOLDER}/${FILE}.gltf"
+STAGED_FILE="${STAGED_FOLDER}/${FILE}.glb"
 DESTINATION_FILE="src/models/${FILE}.tsx"
 
 gltf-pipeline -i "${STAGED_FILE}" -o "${STAGED_FILE}" -d

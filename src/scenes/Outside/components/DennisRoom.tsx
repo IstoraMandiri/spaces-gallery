@@ -35,6 +35,7 @@ const DennisRoom = (props: DennisProps) => {
           sizeScale={5}
           position={[0, 0, -4]}
           useEnvStore={useEnvStore}
+          floating
         />
         <FramedImage
           src="https://d27rt3a60hh1lx.cloudfront.net/content/opening/dennis/5_water_3.jpg"
