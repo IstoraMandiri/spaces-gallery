@@ -122,8 +122,9 @@ const FramedVideo = (props: FramedVideoProps) => {
 
       speaker.current = new THREE.PositionalAudio(listener.current);
       speaker.current.setMediaElementSource(videoRef.current);
-      speaker.current.setRefDistance(4);
-      speaker.current.setVolume(2);
+      speaker.current.setRefDistance(1);
+      speaker.current.setRolloffFactor(1);
+      speaker.current.setVolume(1);
       speaker.current.setDirectionalCone(180, 230, 0.1);
       // @ts-ignore due to bad types, it's an array though
       speaker.current.position.set(
@@ -138,7 +139,7 @@ const FramedVideo = (props: FramedVideoProps) => {
         audioRotation[2]
       );
 
-      const helper = new PositionalAudioHelper(speaker.current);
+      // const helper = new PositionalAudioHelper(speaker.current);
       // speaker.current.add(helper);
 
       scene.add(speaker.current);
