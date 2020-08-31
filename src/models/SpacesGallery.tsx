@@ -14,10 +14,13 @@ import { useConvexPolyhedron } from "use-cannon";
 type GLTFResult = GLTF & {
   nodes: {
     GALLERYFULL: THREE.Mesh;
-    ROOFLIP2: THREE.Mesh;
-    GALLERYWALLS: THREE.Mesh;
-    ROOFLIP1: THREE.Mesh;
+    ROOFLIP: THREE.Mesh;
     GALLERYFLOOR: THREE.Mesh;
+    GALLERYWALLS: THREE.Mesh;
+  };
+  materials: {
+    ["GALLERY.FULL"]: THREE.MeshStandardMaterial;
+    ["ROOF.LIP"]: THREE.MeshStandardMaterial;
   };
 };
 
@@ -25,9 +28,9 @@ export default function Model(props: ModelProps) {
   const { useEnvStore } = props;
   const setLoading = useEnvStore((st) => st.setLoading);
   const group = useRef<THREE.Group>();
-  const { nodes } = useLoader<GLTFResult>(
+  const { nodes, materials } = useLoader<GLTFResult>(
     GLTFLoader,
-    "https://d27rt3a60hh1lx.cloudfront.net/models/SpacesGallery10/SpacesGallery10.glb",
+    "https://d27rt3a60hh1lx.cloudfront.net/models/SpacesGallery11/SpacesGallery11.glb",
     loadModel(setLoading)
   );
 
@@ -59,18 +62,13 @@ export default function Model(props: ModelProps) {
     <group ref={group} {...props} dispose={null}>
       <group position={[0, 0.5, 0]} scale={[100, 100, 100]}>
         <mesh
-          material={nodes.GALLERYFULL.material}
+          material={materials["GALLERY.FULL"]}
           geometry={nodes.GALLERYFULL.geometry}
         />
         <mesh
-          material={nodes.ROOFLIP2.material}
-          geometry={nodes.ROOFLIP2.geometry}
-          position={[0, 0.070056, 0]}
-        />
-        <mesh
-          material={nodes.ROOFLIP1.material}
-          geometry={nodes.ROOFLIP1.geometry}
-          position={[0, 0.070056, 0]}
+          material={materials["ROOF.LIP"]}
+          geometry={nodes.ROOFLIP.geometry}
+          position={[0, 0.07, 0]}
         />
       </group>
     </group>
