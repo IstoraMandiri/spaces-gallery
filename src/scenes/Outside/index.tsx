@@ -29,7 +29,8 @@ const Outside: SceneComponent = (props) => {
           <HDRISky />
           <InfinitePlane height={-0.001} />
           <Player useEnvStore={useEnvStore} />
-          <ambientLight intensity={0.2} color={0xffffff} />
+          <ambientLight intensity={0.1} color={0xffffff} />
+          {/*<pointLight intensity={2} position={[0, 3, 0]} color={0xff0000} />*/}
           <RobertRoom />
           <pointLight position={[0, 10, 0]} intensity={2} color={0xe2cbff} />
           <Suspense fallback={null}>

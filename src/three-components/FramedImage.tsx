@@ -47,8 +47,8 @@ const FramedImage = (props: FramedImageProps) => {
     () =>
       new THREE.MeshStandardMaterial({
         color: 0x111111,
-        roughness: 0.2,
-        metalness: 0.7,
+        roughness: 0.8,
+        metalness: 0.05,
       }),
     []
   );
