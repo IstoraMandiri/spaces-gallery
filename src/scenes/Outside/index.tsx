@@ -7,17 +7,25 @@ import { SceneComponent } from "types/scene";
 
 import SpacesGallery from "models/SpacesGallery";
 import Analytics from "ui-components/Analytics";
-import { Sky } from "drei";
 import RobertRoom from "./components/RobertRoom";
-import HDRISky from "../../three-components/HDRI/HDRISky";
+import HDRISky from "three-components/HDRI/HDRISky";
 import Effects from "core/Effects";
 import ZachRoom from "./components/ZachRoom";
+import DennisRoom from "./components/DennisRoom";
 
 const physicsProps = {
   iterations: 20,
   size: 10,
   allowSleep: false,
   gravity: [0, -40, 0],
+  defaultContactMaterial: {
+    friction: 0,
+    // restitution?: number
+    // contactEquationStiffness?: number
+    // contactEquationRelaxation?: number
+    // frictionEquationStiffness?: number
+    // frictionEquationRelaxation?: number
+  },
 };
 
 const Outside: SceneComponent = (props) => {
@@ -36,6 +44,7 @@ const Outside: SceneComponent = (props) => {
           {/*<pointLight intensity={2} position={[0, 3, 0]} color={0xff0000} />*/}
           <RobertRoom />
           <ZachRoom />
+          <DennisRoom useEnvStore={useEnvStore} />
           <pointLight position={[0, 10, 0]} intensity={2} color={0xe2cbff} />
           <Suspense fallback={null}>
             <SpacesGallery useEnvStore={useEnvStore} />

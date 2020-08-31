@@ -9,7 +9,7 @@ import DesktopControls from "./Controls/DesktopControls";
 import { EnvironmentStoreHook } from "stores/environment";
 import RaycasterUtil from "./RaycasterUtil";
 
-const VELOCITY_FACTOR = 350;
+const VELOCITY_FACTOR = 250;
 const SHOW_PLAYER_HITBOX = false;
 
 type PlayerProps = {
