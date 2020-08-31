@@ -23,7 +23,7 @@ const FramedImage = (props: FramedImageProps) => {
 
   const texture = useLoader(THREE.TextureLoader, src);
   const group = useRef<Group>();
-  const uuid = useRef(Math.random() * 1000);
+  const uuid = useRef(Math.random());
 
   // sizing
   const normalizedRatio = new Vector2(ratio[0], ratio[1]).normalize();
@@ -35,7 +35,11 @@ const FramedImage = (props: FramedImageProps) => {
       group.current.position.y =
         floatHeight *
         2 *
-        (Math.sin(clock.getElapsedTime() + uuid.current) - 0.5);
+        (Math.sin(
+          clock.getElapsedTime() * (uuid.current / 10 + 0.9) +
+            uuid.current * 1000
+        ) -
+          0.5);
     }
   });
 

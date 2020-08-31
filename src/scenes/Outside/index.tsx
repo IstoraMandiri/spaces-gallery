@@ -8,7 +8,7 @@ import { SceneComponent } from "types/scene";
 import SpacesGallery from "models/SpacesGallery";
 import Analytics from "ui-components/Analytics";
 import { Sky } from "drei";
-import MainRoom from "./components/MainRoom";
+import RobertRoom from "./components/RobertRoom";
 import HDRISky from "../../three-components/HDRI/HDRISky";
 
 const physicsProps = {
@@ -30,7 +30,7 @@ const Outside: SceneComponent = (props) => {
           <InfinitePlane height={-0.001} />
           <Player useEnvStore={useEnvStore} />
           <ambientLight intensity={0.2} color={0xffffff} />
-          <MainRoom />
+          <RobertRoom />
           <pointLight position={[0, 10, 0]} intensity={2} color={0xe2cbff} />
           <Suspense fallback={null}>
             <SpacesGallery useEnvStore={useEnvStore} />
