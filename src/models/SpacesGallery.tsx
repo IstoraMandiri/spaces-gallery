@@ -26,10 +26,11 @@ export default function Model(props: ModelProps) {
   const group = useRef<THREE.Group>();
   const { nodes, materials } = useLoader<GLTFResult>(
     GLTFLoader,
-    "https://d27rt3a60hh1lx.cloudfront.net/models/SpacesGallery4/SpacesGallery4.gltf",
+    "https://d27rt3a60hh1lx.cloudfront.net/models/SpacesGallery5/SpacesGallery5.gltf",
     loadModel(setLoading)
   );
   materials["INSIDE"].metalness = 0;
+  materials["INSIDE"].refractionRatio = 0.3;
   materials["INSIDE"].side = THREE.DoubleSide;
 
   // const galleryGeo = useMemo(() => {

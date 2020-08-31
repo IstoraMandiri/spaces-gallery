@@ -6,8 +6,9 @@ import Player from "core/Player";
 import { SceneComponent } from "types/scene";
 import HDRISky from "three-components/HDRI/HDRISky";
 
-import Gallery4 from "../models/Gallery4";
+import Gallery4 from "../models/SpacesGallery";
 import Analytics from "ui-components/Analytics";
+import { Sky } from "drei";
 
 const physicsProps = {
   iterations: 20,
@@ -24,8 +25,8 @@ const Outside: SceneComponent = (props) => {
       <Canvas {...defaultCanvasProps}>
         {children}
         <Physics {...physicsProps}>
+          <Sky />
           <InfinitePlane height={-0.001} />
-          <HDRISky />
           <Player useEnvStore={useEnvStore} />
           <pointLight position={[0, 10, 0]} intensity={2} color={0xe2cbff} />
           <Suspense fallback={null}>
