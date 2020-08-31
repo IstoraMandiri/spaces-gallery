@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useMemo, useRef } from "react";
 import * as THREE from "three";
 import { useFrame, useLoader } from "react-three-fiber";
 import { Group, Vector2 } from "three";
@@ -13,6 +13,8 @@ type FramedImageProps = JSX.IntrinsicElements["group"] & {
 
 const frameWidth = 0.3;
 const frameDepth = 0.1;
+const borderThickness = 0.2;
+const borderDepth = 0.2;
 const meshOffset = 0.0005;
 
 const FramedImage = (props: FramedImageProps) => {
@@ -34,6 +36,15 @@ const FramedImage = (props: FramedImageProps) => {
     }
   });
 
+  const material = useMemo(
+    () =>
+      new THREE.MeshStandardMaterial({
+        color: 0x111111,
+        roughness: 0.2,
+      }),
+    []
+  );
+
   return (
     <group {...props}>
       <group ref={group}>
@@ -42,13 +53,70 @@ const FramedImage = (props: FramedImageProps) => {
           <meshStandardMaterial attach="material" map={texture} />
         </mesh>
         {!frameless && (
-          <mesh position={[0, 0, -0.1 - meshOffset]}>
-            <boxBufferGeometry
-              attach="geometry"
-              args={[width + frameWidth, height + frameWidth, frameDepth]}
-            />
-            <meshStandardMaterial attach="material" color="#4a4a4a" />
-          </mesh>
+          <>
+            <mesh position={[0, 0, -0.1 - meshOffset]} material={material}>
+              <boxBufferGeometry
+                attach="geometry"
+                args={[width + frameWidth, height + frameWidth, frameDepth]}
+              />
+            </mesh>
+            {/* top */}
+            <mesh
+              position={[
+                0,
+                height / 2 + frameWidth / 2 - borderThickness / 2,
+                0,
+              ]}
+              material={material}
+            >
+              <boxBufferGeometry
+                attach="geometry"
+                args={[width + frameWidth, borderThickness, borderDepth]}
+              />
+            </mesh>
+            {/* bottom */}
+            <mesh
+              position={[
+                0,
+                -height / 2 - frameWidth / 2 + borderThickness / 2,
+                0,
+              ]}
+              material={material}
+            >
+              <boxBufferGeometry
+                attach="geometry"
+                args={[width + frameWidth, borderThickness, borderDepth]}
+              />
+            </mesh>
+            {/* left */}
+            <mesh
+              position={[
+                -width / 2 - frameWidth / 2 + borderThickness / 2,
+                0,
+                0,
+              ]}
+              material={material}
+            >
+              <boxBufferGeometry
+                attach="geometry"
+                args={[borderThickness, height + frameWidth, borderDepth]}
+              />
+            </mesh>
+            {/* right */}
+            <mesh
+              position={[
+                width / 2 + frameWidth / 2 - borderThickness / 2,
+                0,
+                0,
+              ]}
+              material={material}
+            >
+              <boxBufferGeometry
+                attach="geometry"
+                args={[borderThickness, height + frameWidth, borderDepth]}
+              />
+            </mesh>
+          </>
         )}
       </group>
     </group>
