@@ -16,6 +16,7 @@ const frameDepth = 0.1;
 const borderThickness = 0.2;
 const borderDepth = 0.2;
 const meshOffset = 0.0005;
+const floatHeight = 0.05;
 
 const FramedImage = (props: FramedImageProps) => {
   const { src, sizeScale, ratio, frameless, floating } = props;
@@ -32,7 +33,9 @@ const FramedImage = (props: FramedImageProps) => {
   useFrame(({ clock }) => {
     if (group.current && floating) {
       group.current.position.y =
-        0.1 * Math.sin(clock.getElapsedTime() + uuid.current);
+        floatHeight *
+        2 *
+        (Math.sin(clock.getElapsedTime() + uuid.current) - 0.5);
     }
   });
 
@@ -41,6 +44,7 @@ const FramedImage = (props: FramedImageProps) => {
       new THREE.MeshStandardMaterial({
         color: 0x111111,
         roughness: 0.2,
+        metalness: 0.7,
       }),
     []
   );
