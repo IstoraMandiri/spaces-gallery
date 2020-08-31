@@ -4,11 +4,12 @@ import { Canvas } from "react-three-fiber";
 import InfinitePlane from "three-components/InfinitePlane";
 import Player from "core/Player";
 import { SceneComponent } from "types/scene";
-import HDRISky from "three-components/HDRI/HDRISky";
 
-import Gallery4 from "../models/SpacesGallery";
+import SpacesGallery from "models/SpacesGallery";
 import Analytics from "ui-components/Analytics";
 import { Sky } from "drei";
+import MainRoom from "./components/MainRoom";
+import HDRISky from "../../three-components/HDRI/HDRISky";
 
 const physicsProps = {
   iterations: 20,
@@ -25,13 +26,14 @@ const Outside: SceneComponent = (props) => {
       <Canvas {...defaultCanvasProps}>
         {children}
         <Physics {...physicsProps}>
-          <Sky />
+          <HDRISky />
           <InfinitePlane height={-0.001} />
           <Player useEnvStore={useEnvStore} />
+          <ambientLight intensity={0.3} color={0xffffff} />
+          <MainRoom />
           <pointLight position={[0, 10, 0]} intensity={2} color={0xe2cbff} />
           <Suspense fallback={null}>
-            {/*<Gallery useEnvStore={useEnvStore} />*/}
-            <Gallery4 useEnvStore={useEnvStore} />
+            <SpacesGallery useEnvStore={useEnvStore} />
           </Suspense>
         </Physics>
       </Canvas>

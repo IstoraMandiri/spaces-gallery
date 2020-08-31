@@ -29,8 +29,8 @@ export default function Model(props: ModelProps) {
     "https://d27rt3a60hh1lx.cloudfront.net/models/SpacesGallery5/SpacesGallery5.gltf",
     loadModel(setLoading)
   );
-  materials["INSIDE"].metalness = 0;
-  materials["INSIDE"].refractionRatio = 0.3;
+  materials["INSIDE"].metalness = 0.4;
+  // materials["INSIDE"].refractionRatio = 0.3;
   materials["INSIDE"].side = THREE.DoubleSide;
 
   // const galleryGeo = useMemo(() => {

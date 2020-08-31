@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { styled } from "twin.macro";
 import { EnvironmentStoreHook } from "stores/environment";
 
-const TIMEOUT = 2; //ms, 0 for no timeout
+const TIMEOUT = 0; //ms, 0 for no timeout
 
 const Container = styled.div<{ finished: boolean; landing: boolean }>`
   width: 100%;

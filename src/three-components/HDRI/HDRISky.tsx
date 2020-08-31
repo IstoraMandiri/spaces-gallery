@@ -4,8 +4,7 @@ import { useThree } from "react-three-fiber";
 import { PMREMGenerator, UnsignedByteType } from "three";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 
-const HDRIImg =
-  "https://dwvo2npct47gg.cloudfront.net/hdr/PaintedSky_Dawn_Aurora_bigger.hdr";
+const HDRIImg = "https://d27rt3a60hh1lx.cloudfront.net/images/hdriuno.hdr";
 
 const HDRISky = () => {
   const { gl, scene } = useThree();
