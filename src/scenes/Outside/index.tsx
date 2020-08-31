@@ -10,11 +10,14 @@ import Analytics from "ui-components/Analytics";
 import { Sky } from "drei";
 import RobertRoom from "./components/RobertRoom";
 import HDRISky from "../../three-components/HDRI/HDRISky";
+import Effects from "core/Effects";
+import ZachRoom from "./components/ZachRoom";
 
 const physicsProps = {
   iterations: 20,
   size: 10,
   allowSleep: false,
+  gravity: [0, -40, 0],
 };
 
 const Outside: SceneComponent = (props) => {
@@ -32,10 +35,12 @@ const Outside: SceneComponent = (props) => {
           <ambientLight intensity={0.1} color={0xffffff} />
           {/*<pointLight intensity={2} position={[0, 3, 0]} color={0xff0000} />*/}
           <RobertRoom />
+          <ZachRoom />
           <pointLight position={[0, 10, 0]} intensity={2} color={0xe2cbff} />
           <Suspense fallback={null}>
             <SpacesGallery useEnvStore={useEnvStore} />
           </Suspense>
+          <Effects />
         </Physics>
       </Canvas>
     </>
