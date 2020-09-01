@@ -50,6 +50,10 @@ const SantiRoom = (props: SantiProps) => {
 
   useEffect(() => {
     if (gltf && renderer && !room.current) {
+      // remove cut gallery
+      scene.remove(gltf.scene.children[0].children[2].children[2]);
+      gltf.scene.children[0].children[2].children[2].visible = false;
+
       room.current = new Room(gltf, renderer);
       if (room.current) {
         room.current.name = "santi";
@@ -61,6 +65,7 @@ const SantiRoom = (props: SantiProps) => {
       scene.add(room.current);
       room.current.rotateY((Math.PI * 5) / 3);
       room.current.translateY(0.5);
+      room.current.scale.set(1, 1, 1);
       setAdded(false);
     }
   }, [gltf, renderer, room, added]);

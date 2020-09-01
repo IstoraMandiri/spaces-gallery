@@ -780,10 +780,11 @@ void main() {
 
     // blend
     vec3 cout = r.rgb + vec3( l1 + l2 + l3 ) * smoothstep( 0.0, 0.8, ( 1.0 - r.r ) );
+    
+    float grayscaleComponent = cout.x*(1.0/3.0) + cout.y*(1.0/3.0) + cout.z*(1.0/3.0);
+    gl_FragColor = vec4(.0, .0, .0, 1.0 - grayscaleComponent);
 
-    // cout = vec3(n);
-
-    gl_FragColor = vec4( cout, 1.0 );
+    // gl_FragColor = vec4( cout, 1.0 );
 }
 `;
 

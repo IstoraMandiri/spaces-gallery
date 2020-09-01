@@ -6,6 +6,7 @@ import {
   Vector4,
   NearestFilter,
   MeshBasicMaterial,
+  MeshStandardMaterial,
 } from "three";
 
 import * as Shaders from "./shaders";
@@ -47,13 +48,12 @@ class RoomMaterial extends ShaderMaterial {
     });
 
     const tLoader = new TextureLoader();
-    const t = tLoader.load(tex);
-    t.flipY = false;
     const t2 = tLoader.load(diffuse);
     t2.flipY = false;
 
-    this.uniforms.lightTex = { value: t };
     this.uniforms.roomTex = { value: t2 };
+
+    this.transparent = true;
 
     this.side = DoubleSide;
   }
@@ -160,7 +160,7 @@ class ScreenRightMaterial extends ShaderMaterial {
   }
 }
 
-class GalleryMaterial extends MeshBasicMaterial {
+class GalleryMaterial extends MeshStandardMaterial {
   constructor() {
     super();
 
@@ -169,6 +169,9 @@ class GalleryMaterial extends MeshBasicMaterial {
     const tLoader = new TextureLoader();
     const t = tLoader.load(BaseColor);
     t.flipY = false;
+
+    this.metalness = 0.3;
+    this.refractionRatio = 0.5;
 
     this.map = t;
   }

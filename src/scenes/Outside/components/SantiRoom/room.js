@@ -94,6 +94,8 @@ class Room extends Group {
           });
         } else if (child.name == "Room") {
           child.material = new RoomMaterial(child.material);
+        } else if (child.name == "Room_Base") {
+          child.material = new GalleryMaterial();
         } else if (child.name == "Gallery_cut") {
           child.material = new GalleryMaterial();
         } else {
