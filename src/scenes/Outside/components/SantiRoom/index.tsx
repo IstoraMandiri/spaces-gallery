@@ -64,8 +64,9 @@ const SantiRoom = (props: SantiProps) => {
     if (!added && room.current) {
       scene.add(room.current);
       room.current.rotateY((Math.PI * 5) / 3);
-      room.current.translateY(0.5);
-      room.current.scale.set(1, 1, 1);
+      room.current.translateY(0.75);
+      room.current.translateZ(-0.6);
+      room.current.scale.set(0.9, 0.9, 0.9);
       setAdded(false);
     }
   }, [gltf, renderer, room, added]);

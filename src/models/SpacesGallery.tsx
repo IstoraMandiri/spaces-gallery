@@ -13,14 +13,14 @@ import { useConvexPolyhedron } from "use-cannon";
 
 type GLTFResult = GLTF & {
   nodes: {
-    GALLERYFULL: THREE.Mesh;
     GALLERYWALLS: THREE.Mesh;
     GALLERYFLOOR: THREE.Mesh;
     ROOFLIP: THREE.Mesh;
+    Gallery_cut1: THREE.Mesh;
   };
   materials: {
-    ["GALLERY.FULL"]: THREE.MeshStandardMaterial;
     ["ROOF.LIP"]: THREE.MeshStandardMaterial;
+    Gallery_cut: THREE.MeshStandardMaterial;
   };
 };
 
@@ -30,12 +30,12 @@ export default function Model(props: ModelProps) {
   const group = useRef<THREE.Group>();
   const { nodes, materials } = useLoader<GLTFResult>(
     GLTFLoader,
-    "https://d27rt3a60hh1lx.cloudfront.net/models/SpacesGallery12/SpacesGallery12.glb",
+    "https://d27rt3a60hh1lx.cloudfront.net/models/SpacesGallery13/SpacesGallery13.glb",
     loadModel(setLoading)
   );
 
-  materials["GALLERY.FULL"].metalness = 0.3;
-  materials["GALLERY.FULL"].refractionRatio = 0.5;
+  materials["Gallery_cut"].metalness = 0.3;
+  materials["Gallery_cut"].refractionRatio = 0.5;
 
   materials["ROOF.LIP"].metalness = 0.3;
   materials["ROOF.LIP"].refractionRatio = 0.5;
@@ -57,20 +57,32 @@ export default function Model(props: ModelProps) {
   }, [nodes]);
   const [wallsHitbox] = useConvexPolyhedron(() => ({
     type: "Static",
-    args: wallsGeo.clone().scale(100, 100, 100).translate(0, 0.5, 0),
+    args: wallsGeo
+      .clone()
+      .rotateX(0.009378)
+      .rotateY(1.545416)
+      .rotateZ(-2.543593)
+      .translate(0.08147, 0.019881, 0.204819)
+      .scale(100, 100, 100)
+      .translate(0, 0.5, 0),
   }));
 
   return (
     <group ref={group} {...props} dispose={null}>
-      <group position={[0, 0.5, 0]} scale={[100.5, 100.5, 100.5]}>
-        <mesh
-          material={materials["GALLERY.FULL"]}
-          geometry={nodes.GALLERYFULL.geometry}
-        />
+      <group
+        position={[0, 0.5, 0]}
+        scale={[100, 100, 100]}
+        rotation={[0, Math.PI / 3, 0]}
+      >
         <mesh
           material={materials["ROOF.LIP"]}
           geometry={nodes.ROOFLIP.geometry}
           position={[0, 0.07, 0]}
+        />
+        <mesh
+          material={materials.Gallery_cut}
+          geometry={nodes.Gallery_cut1.geometry}
+          position={[0.000995, 0.040815, 0.008863]}
         />
       </group>
     </group>
