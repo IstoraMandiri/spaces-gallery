@@ -2,7 +2,7 @@ import React from "react";
 import { styled } from "twin.macro";
 import { EnvironmentStoreHook } from "stores/environment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInstagramSquare } from "@fortawesome/free-brands-svg-icons";
+import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 
 const { NEXT_PUBLIC_VERSION } = process.env;
 
@@ -62,16 +62,6 @@ const Continue = styled.div`
   }
 `;
 
-const Header = styled.div`
-  width: 70%;
-  height: auto;
-  color: black;
-  font-size: 1.5em;
-  font-weight: bold;
-  text-align: center;
-  //border: red dashed 2px;
-`;
-
 const Version = styled.a`
   position: absolute;
   top: 0;
@@ -82,15 +72,15 @@ const Version = styled.a`
 
 const Instagram = styled.div`
   position: absolute;
-  top: 5px;
+  top: 8px;
   left: 10px;
   width: auto;
   height: auto;
   border-radius: 30%;
   color: white;
   transition: width 0.5s, height 0.5s;
+  cursor: pointer;
   :hover {
-    cursor: pointer;
     opacity: 0.7;
   }
 `;
@@ -101,8 +91,6 @@ type OverlayProps = {
 
 const PauseMenu: React.FC<OverlayProps> = (props) => {
   const { useEnvStore } = props;
-
-  const year = new Date().getFullYear();
 
   const paused = useEnvStore((st) => st.paused);
   const overlay = useEnvStore((st) => st.overlay);
@@ -124,7 +112,7 @@ const PauseMenu: React.FC<OverlayProps> = (props) => {
             window.open("https://www.instagram.com/spaces3.0");
           }}
         >
-          <FontAwesomeIcon icon={faInstagramSquare} />
+          <FontAwesomeIcon icon={faInstagram} size="lg" />
         </Instagram>
         <Continue onClick={closeOverlay} />
       </Window>
