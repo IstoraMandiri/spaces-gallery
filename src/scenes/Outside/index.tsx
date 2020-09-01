@@ -41,7 +41,7 @@ const Outside: SceneComponent = (props) => {
 
   const [renderer, setRenderer] = useState<WebGLRenderer>();
 
-  const initAngle = useMemo(() => Math.random() * Math.PI * 2, []);
+  const initAngle = Math.PI * 0.4;
   const RADIUS = 7;
 
   return (
