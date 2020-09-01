@@ -191,7 +191,7 @@ const FramedVideo = (props: FramedVideoProps) => {
       console.log("play");
       videoRef.current.play();
     }
-  }, [paused, videoRef.current]);
+  }, [paused]);
 
   const materialProps = {
     emissive: emissive ? new Color(0xffffff) : undefined,

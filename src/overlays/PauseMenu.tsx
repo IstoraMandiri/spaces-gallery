@@ -40,12 +40,25 @@ const Window = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: flex-end;
   position: relative;
-  font-family: "MyriadPro";
-  font-size: 1em;
-  border: blue solid 3px;
-  background-color: white;
+  border-radius: 3%;
+  background-image: url("https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/images/pausemenu.jpg");
+  background-position: center;
+  background-size: cover;
+`;
+
+const Continue = styled.div`
+  width: 50%;
+  height: 12%;
+  position: absolute;
+  bottom: 12%;
+  margin-top: 5px;
+  :hover {
+    cursor: pointer;
+    border: 2px solid white;
+    border-radius: 50%;
+  }
 `;
 
 const Header = styled.div`
@@ -61,78 +74,26 @@ const Header = styled.div`
 const Version = styled.a`
   position: absolute;
   top: 0;
-  right: 5px;
+  right: 7px;
+  color: white;
   font-size: 0.6em;
 `;
 
-const Instagram = styled.img`
+const Instagram = styled.div`
   position: absolute;
-  top: 0;
+  top: 5px;
   left: 5px;
-  width: 25px;
-  height: 25px;
+  width: 45px;
+  height: 45px;
+  border-radius: 30%;
+  background-image: url("https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/images/instagramLogo.png");
+  background-size: cover;
+  background-position: center;
+  transition: width 0.5s, height 0.5s;
   :hover {
     cursor: pointer;
-  }
-`;
-
-const SubHeader = styled.div`
-  font-size: 0.5em;
-`;
-
-const Controls = styled.div`
-  width: 80%;
-  height: auto;
-  padding: 10px 0 10px 0;
-  //border: blue 2px dashed;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  color: black;
-  font-size: 1em;
-  @media screen and (max-width: 500px) {
-    font-size: 0.9em;
-    width: 75%;
-  }
-`;
-
-const ControlSet = styled.div`
-  width: 100%;
-  margin-left: 25px;
-  padding-top: 25px;
-  //border: purple dashed 1px;
-  font-size: 0.7em;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  @media screen and (max-width: 500px) {
-    margin-left: 10px;
-  }
-`;
-
-const Key = styled.div`
-  font-weight: bold;
-`;
-
-const Binding = styled.div`
-  width: 45%;
-  //border: orange solid 2px;
-  text-align: start;
-`;
-
-const Continue = styled.div`
-  width: 70%;
-  height: auto;
-  margin-top: 5px;
-  padding: 2px 0 2px 0;
-  //border: green dashed 2px;
-  text-align: center;
-  color: black;
-  font-size: 1.1em;
-  :hover {
-    color: red;
-    cursor: pointer;
+    width: 50px;
+    height: 50px;
   }
 `;
 
@@ -160,23 +121,12 @@ const PauseMenu: React.FC<OverlayProps> = (props) => {
       <ClickContainer id="click-container" onClick={closeOverlay} />
       <Window>
         <Version>v 1.0.0</Version>
-        <Header>S P A C E S</Header>
-        <Controls>
-          <SubHeader>3D on the Web</SubHeader>
-          <ControlSet>
-            <Key>Move Around:</Key>
-            <Binding>{isMobile ? "Joystick" : "W, A, S, D"}</Binding>
-          </ControlSet>
-          <ControlSet>
-            <Key>Look Around:</Key>
-            <Binding>{isMobile ? "Drag" : "Mouse"}</Binding>
-          </ControlSet>
-          <ControlSet>
-            <Key>Pause:</Key>
-            <Binding>{isMobile ? "Menu Button" : "Esc"}</Binding>
-          </ControlSet>
-        </Controls>
-        <Continue onClick={closeOverlay}>CONTINUE</Continue>
+        <Instagram
+          onClick={() => {
+            window.open("https://www.instagram.com/spaces3.0");
+          }}
+        />
+        <Continue onClick={closeOverlay} />
       </Window>
     </Container>
   );
