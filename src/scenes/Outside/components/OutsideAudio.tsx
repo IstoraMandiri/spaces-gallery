@@ -34,8 +34,8 @@ const OutsideAudio = (props: OutsideAudioProps) => {
 
       return () => {
         audio.pause();
-        audio.remove();
-        audioRef.current = undefined;
+        // audio.remove();
+        // audioRef.current = undefined;
 
         if (speaker.current) {
           speaker.current.disconnect();
