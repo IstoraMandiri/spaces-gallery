@@ -11,8 +11,8 @@ type FramedVideoProps = JSX.IntrinsicElements["group"] & {
   src: string;
   ratio: [number, number];
   sizeScale: number;
-  audioPosition: [number, number, number];
-  audioRotation: [number, number, number];
+  audioPosition?: [number, number, number];
+  audioRotation?: [number, number, number];
   frameless?: boolean;
   emissive?: boolean;
   floating?: boolean;
@@ -100,7 +100,7 @@ const FramedVideo = (props: FramedVideoProps) => {
       video.playsInline = true;
       video.crossOrigin = "anonymous";
       video.preload = "auto";
-      video.autoplay = true;
+      video.autoplay = false;
       video.style.position = "absolute";
       video.style.opacity = "0";
       video.style.pointerEvents = "none";
@@ -155,18 +155,28 @@ const FramedVideo = (props: FramedVideoProps) => {
       speaker.current.setRolloffFactor(1);
       speaker.current.setVolume(1);
       speaker.current.setDirectionalCone(180, 230, 0.1);
-      // @ts-ignore due to bad types, it's an array though
-      speaker.current.position.set(
-        audioPosition[0],
-        audioPosition[1],
-        audioPosition[2]
-      );
-      // @ts-ignore due to bad types, it's an array though
-      speaker.current.rotation.set(
-        audioRotation[0],
-        audioRotation[1],
-        audioRotation[2]
-      );
+      if (audioPosition) {
+        // @ts-ignore due to bad types, it's an array though
+        speaker.current.position.set(
+          audioPosition[0],
+          audioPosition[1],
+          audioPosition[2]
+        );
+      } else {
+        // @ts-ignore due to bad types, it's an array though
+        speaker.current.position.set(position[0], position[1], position[2]);
+      }
+      if (audioRotation) {
+        // @ts-ignore due to bad types, it's an array though
+        speaker.current.rotation.set(
+          audioRotation[0],
+          audioRotation[1],
+          audioRotation[2]
+        );
+      } else {
+        // @ts-ignore due to bad types, it's an array though
+        speaker.current.rotation.set(position[0], position[1], position[2]);
+      }
 
       // const helper = new PositionalAudioHelper(speaker.current);
       // speaker.current.add(helper);
@@ -177,7 +187,11 @@ const FramedVideo = (props: FramedVideoProps) => {
 
   // play video if player closes menu
   useEffect(() => {
+    console.log("=====REFRESH=====");
+    console.log("Paused: " + paused);
+    console.log("videoRefPaused: " + videoRef.current.paused);
     if (!paused && videoRef.current && videoRef.current.paused) {
+      console.log("play");
       videoRef.current.play();
     }
   }, [paused, videoRef.current]);
