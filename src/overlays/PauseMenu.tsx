@@ -3,6 +3,7 @@ import { styled } from "twin.macro";
 import { EnvironmentStoreHook } from "stores/environment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faMusic } from "@fortawesome/free-solid-svg-icons";
 import { isMobile } from "react-device-detect";
 
 const { NEXT_PUBLIC_VERSION } = process.env;
@@ -52,35 +53,58 @@ const Window = styled.div`
 `;
 
 const Continue = styled.div`
-  width: 50%;
+  width: auto;
   height: auto;
   cursor: pointer;
   text-align: center;
   font-size: 1.3em;
   font-family: "Lato", sans-serif;
+  transition: opacity 0.15s linear;
   :hover {
-    opacity: 0.7;
+    opacity: 0.5;
   }
 `;
 
 const Version = styled.a`
   position: absolute;
-  top: 48px;
+  top: 32px;
   right: 60px;
   font-size: 0.6em;
 `;
 
 const Instagram = styled.div`
   position: absolute;
-  top: 50px;
+  top: 35px;
   left: 60px;
   width: auto;
   height: auto;
   border-radius: 30%;
   color: white;
   cursor: pointer;
+  transition: opacity 0.15s linear;
   :hover {
-    opacity: 0.7;
+    opacity: 0.5;
+  }
+`;
+
+const MusicIcon = styled.div`
+  position: absolute;
+  left: 60px;
+  bottom: 10px;
+`;
+
+const MusicCreds = styled.div`
+  position: absolute;
+  width: 50%;
+  height: 7%;
+  bottom: 14px;
+  left: 85px;
+  diplay: inline;
+  font-size: 0.6em;
+  cursor: pointer;
+  transition: opacity 0.1s linear;
+  :hover {
+    opacity: 0.5;
   }
 `;
 
@@ -145,8 +169,18 @@ const PauseMenu: React.FC<OverlayProps> = (props) => {
             window.open("https://www.instagram.com/spaces3.0");
           }}
         >
-          <FontAwesomeIcon icon={faInstagram} size="lg" />
+          <FontAwesomeIcon id="musicicon" icon={faInstagram} size="lg" />
         </Instagram>
+        <MusicIcon>
+          <FontAwesomeIcon icon={faMusic} size="xs" />
+        </MusicIcon>
+        <MusicCreds
+          onClick={() => {
+            window.open("https://lucidmonday.com");
+          }}
+        >
+          <b>-- </b>Lucid Monday
+        </MusicCreds>
         <Header>
           <Title>SPACES</Title>
           <SubHeader>Opening Exhibit</SubHeader>
