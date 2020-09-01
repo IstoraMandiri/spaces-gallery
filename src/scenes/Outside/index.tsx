@@ -6,6 +6,7 @@ import Player from "core/Player";
 import { SceneComponent } from "types/scene";
 
 import SpacesGallery from "models/SpacesGallery";
+import SpacesPlaques from "models/SpacesPlaques";
 import Analytics from "ui-components/Analytics";
 import RobertRoom from "./components/RobertRoom";
 import HDRISky from "three-components/HDRI/HDRISky";
@@ -57,6 +58,9 @@ const Outside: SceneComponent = (props) => {
           <OutsideLighting />
           <Suspense fallback={null}>
             <SpacesGallery useEnvStore={useEnvStore} />
+          </Suspense>
+          <Suspense fallback={null}>
+            <SpacesPlaques useEnvStore={useEnvStore} />
           </Suspense>
           <Effects />
         </Physics>
