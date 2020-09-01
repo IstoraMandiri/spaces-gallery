@@ -5,7 +5,7 @@ const LIGHT_INTENSITY = 4;
 const LIGHT_DISTANCE = 30;
 const LIGHT_COLOR = 0xffffff;
 
-const AMBIENT_INTENSITY = 0.05;
+const AMBIENT_INTENSITY = 0.03;
 
 const OutsideLighting: React.FC = (props) => {
   const light1 = useMemo(() => new SpotLight(), []);
@@ -16,6 +16,8 @@ const OutsideLighting: React.FC = (props) => {
     intensity: LIGHT_INTENSITY,
     angle: Math.PI / 2.6,
     penumbra: 0.03,
+    castShadow: true,
+    bias: 0.0001,
   };
 
   return (

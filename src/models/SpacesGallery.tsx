@@ -83,6 +83,7 @@ export default function Model(props: ModelProps) {
           material={materials.Gallery_cut}
           geometry={nodes.Gallery_cut1.geometry}
           position={[0.000995, 0.040815, 0.008863]}
+          receiveShadow
         />
       </group>
     </group>

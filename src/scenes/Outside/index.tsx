@@ -18,6 +18,7 @@ import HectorRoom from "./components/HectorRoom";
 import JustinRoom from "./components/JustinRoom";
 import OutsideAudio from "./components/OutsideAudio";
 import SantiRoom from "./components/SantiRoom";
+import SpacesSphere from "models/SpacesSphere";
 import { WebGLRenderer } from "three";
 
 const physicsProps = {
@@ -60,6 +61,9 @@ const Outside: SceneComponent = (props) => {
           <JustinRoom useEnvStore={useEnvStore} />
           <SantiRoom useEnvStore={useEnvStore} renderer={renderer} />
           <DennisRoom useEnvStore={useEnvStore} />
+          <Suspense fallback={null}>
+            <SpacesSphere useEnvStore={useEnvStore} />
+          </Suspense>
           <OutsideAudio
             url="https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/audio/LucidMondayMix.mp3"
             useEnvStore={useEnvStore}
