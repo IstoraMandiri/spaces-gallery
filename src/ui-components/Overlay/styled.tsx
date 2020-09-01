@@ -1,7 +1,4 @@
 import { styled } from "twin.macro";
-import Fonts from "../../themes/Fonts";
-import Images from "../../themes/Images";
-import Media from "../../themes/Media";
 
 export const Container = styled.div<{ paused: boolean }>`
   width: 100%;
@@ -49,29 +46,20 @@ export const MenuNavContainer = styled.div<IMenuNavContainer>`
   align-items: center;
   display: flex;
   position: absolute;
-  ${Media.device.tablet} {
-    visibility: hidden;
-  }
 `;
 
 export const NavText = styled.p`
   color: white;
   font-size: 23px;
-  font-family: ${Fonts.MerchantCopy.regular};
 `;
 
 export const AWGELogo = styled.img`
   height: 55px;
   resize-mode: contain;
   z-index: 1;
-  ${Media.device.tablet} {
-    height: 45px;
-    margin-top: 10px;
-  }
 `;
 
 export const Window = styled.div`
-  background: url(${Images.DesktopMenuSign}) center center no-repeat;
   background-size: contain;
   display: flex;
   flex-direction: column;
@@ -84,16 +72,6 @@ export const Window = styled.div`
   max-width: 600px;
   height: 91vw;
   max-height: 400px;
-
-  ${Media.device.tablet} {
-    background: url(${Images.MobileMenuSign}) center center no-repeat;
-    background-size: contain;
-    width: 90%;
-    max-width: 400px;
-    height: 91vw;
-    max-height: 400px;
-    padding: 20px;
-  }
 `;
 
 export const TextContainer = styled.div`
@@ -105,10 +83,6 @@ export const TextContainer = styled.div`
   color: white;
   font-size: 1.1em;
   margin-bottom: 2%;
-  ${Media.device.tablet} {
-    font-size: 1em;
-    width: 85%;
-  }
 `;
 
 export const LinksContainer = styled.div`
@@ -117,9 +91,6 @@ export const LinksContainer = styled.div`
   align-items: center;
   flex-direction: column;
   margin-bottom: 20px;
-  ${Media.device.tablet} {
-    margin-bottom: 0px;
-  }
 `;
 
 export const TermsContainer = styled.div`
@@ -144,7 +115,6 @@ export const LinkText = styled.a`
   cursor: pointer;
   color: white;
   text-shadow: none;
-  font-family: ${Fonts.MerchantCopy.DoubleSize};
   opacity: 0.8;
   letter-spacing: 1.5px;
 `;
@@ -158,7 +128,6 @@ export const InstructionText = styled.p`
   text-align: center;
   font-size: 0.5em;
   width: 5.5em;
-  font-family: ${Fonts.MerchantCopy.DoubleSize};
 `;
 
 export const TextRow = styled(Text)`
@@ -185,12 +154,6 @@ export const Return = styled.button`
   margin-top: 0px;
   width: 88%;
   max-width: 450px;
-
-  ${Media.device.laptop} {
-    width: 88%;
-    max-width: 391.1px;
-    margin-top: 25px;
-  }
 `;
 
 export const CopyRightContainer = styled.div`
@@ -203,7 +166,6 @@ export const CopyRightContainer = styled.div`
 export const CopyRightText = styled.p`
   font-size: 0.34em;
   color: white;
-  font-family: ${Fonts.Monaco};
   opacity: 0.8;
   letter-spacing: 1.5px;
 `;
@@ -211,7 +173,6 @@ export const CopyRightText = styled.p`
 export const YearText = styled.p`
   font-size: 0.34em;
   color: white;
-  font-family: ${Fonts.MerchantCopy.DoubleSize};
   opacity: 0.8;
   margin-left: 5px;
   letter-spacing: 1.5px;
@@ -228,10 +189,6 @@ export const Line = styled.div`
   background-repeat: repeat-x;
   width: 50%;
   height: 10px;
-  ${Media.device.mobileL} {
-    width: 40%;
-    margin: 10px;
-  }
 `;
 
 export const Spacer = styled.div`
