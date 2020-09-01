@@ -103,8 +103,10 @@ const MusicCreds = styled.div`
   font-size: 0.6em;
   cursor: pointer;
   transition: opacity 0.1s linear;
-  :hover {
-    opacity: 0.5;
+  #artist {
+    :hover {
+      opacity: 0.5;
+    }
   }
 `;
 
@@ -179,7 +181,10 @@ const PauseMenu: React.FC<OverlayProps> = (props) => {
             window.open("https://lucidmonday.com");
           }}
         >
-          <b>-- </b>Lucid Monday
+          <span>
+            <b>-- </b>
+          </span>
+          <span id="artist">Lucid Monday</span>
         </MusicCreds>
         <Header>
           <Title>SPACES</Title>
