@@ -54,7 +54,7 @@ const Outside: SceneComponent = (props) => {
           <HDRISky />
           <InfinitePlane height={-0.001} />
           <Player useEnvStore={useEnvStore} />
-          <RobertRoom />
+          <RobertRoom useEnvStore={useEnvStore} />
           <HectorRoom useEnvStore={useEnvStore} />
           <ZachRoom />
           <JustinRoom useEnvStore={useEnvStore} />
