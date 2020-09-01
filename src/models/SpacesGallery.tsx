@@ -30,7 +30,7 @@ export default function Model(props: ModelProps) {
   const group = useRef<THREE.Group>();
   const { nodes, materials } = useLoader<GLTFResult>(
     GLTFLoader,
-    "https://d27rt3a60hh1lx.cloudfront.net/models/SpacesGallery13/SpacesGallery13.glb",
+    "https://d27rt3a60hh1lx.cloudfront.net/models/SpacesGallery14/SpacesGallery14.glb",
     loadModel(setLoading)
   );
 
