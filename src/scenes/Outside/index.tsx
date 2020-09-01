@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import { Physics } from "use-cannon";
 import { Canvas } from "react-three-fiber";
 import InfinitePlane from "three-components/InfinitePlane";
@@ -18,6 +18,7 @@ import HectorRoom from "./components/HectorRoom";
 import JustinRoom from "./components/JustinRoom";
 import OutsideAudio from "./components/OutsideAudio";
 import SantiRoom from "./components/SantiRoom";
+import { WebGLRenderer } from "three";
 
 const physicsProps = {
   iterations: 20,
@@ -37,10 +38,17 @@ const physicsProps = {
 const Outside: SceneComponent = (props) => {
   const { useEnvStore, defaultCanvasProps, children } = props;
 
+  const [renderer, setRenderer] = useState<WebGLRenderer>();
+
   return (
     <>
       <Analytics />
-      <Canvas {...defaultCanvasProps}>
+      <Canvas
+        {...defaultCanvasProps}
+        onCreated={(props) => {
+          setRenderer(props.gl);
+        }}
+      >
         {children}
         <Physics {...physicsProps}>
           <HDRISky />
@@ -50,7 +58,7 @@ const Outside: SceneComponent = (props) => {
           <HectorRoom useEnvStore={useEnvStore} />
           <ZachRoom />
           <JustinRoom useEnvStore={useEnvStore} />
-          <SantiRoom useEnvStore={useEnvStore} />
+          <SantiRoom useEnvStore={useEnvStore} renderer={renderer} />
           <DennisRoom useEnvStore={useEnvStore} />
           <OutsideAudio
             url="https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/audio/LucidMondayMix.mp3"
