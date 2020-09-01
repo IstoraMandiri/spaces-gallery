@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { EnvironmentStoreHook } from "stores/environment";
 import { isMobile } from "react-device-detect";
-import { Terms, Privacy } from "../Terms";
 
 const { NEXT_PUBLIC_VERSION } = process.env;
 import {
@@ -15,7 +14,6 @@ import {
   Return,
   YearText,
   Line,
-  Spacer,
   TermsTextContainer,
   BackButton,
   TermsContainer,
@@ -29,7 +27,6 @@ import {
   NavText,
 } from "./styled";
 import StackedDivider from "../../ui-components/dividers/StackedDivider";
-import Images from "../../themes/Images";
 
 type OverlayProps = {
   useEnvStore: EnvironmentStoreHook;
@@ -53,7 +50,6 @@ const Overlay: React.FC<OverlayProps> = (props) => {
         <Window>
           <TermsTextContainer>
             <BackButton onClick={() => setPage(0)}>BACK</BackButton>
-            {currentPage == 1 ? <Terms /> : <Privacy />}
           </TermsTextContainer>
         </Window>
         <Return id="pause-button" onClick={closeOverlay}>
@@ -71,7 +67,6 @@ const Overlay: React.FC<OverlayProps> = (props) => {
               <NavText>* Awge.com *</NavText>
               <NavText>Version {NEXT_PUBLIC_VERSION}</NavText>
             </MenuNavContainer>
-            <AWGELogo src={Images.Logo} />
           </MenuHeaderContainer>
           <TextContainer>
             <TextRow>

@@ -187,9 +187,6 @@ const FramedVideo = (props: FramedVideoProps) => {
 
   // play video if player closes menu
   useEffect(() => {
-    console.log("=====REFRESH=====");
-    console.log("Paused: " + paused);
-    console.log("videoRefPaused: " + videoRef.current.paused);
     if (!paused && videoRef.current && videoRef.current.paused) {
       console.log("play");
       videoRef.current.play();

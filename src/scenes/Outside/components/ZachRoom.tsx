@@ -98,12 +98,15 @@ const ZachRoom = () => {
         case "boolean":
           acc += `uniform bool ${key};\n`;
           break;
+        // @ts-ignore
         case "vec2":
           acc += `uniform vec2 ${key};\n`;
           break;
+        // @ts-ignore
         case "vec3":
           acc += `uniform vec3 ${key};\n`;
           break;
+        // @ts-ignore
         case "vec4":
           acc += `uniform vec4 ${key};\n`;
           break;
