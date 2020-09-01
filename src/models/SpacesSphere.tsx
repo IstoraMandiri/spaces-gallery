@@ -32,9 +32,9 @@ export default function Model(props: ModelProps) {
     loadModel(setLoading)
   );
 
-  materials.Sphere.metalness = 0.7;
+  materials.Sphere.metalness = 1;
   materials.Sphere.refractionRatio = 0.9;
-  // materials.Sphere. = 0.5;
+  materials.Sphere.roughness = 0.35;
 
   const wallsGeo = useMemo(() => {
     return new THREE.Geometry().fromBufferGeometry(
