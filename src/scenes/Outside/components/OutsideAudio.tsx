@@ -2,6 +2,7 @@ import * as THREE from "three";
 import React, { useEffect, useRef } from "react";
 import { useThree } from "react-three-fiber";
 import { EnvironmentStoreHook } from "stores/environment";
+import { PositionalAudioHelper } from "three/examples/jsm/helpers/PositionalAudioHelper";
 
 type OutsideAudioProps = JSX.IntrinsicElements["group"] & {
   useEnvStore: EnvironmentStoreHook;
@@ -55,10 +56,13 @@ const OutsideAudio = (props: OutsideAudioProps) => {
 
       speaker.current = new THREE.PositionalAudio(listener.current);
       speaker.current.setMediaElementSource(audioRef.current);
-      speaker.current.position.set(0, 0, 0);
+      speaker.current.position.set(0, 7, 0);
       speaker.current.setRefDistance(0.5);
       speaker.current.setRolloffFactor(1);
-      speaker.current.setVolume(1);
+      speaker.current.setVolume(7);
+
+      // const helper = new PositionalAudioHelper(speaker.current);
+      // speaker.current.add(helper);
 
       scene.add(speaker.current);
     }
