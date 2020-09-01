@@ -30,7 +30,7 @@ export default function Model(props: ModelProps) {
   const group = useRef<THREE.Group>();
   const { nodes, materials } = useLoader<GLTFResult>(
     GLTFLoader,
-    "https://d27rt3a60hh1lx.cloudfront.net/models/SpacesGallery14/SpacesGallery14.glb",
+    "https://d27rt3a60hh1lx.cloudfront.net/models/SpacesGallery15/SpacesGallery15.glb",
     loadModel(setLoading)
   );
 
@@ -59,10 +59,10 @@ export default function Model(props: ModelProps) {
     type: "Static",
     args: wallsGeo
       .clone()
+      .translate(0.08147, 0.019881, 0.204819)
       .rotateX(0.009378)
       .rotateY(1.545416)
       .rotateZ(-2.543593)
-      .translate(0.08147, 0.019881, 0.204819)
       .scale(100, 100, 100)
       .translate(0, 0.5, 0),
   }));
