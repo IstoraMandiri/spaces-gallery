@@ -74,7 +74,6 @@ export default function Model(
     }
 
     setGLTF(gltf);
-    console.log(gltf);
   }, []);
 
   return (

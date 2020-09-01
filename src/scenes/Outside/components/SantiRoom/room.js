@@ -24,9 +24,6 @@ class Room extends Group {
   constructor(gltf, renderer) {
     super();
 
-    console.log("gltf: ");
-    console.log(gltf);
-
     this.add(gltf.scene);
     this.clock = new Clock();
 
