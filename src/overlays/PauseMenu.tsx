@@ -1,7 +1,8 @@
 import React from "react";
 import { styled } from "twin.macro";
 import { EnvironmentStoreHook } from "stores/environment";
-import { isMobile } from "react-device-detect";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInstagramSquare } from "@fortawesome/free-brands-svg-icons";
 
 const { NEXT_PUBLIC_VERSION } = process.env;
 
@@ -82,18 +83,15 @@ const Version = styled.a`
 const Instagram = styled.div`
   position: absolute;
   top: 5px;
-  left: 5px;
-  width: 45px;
-  height: 45px;
+  left: 10px;
+  width: auto;
+  height: auto;
   border-radius: 30%;
-  background-image: url("https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/images/instagramLogo.png");
-  background-size: cover;
-  background-position: center;
+  color: white;
   transition: width 0.5s, height 0.5s;
   :hover {
     cursor: pointer;
-    width: 50px;
-    height: 50px;
+    opacity: 0.7;
   }
 `;
 
@@ -120,12 +118,14 @@ const PauseMenu: React.FC<OverlayProps> = (props) => {
     <Container paused={paused}>
       <ClickContainer id="click-container" onClick={closeOverlay} />
       <Window>
-        <Version>v 1.0.0</Version>
+        <Version>v {NEXT_PUBLIC_VERSION}</Version>
         <Instagram
           onClick={() => {
             window.open("https://www.instagram.com/spaces3.0");
           }}
-        />
+        >
+          <FontAwesomeIcon icon={faInstagramSquare} />
+        </Instagram>
         <Continue onClick={closeOverlay} />
       </Window>
     </Container>
