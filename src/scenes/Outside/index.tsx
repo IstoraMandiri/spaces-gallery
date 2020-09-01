@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useMemo, useState } from "react";
 import { Physics } from "use-cannon";
 import { Canvas } from "react-three-fiber";
 import InfinitePlane from "three-components/InfinitePlane";
@@ -41,6 +41,9 @@ const Outside: SceneComponent = (props) => {
 
   const [renderer, setRenderer] = useState<WebGLRenderer>();
 
+  const initAngle = useMemo(() => Math.random() * Math.PI * 2, []);
+  const RADIUS = 7;
+
   return (
     <>
       <Analytics />
@@ -54,7 +57,19 @@ const Outside: SceneComponent = (props) => {
         <Physics {...physicsProps}>
           <HDRISky />
           <InfinitePlane height={-0.001} />
-          <Player useEnvStore={useEnvStore} />
+          <Player
+            useEnvStore={useEnvStore}
+            initPos={[
+              Math.cos(initAngle) * RADIUS,
+              1,
+              Math.sin(initAngle) * RADIUS,
+            ]}
+            initLook={[
+              Math.cos(initAngle) * RADIUS * -100,
+              1,
+              Math.sin(initAngle) * RADIUS * -100,
+            ]}
+          />
           <RobertRoom useEnvStore={useEnvStore} />
           <HectorRoom useEnvStore={useEnvStore} />
           <ZachRoom />

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, MutableRefObject } from "react";
-import { useFrame } from "react-three-fiber";
+import { useFrame, useThree } from "react-three-fiber";
 import { Quaternion, Raycaster, Vector3 } from "three";
 import { Event, useSphere } from "use-cannon";
 import { isMobile } from "react-device-detect";
@@ -15,6 +15,7 @@ const SHOW_PLAYER_HITBOX = false;
 type PlayerProps = {
   useEnvStore: EnvironmentStoreHook;
   initPos?: [number, number, number];
+  initLook?: [number, number, number];
   raycaster?: MutableRefObject<Raycaster>;
 };
 
@@ -28,7 +29,13 @@ type PlayerProps = {
  * @constructor
  */
 const Player = (props: PlayerProps) => {
-  const { useEnvStore, initPos = [0, 1, 0], raycaster } = props;
+  const {
+    useEnvStore,
+    initPos = [0, 1, 0],
+    initLook = [0, 2, 0],
+    raycaster,
+  } = props;
+  const { camera } = useThree();
 
   // get pause status
   const paused = useEnvStore((st) => st.paused);
@@ -69,6 +76,7 @@ const Player = (props: PlayerProps) => {
       position.current.set(p[0], p[1], p[2]);
     });
     bodyApi.velocity.subscribe((v) => velocity.current.set(v[0], v[1], v[2]));
+    camera?.lookAt(initLook[0], initLook[1], initLook[2]);
   }, []);
 
   useFrame(() => {
