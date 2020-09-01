@@ -22,6 +22,8 @@
     "@emotion/styled": "^10.0.27",
     "babel-plugin-macros": "^2.8.0",
     "drei": "^0.0.60",
+    "glsl-noise": "^0.0.0",
+    "glslify": "^7.1.0",
     "immer": "^7.0.1",
     "next": "9.4.4",
     "nipplejs": "^0.8.5",
