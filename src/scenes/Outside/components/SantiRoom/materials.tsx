@@ -105,17 +105,25 @@ class ScreenLeftMaterial extends ShaderMaterial {
 
     this.uniforms.letterTex = { value: t };
     this.uniforms.letterPosition = { value: new Vector2() };
+    //@ts-ignore
     this.currentLetter = 0;
 
     setTimeout(() => this.switchLetter(), 500);
   }
 
   switchLetter() {
-    if (this.currentLetter < 19) this.currentLetter++;
-    else this.currentLetter = 0;
+    //@ts-ignore
+    if (this.currentLetter < 19) {
+      //@ts-ignore
+      this.currentLetter++;
+      //@ts-ignore
+    } else this.currentLetter = 0;
+
     this.uniforms.letterPosition = {
       value: new Vector2(
+        //@ts-ignore
         this.currentLetter % 7,
+        //@ts-ignore
         Math.floor(this.currentLetter / 7)
       ),
     };
