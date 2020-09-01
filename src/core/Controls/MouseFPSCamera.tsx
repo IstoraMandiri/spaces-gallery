@@ -59,7 +59,6 @@ const MouseFPSCamera = (props: MouseFPSCameraProps) => {
     if (!paused) {
       setPaused(true);
     }
-    gl.render(scene, camera);
   };
   const lockCamera = () => controls?.current?.lock();
   const unlockCamera = () => controls?.current?.unlock();
