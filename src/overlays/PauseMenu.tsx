@@ -111,7 +111,7 @@ const MusicCreds = styled.div`
 const Header = styled.div`
   width: auto;
   height: 30%;
-  margin-top: 15%;
+  margin-top: 12%;
   display: flex;
   flex-direction: column;
   align-items: center;
