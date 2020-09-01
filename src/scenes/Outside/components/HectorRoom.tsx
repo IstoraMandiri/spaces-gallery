@@ -17,9 +17,9 @@ const HectorRoom = (props: Props) => {
         <FramedImage
           src="https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/content/opening/hector/Dior.jpg"
           ratio={[3307, 2550]}
-          sizeScale={9}
+          sizeScale={7.9}
           rotation={[0, 0, 0]}
-          position={[0, 3.075, 0]}
+          position={[0, 2.9, 0]}
           floating
         />
         <FramedImage
