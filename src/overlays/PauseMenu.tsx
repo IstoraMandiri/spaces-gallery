@@ -74,9 +74,27 @@ const Header = styled.div`
 const Version = styled.a`
   position: absolute;
   top: 0;
-  right: 5px;
+  right: 7px;
   color: white;
   font-size: 0.6em;
+`;
+
+const Instagram = styled.div`
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 45px;
+  height: 45px;
+  border-radius: 30%;
+  background-image: url("https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/images/instagramLogo.png");
+  background-size: cover;
+  background-position: center;
+  transition: width 0.5s, height 0.5s;
+  :hover {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+  }
 `;
 
 type OverlayProps = {
@@ -103,22 +121,11 @@ const PauseMenu: React.FC<OverlayProps> = (props) => {
       <ClickContainer id="click-container" onClick={closeOverlay} />
       <Window>
         <Version>v 1.0.0</Version>
-        {/*<Header>S P A C E S</Header>*/}
-        {/*<Controls>*/}
-        {/*  <SubHeader>3D on the Web</SubHeader>*/}
-        {/*  <ControlSet>*/}
-        {/*    <Key>Move Around:</Key>*/}
-        {/*    <Binding>{isMobile ? "Joystick" : "W, A, S, D"}</Binding>*/}
-        {/*  </ControlSet>*/}
-        {/*  <ControlSet>*/}
-        {/*    <Key>Look Around:</Key>*/}
-        {/*    <Binding>{isMobile ? "Drag" : "Mouse"}</Binding>*/}
-        {/*  </ControlSet>*/}
-        {/*  <ControlSet>*/}
-        {/*    <Key>Pause:</Key>*/}
-        {/*    <Binding>{isMobile ? "Menu Button" : "Esc"}</Binding>*/}
-        {/*  </ControlSet>*/}
-        {/*</Controls>*/}
+        <Instagram
+          onClick={() => {
+            window.open("https://www.instagram.com/spaces3.0");
+          }}
+        />
         <Continue onClick={closeOverlay} />
       </Window>
     </Container>
