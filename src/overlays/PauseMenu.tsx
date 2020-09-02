@@ -39,12 +39,12 @@ const Window = styled.div`
   max-width: 400px;
   height: 91vw;
   max-height: 400px;
-  padding: 25px 25px;
+  padding: 20px 20px;
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   position: relative;
   border-radius: 3%;
   background-image: url("https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/images/pauseMenuBg.png");
@@ -53,13 +53,19 @@ const Window = styled.div`
 `;
 
 const Continue = styled.div`
-  width: auto;
+  width: 90%;
+  max-width: 400px;
   height: auto;
   cursor: pointer;
   text-align: center;
   font-size: 1.3em;
   font-family: "Lato", sans-serif;
   transition: opacity 0.15s linear;
+  margin-top: 20px;
+  background: white;
+  line-height: 1em;
+  padding: 12px 0;
+  border-radius: 10px;
   :hover {
     opacity: 0.5;
   }
@@ -67,53 +73,51 @@ const Continue = styled.div`
 
 const Version = styled.a`
   position: absolute;
-  top: 32px;
+  top: 24px;
   right: 60px;
   font-size: 0.6em;
 `;
 
 const Instagram = styled.div`
   position: absolute;
-  top: 35px;
+  top: 24px;
   left: 60px;
   width: auto;
   height: auto;
-  border-radius: 30%;
   color: white;
   cursor: pointer;
   transition: opacity 0.15s linear;
+  font-size: 1em;
+  line-height: 1em;
   :hover {
     opacity: 0.5;
   }
 `;
 
-const MusicIcon = styled.div`
-  position: absolute;
-  left: 60px;
-  bottom: 10px;
-`;
-
 const MusicCreds = styled.div`
   position: absolute;
-  width: 50%;
-  height: 7%;
+  width: 100%;
   bottom: 14px;
-  left: 85px;
-  diplay: inline;
   font-size: 0.6em;
   cursor: pointer;
   transition: opacity 0.1s linear;
+  text-align: center;
+
+  & > a {
+    text-decoration: underline;
+  }
+
   #artist {
     :hover {
       opacity: 0.5;
+      transition: opacity 0.1s linear;
     }
   }
 `;
 
 const Header = styled.div`
+  margin-top: 8%;
   width: auto;
-  height: 30%;
-  margin-top: 12%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -121,9 +125,10 @@ const Header = styled.div`
 `;
 
 const Title = styled.div`
-  height: 70%;
   font-size: 2em;
   text-align: center;
+  margin-bottom: 0em;
+  line-height: 1em;
 `;
 
 const SubHeader = styled.div`
@@ -173,18 +178,11 @@ const PauseMenu: React.FC<OverlayProps> = (props) => {
         >
           <FontAwesomeIcon id="musicicon" icon={faInstagram} size="lg" />
         </Instagram>
-        <MusicIcon>
-          <FontAwesomeIcon icon={faMusic} size="xs" />
-        </MusicIcon>
-        <MusicCreds
-          onClick={() => {
-            window.open("https://lucidmonday.com");
-          }}
-        >
-          <span>
-            <b>-- </b>
-          </span>
-          <span id="artist">Lucid Monday</span>
+        <MusicCreds>
+          music provided by{" "}
+          <a id="artist" href="https://lucidmonday.com">
+            Lucid Monday
+          </a>
         </MusicCreds>
         <Header>
           <Title>SPACES</Title>
@@ -195,8 +193,8 @@ const PauseMenu: React.FC<OverlayProps> = (props) => {
           <p>Look around: {isMobile ? "Drag" : "Mouse"}</p>
           <p>Pause: {isMobile ? "Menu Button" : "Esc"}</p>
         </Text>
-        <Continue onClick={closeOverlay}>continue</Continue>
       </Window>
+      <Continue onClick={closeOverlay}>continue</Continue>
     </Container>
   );
 };
