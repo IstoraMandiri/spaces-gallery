@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from "twin.macro";
+import styled from "@emotion/styled";
 import { EnvironmentStoreHook } from "stores/environment";
 
 const Container = styled.div<{ paused: boolean }>`

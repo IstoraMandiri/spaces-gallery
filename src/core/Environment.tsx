@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { styled } from "twin.macro";
+import styled from "@emotion/styled";
 import PauseMenu from "overlays/PauseMenu";
 import Crosshair from "./Crosshair";
 import { SceneComponent } from "types/scene";

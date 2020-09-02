@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from "twin.macro";
+import styled from "@emotion/styled";
 import { EnvironmentStoreHook } from "stores/environment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";

@@ -2,7 +2,6 @@ import React from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
 
-import "tailwindcss/dist/base.min.css";
 import "styles/global.css";
 
 const App = ({ Component, pageProps }: AppProps) => {

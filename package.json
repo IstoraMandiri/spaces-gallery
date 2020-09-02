@@ -40,7 +40,6 @@
     "react-three-fiber": "^4.2.10",
     "shopify-buy": "^2.11.0",
     "three": "^0.117.1",
-    "twin.macro": "^1.4.1",
     "use-cannon": "^0.5.0",
     "use-debounce": "^3.4.2",
     "zustand": "^2.2.3"

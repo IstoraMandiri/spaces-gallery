@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from "twin.macro";
+import styled from "@emotion/styled";
 
 const Element = styled.div`
   position: fixed;

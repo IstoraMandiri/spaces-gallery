@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { styled } from "twin.macro";
+import styled from "@emotion/styled";
 import { EnvironmentStoreHook } from "stores/environment";
 
 const TIMEOUT = 0; //ms, 0 for no timeout
