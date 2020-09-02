@@ -176,7 +176,7 @@ const PauseMenu: React.FC<OverlayProps> = (props) => {
             window.open("https://www.instagram.com/spaces3.0");
           }}
         >
-          <FontAwesomeIcon id="musicicon" icon={faInstagram} size="lg" />
+          <FontAwesomeIcon icon={faInstagram} size="lg" />
         </Instagram>
         <MusicCreds>
           music provided by{" "}
