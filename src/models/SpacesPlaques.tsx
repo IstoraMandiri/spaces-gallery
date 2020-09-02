@@ -30,7 +30,7 @@ type GLTFResult = GLTF & {
     POSTROBERT: THREE.Mesh;
   };
   materials: {
-    ["MATERIAL.SANTI"]: THREE.MeshStandardMaterial;
+    ["POST.SANTI"]: THREE.MeshStandardMaterial;
     ["MATERIAL.DENNIS"]: THREE.MeshStandardMaterial;
     ["MATERIAL.ZACH"]: THREE.MeshStandardMaterial;
     ["MATERIAL.HECTOR"]: THREE.MeshStandardMaterial;
@@ -45,7 +45,7 @@ export default function Model(props: ModelProps) {
   const group = useRef<THREE.Group>();
   const { nodes, materials } = useLoader<GLTFResult>(
     GLTFLoader,
-    "https://d27rt3a60hh1lx.cloudfront.net/models/SpacesPlaques4/SpacesPlaques4.glb",
+    "https://d27rt3a60hh1lx.cloudfront.net/models/SpacesPlaques6/SpacesPlaques6.glb",
     loadModel(setLoading)
   );
 
@@ -58,21 +58,21 @@ export default function Model(props: ModelProps) {
       >
         <group
           position={[-0.120446, 0.0025, 0.126275]}
-          rotation={[-Math.PI, Math.PI / 3, Math.PI]}
+          rotation={[-Math.PI, Math.PI / 3, -Math.PI]}
           scale={[0.6, 0.6, 0.6]}
         >
           <mesh
-            material={materials["MATERIAL.SANTI"]}
+            material={materials["POST.SANTI"]}
             geometry={nodes.CUBESANTI.geometry}
             position={[-0.000093, 0.012507, 0]}
           />
           <mesh
-            material={materials["MATERIAL.SANTI"]}
+            material={materials["POST.SANTI"]}
             geometry={nodes.POSTSANTI2.geometry}
             position={[0.023361, -0.006253, 0]}
           />
           <mesh
-            material={materials["MATERIAL.SANTI"]}
+            material={materials["POST.SANTI"]}
             geometry={nodes.POSTSANTI1.geometry}
             position={[-0.023268, -0.006253, 0]}
           />
