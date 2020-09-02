@@ -72,7 +72,6 @@ const Player = (props: PlayerProps) => {
   useEffect(() => {
     // store position and velocity
     bodyApi.position.subscribe((p) => {
-      // console.log(`Position: (${p[0].toFixed(4)}, ${p[1].toFixed(4)}, ${p[2].toFixed(4)}`);
       position.current.set(p[0], p[1], p[2]);
     });
     bodyApi.velocity.subscribe((v) => velocity.current.set(v[0], v[1], v[2]));

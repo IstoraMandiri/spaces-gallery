@@ -59,10 +59,10 @@ export default function Model(props: ModelProps) {
     type: "Static",
     args: wallsGeo
       .clone()
-      .translate(0.08147, 0.019881, 0.204819)
       .rotateX(0.009378)
       .rotateY(1.545416)
       .rotateZ(-2.543593)
+      .translate(0.08147, 0.019881, 0.204819)
       .scale(100, 100, 100)
       .translate(0, 0.5, 0),
   }));
