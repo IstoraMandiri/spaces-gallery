@@ -6,27 +6,41 @@ import { useEffect, useRef } from "react";
 import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass";
 import { GammaCorrectionShader } from "three/examples/jsm/shaders/GammaCorrectionShader";
 import { BloomPass } from "three/examples/jsm/postprocessing/BloomPass";
+import { FXAAShader } from "three/examples/jsm/shaders/FXAAShader";
+import { WebGLRenderer } from "three";
+import { SSAOPass } from "three/examples/jsm/postprocessing/SSAOPass";
 extend({ EffectComposer, RenderPass, GlitchPass, ShaderPass, BloomPass });
 
-const Effects = () => {
+const Effects = (props: { renderer: WebGLRenderer | undefined }) => {
+  const { renderer } = props;
   const { gl, scene, camera, size } = useThree();
 
   const gammaCorrection = new ShaderPass(GammaCorrectionShader);
 
+  const fxaaPass = new ShaderPass(FXAAShader);
+  const pixelRatio = renderer ? renderer.getPixelRatio() : 1;
+  // @ts-ignore
+  fxaaPass.material.uniforms["resolution"].value.x =
+    1 / (window.innerWidth * pixelRatio);
+  // @ts-ignore
+  fxaaPass.material.uniforms["resolution"].value.y =
+    1 / (window.innerHeight * pixelRatio);
+
   const composer = useRef<EffectComposer>();
-  const counter = useRef(0);
 
   useEffect(() => void composer?.current?.setSize(size.width, size.height), [
     size,
   ]);
 
   useEffect(() => {
+    fxaaPass.renderToScreen = true;
+    composer?.current?.addPass(fxaaPass);
+
     gammaCorrection.renderToScreen = true;
     composer?.current?.addPass(gammaCorrection);
   }, []);
 
   useFrame(() => {
-    counter.current += 0.01;
     composer?.current?.render();
   }, 1);
 
