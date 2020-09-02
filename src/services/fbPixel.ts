@@ -1,6 +1,6 @@
 import ReactPixel from "react-facebook-pixel";
 
-const STAGE = process.env.NEXT_PUBLIC_STAGE;
+const STAGE = process.env.NODE_ENV;
 const PIXEL_CODE = process.env.NEXT_PUBLIC_PIXEL_CODE as string;
 
 const options = {

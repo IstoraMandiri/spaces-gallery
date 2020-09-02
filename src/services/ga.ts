@@ -1,6 +1,6 @@
 import ReactGA from "react-ga";
 
-const STAGE = process.env.NEXT_PUBLIC_STAGE;
+const STAGE = process.env.NODE_ENV;
 const PUBLIC_CODE = process.env.NEXT_PUBLIC_GA_CODE as string;
 
 ReactGA.initialize(PUBLIC_CODE);
