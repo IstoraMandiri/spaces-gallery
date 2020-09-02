@@ -33,11 +33,11 @@ const Effects = (props: { renderer: WebGLRenderer | undefined }) => {
   ]);
 
   useEffect(() => {
-    fxaaPass.renderToScreen = true;
-    composer?.current?.addPass(fxaaPass);
-
     gammaCorrection.renderToScreen = true;
     composer?.current?.addPass(gammaCorrection);
+
+    fxaaPass.renderToScreen = true;
+    composer?.current?.addPass(fxaaPass);
   }, []);
 
   useFrame(() => {
