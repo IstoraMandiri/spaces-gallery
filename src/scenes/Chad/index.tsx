@@ -9,6 +9,8 @@ import Analytics from "ui-components/Analytics";
 import HDRISky from "three-components/HDRI/HDRISky";
 import Effects from "core/Effects";
 import SpacesSphere from "models/SpacesSphere";
+import ChadKnight from "models/ChadKnight";
+import ChadPiece from "./components/ChadPiece";
 import { WebGLRenderer } from "three";
 
 const physicsProps = {
@@ -49,6 +51,7 @@ const Chad: SceneComponent = (props) => {
             <SpacesSphere useEnvStore={useEnvStore} />
           </Suspense>
           <ambientLight intensity={0.3} />
+          <ChadPiece useEnvStore={useEnvStore} />
           <Effects renderer={renderer} />
         </Physics>
       </Canvas>

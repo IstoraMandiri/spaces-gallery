@@ -10,7 +10,7 @@ DESTINATION_FILE="src/models/${FILE}.tsx"
 gltf-pipeline -i "${STAGED_FILE}" -o "${STAGED_FILE}" -d
 gltfjsx "${STAGED_FILE}" "${DESTINATION_FILE}" --draco --precision 6 --types
 
-aws s3 cp "${STAGED_FOLDER}" "s3://spaces-gallery-assets/models/${NAME}" --recursive
+aws s3 cp "${STAGED_FOLDER}" "s3://spaces-gallery-assets/content/chadknight/${NAME}" --recursive
 
 rm -r "${STAGED_FOLDER}"
 
