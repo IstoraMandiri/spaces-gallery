@@ -58,7 +58,7 @@ export default function Model(props: ModelProps) {
   return (
     <group ref={group} {...props} dispose={null}>
       <group ref={sphereGroup} scale={[100, 100, 100]}>
-        <group position={[0, 0.02, 0]}>
+        <group position={[0, 0, 0]}>
           <mesh
             material={materials.Sphere}
             geometry={nodes.Sphere.geometry}

@@ -12,6 +12,7 @@ import SpacesSphere from "models/SpacesSphere";
 import ChadKnight from "models/ChadKnight";
 import ChadPiece from "./components/ChadPiece";
 import { WebGLRenderer } from "three";
+import { Sky } from "drei";
 
 const physicsProps = {
   iterations: 20,
@@ -44,13 +45,13 @@ const Chad: SceneComponent = (props) => {
       >
         {children}
         <Physics {...physicsProps}>
-          <HDRISky />
+          <Sky sunPosition={[0, -1, 0]} />
           <InfinitePlane height={-0.001} />
           <Player useEnvStore={useEnvStore} />
+          <ambientLight intensity={5} />
           <Suspense fallback={null}>
             <SpacesSphere useEnvStore={useEnvStore} />
           </Suspense>
-          <ambientLight intensity={0.3} />
           <ChadPiece useEnvStore={useEnvStore} />
           <Effects renderer={renderer} />
         </Physics>

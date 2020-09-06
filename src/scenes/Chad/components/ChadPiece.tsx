@@ -1,14 +1,15 @@
-import React, { Suspense, useRef } from "react";
+import React, { Suspense, useRef, useMemo } from "react";
 import { EnvironmentStoreHook } from "stores/environment";
 import { Color, Mesh } from "three";
 import ChadKnight from "models/ChadKnight";
 import { useFrame } from "react-three-fiber";
+import * as THREE from "three";
 
 type ChadKnightProps = {
   useEnvStore: EnvironmentStoreHook;
 };
 
-const SCALE = 0.9;
+const SCALE = 20;
 
 const ChadKnightPieces = (props: ChadKnightProps) => {
   const { useEnvStore } = props;
@@ -21,6 +22,16 @@ const ChadKnightPieces = (props: ChadKnightProps) => {
     }
   });
 
+  const glowMaterialProps = {
+    color: 0x008080,
+    transparent: true,
+    opacity: 0.3,
+  };
+  const glowMaterial = useMemo(
+    () => new THREE.MeshBasicMaterial(glowMaterialProps),
+    [glowMaterialProps]
+  );
+
   return (
     <group>
       <group scale={[SCALE, SCALE, SCALE]}>
@@ -32,10 +43,13 @@ const ChadKnightPieces = (props: ChadKnightProps) => {
           <meshStandardMaterial
             attach="material"
             wireframe
-            color={new Color(0x00ff00)}
+            color={new Color(0x008080)}
           />
         </mesh>
       </group>
+      <mesh material={glowMaterial} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeBufferGeometry attach="geometry" args={[6, 6]} />
+      </mesh>
     </group>
   );
 };
