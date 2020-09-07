@@ -9,7 +9,7 @@ type ChadKnightProps = {
   useEnvStore: EnvironmentStoreHook;
 };
 
-const SCALE = 20;
+const SCALE = 1.8;
 
 const ChadKnightPieces = (props: ChadKnightProps) => {
   const { useEnvStore } = props;
@@ -21,16 +21,6 @@ const ChadKnightPieces = (props: ChadKnightProps) => {
       sphere.current.rotation.y = clock.getElapsedTime() / 10;
     }
   });
-
-  const glowMaterialProps = {
-    color: 0x008080,
-    transparent: true,
-    opacity: 0.3,
-  };
-  const glowMaterial = useMemo(
-    () => new THREE.MeshBasicMaterial(glowMaterialProps),
-    [glowMaterialProps]
-  );
 
   return (
     <group>
@@ -47,9 +37,6 @@ const ChadKnightPieces = (props: ChadKnightProps) => {
           />
         </mesh>
       </group>
-      <mesh material={glowMaterial} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeBufferGeometry attach="geometry" args={[6, 6]} />
-      </mesh>
     </group>
   );
 };
