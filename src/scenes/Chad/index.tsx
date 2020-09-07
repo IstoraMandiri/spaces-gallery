@@ -45,7 +45,7 @@ const Chad: SceneComponent = (props) => {
       >
         {children}
         <Physics {...physicsProps}>
-          <Sky sunPosition={[0, -1, 0]} />
+          <Sky />
           <InfinitePlane height={-0.001} />
           <Player useEnvStore={useEnvStore} />
           <ambientLight intensity={5} />
