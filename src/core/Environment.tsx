@@ -33,7 +33,7 @@ const defaultCanvasProps: Partial<ContainerProps> = {
   shadowMap: true,
   gl: { alpha: false },
   sRGB: true,
-  camera: { position: [0, 2, 0], near: 0.01 },
+  camera: { position: [0, 2, 0], near: 0.01, far: 100 },
 };
 
 const Environment = (props: EnvironmentProps) => {
