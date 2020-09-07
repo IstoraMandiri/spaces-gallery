@@ -3,6 +3,7 @@ import { AppProps } from "next/app";
 import Head from "next/head";
 
 import "styles/global.css";
+import BrowserChecker from "ui-components/BrowserChecker";
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
@@ -31,6 +32,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <meta name="theme-color" content="#ffffff" />
         <title>Spaces</title>
       </Head>
+      <BrowserChecker />
       <Component {...pageProps} />
     </>
   );
