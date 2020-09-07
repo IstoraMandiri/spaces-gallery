@@ -4,8 +4,11 @@ import Head from "next/head";
 
 import "styles/global.css";
 import BrowserChecker from "ui-components/BrowserChecker";
+import { useValidAgent } from "services/userAgent";
 
 const App = ({ Component, pageProps }: AppProps) => {
+  const valid = useValidAgent();
+
   return (
     <>
       <Head>
@@ -33,7 +36,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <title>Spaces</title>
       </Head>
       <BrowserChecker />
-      <Component {...pageProps} />
+      {valid && <Component {...pageProps} />}
     </>
   );
 };

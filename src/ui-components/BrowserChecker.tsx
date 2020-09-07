@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
+import { useValidAgent } from "../services/userAgent";
 
 const INVALID_KEYWORDS = ["FBAN", "FBAV", "Instagram"];
 
@@ -18,18 +19,12 @@ const Container = styled.div`
 `;
 
 const InvalidBrowser = () => {
-  const [valid, setValid] = useState(true);
   const loc = useRef<string>();
 
-  function isValidApp() {
-    const ua = navigator.userAgent || navigator.vendor || "";
-    const valid = INVALID_KEYWORDS.filter((val) => ua.includes(val));
-    return valid.length === 0;
-  }
+  const valid = useValidAgent();
 
   useEffect(() => {
     loc.current = window.location.href;
-    setValid(isValidApp());
   }, []);
 
   if (valid) {
