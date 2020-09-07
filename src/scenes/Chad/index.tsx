@@ -11,6 +11,7 @@ import ChadGallery from "models/ChadGallery";
 import ChadPiece from "./components/ChadPiece";
 import ChadSpacesSphere from "./components/ChadSpacesSphere";
 import { Sky } from "drei";
+import ChadLighting from "./components/ChadLighting";
 
 const physicsProps = {
   iterations: 20,
@@ -37,12 +38,11 @@ const Chad: SceneComponent = (props) => {
         {children}
         <Physics {...physicsProps}>
           {/* @ts-ignore */}
-          <Sky sunPosition={[0, 0, 0.001]} />
+          <Sky sunPosition={[0.5, 0.1, 0.5]} />
           <InfinitePlane height={-0.001} />
           <Player useEnvStore={useEnvStore} initPos={[0, 1, 30]} />
-          <ambientLight intensity={1} />
-          <pointLight intensity={1} />
           <ChadSpacesSphere useEnvStore={useEnvStore} />
+          <ChadLighting />
           <Suspense fallback={null}>
             <ChadGallery useEnvStore={useEnvStore} />
           </Suspense>
