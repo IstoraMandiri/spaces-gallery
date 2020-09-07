@@ -4,10 +4,11 @@ import { usePlane } from "use-cannon";
 type InfinitePlaneProps = {
   height: number;
   size?: [number, number];
+  visible?: boolean;
 };
 
 const InfinitePlane = (props: InfinitePlaneProps) => {
-  const { height, size = [100, 100] } = props;
+  const { height, size = [100, 100], visible } = props;
 
   const [ref] = usePlane(() => ({
     rotation: [-Math.PI / 2, 0, 0],
@@ -18,8 +19,12 @@ const InfinitePlane = (props: InfinitePlaneProps) => {
 
   return (
     <mesh ref={ref}>
-      {/*<planeBufferGeometry attach="geometry" args={size} />*/}
-      {/*<meshPhongMaterial attach="material" color="#660000" />*/}
+      {visible && (
+        <>
+          <planeBufferGeometry attach="geometry" args={size} />
+          <meshPhongMaterial attach="material" color="#660000" />
+        </>
+      )}
     </mesh>
   );
 };
