@@ -39,9 +39,9 @@ const InvalidBrowser = () => {
   return (
     <Container>
       invalid browser dumbass
-      <a target="_blank" rel="noreferrer" href={`${loc.current}?nibrowser=no`}>
-        Proceed to Safari
-      </a>
+      <button onClick={() => window.open(loc.current, "_system")}>
+        proceed to correct browser
+      </button>
     </Container>
   );
 };
