@@ -91,7 +91,7 @@ const Outside: SceneComponent = (props) => {
           <Suspense fallback={null}>
             <SpacesPlaques useEnvStore={useEnvStore} />
           </Suspense>
-          <Effects renderer={renderer} />
+          <Effects />
         </Physics>
       </Canvas>
     </>
