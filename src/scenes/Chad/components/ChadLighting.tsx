@@ -26,7 +26,7 @@ const ChadLighting: React.FC = (props) => {
       {/*  <primitive object={light1} {...spotlightAttrs} />*/}
       {/*  <primitive object={light1.target} position={[0, -1, 0]} />*/}
       {/*</group>*/}
-      <pointLight intensity={0.3} />
+      <pointLight intensity={0.8} position={[0, 1, 0]} />
     </>
   );
 };
