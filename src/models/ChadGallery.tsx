@@ -63,14 +63,6 @@ export default function Model(props: ModelProps) {
     <group ref={group} {...props} dispose={null}>
       <group scale={[80, 80, 80]}>
         <group position={[0, -0.005, 0]}>
-          <mesh geometry={nodes.COLLIDERS.geometry} position={[0, 0.0095, 0]}>
-            <meshBasicMaterial
-              attach="material"
-              color="red"
-              transparent={true}
-              opacity={0.2}
-            />
-          </mesh>
           <mesh
             material={materials.Mat}
             geometry={nodes.LEVEL3.geometry}
