@@ -6,13 +6,18 @@ import { useFrame } from "react-three-fiber";
 
 type ChadKnightProps = {
   useEnvStore: EnvironmentStoreHook;
+  effects: {
+    wireframe?: boolean;
+    bubble?: boolean;
+    metal?: boolean;
+  };
 };
 
 const SCALE = 1.3;
 const COLOR = new Color(0x56e0af);
 
 const ChadKnightPieces = (props: ChadKnightProps) => {
-  const { useEnvStore } = props;
+  const { useEnvStore, effects } = props;
 
   const sphere = useRef<Mesh>();
 

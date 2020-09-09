@@ -1,4 +1,4 @@
-import React, { Suspense, useCallback, useState } from "react";
+import React, { Suspense, useCallback, useRef, useState } from "react";
 import { Physics } from "use-cannon";
 import { Canvas } from "react-three-fiber";
 import Player from "core/Player";
@@ -14,6 +14,8 @@ import ChadLighting from "./components/ChadLighting";
 import ChadSceneSelector from "./components/ChadSceneSelector";
 import PlatformPlatform from "./components/PlatformPlatform";
 import InfinitePlane from "../../three-components/InfinitePlane";
+import ToggleEffect from "../../three-components/ToggleEffect";
+import { Raycaster, Vector3 } from "three";
 
 const physicsProps = {
   iterations: 20,
@@ -34,6 +36,11 @@ const Chad: SceneComponent = (props) => {
   const isGallery = sceneState === "gallery" || sceneState === "ending";
   const PIECE_SCALE = isGallery ? 1 : 1.75;
   const SUN_POS = isGallery ? [0, 1, 0] : [0, -1, 0];
+  const [effects, setEffects] = useState({
+    wireframe: false,
+    bubble: false,
+    metal: false,
+  });
 
   const onFrame = useCallback(
     (bodyApi: any) => {
@@ -50,6 +57,8 @@ const Chad: SceneComponent = (props) => {
     [sceneState]
   );
 
+  const raycaster = useRef(new Raycaster(new Vector3(), new Vector3(), 0, 5));
+
   return (
     <>
       <Analytics />
@@ -63,6 +72,7 @@ const Chad: SceneComponent = (props) => {
             useEnvStore={useEnvStore}
             initPos={[0, 1, 30]}
             onFrame={onFrame}
+            raycaster={raycaster}
           />
           <ChadLighting isGallery={isGallery} />
           <ChadSceneSelector
@@ -71,8 +81,14 @@ const Chad: SceneComponent = (props) => {
             setSceneState={setSceneState}
           />
           <group scale={[PIECE_SCALE, PIECE_SCALE, PIECE_SCALE]}>
-            <ChadPiece useEnvStore={useEnvStore} />
+            <ChadPiece useEnvStore={useEnvStore} effects={effects} />
           </group>
+          <ToggleEffect
+            targetEffect="wireframe"
+            raycaster={raycaster}
+            effects={effects}
+            setEffects={setEffects}
+          />
           <Effects />
           {sceneState === "gallery" && (
             <>
