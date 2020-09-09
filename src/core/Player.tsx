@@ -17,6 +17,7 @@ type PlayerProps = {
   initPos?: [number, number, number];
   initLook?: [number, number, number];
   raycaster?: MutableRefObject<Raycaster>;
+  onFrame?: (bodyApi: any) => void;
 };
 
 /**
@@ -34,6 +35,7 @@ const Player = (props: PlayerProps) => {
     initPos = [0, 1, 0],
     initLook = [0, 2, 0],
     raycaster,
+    onFrame,
   } = props;
   const { camera } = useThree();
 
@@ -79,6 +81,10 @@ const Player = (props: PlayerProps) => {
   }, []);
 
   useFrame(() => {
+    if (onFrame) {
+      onFrame(bodyApi);
+    }
+
     // update time
     const time = performance.now();
 
