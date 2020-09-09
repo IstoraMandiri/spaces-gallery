@@ -13,10 +13,10 @@ import { Color, Material } from "three";
 
 type GLTFResult = GLTF & {
   nodes: {
-    DUDEMESH: THREE.Mesh;
-    GODMESH: THREE.Mesh;
     GODWHOLE: THREE.Mesh;
     DUDEWHOLE: THREE.Mesh;
+    DUDEMESH: THREE.Mesh;
+    GODMESH: THREE.Mesh;
   };
 };
 
@@ -31,7 +31,7 @@ export default function Model(props: ChadProps) {
   const group = useRef<THREE.Group>();
   const { nodes } = useLoader<GLTFResult>(
     GLTFLoader,
-    "https://d27rt3a60hh1lx.cloudfront.net/content/chadknight/ChadKnight5/ChadKnight5.glb",
+    "https://d27rt3a60hh1lx.cloudfront.net/content/chadknight/ChadKnight6/ChadKnight6.glb",
     loadModel(setLoading)
   );
 
@@ -63,34 +63,30 @@ export default function Model(props: ChadProps) {
   // (nodes.DUDEWHOLE.material as Material).transparent = true;
   // (nodes.DUDEWHOLE.material as Material).opacity = 0.999;
 
-  const WIREFRAME_SCALE = 1.0005;
+  const WIREFRAME_SCALE = 1;
 
   return (
     <group ref={group} {...props} dispose={null}>
-      <group scale={[333, 333, 333]}>
+      <group scale={[327, 327, 327]}>
         <mesh
           material={nodes.GODWHOLE.material}
           geometry={nodes.GODWHOLE.geometry}
-          position={[0.030221, 0.008681, 0.001185]}
           rotation={[0, 0, 0]}
         />
         <mesh
           material={nodes.DUDEWHOLE.material}
           geometry={nodes.DUDEWHOLE.geometry}
-          position={[-0.014953, -0.020484, -0.002554]}
           rotation={[0, 0, 0]}
         />
         <group scale={[WIREFRAME_SCALE, WIREFRAME_SCALE, WIREFRAME_SCALE]}>
           <mesh
             material={wireframeMaterial}
             geometry={nodes.DUDEMESH.geometry}
-            position={[-0.01151, -0.01177, -0.000265]}
             scale={[1.01, 1.01, 1.01]}
           />
           <mesh
             material={wireframeMaterial}
             geometry={nodes.GODMESH.geometry}
-            position={[0.013726, 0.005645, -0.002614]}
             rotation={[0, 0, 0]}
             scale={[1.01, 1.01, 1.01]}
           />
