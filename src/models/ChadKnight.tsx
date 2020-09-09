@@ -9,28 +9,35 @@ import { GLTFLoader, GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { draco } from "drei";
 import { ModelProps } from "../types/model";
 import { loadModel } from "../services/loader";
+import { Color, Material } from "three";
 
 type GLTFResult = GLTF & {
   nodes: {
-    God: THREE.Mesh;
-    Face: THREE.Mesh;
+    DUDEMESH: THREE.Mesh;
+    GODMESH: THREE.Mesh;
+    GODWHOLE: THREE.Mesh;
+    DUDEWHOLE: THREE.Mesh;
   };
 };
 
-export default function Model(props: ModelProps) {
-  const { useEnvStore } = props;
+type ChadProps = {
+  color: Color;
+} & ModelProps;
+
+export default function Model(props: ChadProps) {
+  const { useEnvStore, color } = props;
 
   const setLoading = useEnvStore((st) => st.setLoading);
   const group = useRef<THREE.Group>();
   const { nodes } = useLoader<GLTFResult>(
     GLTFLoader,
-    "https://d27rt3a60hh1lx.cloudfront.net/content/chadknight/ChadKnight1/ChadKnight1.glb",
+    "https://d27rt3a60hh1lx.cloudfront.net/content/chadknight/ChadKnight5/ChadKnight5.glb",
     loadModel(setLoading)
   );
 
   const wireMaterialProps = {
     wireframe: true,
-    color: 0x008080,
+    color: color,
   };
   const wireframeMaterial = useMemo(
     () => new THREE.MeshBasicMaterial(wireMaterialProps),
@@ -38,7 +45,7 @@ export default function Model(props: ModelProps) {
   );
 
   const glowMaterialProps = {
-    color: 0x008080,
+    color: color,
     transparent: true,
     opacity: 0.3,
   };
@@ -47,36 +54,46 @@ export default function Model(props: ModelProps) {
     [glowMaterialProps]
   );
 
-  useFrame(({ clock }) => {
-    if (group.current) {
-      group.current.rotation.y = -clock.getElapsedTime() / 20;
-    }
-  });
+  // useFrame(({ clock }) => {
+  //   if (group.current) {
+  //     group.current.rotation.y = -clock.getElapsedTime() / 20;
+  //   }
+  // });
+
+  // (nodes.DUDEWHOLE.material as Material).transparent = true;
+  // (nodes.DUDEWHOLE.material as Material).opacity = 0.999;
+
+  const WIREFRAME_SCALE = 1.0005;
 
   return (
     <group ref={group} {...props} dispose={null}>
-      {/*{clippingSphere && (*/}
-      {/*  <>*/}
-      {/*    <primitive object={clippingSphere[0]} />*/}
-      {/*    <primitive object={clippingSphere[1]} />*/}
-      {/*  </>*/}
-      {/*)}*/}
-      <group scale={[350, 350, 350]}>
-        <group position={[0.034, -0.0055, -0.001]}>
-          <group
-            position={[-0.000711, 0.005998, 0.000424]}
+      <group scale={[333, 333, 333]}>
+        <mesh
+          material={nodes.GODWHOLE.material}
+          geometry={nodes.GODWHOLE.geometry}
+          position={[0.030221, 0.008681, 0.001185]}
+          rotation={[0, 0, 0]}
+        />
+        <mesh
+          material={nodes.DUDEWHOLE.material}
+          geometry={nodes.DUDEWHOLE.geometry}
+          position={[-0.014953, -0.020484, -0.002554]}
+          rotation={[0, 0, 0]}
+        />
+        <group scale={[WIREFRAME_SCALE, WIREFRAME_SCALE, WIREFRAME_SCALE]}>
+          <mesh
+            material={wireframeMaterial}
+            geometry={nodes.DUDEMESH.geometry}
+            position={[-0.01151, -0.01177, -0.000265]}
+            scale={[1.01, 1.01, 1.01]}
+          />
+          <mesh
+            material={wireframeMaterial}
+            geometry={nodes.GODMESH.geometry}
+            position={[0.013726, 0.005645, -0.002614]}
             rotation={[0, 0, 0]}
-          >
-            <mesh material={nodes.God.material} geometry={nodes.God.geometry} />
-            <mesh material={wireframeMaterial} geometry={nodes.God.geometry} />
-          </group>
-          <group position={[-0.049417, -0.01283, 0.000676]}>
-            <mesh
-              material={nodes.God.material}
-              geometry={nodes.Face.geometry}
-            />
-            <mesh material={wireframeMaterial} geometry={nodes.Face.geometry} />
-          </group>
+            scale={[1.01, 1.01, 1.01]}
+          />
         </group>
       </group>
     </group>

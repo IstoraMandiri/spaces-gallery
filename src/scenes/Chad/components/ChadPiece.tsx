@@ -1,15 +1,15 @@
-import React, { Suspense, useRef, useMemo } from "react";
+import React, { Suspense, useRef } from "react";
 import { EnvironmentStoreHook } from "stores/environment";
 import { Color, Mesh } from "three";
 import ChadKnight from "models/ChadKnight";
 import { useFrame } from "react-three-fiber";
-import * as THREE from "three";
 
 type ChadKnightProps = {
   useEnvStore: EnvironmentStoreHook;
 };
 
-const SCALE = 1.8;
+const SCALE = 1.3;
+const COLOR = new Color(0x56e0af);
 
 const ChadKnightPieces = (props: ChadKnightProps) => {
   const { useEnvStore } = props;
@@ -26,15 +26,11 @@ const ChadKnightPieces = (props: ChadKnightProps) => {
     <group>
       <group scale={[SCALE, SCALE, SCALE]}>
         <Suspense fallback={null}>
-          <ChadKnight useEnvStore={useEnvStore} />
+          <ChadKnight useEnvStore={useEnvStore} color={COLOR} />
         </Suspense>
-        <mesh ref={sphere}>
-          <sphereBufferGeometry attach="geometry" args={[8, 50, 30]} />
-          <meshStandardMaterial
-            attach="material"
-            wireframe
-            color={new Color(0x008080)}
-          />
+        <mesh ref={sphere} position={[0, 0, 0]}>
+          <sphereBufferGeometry attach="geometry" args={[8, 5 * 14, 3 * 14]} />
+          <meshStandardMaterial attach="material" wireframe color={COLOR} />
         </mesh>
       </group>
     </group>

@@ -5,9 +5,11 @@ const LIGHT_INTENSITY = 8;
 const LIGHT_DISTANCE = 30;
 const LIGHT_COLOR = 0xffffff;
 
-const AMBIENT_INTENSITY = 0.1;
+const AMBIENT_INTENSITY = 0.5;
 
-const ChadLighting: React.FC = (props) => {
+const ChadLighting = (props: { isGallery: boolean }) => {
+  const { isGallery } = props;
+
   const light1 = useMemo(() => new SpotLight(), []);
 
   const spotlightAttrs = {
@@ -26,7 +28,7 @@ const ChadLighting: React.FC = (props) => {
       {/*  <primitive object={light1} {...spotlightAttrs} />*/}
       {/*  <primitive object={light1.target} position={[0, -1, 0]} />*/}
       {/*</group>*/}
-      <pointLight intensity={0.8} position={[0, 1, 0]} />
+      <pointLight intensity={0.3} position={[0, 20, 0]} />
     </>
   );
 };
