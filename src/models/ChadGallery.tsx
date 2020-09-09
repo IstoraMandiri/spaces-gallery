@@ -7,9 +7,9 @@ import React, { useEffect, useRef } from "react";
 import { useLoader } from "react-three-fiber";
 import { GLTFLoader, GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { draco } from "drei";
-import { ModelProps } from "../types/model";
-import { loadModel } from "../services/loader";
-import { useCollision } from "../services/collision";
+import { ModelProps } from "types/model";
+import { loadModel } from "services/loader";
+import { useTrimeshCollision } from "services/collision";
 import { BufferGeometry } from "three";
 
 type GLTFResult = GLTF & {
@@ -49,7 +49,7 @@ export default function Model(props: ModelProps) {
     }
   }, []);
 
-  const collision = useCollision(
+  const collision = useTrimeshCollision(
     (nodes.COLLIDERS.geometry as BufferGeometry)
       .clone()
       .translate(0, 0.0094, 0)
@@ -61,14 +61,14 @@ export default function Model(props: ModelProps) {
     <group ref={group} {...props} dispose={null}>
       <group scale={[80, 80, 80]}>
         <group position={[0, -0.005, 0]}>
-          <mesh geometry={nodes.COLLIDERS.geometry} position={[0, 0.0094, 0]}>
-            <meshBasicMaterial
-              attach="material"
-              color="red"
-              transparent={true}
-              opacity={0.2}
-            />
-          </mesh>
+          {/*<mesh geometry={nodes.COLLIDERS.geometry} position={[0, 0.0094, 0]}>*/}
+          {/*  <meshBasicMaterial*/}
+          {/*    attach="material"*/}
+          {/*    color="red"*/}
+          {/*    transparent={true}*/}
+          {/*    wireframe={true}*/}
+          {/*  />*/}
+          {/*</mesh>*/}
           <mesh
             material={materials["LEVEL.MATERIAL"]}
             geometry={nodes.LEVEL3.geometry}

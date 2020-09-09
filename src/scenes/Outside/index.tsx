@@ -1,4 +1,4 @@
-import React, { Suspense, useMemo, useState } from "react";
+import React, { Suspense, useState } from "react";
 import { Physics } from "use-cannon";
 import { Canvas } from "react-three-fiber";
 import InfinitePlane from "three-components/InfinitePlane";
@@ -28,11 +28,6 @@ const physicsProps = {
   gravity: [0, -30, 0],
   defaultContactMaterial: {
     friction: 0,
-    // restitution?: number
-    // contactEquationStiffness?: number
-    // contactEquationRelaxation?: number
-    // frictionEquationStiffness?: number
-    // frictionEquationRelaxation?: number
   },
 };
 

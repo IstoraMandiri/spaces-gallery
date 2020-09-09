@@ -8,6 +8,7 @@ import LoadingScreen from "ui-components/LoadingScreen";
 import { ContainerProps } from "react-three-fiber/targets/shared/web/ResizeContainer";
 import MobilePause from "ui-components/MobilePause";
 import { isMobile } from "react-device-detect";
+import { Stats } from "drei";
 
 const Container = styled.div`
   position: absolute;
