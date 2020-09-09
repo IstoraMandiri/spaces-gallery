@@ -39,7 +39,6 @@ const Chad: SceneComponent = (props) => {
         <Physics {...physicsProps}>
           {/* @ts-ignore */}
           <Sky sunPosition={[0, 1, 0]} />
-          <InfinitePlane height={-0.001} />
           <Player useEnvStore={useEnvStore} initPos={[0, 1, 30]} />
           <ChadSpacesSphere useEnvStore={useEnvStore} />
           <ChadLighting />
