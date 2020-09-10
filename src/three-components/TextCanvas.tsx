@@ -27,7 +27,7 @@ const TextCanvas = (props: TextCanvasProps) => {
     size = 0.3,
     color = "black",
     frameColor = "white",
-    font = "Ariel",
+    font,
     textAlign = "center",
     content = "Hello World",
   } = props;
@@ -41,10 +41,9 @@ const TextCanvas = (props: TextCanvasProps) => {
         </mesh>
       </group>
       <Text
-        font={font}
         fontSize={size}
         maxWidth={maxWidth}
-        // maxHeight={maxHeight}
+        font={font}
         color={color}
         textAlign={textAlign}
         anchorX="center"

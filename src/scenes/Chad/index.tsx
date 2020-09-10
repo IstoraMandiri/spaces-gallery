@@ -17,6 +17,7 @@ import InfinitePlane from "../../three-components/InfinitePlane";
 import ToggleEffect from "../../three-components/ToggleEffect";
 import { Raycaster, Vector3 } from "three";
 import TextCanvas from "../../three-components/TextCanvas";
+import ChadMusic from "./components/ChadMusic";
 
 const physicsProps = {
   iterations: 20,
@@ -98,6 +99,12 @@ const Chad: SceneComponent = (props) => {
             setEffect={setWireframe}
           />
           <TextCanvas position={[0, 2, 20]} />
+          <group position={[0, 0, 23]}>
+            <ChadMusic
+              useEnvStore={useEnvStore}
+              url="https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/audio/harris+cole+mix.mp3"
+            />
+          </group>
           <Effects />
           {sceneState === "gallery" && (
             <>
