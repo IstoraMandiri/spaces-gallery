@@ -35,7 +35,7 @@ const ToggleEffect = (props: EffectProps) => {
     if (hovered) {
       setEffect(!effect);
     }
-  }, [hovered]);
+  }, [hovered, effect]);
 
   useEffect(() => {
     document.addEventListener("click", onClick);
