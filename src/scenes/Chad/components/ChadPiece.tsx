@@ -27,8 +27,6 @@ const colors = [
   "purple",
   "pink",
   "white",
-  "black",
-  CHAD_COLOR2,
 ];
 
 const ChadKnightPieces = (props: ChadKnightProps) => {
