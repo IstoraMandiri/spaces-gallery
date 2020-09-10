@@ -8,15 +8,13 @@ import Analytics from "ui-components/Analytics";
 import Effects from "core/Effects";
 import ChadGallery from "models/ChadGallery";
 import ChadPiece from "./components/ChadPiece";
-import ChadSpacesSphere from "./components/ChadSpacesSphere";
 import ChadLighting from "./components/ChadLighting";
 import ChadSceneSelector from "./components/ChadSceneSelector";
 import PlatformPlatform from "./components/PlatformPlatform";
 import { Stars } from "drei";
 import { Color } from "three";
-import ToggleEffect from "../../three-components/ToggleEffect";
+import ToggleEffect from "three-components/ToggleEffect";
 import { Raycaster, Vector3 } from "three";
-import TextCanvas from "../../three-components/TextCanvas";
 import ChadMusic from "./components/ChadMusic";
 import Sign from "./components/Sign";
 import ChadEntrance from "./components/ChadEntrance";
@@ -94,7 +92,7 @@ const Chad: SceneComponent = (props) => {
           {/* @ts-ignore */}
           <Player
             useEnvStore={useEnvStore}
-            initPos={[0, 1, 30]}
+            initPos={[-2, -3, 62]}
             onFrame={onFrame}
             raycaster={raycaster}
           />
@@ -121,7 +119,6 @@ const Chad: SceneComponent = (props) => {
                 <ChadGallery useEnvStore={useEnvStore} />
               </Suspense>
               <ChadEntrance useEnvStore={useEnvStore} />
-              <ChadSpacesSphere useEnvStore={useEnvStore} />
               <ToggleEffect
                 position={[1.5, 0, 27]}
                 raycaster={raycaster}

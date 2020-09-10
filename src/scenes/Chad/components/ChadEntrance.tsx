@@ -23,12 +23,24 @@ const ChadEntrance = (props: { useEnvStore: EnvironmentStoreHook }) => {
         <primitive object={light1} {...topLight} />
         <primitive object={light1.target} position={[0, -100, 0]} />
       </group>
-      <group name="wall" rotation={[0, 0, 0]} position={[0, 1, -10.9]}>
-        <Text scale={[6, 6, 6]} position={[-4, 0, 0]}>
+      <group name="wall" rotation={[0, 0, 0]} position={[0, 0.75, -8.9]}>
+        <Text scale={[6, 6, 6]} position={[-4, 0, 0]} textAlign="left">
           CHAD KNIGHT
         </Text>
-        <Text scale={[4, 4, 4]} position={[-1.75, 0, 0]}>
+        <Text scale={[4, 4, 4]} position={[-1.6, 0, 0]}>
           x
+        </Text>
+        <Text
+          scale={[2, 2, 2]}
+          position={[-2.75, -1.35, 0]}
+          anchorY="top"
+          maxWidth={3}
+          textAlign="left"
+        >
+          {`Virtual Genesis is about God breathing life into a virtual universe.
+          It's a representation of the first code defined, digitally enabled,
+          virtual volumetric space. It represents the skin or peripheral
+          exoskeleton humans inhabit to enter the virtual world.`}
         </Text>
         <Suspense fallback={null}>
           <SpacesSphere useEnvStore={useEnvStore} />
