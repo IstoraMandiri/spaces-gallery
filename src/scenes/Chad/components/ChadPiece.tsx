@@ -1,9 +1,9 @@
-import React, { Suspense, useRef } from "react";
+import React, { Suspense, useEffect, useRef, useState } from "react";
 import { EnvironmentStoreHook } from "stores/environment";
 import { Color, Mesh } from "three";
 import ChadKnight from "models/ChadKnight";
 import { useFrame } from "react-three-fiber";
-import { CHAD_COLOR } from "../index";
+import { CHAD_COLOR, CHAD_COLOR2 } from "../index";
 
 type ChadKnightProps = {
   useEnvStore: EnvironmentStoreHook;
@@ -12,15 +12,32 @@ type ChadKnightProps = {
     bubble: boolean;
     metal: boolean;
     reflect: boolean;
+    color?: boolean;
   };
 };
 
 const SCALE = 1.3;
 
+const colors = [
+  "red",
+  "orange",
+  "yellow",
+  "green",
+  "blue",
+  "purple",
+  "pink",
+  "white",
+  "black",
+];
+
 const ChadKnightPieces = (props: ChadKnightProps) => {
-  const { useEnvStore, effects } = props;
+  const {
+    useEnvStore,
+    effects: { wireframe = true, bubble, metal, reflect, color = false },
+  } = props;
 
   const sphere = useRef<Mesh>();
+  const wireframeColor = new Color("red");
   // console.log(effects)
 
   useFrame(({ clock }) => {
@@ -29,18 +46,27 @@ const ChadKnightPieces = (props: ChadKnightProps) => {
     }
   });
 
+  const [realColor, setColor] = useState<string>("red");
+  useEffect(() => {
+    console.log("run");
+    setColor(colors[Math.floor(Math.random() * 8)]);
+  }, [color]);
+
   return (
     <group>
       <group scale={[SCALE, SCALE, SCALE]}>
         <Suspense fallback={null}>
-          <ChadKnight useEnvStore={useEnvStore} color={CHAD_COLOR} />
+          <ChadKnight
+            useEnvStore={useEnvStore}
+            color={color ? realColor : CHAD_COLOR2}
+          />
         </Suspense>
         <mesh ref={sphere} position={[0, 0, 0]}>
           <sphereBufferGeometry attach="geometry" args={[8, 5 * 14, 3 * 14]} />
           <meshLambertMaterial
             attach="material"
             wireframe
-            color={CHAD_COLOR}
+            color={color ? realColor : CHAD_COLOR}
             emissive={new Color(0x000000)}
             emissiveIntensity={10}
           />

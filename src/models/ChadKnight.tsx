@@ -21,7 +21,7 @@ type GLTFResult = GLTF & {
 };
 
 type ChadProps = {
-  color: Color;
+  color: string | number;
 } & ModelProps;
 
 export default function Model(props: ChadProps) {
@@ -34,10 +34,11 @@ export default function Model(props: ChadProps) {
     "https://d27rt3a60hh1lx.cloudfront.net/content/chadknight/ChadKnight7/ChadKnight7.glb",
     loadModel(setLoading)
   );
+  const realColor = new Color(color);
 
   const wireMaterialProps = {
     wireframe: true,
-    color: color,
+    color: realColor,
     emissive: 0x000000,
     emissiveIntensity: 5,
   };

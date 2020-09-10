@@ -29,6 +29,7 @@ const physicsProps = {
 };
 
 export const CHAD_COLOR = new Color(0x28fa92);
+export const CHAD_COLOR2 = 0x28fa92;
 
 const Chad: SceneComponent = (props) => {
   const { useEnvStore, defaultCanvasProps, children } = props;
@@ -45,12 +46,14 @@ const Chad: SceneComponent = (props) => {
   const [bubble, setBubble] = useState<boolean>(false);
   const [metal, setMetal] = useState<boolean>(false);
   const [reflect, setReflect] = useState<boolean>(false);
+  const [color, setColor] = useState<boolean>(false);
 
   const effects = {
     wireframe: wireframe,
     bubble: bubble,
     metal: metal,
     reflect: reflect,
+    color: color,
   };
 
   const onFrame = useCallback(
@@ -102,12 +105,12 @@ const Chad: SceneComponent = (props) => {
           <group scale={[PIECE_SCALE, PIECE_SCALE, PIECE_SCALE]}>
             <ChadPiece useEnvStore={useEnvStore} effects={effects} />
           </group>
-          {/*<ToggleEffect*/}
-          {/*  position={[0, 0, 27]}*/}
-          {/*  raycaster={raycaster}*/}
-          {/*  effect={wireframe}*/}
-          {/*  setEffect={setWireframe}*/}
-          {/*/>*/}
+          <ToggleEffect
+            position={[1.5, 0, 27]}
+            raycaster={raycaster}
+            effect={color}
+            setEffect={setColor}
+          />
           {/*<TextCanvas position={[0, 2, 20]} />*/}
           <group position={[0, 0, 23]}>
             <ChadMusic

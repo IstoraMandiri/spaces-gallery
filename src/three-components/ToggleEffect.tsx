@@ -15,7 +15,6 @@ const ToggleEffect = (props: EffectProps) => {
   const button = useRef<THREE.Mesh>();
 
   const [hovered, setHovered] = useState<boolean>(false);
-  const [scale, setScale] = useState<boolean>(false);
 
   useFrame(() => {
     if (button.current) {
@@ -34,7 +33,6 @@ const ToggleEffect = (props: EffectProps) => {
 
   const onClick = useCallback(() => {
     if (hovered) {
-      setScale(!scale);
       setEffect(!effect);
     }
   }, [hovered]);
@@ -48,15 +46,16 @@ const ToggleEffect = (props: EffectProps) => {
 
   return (
     <group position={position}>
-      <mesh ref={button}>
-        <boxBufferGeometry
-          attach="geometry"
-          args={scale ? [2, 2, 2] : [1, 1, 1]}
-        />
+      <mesh position={[0, 1, 0]} ref={button}>
+        <sphereBufferGeometry attach="geometry" args={[0.25, 50, 50]} />
         <meshBasicMaterial
           attach="material"
           color={hovered ? "yellow" : "red"}
         />
+      </mesh>
+      <mesh position={[0, 0, 0]}>
+        <boxBufferGeometry attach="geometry" args={[0.5, 1.5, 0.5]} />
+        <meshBasicMaterial attach="material" color="white" />
       </mesh>
     </group>
   );
