@@ -7,6 +7,7 @@ import { CHAD_COLOR, CHAD_COLOR2 } from "../index";
 
 type ChadKnightProps = {
   useEnvStore: EnvironmentStoreHook;
+  isGallery: boolean;
   effects: {
     bubble: boolean;
     metal: boolean;
@@ -31,6 +32,7 @@ const colors = [
 const ChadKnightPieces = (props: ChadKnightProps) => {
   const {
     useEnvStore,
+    isGallery,
     effects: { bubble, metal, reflect, color },
   } = props;
 
@@ -44,7 +46,6 @@ const ChadKnightPieces = (props: ChadKnightProps) => {
 
   const [realColor, setColor] = useState<string | number>("red");
   useEffect(() => {
-    console.log("run");
     setColor(colors[Math.floor(Math.random() * (colors.length - 1))]);
   }, [color]);
 
@@ -54,7 +55,7 @@ const ChadKnightPieces = (props: ChadKnightProps) => {
         <Suspense fallback={null}>
           <ChadKnight
             useEnvStore={useEnvStore}
-            color={color ? realColor : CHAD_COLOR2}
+            color={color && isGallery ? realColor : CHAD_COLOR2}
           />
         </Suspense>
         <mesh ref={sphere} position={[0, 0, 0]}>
@@ -62,7 +63,7 @@ const ChadKnightPieces = (props: ChadKnightProps) => {
           <meshLambertMaterial
             attach="material"
             wireframe
-            color={color ? realColor : CHAD_COLOR}
+            color={color && isGallery ? realColor : CHAD_COLOR}
             emissive={new Color(0x000000)}
             emissiveIntensity={10}
           />

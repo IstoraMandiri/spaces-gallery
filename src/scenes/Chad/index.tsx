@@ -93,7 +93,11 @@ const Chad: SceneComponent = (props) => {
             setSceneState={setSceneState}
           />
           <group scale={[PIECE_SCALE, PIECE_SCALE, PIECE_SCALE]}>
-            <ChadPiece useEnvStore={useEnvStore} effects={effects} />
+            <ChadPiece
+              useEnvStore={useEnvStore}
+              isGallery={isGallery}
+              effects={effects}
+            />
           </group>
           <group position={[0, 0, 23]}>
             <ChadMusic
@@ -120,25 +124,11 @@ const Chad: SceneComponent = (props) => {
                 rotation={[0, Math.PI, 0]}
               />
               <ToggleEffect
-                position={[1.5, 0, 25]}
-                raycaster={raycaster}
-                effect={color}
-                setEffect={setColor}
-                color="red"
-              />
-              <ToggleEffect
                 position={[25, 4, 1.5]}
                 raycaster={raycaster}
                 effect={color}
                 setEffect={setColor}
                 color="blue"
-              />
-              <ToggleEffect
-                position={[1.5, 0, -25]}
-                raycaster={raycaster}
-                effect={color}
-                setEffect={setColor}
-                color="green"
               />
               <ToggleEffect
                 position={[-25, 4, 1.5]}
