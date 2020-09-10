@@ -8,16 +8,17 @@ import { useLoader } from "react-three-fiber";
 import { GLTFLoader, GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { ModelProps } from "types/model";
 import { loadModel } from "services/loader";
-import { useTrimeshCollision } from "services/collision";
+import { useTrimeshCollision, useConvexCollision } from "services/collision";
 import { BufferGeometry } from "three";
 
 type GLTFResult = GLTF & {
   nodes: {
-    Cube: THREE.Mesh;
-    COLLIDERS: THREE.Mesh;
+    HallwayCollider: THREE.Mesh;
+    Hallway: THREE.Mesh;
     LEVEL3: THREE.Mesh;
     LEVEL2: THREE.Mesh;
     LEVEL1: THREE.Mesh;
+    COLLIDERS: THREE.Mesh;
     LEVEL3RAIL1: THREE.Mesh;
     LEVEL3RAIL2: THREE.Mesh;
     STAIR1: THREE.Mesh;
@@ -42,7 +43,7 @@ export default function Model(props: ModelProps) {
   const group = useRef<THREE.Group>();
   const { nodes, materials } = useLoader<GLTFResult>(
     GLTFLoader,
-    "https://d27rt3a60hh1lx.cloudfront.net/models/ChadGallery10/ChadGallery10.glb",
+    "https://d27rt3a60hh1lx.cloudfront.net/models/ChadGallery14/ChadGallery14.glb",
     loadModel(setLoading)
   );
 
@@ -51,6 +52,14 @@ export default function Model(props: ModelProps) {
       group.current.traverse((obj) => (obj.frustumCulled = false));
     }
   }, []);
+
+  useConvexCollision(
+    (nodes.HallwayCollider.geometry as BufferGeometry)
+      .clone()
+      .translate(0, 0.0001, 0)
+      .translate(0, -0.005, 0)
+      .scale(80, 80, 80)
+  );
 
   useTrimeshCollision(
     (nodes.COLLIDERS.geometry as BufferGeometry)
@@ -63,7 +72,7 @@ export default function Model(props: ModelProps) {
     <group ref={group} {...props} dispose={null}>
       <group scale={[80, 80, 80]}>
         <group position={[0, -0.005, 0]}>
-          <mesh material={nodes.Cube.material} geometry={nodes.Cube.geometry} />
+          <mesh material={materials.Mat} geometry={nodes.Hallway.geometry} />
           <mesh material={materials.Mat} geometry={nodes.LEVEL3.geometry} />
           <mesh material={materials.Mat} geometry={nodes.LEVEL2.geometry} />
           <mesh material={materials.Mat} geometry={nodes.LEVEL1.geometry} />
