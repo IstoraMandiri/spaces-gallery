@@ -1,4 +1,4 @@
-import React, { Suspense, useCallback, useState } from "react";
+import React, { Suspense, useCallback, useRef, useState } from "react";
 import { Physics } from "use-cannon";
 import { Canvas } from "react-three-fiber";
 import Player from "core/Player";
@@ -14,6 +14,10 @@ import ChadSceneSelector from "./components/ChadSceneSelector";
 import PlatformPlatform from "./components/PlatformPlatform";
 import { Stars } from "drei";
 import { Color } from "three";
+import ToggleEffect from "../../three-components/ToggleEffect";
+import { Raycaster, Vector3 } from "three";
+import TextCanvas from "../../three-components/TextCanvas";
+import ChadMusic from "./components/ChadMusic";
 
 const physicsProps = {
   iterations: 20,
@@ -37,6 +41,18 @@ const Chad: SceneComponent = (props) => {
   const PIECE_SCALE = isGallery ? 1 : 1.75;
   const SUN_POS = isGallery ? [0.5, 0.5, 0] : [0, -1, 0];
 
+  const [wireframe, setWireframe] = useState<boolean>(false);
+  const [bubble, setBubble] = useState<boolean>(false);
+  const [metal, setMetal] = useState<boolean>(false);
+  const [reflect, setReflect] = useState<boolean>(false);
+
+  const effects = {
+    wireframe: wireframe,
+    bubble: bubble,
+    metal: metal,
+    reflect: reflect,
+  };
+
   const onFrame = useCallback(
     (bodyApi: any) => {
       if (sceneState === "falling") {
@@ -53,6 +69,8 @@ const Chad: SceneComponent = (props) => {
     },
     [sceneState]
   );
+
+  const raycaster = useRef(new Raycaster(new Vector3(), new Vector3(), 0, 5));
 
   return (
     <>
@@ -73,6 +91,7 @@ const Chad: SceneComponent = (props) => {
             useEnvStore={useEnvStore}
             initPos={[0, 1, 30]}
             onFrame={onFrame}
+            raycaster={raycaster}
           />
           <ChadLighting />
           <ChadSceneSelector
@@ -81,7 +100,20 @@ const Chad: SceneComponent = (props) => {
             setSceneState={setSceneState}
           />
           <group scale={[PIECE_SCALE, PIECE_SCALE, PIECE_SCALE]}>
-            <ChadPiece useEnvStore={useEnvStore} />
+            <ChadPiece useEnvStore={useEnvStore} effects={effects} />
+          </group>
+          <ToggleEffect
+            position={[0, 0, 27]}
+            raycaster={raycaster}
+            effect={wireframe}
+            setEffect={setWireframe}
+          />
+          <TextCanvas position={[0, 2, 20]} />
+          <group position={[0, 0, 23]}>
+            <ChadMusic
+              useEnvStore={useEnvStore}
+              url="https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/audio/harris+cole+mix.mp3"
+            />
           </group>
           <Effects />
           {sceneState === "gallery" && (

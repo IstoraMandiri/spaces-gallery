@@ -7,14 +7,21 @@ import { CHAD_COLOR } from "../index";
 
 type ChadKnightProps = {
   useEnvStore: EnvironmentStoreHook;
+  effects: {
+    wireframe: boolean;
+    bubble: boolean;
+    metal: boolean;
+    reflect: boolean;
+  };
 };
 
 const SCALE = 1.3;
 
 const ChadKnightPieces = (props: ChadKnightProps) => {
-  const { useEnvStore } = props;
+  const { useEnvStore, effects } = props;
 
   const sphere = useRef<Mesh>();
+  // console.log(effects)
 
   useFrame(({ clock }) => {
     if (sphere.current) {
