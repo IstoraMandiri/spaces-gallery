@@ -19,6 +19,7 @@ import { Raycaster, Vector3 } from "three";
 import TextCanvas from "../../three-components/TextCanvas";
 import ChadMusic from "./components/ChadMusic";
 import Sign from "./components/Sign";
+import ChadEntrance from "./components/ChadEntrance";
 
 const physicsProps = {
   iterations: 20,
@@ -119,6 +120,7 @@ const Chad: SceneComponent = (props) => {
               <Suspense fallback={null}>
                 <ChadGallery useEnvStore={useEnvStore} />
               </Suspense>
+              <ChadEntrance useEnvStore={useEnvStore} />
               <ChadSpacesSphere useEnvStore={useEnvStore} />
               <ToggleEffect
                 position={[1.5, 0, 27]}
@@ -128,12 +130,12 @@ const Chad: SceneComponent = (props) => {
               />
               <Sign
                 useEnvStore={useEnvStore}
-                text="Take the Leap into Virtual Genesis"
+                text="Jump Off to Visit Virtual Genesis"
                 position={[-2.5, 1, 23.75]}
               />
               <Sign
                 useEnvStore={useEnvStore}
-                text="Take the Leap into Virtual Genesis"
+                text="Jump Off to Visit Virtual Genesis"
                 position={[2.5, 1, -23.75]}
                 rotation={[0, Math.PI, 0]}
               />

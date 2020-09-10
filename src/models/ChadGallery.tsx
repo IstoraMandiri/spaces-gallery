@@ -14,6 +14,7 @@ import { BufferGeometry } from "three";
 type GLTFResult = GLTF & {
   nodes: {
     Cube: THREE.Mesh;
+    Tube: THREE.Mesh;
     COLLIDERS: THREE.Mesh;
     LEVEL3: THREE.Mesh;
     LEVEL2: THREE.Mesh;
@@ -42,7 +43,7 @@ export default function Model(props: ModelProps) {
   const group = useRef<THREE.Group>();
   const { nodes, materials } = useLoader<GLTFResult>(
     GLTFLoader,
-    "https://d27rt3a60hh1lx.cloudfront.net/models/ChadGallery10/ChadGallery10.glb",
+    "https://d27rt3a60hh1lx.cloudfront.net/models/ChadGallery11/ChadGallery11.glb",
     loadModel(setLoading)
   );
 
@@ -63,7 +64,22 @@ export default function Model(props: ModelProps) {
     <group ref={group} {...props} dispose={null}>
       <group scale={[80, 80, 80]}>
         <group position={[0, -0.005, 0]}>
-          <mesh material={nodes.Cube.material} geometry={nodes.Cube.geometry} />
+          <mesh
+            material={nodes.Cube.material}
+            geometry={nodes.Cube.geometry}
+            rotation={[Math.PI, 0, Math.PI]}
+            scale={[2, 2, 2]}
+          />
+          <mesh
+            material={nodes.Tube.material}
+            geometry={nodes.Tube.geometry}
+            rotation={[Math.PI / 2, 0, -Math.PI]}
+          />
+          <mesh
+            material={nodes.Tube.material}
+            geometry={nodes.Tube.geometry}
+            rotation={[Math.PI / 2, 0, -Math.PI]}
+          />
           <mesh material={materials.Mat} geometry={nodes.LEVEL3.geometry} />
           <mesh material={materials.Mat} geometry={nodes.LEVEL2.geometry} />
           <mesh material={materials.Mat} geometry={nodes.LEVEL1.geometry} />
