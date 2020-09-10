@@ -1,16 +1,14 @@
 import React, { useMemo } from "react";
 import { SpotLight } from "three";
 
-const LIGHT_INTENSITY = 1.4;
+const LIGHT_INTENSITY = 1.8;
 const LIGHT_DISTANCE = 50;
 const LIGHT_COLOR = 0xffffff;
 const LIGHT_ANGLE = Math.PI / 2.4;
 
 const AMBIENT_INTENSITY = 0.3;
 
-const ChadLighting = (props: { isGallery: boolean }) => {
-  const { isGallery } = props;
-
+const ChadLighting = () => {
   const light1 = useMemo(() => new SpotLight(), []);
   const light2 = useMemo(() => new SpotLight(), []);
 
@@ -33,7 +31,7 @@ const ChadLighting = (props: { isGallery: boolean }) => {
   return (
     <>
       <ambientLight intensity={AMBIENT_INTENSITY} color={0xffffff} />
-      <fog attach="fog" args={[0x000000, 4, 50]} />
+      <fog attach="fog" args={[0x000000, 1, 45]} />
       <group position={[0, 30, 0]}>
         <primitive object={light1} {...topLight} />
         <primitive object={light1.target} position={[0, -100, 0]} />
@@ -42,7 +40,7 @@ const ChadLighting = (props: { isGallery: boolean }) => {
         <primitive object={light2} {...bottomLight} />
         <primitive object={light2.target} position={[0, 100, 0]} />
       </group>
-      {/*<pointLight intensity={0.4} position={[0, 0, 0]} color={0xffffff} />*/}
+      <pointLight intensity={0.3} position={[0, 0, 0]} color={0xffffff} />
     </>
   );
 };

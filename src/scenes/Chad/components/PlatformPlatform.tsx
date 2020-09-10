@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useBox } from "use-cannon";
+import { CHAD_COLOR } from "../index";
 
 const ChadSceneSelector = () => {
   const [ref] = useBox(() => ({
@@ -12,7 +13,12 @@ const ChadSceneSelector = () => {
   return (
     <mesh ref={ref}>
       <boxBufferGeometry attach="geometry" args={[2, 1, 2]} />
-      <meshStandardMaterial color="white" attach="material" />
+      <meshBasicMaterial
+        color={CHAD_COLOR}
+        transparent={true}
+        opacity={0.65}
+        attach="material"
+      />
     </mesh>
   );
 

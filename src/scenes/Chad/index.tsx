@@ -12,6 +12,8 @@ import ChadSpacesSphere from "./components/ChadSpacesSphere";
 import ChadLighting from "./components/ChadLighting";
 import ChadSceneSelector from "./components/ChadSceneSelector";
 import PlatformPlatform from "./components/PlatformPlatform";
+import { Stars } from "drei";
+import { Color } from "three";
 
 const physicsProps = {
   iterations: 20,
@@ -21,6 +23,8 @@ const physicsProps = {
     friction: 0,
   },
 };
+
+export const CHAD_COLOR = new Color(0x28fa92);
 
 const Chad: SceneComponent = (props) => {
   const { useEnvStore, defaultCanvasProps, children } = props;
@@ -36,13 +40,15 @@ const Chad: SceneComponent = (props) => {
   const onFrame = useCallback(
     (bodyApi: any) => {
       if (sceneState === "falling") {
-        bodyApi.position.set(0, 150, 0);
-        setTimeout(() => setSceneState("piece"), 150);
+        bodyApi.position.set(0, 80, 0);
+        bodyApi.velocity.set(0, -1, 0);
+        setTimeout(() => setSceneState("piece"), 100);
       }
 
       if (sceneState === "ending") {
-        bodyApi.position.set(0, 150, 30);
-        setTimeout(() => setSceneState("gallery"), 150);
+        bodyApi.position.set(0, 80, 30);
+        bodyApi.velocity.set(0, -1, 0);
+        setTimeout(() => setSceneState("gallery"), 100);
       }
     },
     [sceneState]
@@ -51,8 +57,16 @@ const Chad: SceneComponent = (props) => {
   return (
     <>
       <Analytics />
-      <Canvas {...defaultCanvasProps}>
+      <Canvas {...defaultCanvasProps} camera={{ far: 150 }}>
         {children}
+        <Stars
+          radius={30} // Radius of the inner sphere (default=100)
+          depth={50} // Depth of area where stars should fit (default=50)
+          count={1000} // Amount of stars (default=5000)
+          factor={2} // Size factor (default=4)
+          saturation={0} // Saturation 0-1 (default=0)
+          fade // Faded dots (default=false)
+        />
         <Physics {...physicsProps}>
           {/* @ts-ignore */}
           <Player
@@ -60,7 +74,7 @@ const Chad: SceneComponent = (props) => {
             initPos={[0, 1, 30]}
             onFrame={onFrame}
           />
-          <ChadLighting isGallery={isGallery} />
+          <ChadLighting />
           <ChadSceneSelector
             useEnvStore={useEnvStore}
             sceneState={sceneState}
