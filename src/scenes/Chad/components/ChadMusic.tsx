@@ -61,8 +61,8 @@ const ChadMusic = (props: OutsideAudioProps) => {
       speaker.current.setRolloffFactor(0.2);
       speaker.current.setVolume(10);
 
-      const helper = new PositionalAudioHelper(speaker.current);
-      speaker.current.add(helper);
+      // const helper = new PositionalAudioHelper(speaker.current);
+      // speaker.current.add(helper);
 
       scene.add(speaker.current);
     }
