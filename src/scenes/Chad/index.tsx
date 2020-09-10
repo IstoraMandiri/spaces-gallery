@@ -9,11 +9,9 @@ import Effects from "core/Effects";
 import ChadGallery from "models/ChadGallery";
 import ChadPiece from "./components/ChadPiece";
 import ChadSpacesSphere from "./components/ChadSpacesSphere";
-import { Sky } from "drei";
 import ChadLighting from "./components/ChadLighting";
 import ChadSceneSelector from "./components/ChadSceneSelector";
 import PlatformPlatform from "./components/PlatformPlatform";
-import InfinitePlane from "../../three-components/InfinitePlane";
 
 const physicsProps = {
   iterations: 20,
@@ -33,17 +31,17 @@ const Chad: SceneComponent = (props) => {
 
   const isGallery = sceneState === "gallery" || sceneState === "ending";
   const PIECE_SCALE = isGallery ? 1 : 1.75;
-  const SUN_POS = isGallery ? [0, 1, 0] : [0, -1, 0];
+  const SUN_POS = isGallery ? [0.5, 0.5, 0] : [0, -1, 0];
 
   const onFrame = useCallback(
     (bodyApi: any) => {
       if (sceneState === "falling") {
-        bodyApi.position.set(0, 200, 0);
+        bodyApi.position.set(0, 150, 0);
         setTimeout(() => setSceneState("piece"), 150);
       }
 
       if (sceneState === "ending") {
-        bodyApi.position.set(0, 200, 30);
+        bodyApi.position.set(0, 150, 30);
         setTimeout(() => setSceneState("gallery"), 150);
       }
     },
@@ -56,9 +54,7 @@ const Chad: SceneComponent = (props) => {
       <Canvas {...defaultCanvasProps}>
         {children}
         <Physics {...physicsProps}>
-          <InfinitePlane height={-0.001} />
           {/* @ts-ignore */}
-          <Sky sunPosition={SUN_POS} />
           <Player
             useEnvStore={useEnvStore}
             initPos={[0, 1, 30]}

@@ -38,9 +38,11 @@ export default function Model(props: ChadProps) {
   const wireMaterialProps = {
     wireframe: true,
     color: color,
+    emissive: 0x000000,
+    emissiveIntensity: 5,
   };
   const wireframeMaterial = useMemo(
-    () => new THREE.MeshBasicMaterial(wireMaterialProps),
+    () => new THREE.MeshStandardMaterial(wireMaterialProps),
     [wireMaterialProps]
   );
 
@@ -63,7 +65,7 @@ export default function Model(props: ChadProps) {
   // (nodes.DUDEWHOLE.material as Material).transparent = true;
   // (nodes.DUDEWHOLE.material as Material).opacity = 0.999;
 
-  const WIREFRAME_SCALE = 1;
+  const WIREFRAME_SCALE = 1.0001;
 
   return (
     <group ref={group} {...props} dispose={null}>
@@ -82,13 +84,11 @@ export default function Model(props: ChadProps) {
           <mesh
             material={wireframeMaterial}
             geometry={nodes.DUDEMESH.geometry}
-            scale={[1.01, 1.01, 1.01]}
           />
           <mesh
             material={wireframeMaterial}
             geometry={nodes.GODMESH.geometry}
             rotation={[0, 0, 0]}
-            scale={[1.01, 1.01, 1.01]}
           />
         </group>
       </group>

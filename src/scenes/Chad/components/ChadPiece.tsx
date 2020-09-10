@@ -30,7 +30,13 @@ const ChadKnightPieces = (props: ChadKnightProps) => {
         </Suspense>
         <mesh ref={sphere} position={[0, 0, 0]}>
           <sphereBufferGeometry attach="geometry" args={[8, 5 * 14, 3 * 14]} />
-          <meshStandardMaterial attach="material" wireframe color={COLOR} />
+          <meshStandardMaterial
+            attach="material"
+            wireframe
+            color={COLOR}
+            emissive={new Color(0x000000)}
+            emissiveIntensity={10}
+          />
         </mesh>
       </group>
     </group>

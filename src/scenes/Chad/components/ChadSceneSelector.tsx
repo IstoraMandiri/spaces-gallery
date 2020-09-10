@@ -16,11 +16,11 @@ const ChadSceneSelector = (props: SceneSelectorProps) => {
   const { camera } = useThree();
 
   useFrame(() => {
-    if (camera.position.y < -200 && sceneState === "gallery") {
+    if (camera.position.y < -150 && sceneState === "gallery") {
       setSceneState("falling");
     }
 
-    if (camera.position.y < -200 && sceneState === "piece") {
+    if (camera.position.y < -150 && sceneState === "piece") {
       setSceneState("ending");
     }
   });
