@@ -8,7 +8,6 @@ import { CHAD_COLOR, CHAD_COLOR2 } from "../index";
 type ChadKnightProps = {
   useEnvStore: EnvironmentStoreHook;
   effects: {
-    wireframe: boolean;
     bubble: boolean;
     metal: boolean;
     reflect: boolean;
@@ -32,11 +31,10 @@ const colors = [
 const ChadKnightPieces = (props: ChadKnightProps) => {
   const {
     useEnvStore,
-    effects: { wireframe, bubble, metal, reflect, color },
+    effects: { bubble, metal, reflect, color },
   } = props;
 
   const sphere = useRef<Mesh>();
-  // console.log(effects)
 
   useFrame(({ clock }) => {
     if (sphere.current) {

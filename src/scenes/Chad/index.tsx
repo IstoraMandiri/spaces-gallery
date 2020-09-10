@@ -42,14 +42,12 @@ const Chad: SceneComponent = (props) => {
   const isGallery = sceneState === "gallery" || sceneState === "ending";
   const PIECE_SCALE = isGallery ? 1 : 1.75;
 
-  const [wireframe, setWireframe] = useState(false);
   const [bubble, setBubble] = useState(false);
   const [metal, setMetal] = useState(false);
   const [reflect, setReflect] = useState(false);
   const [color, setColor] = useState(false);
 
   const effects = {
-    wireframe: wireframe,
     bubble: bubble,
     metal: metal,
     reflect: reflect,
