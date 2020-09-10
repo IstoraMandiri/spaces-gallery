@@ -16,6 +16,7 @@ import PlatformPlatform from "./components/PlatformPlatform";
 import InfinitePlane from "../../three-components/InfinitePlane";
 import ToggleEffect from "../../three-components/ToggleEffect";
 import { Raycaster, Vector3 } from "three";
+import TextCanvas from "../../three-components/TextCanvas";
 
 const physicsProps = {
   iterations: 20,
@@ -96,6 +97,7 @@ const Chad: SceneComponent = (props) => {
             effect={wireframe}
             setEffect={setWireframe}
           />
+          <TextCanvas position={[0, 2, 20]} />
           <Effects />
           {sceneState === "gallery" && (
             <>

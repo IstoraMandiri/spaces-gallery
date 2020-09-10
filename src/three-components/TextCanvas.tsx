@@ -1,31 +1,58 @@
 import React from "react";
-import { Text } from "troika-three-text";
-import * as THREE from "three";
-import { extend, useLoader } from "react-three-fiber";
-
-extend({ Text });
-
-const text = "Hello World";
+import { Text } from "drei";
 
 type TextCanvasProps = {
-  size?: 100;
-  color?: "white";
-  font?: "Ariel";
-  bevelEnabled?: true;
-  bevelThickness?: 5;
+  position: [number, number, number];
+  rotation?: [number, number, number];
+  size?: number;
+  color?: string;
+  frameColor?: string;
+  font?: string;
+  maxWidth?: number;
+  maxHeight?: number;
+  frameWidth?: number;
+  frameHeight?: number;
+  textAlign?: "center" | "left" | "right" | "justify";
+  content?: string;
 };
 
 const TextCanvas = (props: TextCanvasProps) => {
-  const font = useLoader(THREE.FontLoader, "/fonts/Hello_Valentina.ttf");
-  console.log(font);
+  const {
+    position,
+    rotation = [0, 0, 0],
+    maxWidth = 2,
+    maxHeight = 5,
+    frameWidth = 3,
+    frameHeight = 2,
+    size = 0.3,
+    color = "black",
+    frameColor = "white",
+    font = "Ariel",
+    textAlign = "center",
+    content = "Hello World",
+  } = props;
+
   return (
-    <mesh>
-      <meshBasicMaterial attach="material" color="red" />
-      <textBufferGeometry
-        attach="geometry"
-        args={["Hello World", { font, size: 30 }]}
-      />
-    </mesh>
+    <group position={position} rotation={rotation}>
+      <group position={[0, 0, -0.06]}>
+        <mesh>
+          <boxBufferGeometry attach="geometry" args={[3, 2, 0.1]} />
+          <meshBasicMaterial attach="material" color={frameColor} />
+        </mesh>
+      </group>
+      <Text
+        font={font}
+        fontSize={size}
+        maxWidth={maxWidth}
+        // maxHeight={maxHeight}
+        color={color}
+        textAlign={textAlign}
+        anchorX="center"
+        anchorY="middle"
+      >
+        {content}
+      </Text>
+    </group>
   );
 };
 
