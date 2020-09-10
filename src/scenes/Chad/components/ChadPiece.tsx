@@ -9,7 +9,9 @@ type ChadKnightProps = {
 };
 
 const SCALE = 1.3;
-const COLOR = new Color(0x56e0af);
+const COLOR = new Color(0x28fa92);
+//28edaf
+//0x56e0af
 
 const ChadKnightPieces = (props: ChadKnightProps) => {
   const { useEnvStore } = props;
@@ -30,7 +32,7 @@ const ChadKnightPieces = (props: ChadKnightProps) => {
         </Suspense>
         <mesh ref={sphere} position={[0, 0, 0]}>
           <sphereBufferGeometry attach="geometry" args={[8, 5 * 14, 3 * 14]} />
-          <meshStandardMaterial
+          <meshLambertMaterial
             attach="material"
             wireframe
             color={COLOR}

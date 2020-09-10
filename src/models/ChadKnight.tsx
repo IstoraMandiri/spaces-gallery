@@ -13,10 +13,10 @@ import { Color, Material } from "three";
 
 type GLTFResult = GLTF & {
   nodes: {
-    GODWHOLE: THREE.Mesh;
-    DUDEWHOLE: THREE.Mesh;
-    DUDEMESH: THREE.Mesh;
-    GODMESH: THREE.Mesh;
+    GODINTERIOR: THREE.Mesh;
+    DUDEINTERIOR: THREE.Mesh;
+    DUDEEXTERIOR: THREE.Mesh;
+    GODEXTERIOR: THREE.Mesh;
   };
 };
 
@@ -31,7 +31,7 @@ export default function Model(props: ChadProps) {
   const group = useRef<THREE.Group>();
   const { nodes } = useLoader<GLTFResult>(
     GLTFLoader,
-    "https://d27rt3a60hh1lx.cloudfront.net/content/chadknight/ChadKnight6/ChadKnight6.glb",
+    "https://d27rt3a60hh1lx.cloudfront.net/content/chadknight/ChadKnight7/ChadKnight7.glb",
     loadModel(setLoading)
   );
 
@@ -42,14 +42,14 @@ export default function Model(props: ChadProps) {
     emissiveIntensity: 5,
   };
   const wireframeMaterial = useMemo(
-    () => new THREE.MeshStandardMaterial(wireMaterialProps),
+    () => new THREE.MeshLambertMaterial(wireMaterialProps),
     [wireMaterialProps]
   );
 
   const glowMaterialProps = {
-    color: color,
+    color: 0xffffff,
     transparent: true,
-    opacity: 0.3,
+    opacity: 0.65,
   };
   const glowMaterial = useMemo(
     () => new THREE.MeshBasicMaterial(glowMaterialProps),
@@ -65,30 +65,37 @@ export default function Model(props: ChadProps) {
   // (nodes.DUDEWHOLE.material as Material).transparent = true;
   // (nodes.DUDEWHOLE.material as Material).opacity = 0.999;
 
-  const WIREFRAME_SCALE = 1.0001;
+  const WIREFRAME_SCALE = 1;
 
   return (
     <group ref={group} {...props} dispose={null}>
       <group scale={[327, 327, 327]}>
         <mesh
-          material={nodes.GODWHOLE.material}
-          geometry={nodes.GODWHOLE.geometry}
+          material={nodes.GODEXTERIOR.material}
+          geometry={nodes.GODEXTERIOR.geometry}
           rotation={[0, 0, 0]}
         />
         <mesh
-          material={nodes.DUDEWHOLE.material}
-          geometry={nodes.DUDEWHOLE.geometry}
+          material={nodes.DUDEEXTERIOR.material}
+          geometry={nodes.DUDEEXTERIOR.geometry}
           rotation={[0, 0, 0]}
         />
+        {/*<mesh*/}
+        {/*    material={nodes.GODEXTERIOR.material}*/}
+        {/*    geometry={nodes.DUDEINTERIOR.geometry}*/}
+        {/*/>*/}
+        {/*<mesh*/}
+        {/*    material={nodes.GODEXTERIOR.material}*/}
+        {/*    geometry={nodes.GODINTERIOR.geometry}*/}
+        {/*/>*/}
         <group scale={[WIREFRAME_SCALE, WIREFRAME_SCALE, WIREFRAME_SCALE]}>
           <mesh
             material={wireframeMaterial}
-            geometry={nodes.DUDEMESH.geometry}
+            geometry={nodes.DUDEINTERIOR.geometry}
           />
           <mesh
             material={wireframeMaterial}
-            geometry={nodes.GODMESH.geometry}
-            rotation={[0, 0, 0]}
+            geometry={nodes.GODINTERIOR.geometry}
           />
         </group>
       </group>
