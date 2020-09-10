@@ -2,6 +2,7 @@ import React, { Suspense, useMemo, useState } from "react";
 import { Physics } from "use-cannon";
 import { Canvas } from "react-three-fiber";
 import InfinitePlane from "three-components/InfinitePlane";
+import Logo from "three-components/Logo";
 import Player from "core/Player";
 import { SceneComponent } from "types/scene";
 
@@ -18,7 +19,6 @@ import HectorRoom from "./components/HectorRoom";
 import JustinRoom from "./components/JustinRoom";
 import OutsideAudio from "./components/OutsideAudio";
 import SantiRoom from "./components/SantiRoom";
-import SpacesSphere from "models/SpacesSphere";
 import { WebGLRenderer } from "three";
 
 const physicsProps = {
@@ -76,9 +76,12 @@ const Outside: SceneComponent = (props) => {
           <JustinRoom useEnvStore={useEnvStore} />
           <SantiRoom useEnvStore={useEnvStore} renderer={renderer} />
           <DennisRoom useEnvStore={useEnvStore} />
-          <Suspense fallback={null}>
-            <SpacesSphere useEnvStore={useEnvStore} />
-          </Suspense>
+          <Logo
+            floating
+            rotating
+            useEnvStore={useEnvStore}
+            position={[0, 1.25, 0]}
+          />
           <OutsideAudio
             url="https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/audio/LucidMondayMix.mp3"
             useEnvStore={useEnvStore}

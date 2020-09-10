@@ -4,20 +4,24 @@ import { useFrame } from "react-three-fiber";
 
 type EffectProps = {
   position: [number, number, number];
+  rotation?: [number, number, number];
   raycaster: React.MutableRefObject<Raycaster>;
   effect: boolean;
   setEffect: React.Dispatch<React.SetStateAction<boolean>>;
+  color?: string;
 };
 
 const ToggleEffect = (props: EffectProps) => {
-  const { position, effect, setEffect, raycaster } = props;
+  const { position, rotation, effect, setEffect, raycaster, color } = props;
 
   const button = useRef<THREE.Mesh>();
 
   const [hovered, setHovered] = useState<boolean>(false);
 
-  useFrame(() => {
+  useFrame(({ clock }) => {
     if (button.current) {
+      button.current.rotation.x = clock.getElapsedTime() / 10;
+      button.current.rotation.y = clock.getElapsedTime() / 10;
       const intersections = raycaster.current.intersectObject(button.current);
       if (intersections && intersections.length > 0) {
         if (!hovered) {
@@ -45,17 +49,17 @@ const ToggleEffect = (props: EffectProps) => {
   });
 
   return (
-    <group position={position}>
-      <mesh position={[0, 1, 0]} ref={button}>
+    <group position={position} rotation={rotation}>
+      <mesh position={[0, 1.25, 0]} ref={button}>
         <sphereBufferGeometry attach="geometry" args={[0.25, 50, 50]} />
-        <meshBasicMaterial
+        <meshStandardMaterial
           attach="material"
-          color={hovered ? "yellow" : "red"}
+          color={hovered ? "yellow" : color}
         />
       </mesh>
-      <mesh position={[0, 0, 0]}>
-        <boxBufferGeometry attach="geometry" args={[0.5, 1.5, 0.5]} />
-        <meshBasicMaterial attach="material" color="white" />
+      <mesh position={[0, 0.3, 0]}>
+        <boxBufferGeometry attach="geometry" args={[0.5, 1, 0.5]} />
+        <meshStandardMaterial attach="material" color="white" />
       </mesh>
     </group>
   );
