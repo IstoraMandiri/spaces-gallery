@@ -102,13 +102,13 @@ const Chad: SceneComponent = (props) => {
           <group scale={[PIECE_SCALE, PIECE_SCALE, PIECE_SCALE]}>
             <ChadPiece useEnvStore={useEnvStore} effects={effects} />
           </group>
-          <ToggleEffect
-            position={[0, 0, 27]}
-            raycaster={raycaster}
-            effect={wireframe}
-            setEffect={setWireframe}
-          />
-          <TextCanvas position={[0, 2, 20]} />
+          {/*<ToggleEffect*/}
+          {/*  position={[0, 0, 27]}*/}
+          {/*  raycaster={raycaster}*/}
+          {/*  effect={wireframe}*/}
+          {/*  setEffect={setWireframe}*/}
+          {/*/>*/}
+          {/*<TextCanvas position={[0, 2, 20]} />*/}
           <group position={[0, 0, 23]}>
             <ChadMusic
               useEnvStore={useEnvStore}
