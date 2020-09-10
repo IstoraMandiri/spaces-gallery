@@ -164,7 +164,7 @@ const Chad: SceneComponent = (props) => {
                 raycaster={raycaster}
                 effect={bubble}
                 setEffect={setBubble}
-                color="pink"
+                color="white"
               />
               <ToggleEffect
                 position={[25, -4, 1.5]}

@@ -56,13 +56,13 @@ const ChadMusic = (props: OutsideAudioProps) => {
 
       speaker.current = new THREE.PositionalAudio(listener.current);
       speaker.current.setMediaElementSource(audioRef.current);
-      speaker.current.position.set(0, 7, 0);
+      speaker.current.position.set(0, 10, 1);
       speaker.current.setRefDistance(0.5);
-      speaker.current.setRolloffFactor(1);
-      speaker.current.setVolume(50);
+      speaker.current.setRolloffFactor(0.2);
+      speaker.current.setVolume(10);
 
-      // const helper = new PositionalAudioHelper(speaker.current);
-      // speaker.current.add(helper);
+      const helper = new PositionalAudioHelper(speaker.current);
+      speaker.current.add(helper);
 
       scene.add(speaker.current);
     }
