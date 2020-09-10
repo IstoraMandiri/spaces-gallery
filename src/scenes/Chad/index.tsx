@@ -74,7 +74,7 @@ const Chad: SceneComponent = (props) => {
     [sceneState]
   );
 
-  const raycaster = useRef(new Raycaster(new Vector3(), new Vector3(), 0, 5));
+  const raycaster = useRef(new Raycaster(new Vector3(), new Vector3(), 0, 2));
 
   return (
     <>
@@ -121,7 +121,7 @@ const Chad: SceneComponent = (props) => {
               </Suspense>
               <ChadSpacesSphere useEnvStore={useEnvStore} />
               <ToggleEffect
-                position={[1.5, 0, 27]}
+                position={[1.5, 0, 25]}
                 raycaster={raycaster}
                 effect={color}
                 setEffect={setColor}

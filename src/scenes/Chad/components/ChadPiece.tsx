@@ -28,16 +28,16 @@ const colors = [
   "pink",
   "white",
   "black",
+  CHAD_COLOR2,
 ];
 
 const ChadKnightPieces = (props: ChadKnightProps) => {
   const {
     useEnvStore,
-    effects: { wireframe = true, bubble, metal, reflect, color = false },
+    effects: { wireframe, bubble, metal, reflect, color },
   } = props;
 
   const sphere = useRef<Mesh>();
-  const wireframeColor = new Color("red");
   // console.log(effects)
 
   useFrame(({ clock }) => {
@@ -46,10 +46,10 @@ const ChadKnightPieces = (props: ChadKnightProps) => {
     }
   });
 
-  const [realColor, setColor] = useState<string>("red");
+  const [realColor, setColor] = useState<string | number>("red");
   useEffect(() => {
     console.log("run");
-    setColor(colors[Math.floor(Math.random() * 8)]);
+    setColor(colors[Math.floor(Math.random() * (colors.length - 1))]);
   }, [color]);
 
   return (
