@@ -108,12 +108,6 @@ const Chad: SceneComponent = (props) => {
                 <ChadGallery useEnvStore={useEnvStore} />
               </Suspense>
               <ChadEntrance useEnvStore={useEnvStore} />
-              <ToggleEffect
-                position={[1.5, 0, 27]}
-                raycaster={raycaster}
-                effect={color}
-                setEffect={setColor}
-              />
               <Sign
                 useEnvStore={useEnvStore}
                 text="Jump Off to Visit Virtual Genesis"
@@ -135,36 +129,36 @@ const Chad: SceneComponent = (props) => {
               <ToggleEffect
                 position={[25, 4, 1.5]}
                 raycaster={raycaster}
-                effect={metal}
-                setEffect={setMetal}
+                effect={color}
+                setEffect={setColor}
                 color="blue"
               />
               <ToggleEffect
                 position={[1.5, 0, -25]}
                 raycaster={raycaster}
-                effect={bubble}
-                setEffect={setBubble}
+                effect={color}
+                setEffect={setColor}
                 color="green"
               />
               <ToggleEffect
                 position={[-25, 4, 1.5]}
                 raycaster={raycaster}
-                effect={reflect}
-                setEffect={setReflect}
+                effect={color}
+                setEffect={setColor}
                 color="purple"
               />
               <ToggleEffect
                 position={[-25, -4, 1.5]}
                 raycaster={raycaster}
-                effect={bubble}
-                setEffect={setBubble}
+                effect={color}
+                setEffect={setColor}
                 color="white"
               />
               <ToggleEffect
                 position={[25, -4, 1.5]}
                 raycaster={raycaster}
-                effect={bubble}
-                setEffect={setBubble}
+                effect={color}
+                setEffect={setColor}
                 color="orange"
               />
             </>
