@@ -46,16 +46,6 @@ export default function Model(props: ChadProps) {
     [wireMaterialProps]
   );
 
-  const glowMaterialProps = {
-    color: 0xffffff,
-    transparent: true,
-    opacity: 0.65,
-  };
-  const glowMaterial = useMemo(
-    () => new THREE.MeshBasicMaterial(glowMaterialProps),
-    [glowMaterialProps]
-  );
-
   // useFrame(({ clock }) => {
   //   if (group.current) {
   //     group.current.rotation.y = -clock.getElapsedTime() / 20;

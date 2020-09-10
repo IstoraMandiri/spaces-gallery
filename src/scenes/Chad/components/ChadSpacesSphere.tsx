@@ -25,7 +25,7 @@ const ChadSpacesSphere = (props: ChadSpacesSphereType) => {
 
   return (
     <group ref={group}>
-      <group position={[0, 0.75, RADIUS]}>
+      <group position={[0, 1, RADIUS]}>
         <Suspense fallback={null}>
           <SpacesSphere useEnvStore={useEnvStore} />
         </Suspense>

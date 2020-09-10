@@ -51,7 +51,7 @@ export default function Model(props: ModelProps) {
     }
   }, []);
 
-  const collision = useTrimeshCollision(
+  useTrimeshCollision(
     (nodes.COLLIDERS.geometry as BufferGeometry)
       .clone()
       .translate(0, -0.005, 0)

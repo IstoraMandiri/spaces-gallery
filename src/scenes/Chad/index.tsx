@@ -40,14 +40,14 @@ const Chad: SceneComponent = (props) => {
   const onFrame = useCallback(
     (bodyApi: any) => {
       if (sceneState === "falling") {
-        bodyApi.position.set(0, 80, 0);
-        bodyApi.velocity.set(0, -1, 0);
+        bodyApi.position.set(0, 90, 0);
+        bodyApi.velocity.set(0, -0.1, 0);
         setTimeout(() => setSceneState("piece"), 100);
       }
 
       if (sceneState === "ending") {
-        bodyApi.position.set(0, 80, 30);
-        bodyApi.velocity.set(0, -1, 0);
+        bodyApi.position.set(0, 90, 30);
+        bodyApi.velocity.set(0, -0.1, 0);
         setTimeout(() => setSceneState("gallery"), 100);
       }
     },
