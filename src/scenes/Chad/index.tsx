@@ -32,22 +32,21 @@ const physicsProps = {
 export const CHAD_COLOR = new Color(0x28fa92);
 export const CHAD_COLOR2 = 0x28fa92;
 
+type SCENE_TYPES = "gallery" | "falling" | "piece" | "ending";
+
 const Chad: SceneComponent = (props) => {
   const { useEnvStore, defaultCanvasProps, children } = props;
 
-  const [sceneState, setSceneState] = useState<
-    "gallery" | "falling" | "piece" | "ending"
-  >("gallery");
+  const [sceneState, setSceneState] = useState<SCENE_TYPES>("gallery");
 
   const isGallery = sceneState === "gallery" || sceneState === "ending";
   const PIECE_SCALE = isGallery ? 1 : 1.75;
-  const SUN_POS = isGallery ? [0.5, 0.5, 0] : [0, -1, 0];
 
-  const [wireframe, setWireframe] = useState<boolean>(false);
-  const [bubble, setBubble] = useState<boolean>(false);
-  const [metal, setMetal] = useState<boolean>(false);
-  const [reflect, setReflect] = useState<boolean>(false);
-  const [color, setColor] = useState<boolean>(false);
+  const [wireframe, setWireframe] = useState(false);
+  const [bubble, setBubble] = useState(false);
+  const [metal, setMetal] = useState(false);
+  const [reflect, setReflect] = useState(false);
+  const [color, setColor] = useState(false);
 
   const effects = {
     wireframe: wireframe,
@@ -81,14 +80,7 @@ const Chad: SceneComponent = (props) => {
       <Analytics />
       <Canvas {...defaultCanvasProps} camera={{ far: 150 }}>
         {children}
-        <Stars
-          radius={30} // Radius of the inner sphere (default=100)
-          depth={50} // Depth of area where stars should fit (default=50)
-          count={1000} // Amount of stars (default=5000)
-          factor={2} // Size factor (default=4)
-          saturation={0} // Saturation 0-1 (default=0)
-          fade // Faded dots (default=false)
-        />
+        <Stars radius={30} depth={50} count={1000} factor={2} fade />
         <Physics {...physicsProps}>
           {/* @ts-ignore */}
           <Player
@@ -106,7 +98,6 @@ const Chad: SceneComponent = (props) => {
           <group scale={[PIECE_SCALE, PIECE_SCALE, PIECE_SCALE]}>
             <ChadPiece useEnvStore={useEnvStore} effects={effects} />
           </group>
-          {/*<TextCanvas position={[0, 2, 20]} />*/}
           <group position={[0, 0, 23]}>
             <ChadMusic
               useEnvStore={useEnvStore}

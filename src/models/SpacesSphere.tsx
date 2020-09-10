@@ -46,15 +46,6 @@ export default function Model(props: ModelProps) {
     args: wallsGeo.clone().translate(0, 0.02, 0).scale(100, 100, 100),
   }));
 
-  useFrame(({ clock }) => {
-    if (sphereGroup.current) {
-      sphereGroup.current.position.y =
-        0.1 * 2 * Math.sin(clock.getElapsedTime() * 0.5);
-
-      sphereGroup.current.rotation.y = clock.getElapsedTime() / 5;
-    }
-  });
-
   return (
     <group ref={group} {...props} dispose={null}>
       <group ref={sphereGroup} scale={[100, 100, 100]}>
