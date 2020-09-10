@@ -41,7 +41,7 @@ export default function Model(props: ModelProps) {
   const group = useRef<THREE.Group>();
   const { nodes, materials } = useLoader<GLTFResult>(
     GLTFLoader,
-    "https://d27rt3a60hh1lx.cloudfront.net/models/ChadGallery8/ChadGallery8.glb",
+    "https://d27rt3a60hh1lx.cloudfront.net/models/ChadGallery9/ChadGallery9.glb",
     loadModel(setLoading)
   );
 
@@ -54,7 +54,6 @@ export default function Model(props: ModelProps) {
   const collision = useTrimeshCollision(
     (nodes.COLLIDERS.geometry as BufferGeometry)
       .clone()
-      .translate(0, 0.0095, 0)
       .translate(0, -0.005, 0)
       .scale(80, 80, 80)
   );
@@ -63,70 +62,48 @@ export default function Model(props: ModelProps) {
     <group ref={group} {...props} dispose={null}>
       <group scale={[80, 80, 80]}>
         <group position={[0, -0.005, 0]}>
-          <mesh
-            material={materials.Mat}
-            geometry={nodes.LEVEL3.geometry}
-            position={[0.000685, 0.053645, -0.00036]}
-          />
-          <mesh
-            material={materials.Mat}
-            geometry={nodes.LEVEL2.geometry}
-            position={[0.000685, 0.003645, -0.00036]}
-          />
-          <mesh
-            material={materials.Mat}
-            geometry={nodes.LEVEL1.geometry}
-            position={[0.000685, -0.046355, -0.00036]}
-          />
+          <mesh material={materials.Mat} geometry={nodes.LEVEL3.geometry} />
+          <mesh material={materials.Mat} geometry={nodes.LEVEL2.geometry} />
+          <mesh material={materials.Mat} geometry={nodes.LEVEL1.geometry} />
           <mesh
             material={materials["Mat.1"]}
             geometry={nodes.LEVEL3RAIL1.geometry}
-            position={[0, 0.057632, 0]}
           />
           <mesh
             material={materials["Mat.1"]}
             geometry={nodes.LEVEL3RAIL2.geometry}
-            position={[0, 0.058884, 0]}
           />
           <mesh
             material={materials["Mat.1"]}
             geometry={nodes.STAIR1.geometry}
-            position={[0.326797, 0.029645, -0.05158]}
           />
           <mesh
             material={materials["Mat.1"]}
             geometry={nodes.STAIR2.geometry}
-            position={[-0.328167, 0.029645, 0.0523]}
           />
           <mesh
             material={materials["Mat.1"]}
             geometry={nodes.LEVEL2RAIL1.geometry}
-            position={[0, 0.007649, 0]}
           />
           <mesh
             material={materials["Mat.1"]}
             geometry={nodes.LEVEL2RAIL2.geometry}
-            position={[0, 0.008898, 0]}
           />
           <mesh
             material={materials["Mat.1"]}
             geometry={nodes.STAIR3.geometry}
-            position={[0.326797, -0.020355, -0.05158]}
           />
           <mesh
             material={materials["Mat.1"]}
             geometry={nodes.STAIR4.geometry}
-            position={[-0.328167, -0.020355, 0.0523]}
           />
           <mesh
             material={materials["Mat.1"]}
             geometry={nodes.LEVEL1RAIL1.geometry}
-            position={[0, -0.042353, 0]}
           />
           <mesh
             material={materials["Mat.1"]}
             geometry={nodes.LEVEL1RAIL2.geometry}
-            position={[0, -0.041112, 0]}
           />
         </group>
       </group>
