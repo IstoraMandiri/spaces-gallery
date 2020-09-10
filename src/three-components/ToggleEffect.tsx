@@ -1,38 +1,32 @@
-import React, { useCallback, useRef, useState } from "react";
-import { Raycaster, Vector3 } from "three";
+import React, { useCallback, useRef, useState, useEffect } from "react";
+import { Raycaster } from "three";
 import { useFrame } from "react-three-fiber";
 
 type EffectProps = {
-  targetEffect: "wireframe" | "reflection" | "glow" | "bubble" | "outline";
+  position: [number, number, number];
   raycaster: React.MutableRefObject<Raycaster>;
-  effects: {
-    wireframe?: boolean;
-    reflection?: boolean;
-    glow?: boolean;
-    bubble?: boolean;
-    outline?: boolean;
-  };
-  setEffects: any;
+  effect: boolean;
+  setEffect: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const ToggleEffect = (props: EffectProps) => {
-  const { targetEffect, effects, setEffects, raycaster } = props;
+  const { position, effect, setEffect, raycaster } = props;
 
   const button = useRef<THREE.Mesh>();
 
-  const hovered = useRef<boolean>(false);
+  const [hovered, setHovered] = useState<boolean>(false);
   const [scale, setScale] = useState<boolean>(false);
 
   useFrame(() => {
     if (button.current) {
       const intersections = raycaster.current.intersectObject(button.current);
       if (intersections && intersections.length > 0) {
-        if (!hovered.current) {
-          hovered.current = true;
+        if (!hovered) {
+          setHovered(true);
         }
       } else {
-        if (hovered.current) {
-          hovered.current = false;
+        if (hovered) {
+          setHovered(false);
         }
       }
     }
@@ -40,25 +34,31 @@ const ToggleEffect = (props: EffectProps) => {
 
   const onClick = useCallback(() => {
     if (hovered) {
-      // setScale(!scale)
-      console.log("updateWireframe");
-      setEffects({ ...effects, [targetEffect]: !effects[targetEffect] });
+      setScale(!scale);
+      setEffect(!effect);
     }
-  }, [effects, hovered]);
+  }, [hovered]);
 
-  document.addEventListener("click", onClick);
+  useEffect(() => {
+    document.addEventListener("click", onClick);
+    return () => {
+      document.removeEventListener("click", onClick);
+    };
+  });
 
   return (
-    <mesh ref={button}>
-      <boxBufferGeometry
-        attach="geometry"
-        args={scale ? [2, 2, 2] : [1, 1, 1]}
-      />
-      <meshBasicMaterial
-        attach="material"
-        color={hovered.current ? "yellow" : "red"}
-      />
-    </mesh>
+    <group position={position}>
+      <mesh ref={button}>
+        <boxBufferGeometry
+          attach="geometry"
+          args={scale ? [2, 2, 2] : [1, 1, 1]}
+        />
+        <meshBasicMaterial
+          attach="material"
+          color={hovered ? "yellow" : "red"}
+        />
+      </mesh>
+    </group>
   );
 };
 

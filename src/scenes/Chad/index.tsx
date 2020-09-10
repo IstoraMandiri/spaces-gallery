@@ -36,11 +36,18 @@ const Chad: SceneComponent = (props) => {
   const isGallery = sceneState === "gallery" || sceneState === "ending";
   const PIECE_SCALE = isGallery ? 1 : 1.75;
   const SUN_POS = isGallery ? [0, 1, 0] : [0, -1, 0];
-  const [effects, setEffects] = useState({
-    wireframe: false,
-    bubble: false,
-    metal: false,
-  });
+
+  const [wireframe, setWireframe] = useState<boolean>(false);
+  const [bubble, setBubble] = useState<boolean>(false);
+  const [metal, setMetal] = useState<boolean>(false);
+  const [reflect, setReflect] = useState<boolean>(false);
+
+  const effects = {
+    wireframe: wireframe,
+    bubble: bubble,
+    metal: metal,
+    reflect: reflect,
+  };
 
   const onFrame = useCallback(
     (bodyApi: any) => {
@@ -84,10 +91,10 @@ const Chad: SceneComponent = (props) => {
             <ChadPiece useEnvStore={useEnvStore} effects={effects} />
           </group>
           <ToggleEffect
-            targetEffect="wireframe"
+            position={[0, 0, 27]}
             raycaster={raycaster}
-            effects={effects}
-            setEffects={setEffects}
+            effect={wireframe}
+            setEffect={setWireframe}
           />
           <Effects />
           {sceneState === "gallery" && (
