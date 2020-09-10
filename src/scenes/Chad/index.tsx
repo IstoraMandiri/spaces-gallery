@@ -111,12 +111,6 @@ const Chad: SceneComponent = (props) => {
                 <ChadGallery useEnvStore={useEnvStore} />
               </Suspense>
               <ChadSpacesSphere useEnvStore={useEnvStore} />
-              <ToggleEffect
-                position={[1.5, 0, 25]}
-                raycaster={raycaster}
-                effect={color}
-                setEffect={setColor}
-              />
               <Sign
                 useEnvStore={useEnvStore}
                 text="Take the Leap into Virtual Genesis"
@@ -127,6 +121,48 @@ const Chad: SceneComponent = (props) => {
                 text="Take the Leap into Virtual Genesis"
                 position={[2.5, 1, -23.75]}
                 rotation={[0, Math.PI, 0]}
+              />
+              <ToggleEffect
+                position={[1.5, 0, 25]}
+                raycaster={raycaster}
+                effect={color}
+                setEffect={setColor}
+                color="red"
+              />
+              <ToggleEffect
+                position={[25, 4, 1.5]}
+                raycaster={raycaster}
+                effect={metal}
+                setEffect={setMetal}
+                color="blue"
+              />
+              <ToggleEffect
+                position={[1.5, 0, -25]}
+                raycaster={raycaster}
+                effect={bubble}
+                setEffect={setBubble}
+                color="green"
+              />
+              <ToggleEffect
+                position={[-25, 4, 1.5]}
+                raycaster={raycaster}
+                effect={reflect}
+                setEffect={setReflect}
+                color="purple"
+              />
+              <ToggleEffect
+                position={[-25, -4, 1.5]}
+                raycaster={raycaster}
+                effect={bubble}
+                setEffect={setBubble}
+                color="pink"
+              />
+              <ToggleEffect
+                position={[25, -4, 1.5]}
+                raycaster={raycaster}
+                effect={bubble}
+                setEffect={setBubble}
+                color="orange"
               />
             </>
           )}

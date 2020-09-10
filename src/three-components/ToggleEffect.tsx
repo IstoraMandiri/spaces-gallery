@@ -4,6 +4,7 @@ import { useFrame } from "react-three-fiber";
 
 type EffectProps = {
   position: [number, number, number];
+  rotation?: [number, number, number];
   raycaster: React.MutableRefObject<Raycaster>;
   effect: boolean;
   setEffect: React.Dispatch<React.SetStateAction<boolean>>;
@@ -11,7 +12,7 @@ type EffectProps = {
 };
 
 const ToggleEffect = (props: EffectProps) => {
-  const { position, effect, setEffect, raycaster, color } = props;
+  const { position, rotation, effect, setEffect, raycaster, color } = props;
 
   const button = useRef<THREE.Mesh>();
 
@@ -48,16 +49,16 @@ const ToggleEffect = (props: EffectProps) => {
   });
 
   return (
-    <group position={position}>
+    <group position={position} rotation={rotation}>
       <mesh position={[0, 1.25, 0]} ref={button}>
         <sphereBufferGeometry attach="geometry" args={[0.25, 50, 50]} />
         <meshStandardMaterial
           attach="material"
-          color={hovered ? "yellow" : "red"}
+          color={hovered ? "yellow" : color}
         />
       </mesh>
-      <mesh position={[0, 0.53, 0]}>
-        <boxBufferGeometry attach="geometry" args={[0.5, 0.8, 0.5]} />
+      <mesh position={[0, 0.3, 0]}>
+        <boxBufferGeometry attach="geometry" args={[0.5, 1, 0.5]} />
         <meshStandardMaterial attach="material" color="white" />
       </mesh>
     </group>
