@@ -1,6 +1,7 @@
 import React, { useCallback, useRef, useState, useEffect } from "react";
 import { Raycaster } from "three";
 import { useFrame } from "react-three-fiber";
+import { Text } from "drei";
 
 type EffectProps = {
   position: [number, number, number];
@@ -9,10 +10,19 @@ type EffectProps = {
   effect: boolean;
   setEffect: React.Dispatch<React.SetStateAction<boolean>>;
   color?: string;
+  label?: string;
 };
 
 const ToggleEffect = (props: EffectProps) => {
-  const { position, rotation, effect, setEffect, raycaster, color } = props;
+  const {
+    position,
+    rotation,
+    effect,
+    setEffect,
+    raycaster,
+    color,
+    label = "",
+  } = props;
 
   const button = useRef<THREE.Mesh>();
 
@@ -61,6 +71,9 @@ const ToggleEffect = (props: EffectProps) => {
         <boxBufferGeometry attach="geometry" args={[0.5, 1, 0.5]} />
         <meshStandardMaterial attach="material" color="white" />
       </mesh>
+      <group>
+        <Text>{label}</Text>
+      </group>
     </group>
   );
 };
