@@ -32,6 +32,7 @@ const ToggleEffect = (props: EffectProps) => {
     if (button.current) {
       button.current.rotation.x = clock.getElapsedTime() / 10;
       button.current.rotation.y = clock.getElapsedTime() / 10;
+      button.current.position.y = Math.sin(clock.getElapsedTime()) / 15 + 1.25;
       const intersections = raycaster.current.intersectObject(button.current);
       if (intersections && intersections.length > 0) {
         if (!hovered) {
