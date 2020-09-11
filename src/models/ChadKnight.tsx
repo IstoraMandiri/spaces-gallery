@@ -22,11 +22,11 @@ type GLTFResult = GLTF & {
 };
 
 type ChadProps = {
-  color: string | number;
+  color: string | undefined;
 } & ModelProps;
 
 export default function Model(props: ChadProps) {
-  const { useEnvStore, color } = props;
+  const { useEnvStore, color = "#28FA92" } = props;
 
   const setLoading = useEnvStore((st) => st.setLoading);
   const group = useRef<THREE.Group>();
