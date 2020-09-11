@@ -84,7 +84,7 @@ const Chad: SceneComponent = (props) => {
           {/* @ts-ignore */}
           <Player
             useEnvStore={useEnvStore}
-            initPos={[-2, -3, 30]}
+            initPos={[-2, -3, 62]}
             initLook={[-2, -3, -100]}
             onFrame={onFrame}
             raycaster={raycaster}
