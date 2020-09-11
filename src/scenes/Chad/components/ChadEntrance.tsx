@@ -5,6 +5,7 @@ import { Text } from "drei";
 import Logo from "three-components/Logo";
 import FramedImage from "three-components/FramedImage";
 import ChadLogo from "./ChadLogo";
+import Arrow from "three-components/Arrow";
 
 const FRAME_COLOR = new Color(0xffffff);
 
@@ -69,6 +70,19 @@ const ChadEntrance = (props: { useEnvStore: EnvironmentStoreHook }) => {
           exoskeleton humans inhabit to enter the virtual world."
             }
           </Text>
+          <group position={[0.4, -0.15, 0]}>
+            <Text
+              position={[0.3, -0.98, 0]}
+              scale={[1.5, 1.5, 1.5]}
+              anchorY="middle"
+              maxWidth={3}
+              textAlign="left"
+              color="white"
+            >
+              Enter Here
+            </Text>
+            <Arrow position={[1, -1, 0]} rotation={[0, 0, Math.PI]} />
+          </group>
         </group>
       </group>
       <group
