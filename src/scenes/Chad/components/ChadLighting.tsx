@@ -40,7 +40,12 @@ const ChadLighting = () => {
         <primitive object={light2} {...bottomLight} />
         <primitive object={light2.target} position={[0, 100, 0]} />
       </group>
-      <pointLight intensity={0.3} position={[0, 0, 0]} color={0xffffff} />
+      <pointLight
+        intensity={0.3}
+        position={[0, 0, 0]}
+        color={0xffffff}
+        distance={30}
+      />
     </>
   );
 };

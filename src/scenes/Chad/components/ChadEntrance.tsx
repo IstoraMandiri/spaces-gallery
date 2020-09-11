@@ -1,9 +1,10 @@
-import React, { useMemo } from "react";
-import { Color, SpotLight } from "three";
+import React from "react";
+import { Color } from "three";
 import { EnvironmentStoreHook } from "stores/environment";
 import { Text } from "drei";
 import Logo from "three-components/Logo";
 import FramedImage from "three-components/FramedImage";
+import ChadLogo from "./ChadLogo";
 
 const FRAME_COLOR = new Color(0xffffff);
 
@@ -12,16 +13,21 @@ const ChadEntrance = (props: { useEnvStore: EnvironmentStoreHook }) => {
 
   return (
     <group position={[-2, -2, 65]}>
-      <pointLight position={[-2, 2, -6]} intensity={0.15} />
+      <pointLight position={[-2, 2, -6]} intensity={0.5} distance={10} />
       <group
         name="wall"
         rotation={[0, Math.PI, 0]}
         position={[-5, 0.5, 4]}
         scale={[2, 2, 2]}
       >
-        <Text scale={[6, 6, 6]} position={[-4, 0, 0]} textAlign="left">
+        <Text scale={[6, 6, 6]} position={[-4, -0.7, 0]} textAlign="left">
           CHAD KNIGHT
         </Text>
+        <ChadLogo
+          useEnvStore={useEnvStore}
+          position={[-4, 0.6, 0]}
+          scale={[0.8, 0.8, 0.8]}
+        />
         <Text scale={[3.5, 3.5, 3.5]} position={[-1.6, 0, 0]}>
           x
         </Text>
@@ -32,19 +38,29 @@ const ChadEntrance = (props: { useEnvStore: EnvironmentStoreHook }) => {
         />
       </group>
       <group
-        name="left-wall"
-        rotation={[0, Math.PI / 2, 0]}
-        position={[-7, 0.25, -7]}
+        name="back-wall"
+        rotation={[0, 0, 0]}
+        position={[0, 1.5, -9.4]}
         scale={[0.7, 0.7, 0.7]}
       >
-        <group position={[-2.75, -1.75, 0]}>
+        <group position={[-2.75, -1.75, 0]} scale={[2, 2, 2]}>
+          <Text
+            position={[-0.15, 1, 0]}
+            scale={[4.5 * 1.6, 6 * 1.6, 4.5 * 1.6]}
+            anchorY="middle"
+            maxWidth={3}
+            textAlign="left"
+            color="white"
+          >
+            {"VIRTUAL GENESIS"}
+          </Text>
           <Text
             position={[0, -0.2, 0]}
             scale={[2, 2, 2]}
             anchorY="middle"
             maxWidth={3}
             textAlign="left"
-            color="black"
+            color="white"
           >
             {
               "Virtual Genesis is about God breathing life into a virtual universe.\
@@ -53,20 +69,6 @@ const ChadEntrance = (props: { useEnvStore: EnvironmentStoreHook }) => {
           exoskeleton humans inhabit to enter the virtual world."
             }
           </Text>
-          <Text
-            position={[-1.8, 0.5, 0]}
-            scale={[3, 3, 3]}
-            anchorY="middle"
-            maxWidth={3}
-            textAlign="left"
-            color="black"
-          >
-            {"VIRTUAL GENESIS"}
-          </Text>
-          <mesh position={[0, 0, -0.25 / 2 - 0.001]}>
-            <boxBufferGeometry args={[7, 2, 0.25]} attach="geometry" />
-            <meshStandardMaterial color="white" attach="material" />
-          </mesh>
         </group>
       </group>
       <group
