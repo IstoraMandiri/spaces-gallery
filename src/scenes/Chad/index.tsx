@@ -70,7 +70,7 @@ const Chad: SceneComponent = (props) => {
     [sceneState]
   );
 
-  const raycaster = useRef(new Raycaster(new Vector3(), new Vector3(), 0, 2));
+  const raycaster = useRef(new Raycaster(new Vector3(), new Vector3(), 0, 3));
 
   return (
     <>
@@ -83,6 +83,7 @@ const Chad: SceneComponent = (props) => {
           <Player
             useEnvStore={useEnvStore}
             initPos={[-2, -3, 62]}
+            initLook={[-2, -3, -100]}
             onFrame={onFrame}
             raycaster={raycaster}
           />
@@ -111,14 +112,12 @@ const Chad: SceneComponent = (props) => {
               <Suspense fallback={null}>
                 <ChadGallery useEnvStore={useEnvStore} />
               </Suspense>
-              <ChadEntrance useEnvStore={useEnvStore} />
+              <ChadEntrance useEnvStore={useEnvStore} raycaster={raycaster} />
               <Sign
-                useEnvStore={useEnvStore}
                 text="Jump Off to Visit Virtual Genesis"
                 position={[-2.5, 1, 23.75]}
               />
               <Sign
-                useEnvStore={useEnvStore}
                 text="Jump Off to Visit Virtual Genesis"
                 position={[2.5, 1, -23.75]}
                 rotation={[0, Math.PI, 0]}

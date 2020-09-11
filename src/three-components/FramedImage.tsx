@@ -1,7 +1,7 @@
 import React, { useMemo, useRef } from "react";
 import * as THREE from "three";
 import { useFrame, useLoader } from "react-three-fiber";
-import { Group, Vector2 } from "three";
+import { Color, Group, Vector2 } from "three";
 
 type FramedImageProps = JSX.IntrinsicElements["group"] & {
   src: string;
@@ -9,6 +9,7 @@ type FramedImageProps = JSX.IntrinsicElements["group"] & {
   sizeScale: number;
   frameless?: boolean;
   floating?: boolean;
+  color?: Color;
 };
 
 const frameWidth = 0.3;
@@ -19,7 +20,14 @@ const meshOffset = 0.0005;
 const floatHeight = 0.05;
 
 const FramedImage = (props: FramedImageProps) => {
-  const { src, sizeScale, ratio, frameless, floating } = props;
+  const {
+    src,
+    sizeScale,
+    ratio,
+    frameless,
+    floating,
+    color = 0x111111,
+  } = props;
 
   const texture = useLoader(THREE.TextureLoader, src);
   const group = useRef<Group>();
@@ -46,7 +54,7 @@ const FramedImage = (props: FramedImageProps) => {
   const material = useMemo(
     () =>
       new THREE.MeshStandardMaterial({
-        color: 0x111111,
+        color: color,
         roughness: 0.8,
         metalness: 0.05,
       }),

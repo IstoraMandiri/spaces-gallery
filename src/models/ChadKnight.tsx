@@ -9,14 +9,15 @@ import { GLTFLoader, GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { draco } from "drei";
 import { ModelProps } from "../types/model";
 import { loadModel } from "../services/loader";
-import { Color, Material } from "three";
+import { BufferGeometry, Color, Material } from "three";
+import { useConvexCollision, useTrimeshCollision } from "../services/collision";
 
 type GLTFResult = GLTF & {
   nodes: {
-    GODINTERIOR: THREE.Mesh;
-    DUDEINTERIOR: THREE.Mesh;
-    DUDEEXTERIOR: THREE.Mesh;
-    GODEXTERIOR: THREE.Mesh;
+    GODMESH: THREE.Mesh;
+    GODWHOLE: THREE.Mesh;
+    DUDEMESH: THREE.Mesh;
+    DUDEWHOLE: THREE.Mesh;
   };
 };
 
@@ -31,7 +32,7 @@ export default function Model(props: ChadProps) {
   const group = useRef<THREE.Group>();
   const { nodes } = useLoader<GLTFResult>(
     GLTFLoader,
-    "https://d27rt3a60hh1lx.cloudfront.net/content/chadknight/ChadKnight7/ChadKnight7.glb",
+    "https://d27rt3a60hh1lx.cloudfront.net/content/chadknight/ChadKnight9/ChadKnight9.glb",
     loadModel(setLoading)
   );
   const realColor = new Color(color);
@@ -45,6 +46,31 @@ export default function Model(props: ChadProps) {
   const wireframeMaterial = useMemo(
     () => new THREE.MeshLambertMaterial(wireMaterialProps),
     [wireMaterialProps]
+  );
+
+  const glowMaterialProps = {
+    color: color,
+    transparent: true,
+    opacity: 0.3,
+    side: THREE.DoubleSide,
+  };
+  const glowMaterial = useMemo(
+    () => new THREE.MeshBasicMaterial(glowMaterialProps),
+    [glowMaterialProps]
+  );
+
+  useTrimeshCollision(
+    (nodes.DUDEWHOLE.geometry as BufferGeometry)
+      .clone()
+      .scale(327, 327, 327)
+      .scale(1.3, 1.3, 1.3)
+  );
+
+  useTrimeshCollision(
+    (nodes.GODWHOLE.geometry as BufferGeometry)
+      .clone()
+      .scale(327, 327, 327)
+      .scale(1.3, 1.3, 1.3)
   );
 
   // useFrame(({ clock }) => {
@@ -62,14 +88,13 @@ export default function Model(props: ChadProps) {
     <group ref={group} {...props} dispose={null}>
       <group scale={[327, 327, 327]}>
         <mesh
-          material={nodes.GODEXTERIOR.material}
-          geometry={nodes.GODEXTERIOR.geometry}
-          rotation={[0, 0, 0]}
+          material={nodes.GODWHOLE.material}
+          geometry={nodes.GODWHOLE.geometry}
+          position={[0.000088, 0, 0]}
         />
         <mesh
-          material={nodes.DUDEEXTERIOR.material}
-          geometry={nodes.DUDEEXTERIOR.geometry}
-          rotation={[0, 0, 0]}
+          material={nodes.DUDEWHOLE.material}
+          geometry={nodes.DUDEWHOLE.geometry}
         />
         {/*<mesh*/}
         {/*    material={nodes.GODEXTERIOR.material}*/}
@@ -81,12 +106,28 @@ export default function Model(props: ChadProps) {
         {/*/>*/}
         <group scale={[WIREFRAME_SCALE, WIREFRAME_SCALE, WIREFRAME_SCALE]}>
           <mesh
-            material={wireframeMaterial}
-            geometry={nodes.DUDEINTERIOR.geometry}
+            material={glowMaterial}
+            geometry={nodes.GODMESH.geometry}
+            position={[0.023525, 0.005701, -0.00254]}
           />
           <mesh
             material={wireframeMaterial}
-            geometry={nodes.GODINTERIOR.geometry}
+            geometry={nodes.GODMESH.geometry}
+            position={[0.023525, 0.005701, -0.00254]}
+          />
+          <mesh
+            material={wireframeMaterial}
+            geometry={nodes.DUDEMESH.geometry}
+            position={[-0.01904, -0.014729, -0.002251]}
+            rotation={[0, 0, 0]}
+            scale={[1.01, 1.01, 1.01]}
+          />
+          <mesh
+            material={glowMaterial}
+            geometry={nodes.DUDEMESH.geometry}
+            position={[-0.01904, -0.014729, -0.002251]}
+            rotation={[0, 0, 0]}
+            scale={[1.01, 1.01, 1.01]}
           />
         </group>
       </group>
