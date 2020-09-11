@@ -39,7 +39,6 @@ const Chad: SceneComponent = (props) => {
   const [sceneState, setSceneState] = useState<SCENE_TYPES>("gallery");
 
   const isGallery = sceneState === "gallery" || sceneState === "ending";
-  const PIECE_SCALE = isGallery ? 1 : 1.75;
 
   const [lockControls, setLockControls] = useState(false);
   const [bubble, setBubble] = useState(false);
@@ -97,13 +96,11 @@ const Chad: SceneComponent = (props) => {
             sceneState={sceneState}
             setSceneState={setSceneState}
           />
-          <group scale={[PIECE_SCALE, PIECE_SCALE, PIECE_SCALE]}>
-            <ChadPiece
-              useEnvStore={useEnvStore}
-              isGallery={isGallery}
-              effects={effects}
-            />
-          </group>
+          <ChadPiece
+            useEnvStore={useEnvStore}
+            isGallery={isGallery}
+            effects={effects}
+          />
           <group position={[0, 0, 23]}>
             <ChadMusic
               useEnvStore={useEnvStore}

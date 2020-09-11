@@ -16,8 +16,6 @@ type ChadKnightProps = {
   };
 };
 
-const SCALE = 1.3;
-
 const colors = [
   "red",
   "orange",
@@ -49,26 +47,27 @@ const ChadKnightPieces = (props: ChadKnightProps) => {
     setColor(colors[Math.floor(Math.random() * (colors.length - 1))]);
   }, [color]);
 
+  const SCALE = isGallery ? 1.3 : 1.3 * 2;
+
   return (
     <group>
-      <group scale={[SCALE, SCALE, SCALE]}>
-        <Suspense fallback={null}>
-          <ChadKnight
-            useEnvStore={useEnvStore}
-            color={color && isGallery ? realColor : CHAD_COLOR2}
-          />
-        </Suspense>
-        <mesh ref={sphere} position={[0, 0, 0]}>
-          <sphereBufferGeometry attach="geometry" args={[8, 5 * 14, 3 * 14]} />
-          <meshLambertMaterial
-            attach="material"
-            wireframe
-            color={color && isGallery ? realColor : CHAD_COLOR}
-            emissive={new Color(0x000000)}
-            emissiveIntensity={10}
-          />
-        </mesh>
-      </group>
+      <Suspense fallback={null}>
+        <ChadKnight
+          useEnvStore={useEnvStore}
+          color={color && isGallery ? realColor : CHAD_COLOR2}
+          pieceScale={SCALE}
+        />
+      </Suspense>
+      <mesh ref={sphere} position={[0, 0, 0]} scale={[SCALE, SCALE, SCALE]}>
+        <sphereBufferGeometry attach="geometry" args={[8, 5 * 14, 3 * 14]} />
+        <meshLambertMaterial
+          attach="material"
+          wireframe
+          color={color && isGallery ? realColor : CHAD_COLOR}
+          emissive={new Color(0x000000)}
+          emissiveIntensity={10}
+        />
+      </mesh>
     </group>
   );
 };

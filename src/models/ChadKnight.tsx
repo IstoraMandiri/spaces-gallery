@@ -6,11 +6,10 @@ import * as THREE from "three";
 import React, { useMemo, useRef } from "react";
 import { useFrame, useLoader } from "react-three-fiber";
 import { GLTFLoader, GLTF } from "three/examples/jsm/loaders/GLTFLoader";
-import { draco } from "drei";
 import { ModelProps } from "../types/model";
 import { loadModel } from "../services/loader";
-import { BufferGeometry, Color, Material } from "three";
-import { useConvexCollision, useTrimeshCollision } from "../services/collision";
+import { BufferGeometry, Color } from "three";
+import { useTrimeshCollision } from "../services/collision";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -23,10 +22,11 @@ type GLTFResult = GLTF & {
 
 type ChadProps = {
   color: string | number;
+  pieceScale: number;
 } & ModelProps;
 
 export default function Model(props: ChadProps) {
-  const { useEnvStore, color } = props;
+  const { useEnvStore, color, pieceScale } = props;
 
   const setLoading = useEnvStore((st) => st.setLoading);
   const group = useRef<THREE.Group>();
@@ -59,19 +59,19 @@ export default function Model(props: ChadProps) {
     [glowMaterialProps]
   );
 
-  useTrimeshCollision(
-    (nodes.DUDEWHOLE.geometry as BufferGeometry)
-      .clone()
-      .scale(327, 327, 327)
-      .scale(1.3, 1.3, 1.3)
-  );
-
-  useTrimeshCollision(
-    (nodes.GODWHOLE.geometry as BufferGeometry)
-      .clone()
-      .scale(327, 327, 327)
-      .scale(1.3, 1.3, 1.3)
-  );
+  // useTrimeshCollision(
+  //   (nodes.DUDEWHOLE.geometry as BufferGeometry)
+  //     .clone()
+  //     .scale(327, 327, 327)
+  //     .scale(pieceScale, pieceScale, pieceScale)
+  // );
+  //
+  // useTrimeshCollision(
+  //   (nodes.GODWHOLE.geometry as BufferGeometry)
+  //     .clone()
+  //     .scale(327, 327, 327)
+  //     .scale(pieceScale, pieceScale, pieceScale)
+  // );
 
   // useFrame(({ clock }) => {
   //   if (group.current) {
@@ -82,11 +82,9 @@ export default function Model(props: ChadProps) {
   // (nodes.DUDEWHOLE.material as Material).transparent = true;
   // (nodes.DUDEWHOLE.material as Material).opacity = 0.999;
 
-  const WIREFRAME_SCALE = 1;
-
   return (
     <group ref={group} {...props} dispose={null}>
-      <group scale={[327, 327, 327]}>
+      <group scale={[327 * pieceScale, 327 * pieceScale, 327 * pieceScale]}>
         <mesh
           material={nodes.GODWHOLE.material}
           geometry={nodes.GODWHOLE.geometry}
@@ -96,15 +94,7 @@ export default function Model(props: ChadProps) {
           material={nodes.DUDEWHOLE.material}
           geometry={nodes.DUDEWHOLE.geometry}
         />
-        {/*<mesh*/}
-        {/*    material={nodes.GODEXTERIOR.material}*/}
-        {/*    geometry={nodes.DUDEINTERIOR.geometry}*/}
-        {/*/>*/}
-        {/*<mesh*/}
-        {/*    material={nodes.GODEXTERIOR.material}*/}
-        {/*    geometry={nodes.GODINTERIOR.geometry}*/}
-        {/*/>*/}
-        <group scale={[WIREFRAME_SCALE, WIREFRAME_SCALE, WIREFRAME_SCALE]}>
+        <group>
           <mesh
             material={glowMaterial}
             geometry={nodes.GODMESH.geometry}
