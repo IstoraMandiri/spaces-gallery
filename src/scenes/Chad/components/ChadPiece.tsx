@@ -23,8 +23,8 @@ const colors = [
   "green",
   "blue",
   "purple",
-  "pink",
   "white",
+  "#28FA92",
 ];
 
 const ChadKnightPieces = (props: ChadKnightProps) => {
@@ -42,9 +42,13 @@ const ChadKnightPieces = (props: ChadKnightProps) => {
     }
   });
 
-  const [realColor, setColor] = useState<string | number>("red");
+  const [realColor, setColor] = useState<string>("black");
   useEffect(() => {
-    setColor(colors[Math.floor(Math.random() * (colors.length - 1))]);
+    if (realColor === "black") {
+      setColor("#28FA92");
+    } else {
+      setColor(colors[Math.floor(Math.random() * colors.length)]);
+    }
   }, [color]);
 
   const SCALE = isGallery ? 1.3 : 1.3 * 2;
@@ -54,7 +58,7 @@ const ChadKnightPieces = (props: ChadKnightProps) => {
       <Suspense fallback={null}>
         <ChadKnight
           useEnvStore={useEnvStore}
-          color={color && isGallery ? realColor : CHAD_COLOR2}
+          color={realColor}
           pieceScale={SCALE}
         />
       </Suspense>
@@ -63,7 +67,7 @@ const ChadKnightPieces = (props: ChadKnightProps) => {
         <meshLambertMaterial
           attach="material"
           wireframe
-          color={color && isGallery ? realColor : CHAD_COLOR}
+          color={realColor}
           emissive={new Color(0x000000)}
           emissiveIntensity={10}
         />
