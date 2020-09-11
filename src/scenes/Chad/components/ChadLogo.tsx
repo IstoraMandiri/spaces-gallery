@@ -20,15 +20,15 @@ const ChadLogo = (props: LogoProps) => {
 
   useFrame(({ clock }) => {
     if (group.current) {
-      group.current.rotation.y = clock.getElapsedTime() / 4;
+      group.current.position.y = 0.2 * Math.sin(clock.getElapsedTime() / 4);
     }
   });
 
   return (
     <group {...restProps}>
       <group ref={group}>
-        <mesh rotation={[0, -Math.PI / 2, 0]}>
-          <sphereBufferGeometry args={[1, 20, 20]} attach="geometry" />
+        <mesh rotation={[0, 0, 0]} position={[0, 0, 0]}>
+          <boxBufferGeometry args={[3, 3, 0.2]} attach="geometry" />
           <meshStandardMaterial color="white" attach="material" map={texture} />
         </mesh>
       </group>
