@@ -10,7 +10,7 @@ const RightWall = () => {
     <group
       name="right-wall"
       rotation={[0, -Math.PI / 2, 0]}
-      position={[4.3, 0, -7]}
+      position={[4.3, -0.35, -7]}
       scale={[0.7, 0.7, 0.7]}
     >
       <group position={[2.75, -0.25, 0]}>
@@ -44,7 +44,7 @@ const RightWall = () => {
           position={[3.5, 0, 0]}
         />
       </group>
-      <group position={[2.5, -2, 0.75]} scale={[0.4, 0.4, 0.4]}>
+      <group position={[2.5, -1.7, 0.6]} scale={[0.35, 0.35, 0.35]}>
         <Text
           position={[0, 0.2, 0]}
           scale={[3.5, 3.5, 3.5]}
@@ -77,7 +77,7 @@ const RightWall = () => {
         </Text>
         <mesh position={[0, 0, -0.25 / 2 - 0.001]}>
           <boxBufferGeometry args={[7, 1.5, 0.25]} attach="geometry" />
-          <meshStandardMaterial color="white" attach="material" />
+          <meshStandardMaterial color={FRAME_COLOR} attach="material" />
         </mesh>
       </group>
     </group>

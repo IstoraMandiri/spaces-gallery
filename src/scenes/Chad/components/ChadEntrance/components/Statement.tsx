@@ -7,7 +7,7 @@ const Statement = () => {
     <group
       name="back-wall"
       rotation={[0, 0, 0]}
-      position={[0, 1.5, -9.4]}
+      position={[-0.4, 1.7, -9.2]}
       scale={[0.7, 0.7, 0.7]}
     >
       <group position={[-2.75, -1.75, 0]} scale={[2, 2, 2]}>
@@ -17,7 +17,7 @@ const Statement = () => {
           anchorY="middle"
           maxWidth={3}
           textAlign="left"
-          color="white"
+          color="black"
         >
           {"VIRTUAL GENESIS"}
         </Text>
@@ -27,7 +27,7 @@ const Statement = () => {
           anchorY="middle"
           maxWidth={3}
           textAlign="left"
-          color="white"
+          color="black"
         >
           {
             "Virtual Genesis is about God breathing life into a virtual universe.\
@@ -43,7 +43,7 @@ const Statement = () => {
             anchorY="middle"
             maxWidth={3}
             textAlign="left"
-            color="white"
+            color="black"
           >
             @chadknight
           </Text>
@@ -53,11 +53,11 @@ const Statement = () => {
             anchorY="middle"
             maxWidth={3}
             textAlign="left"
-            color="white"
+            color="black"
           >
             ENTER HERE
           </Text>
-          <Arrow position={[1, -1.01, 0]} rotation={[0, 0, Math.PI]} />
+          <Arrow position={[1, -1.01, 0]} rotation={[0, 0, Math.PI]} dark />
         </group>
       </group>
     </group>

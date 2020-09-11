@@ -8,17 +8,18 @@ import { useLoader } from "react-three-fiber";
 import { GLTFLoader, GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { ModelProps } from "types/model";
 import { loadModel } from "services/loader";
-import { useTrimeshCollision, useConvexCollision } from "services/collision";
+import { useTrimeshCollision } from "services/collision";
 import { BufferGeometry } from "three";
 
 type GLTFResult = GLTF & {
   nodes: {
-    HallwayCollider: THREE.Mesh;
-    Hallway: THREE.Mesh;
+    COLLIDERS: THREE.Mesh;
+    SPAWNBOXRAIL: THREE.Mesh;
+    SPAWNBOX: THREE.Mesh;
+    HALLWAY: THREE.Mesh;
     LEVEL3: THREE.Mesh;
     LEVEL2: THREE.Mesh;
     LEVEL1: THREE.Mesh;
-    COLLIDERS: THREE.Mesh;
     LEVEL3RAIL1: THREE.Mesh;
     LEVEL3RAIL2: THREE.Mesh;
     STAIR1: THREE.Mesh;
@@ -31,8 +32,9 @@ type GLTFResult = GLTF & {
     LEVEL1RAIL2: THREE.Mesh;
   };
   materials: {
-    Mat: THREE.MeshStandardMaterial;
-    ["Mat.1"]: THREE.MeshStandardMaterial;
+    WHITE2: THREE.MeshStandardMaterial;
+    BLACK: THREE.MeshStandardMaterial;
+    WHITE: THREE.MeshStandardMaterial;
   };
 };
 
@@ -43,7 +45,7 @@ export default function Model(props: ModelProps) {
   const group = useRef<THREE.Group>();
   const { nodes, materials } = useLoader<GLTFResult>(
     GLTFLoader,
-    "https://d27rt3a60hh1lx.cloudfront.net/models/ChadGallery14/ChadGallery14.glb",
+    "https://d27rt3a60hh1lx.cloudfront.net/models/ChadGallery18/ChadGallery18.glb",
     loadModel(setLoading)
   );
 
@@ -52,14 +54,6 @@ export default function Model(props: ModelProps) {
       group.current.traverse((obj) => (obj.frustumCulled = false));
     }
   }, []);
-
-  useConvexCollision(
-    (nodes.HallwayCollider.geometry as BufferGeometry)
-      .clone()
-      .translate(0, 0.0001, 0)
-      .translate(0, -0.005, 0)
-      .scale(80, 80, 80)
-  );
 
   useTrimeshCollision(
     (nodes.COLLIDERS.geometry as BufferGeometry)
@@ -72,48 +66,48 @@ export default function Model(props: ModelProps) {
     <group ref={group} {...props} dispose={null}>
       <group scale={[80, 80, 80]}>
         <group position={[0, -0.005, 0]}>
-          <mesh material={materials.Mat} geometry={nodes.Hallway.geometry} />
-          <mesh material={materials.Mat} geometry={nodes.LEVEL3.geometry} />
-          <mesh material={materials.Mat} geometry={nodes.LEVEL2.geometry} />
-          <mesh material={materials.Mat} geometry={nodes.LEVEL1.geometry} />
           <mesh
-            material={materials["Mat.1"]}
+            material={materials.WHITE2}
+            geometry={nodes.SPAWNBOXRAIL.geometry}
+          />
+          <mesh
+            material={materials.WHITE2}
+            geometry={nodes.SPAWNBOX.geometry}
+          />
+          <mesh
+            material={materials.BLACK}
+            geometry={nodes.HALLWAY.geometry}
+            rotation={[Math.PI / 2, 0, 0]}
+          />
+          <mesh material={materials.BLACK} geometry={nodes.LEVEL3.geometry} />
+          <mesh material={materials.BLACK} geometry={nodes.LEVEL2.geometry} />
+          <mesh material={materials.BLACK} geometry={nodes.LEVEL1.geometry} />
+          <mesh
+            material={materials.WHITE}
             geometry={nodes.LEVEL3RAIL1.geometry}
           />
           <mesh
-            material={materials["Mat.1"]}
+            material={materials.WHITE}
             geometry={nodes.LEVEL3RAIL2.geometry}
           />
+          <mesh material={materials.WHITE} geometry={nodes.STAIR1.geometry} />
+          <mesh material={materials.WHITE} geometry={nodes.STAIR2.geometry} />
           <mesh
-            material={materials["Mat.1"]}
-            geometry={nodes.STAIR1.geometry}
-          />
-          <mesh
-            material={materials["Mat.1"]}
-            geometry={nodes.STAIR2.geometry}
-          />
-          <mesh
-            material={materials["Mat.1"]}
+            material={materials.WHITE}
             geometry={nodes.LEVEL2RAIL1.geometry}
           />
           <mesh
-            material={materials["Mat.1"]}
+            material={materials.WHITE}
             geometry={nodes.LEVEL2RAIL2.geometry}
           />
+          <mesh material={materials.WHITE} geometry={nodes.STAIR3.geometry} />
+          <mesh material={materials.WHITE} geometry={nodes.STAIR4.geometry} />
           <mesh
-            material={materials["Mat.1"]}
-            geometry={nodes.STAIR3.geometry}
-          />
-          <mesh
-            material={materials["Mat.1"]}
-            geometry={nodes.STAIR4.geometry}
-          />
-          <mesh
-            material={materials["Mat.1"]}
+            material={materials.WHITE}
             geometry={nodes.LEVEL1RAIL1.geometry}
           />
           <mesh
-            material={materials["Mat.1"]}
+            material={materials.WHITE}
             geometry={nodes.LEVEL1RAIL2.geometry}
           />
         </group>

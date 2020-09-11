@@ -21,8 +21,10 @@ const ButtonTest = (props: { raycaster: MutableRefObject<Raycaster> }) => {
         color="purple"
       />
       <group position={[-6.5, -0.7, -3.5]} rotation={[0, Math.PI / 2, 0]}>
-        <Text fontSize={0.2}>Click Me</Text>
-        <Arrow rotation={[0, 0, Math.PI]} position={[0.65, -0.01, 0]} />
+        <Text fontSize={0.2} color="black">
+          Click Me
+        </Text>
+        <Arrow rotation={[0, 0, Math.PI]} position={[0.65, -0.01, 0]} dark />
       </group>
       <pointLight
         position={[-2, 2, -6]}
