@@ -18,6 +18,7 @@ type PlayerProps = {
   initLook?: [number, number, number];
   raycaster?: MutableRefObject<Raycaster>;
   onFrame?: (bodyApi: any) => void;
+  lockControls?: boolean;
 };
 
 /**
@@ -36,6 +37,7 @@ const Player = (props: PlayerProps) => {
     initLook = [0, 2, 0],
     raycaster,
     onFrame,
+    lockControls,
   } = props;
   const { camera } = useThree();
 
@@ -94,8 +96,10 @@ const Player = (props: PlayerProps) => {
 
       // get forward/back movement and left/right movement velocities
       const inputVelocity = new Vector3(0, 0, 0);
-      inputVelocity.x = direction.current.x * delta * 0.75 * VELOCITY_FACTOR;
-      inputVelocity.z = direction.current.y * delta * VELOCITY_FACTOR;
+      if (!lockControls) {
+        inputVelocity.x = direction.current.x * delta * 0.75 * VELOCITY_FACTOR;
+        inputVelocity.z = direction.current.y * delta * VELOCITY_FACTOR;
+      }
 
       // apply quaternion to get adjusted direction based on camera
       const moveQuaternion = quaternion.current.clone();

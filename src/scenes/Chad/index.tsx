@@ -41,6 +41,7 @@ const Chad: SceneComponent = (props) => {
   const isGallery = sceneState === "gallery" || sceneState === "ending";
   const PIECE_SCALE = isGallery ? 1 : 1.75;
 
+  const [lockControls, setLockControls] = useState(false);
   const [bubble, setBubble] = useState(false);
   const [metal, setMetal] = useState(false);
   const [reflect, setReflect] = useState(false);
@@ -56,9 +57,11 @@ const Chad: SceneComponent = (props) => {
   const onFrame = useCallback(
     (bodyApi: any) => {
       if (sceneState === "falling") {
+        setLockControls(true);
         bodyApi.position.set(0, 90, 0);
         bodyApi.velocity.set(0, -0.1, 0);
         setTimeout(() => setSceneState("piece"), 100);
+        setTimeout(() => setLockControls(false), 2000);
       }
 
       if (sceneState === "ending") {
@@ -86,6 +89,7 @@ const Chad: SceneComponent = (props) => {
             initLook={[-2, -3, -100]}
             onFrame={onFrame}
             raycaster={raycaster}
+            lockControls={lockControls}
           />
           <ChadLighting />
           <ChadSceneSelector
