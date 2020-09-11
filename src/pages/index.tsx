@@ -16,7 +16,11 @@ const BroadwayPage: NextPage = () => {
           rel="stylesheet"
         />
       </Head>
-      <Environment scene={Outside} />
+      <Environment
+        scene={Outside}
+        artist="Lucid Monday"
+        link="https://lucidmonday.com"
+      />
     </>
   );
 };
