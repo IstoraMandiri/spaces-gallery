@@ -1,12 +1,12 @@
 import React, { useMemo } from "react";
 import { SpotLight } from "three";
 
-const LIGHT_INTENSITY = 1.8;
-const LIGHT_DISTANCE = 50;
+const LIGHT_INTENSITY = 4.4;
+const LIGHT_DISTANCE = 42;
 const LIGHT_COLOR = 0xffffff;
 const LIGHT_ANGLE = Math.PI / 2.4;
 
-const AMBIENT_INTENSITY = 0.3;
+const AMBIENT_INTENSITY = 0.2;
 
 const ChadLighting = () => {
   const light1 = useMemo(() => new SpotLight(), []);
@@ -41,10 +41,10 @@ const ChadLighting = () => {
         <primitive object={light2.target} position={[0, 100, 0]} />
       </group>
       <pointLight
-        intensity={0.3}
+        intensity={2}
         position={[0, 0, 0]}
         color={0xffffff}
-        distance={30}
+        distance={20}
       />
     </>
   );

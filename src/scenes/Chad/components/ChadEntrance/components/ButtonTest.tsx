@@ -11,8 +11,6 @@ const ButtonTest = (props: { raycaster: MutableRefObject<Raycaster> }) => {
 
   const color = new Color().setHSL(Math.random(), 1, 0.7);
 
-  console.log(color.getHexString());
-
   return (
     <group position={[0, 0, -0.5]}>
       <ToggleEffect
