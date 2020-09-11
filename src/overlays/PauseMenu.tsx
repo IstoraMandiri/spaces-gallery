@@ -151,10 +151,12 @@ const Text = styled.div`
 
 type OverlayProps = {
   useEnvStore: EnvironmentStoreHook;
+  artist: string;
+  link: string;
 };
 
 const PauseMenu: React.FC<OverlayProps> = (props) => {
-  const { useEnvStore } = props;
+  const { useEnvStore, artist, link } = props;
 
   const paused = useEnvStore((st) => st.paused);
   const overlay = useEnvStore((st) => st.overlay);
@@ -180,8 +182,9 @@ const PauseMenu: React.FC<OverlayProps> = (props) => {
         </Instagram>
         <MusicCreds>
           music provided by{" "}
-          <a id="artist" href="https://lucidmonday.com">
-            Lucid Monday
+          {/* eslint-disable-next-line react/jsx-no-target-blank */}
+          <a id="artist" href={link} target="_blank">
+            {artist}
           </a>
         </MusicCreds>
         <Header>

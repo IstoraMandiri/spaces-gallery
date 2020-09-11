@@ -32,9 +32,9 @@ export default function Model(props: ModelProps) {
     loadModel(setLoading)
   );
 
-  materials.Sphere.metalness = 1;
-  materials.Sphere.refractionRatio = 0.75;
-  materials.Sphere.roughness = 0.27;
+  // materials.Sphere.metalness = 1;
+  // materials.Sphere.refractionRatio = 0.75;
+  // materials.Sphere.roughness = 0.27;
 
   const wallsGeo = useMemo(() => {
     return new THREE.Geometry().fromBufferGeometry(
@@ -45,15 +45,6 @@ export default function Model(props: ModelProps) {
     type: "Static",
     args: wallsGeo.clone().translate(0, 0.02, 0).scale(100, 100, 100),
   }));
-
-  useFrame(({ clock }) => {
-    if (sphereGroup.current) {
-      sphereGroup.current.position.y =
-        0.1 * 2 * Math.sin(clock.getElapsedTime() * 0.5);
-
-      sphereGroup.current.rotation.y = clock.getElapsedTime() / 5;
-    }
-  });
 
   return (
     <group ref={group} {...props} dispose={null}>

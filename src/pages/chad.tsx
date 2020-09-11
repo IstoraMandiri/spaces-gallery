@@ -16,7 +16,11 @@ const ChadPage: NextPage = () => {
           rel="stylesheet"
         />
       </Head>
-      <Environment scene={Chad} />
+      <Environment
+        scene={Chad}
+        artist="Harris Cole"
+        link="https://www.instagram.com/_harris.cole/"
+      />
     </>
   );
 };
