@@ -2,14 +2,19 @@ import React from "react";
 import { useLoader } from "react-three-fiber";
 import * as THREE from "three";
 
-type ArrowProps = JSX.IntrinsicElements["group"];
+type ArrowProps = { dark?: boolean } & JSX.IntrinsicElements["group"];
 
 const IMAGE_SRC = "https://d27rt3a60hh1lx.cloudfront.net/images/whiteArrow.png";
+const IMAGE_SRC_DARK =
+  "https://d27rt3a60hh1lx.cloudfront.net/images/blackArrow.png";
 
 const Arrow = (props: ArrowProps) => {
-  const { ...restProps } = props;
+  const { dark, ...restProps } = props;
 
-  const texture = useLoader(THREE.TextureLoader, IMAGE_SRC);
+  const texture = useLoader(
+    THREE.TextureLoader,
+    dark ? IMAGE_SRC_DARK : IMAGE_SRC
+  );
 
   return (
     <group {...restProps}>

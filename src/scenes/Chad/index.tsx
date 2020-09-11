@@ -18,6 +18,8 @@ import { Raycaster, Vector3 } from "three";
 import ChadMusic from "./components/ChadMusic";
 import Sign from "./components/Sign";
 import ChadEntrance from "./components/ChadEntrance";
+import LevelSign from "./components/LevelSign";
+import Signs from "./components/Signs";
 
 const physicsProps = {
   iterations: 20,
@@ -82,7 +84,7 @@ const Chad: SceneComponent = (props) => {
           {/* @ts-ignore */}
           <Player
             useEnvStore={useEnvStore}
-            initPos={[-2, -3, 62]}
+            initPos={[-2, -3, 30]}
             initLook={[-2, -3, -100]}
             onFrame={onFrame}
             raycaster={raycaster}
@@ -113,15 +115,7 @@ const Chad: SceneComponent = (props) => {
                 <ChadGallery useEnvStore={useEnvStore} />
               </Suspense>
               <ChadEntrance useEnvStore={useEnvStore} raycaster={raycaster} />
-              <Sign
-                text="Jump Off to Visit Virtual Genesis"
-                position={[-2.5, 1, 23.75]}
-              />
-              <Sign
-                text="Jump Off to Visit Virtual Genesis"
-                position={[2.5, 1, -23.75]}
-                rotation={[0, Math.PI, 0]}
-              />
+              <Signs />
               <ToggleEffect
                 position={[25, 4, 1.5]}
                 raycaster={raycaster}
