@@ -16,9 +16,7 @@ import { Color } from "three";
 import ToggleEffect from "three-components/ToggleEffect";
 import { Raycaster, Vector3 } from "three";
 import ChadMusic from "./components/ChadMusic";
-import Sign from "./components/Sign";
 import ChadEntrance from "./components/ChadEntrance";
-import LevelSign from "./components/LevelSign";
 import Signs from "./components/Signs";
 
 const physicsProps = {

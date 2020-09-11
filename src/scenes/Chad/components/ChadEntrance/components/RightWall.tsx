@@ -10,7 +10,7 @@ const RightWall = () => {
     <group
       name="right-wall"
       rotation={[0, -Math.PI / 2, 0]}
-      position={[4.3, -0.35, -7]}
+      position={[4.3, -0.35, -7.2]}
       scale={[0.7, 0.7, 0.7]}
     >
       <group position={[2.75, -0.25, 0]}>
