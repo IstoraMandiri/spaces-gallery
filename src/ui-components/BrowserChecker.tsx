@@ -1,8 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
+import { keyframes } from "@emotion/core";
 import styled from "@emotion/styled";
 import { useValidAgent } from "../services/userAgent";
-
-const INVALID_KEYWORDS = ["FBAN", "FBAV", "Instagram"];
 
 const Container = styled.div`
   width: 100%;
@@ -16,6 +15,39 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  text-align: center;
+`;
+
+const IMAGE_SRC =
+  "https://d27rt3a60hh1lx.cloudfront.net/images/spaces-logo.png";
+
+const float = keyframes`
+        0% {
+            transform: translate(-50%, -50%) translateY(0px)
+    }
+    
+        50% {
+            transform: translate(-50%, -50%) translateY(-15px)
+    }
+    
+        100% {
+            transform: translate(-50%, -50%) translateY(0px)
+    }
+`;
+
+const Image = styled.div`
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  max-width: 500px;
+  max-height: 500px;
+  background-image: url(${IMAGE_SRC});
+  background-size: contain;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.4;
+  animation: ${float} 7s ease-in-out infinite;
 `;
 
 const InvalidBrowser = () => {
@@ -33,10 +65,13 @@ const InvalidBrowser = () => {
 
   return (
     <Container>
-      invalid browser dumbass
-      <button onClick={() => window.open(loc.current, "_system")}>
-        proceed to correct browser
-      </button>
+      <Image />
+      This browser cannot run our application.
+      <br />
+      <br />
+      Click those three dots at the top right
+      <br />
+      to open in Safari or Chrome.
     </Container>
   );
 };
