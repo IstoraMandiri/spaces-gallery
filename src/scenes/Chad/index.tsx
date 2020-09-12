@@ -76,7 +76,7 @@ const Chad: SceneComponent = (props) => {
       <Canvas {...defaultCanvasProps} camera={{ far: 150 }}>
         {children}
         {time ? (
-          <></>
+          <Sky distance={60000} />
         ) : (
           <Stars radius={30} depth={50} count={1000} factor={2} fade />
         )}
@@ -110,7 +110,7 @@ const Chad: SceneComponent = (props) => {
           <Effects />
           {sceneState === "gallery" && (
             <>
-              {time ? <Sky /> : <></>}
+              {/*{time ? <Sky distance={60000} /> : <></>}*/}
               <Suspense fallback={null}>
                 <ChadGallery useEnvStore={useEnvStore} />
               </Suspense>
