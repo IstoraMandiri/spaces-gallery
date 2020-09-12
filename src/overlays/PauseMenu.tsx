@@ -151,12 +151,13 @@ const Text = styled.div`
 
 type OverlayProps = {
   useEnvStore: EnvironmentStoreHook;
-  artist: string;
-  link: string;
+  artist?: string;
+  link?: string;
+  title?: string;
 };
 
 const PauseMenu: React.FC<OverlayProps> = (props) => {
-  const { useEnvStore, artist, link } = props;
+  const { useEnvStore, artist, title, link } = props;
 
   const paused = useEnvStore((st) => st.paused);
   const overlay = useEnvStore((st) => st.overlay);
@@ -180,16 +181,17 @@ const PauseMenu: React.FC<OverlayProps> = (props) => {
         >
           <FontAwesomeIcon icon={faInstagram} size="lg" />
         </Instagram>
-        <MusicCreds>
-          music provided by{" "}
-          {/* eslint-disable-next-line react/jsx-no-target-blank */}
-          <a id="artist" href={link} target="_blank">
-            {artist}
-          </a>
-        </MusicCreds>
+        {artist && (
+          <MusicCreds>
+            music provided by{" "}
+            <a id="artist" href={link} target="_blank" rel="noreferrer">
+              {artist}
+            </a>
+          </MusicCreds>
+        )}
         <Header>
           <Title>SPACES</Title>
-          <SubHeader>Opening Exhibit</SubHeader>
+          <SubHeader>{title}</SubHeader>
         </Header>
         <Text>
           <p>Move around: {isMobile ? "Joystick" : "W/A/S/D"}</p>

@@ -19,6 +19,7 @@ const ChadPage: NextPage = () => {
       <Environment
         scene={Chad}
         artist="Harris Cole"
+        title="Virtual Genesis by Chad Knight"
         link="https://www.instagram.com/_harris.cole/"
       />
     </>

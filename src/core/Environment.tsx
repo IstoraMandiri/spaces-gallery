@@ -27,6 +27,7 @@ const Container = styled.div`
 
 type EnvironmentProps = {
   scene: SceneComponent;
+  title?: string;
   artist?: string;
   link?: string;
 };
@@ -39,7 +40,7 @@ const defaultCanvasProps: Partial<ContainerProps> = {
 };
 
 const Environment = (props: EnvironmentProps) => {
-  const { scene: Scene, artist = "TBD", link = "TBD" } = props;
+  const { scene: Scene, artist, title, link } = props;
 
   // create container ref and pass into environment store
   const container = useRef<HTMLDivElement>(null);
@@ -49,7 +50,12 @@ const Environment = (props: EnvironmentProps) => {
     <Container ref={container}>
       <Scene useEnvStore={useStore} defaultCanvasProps={defaultCanvasProps} />
       <LoadingScreen useEnvStore={useStore} />
-      <PauseMenu useEnvStore={useStore} artist={artist} link={link} />
+      <PauseMenu
+        useEnvStore={useStore}
+        artist={artist}
+        link={link}
+        title={title}
+      />
       {isMobile && <MobilePause useEnvStore={useStore} />}
       <Crosshair />
     </Container>
