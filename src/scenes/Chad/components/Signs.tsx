@@ -14,58 +14,54 @@ const Signs = () => {
         position={[2.5, 1, -23.75]}
         rotation={[0, Math.PI, 0]}
       />
-      <group name="left-stairs">
-        <LevelSign
-          text={"LEVEL" + "\n" + "TWO"}
-          dir="up"
-          rotation={[0, 0.2, 0]}
-          position={[-23, -3, 11]}
-        />
-        <LevelSign
-          text={"LEVEL" + "\n" + "ONE"}
-          dir="down"
-          rotation={[0, Math.PI + 0.4, 0]}
-          position={[-25, 1, -4]}
-        />
-        <LevelSign
-          text={"LEVEL" + "\n" + "THREE"}
-          dir="up"
-          rotation={[0, 0.2, 0]}
-          position={[-23, 1, 11]}
-        />
-        <LevelSign
-          text={"LEVEL" + "\n" + "TWO"}
-          dir="down"
-          rotation={[0, Math.PI + 0.4, 0]}
-          position={[-25, 5, -4]}
-        />
-      </group>
-      <group name="right-stairs">
-        <LevelSign
-          text={"LEVEL" + "\n" + "TWO"}
-          dir="up"
-          rotation={[0, -Math.PI - 0.2, 0]}
-          position={[23, -3, -11]}
-        />
-        <LevelSign
-          text={"LEVEL" + "\n" + "ONE"}
-          dir="down"
-          rotation={[0, 0.4, 0]}
-          position={[25, 1, 4]}
-        />
-        <LevelSign
-          text={"LEVEL" + "\n" + "THREE"}
-          dir="up"
-          rotation={[0, -Math.PI - 0.2, 0]}
-          position={[23, 1, -11]}
-        />
-        <LevelSign
-          text={"LEVEL" + "\n" + "TWO"}
-          dir="down"
-          rotation={[0, 0.4, 0]}
-          position={[25, 5, 4]}
-        />
-      </group>
+      <LevelSign
+        level={1}
+        angle={Math.PI / 2 + 0.45}
+        rotation={[0, 0, 0]}
+        position={[0, -2.5, 0]}
+      />
+      <LevelSign
+        level={2}
+        angle={Math.PI / 2 - 0.2}
+        rotation={[0, 0, 0]}
+        position={[0, 1, 0]}
+      />
+      <LevelSign
+        level={2}
+        angle={Math.PI / 2 + 0.45}
+        rotation={[0, 0, 0]}
+        position={[0, 1, 0]}
+      />
+      <LevelSign
+        level={3}
+        angle={Math.PI / 2 - 0.2}
+        rotation={[0, 0, 0]}
+        position={[0, 5, 0]}
+      />
+      <LevelSign
+        level={1}
+        angle={-Math.PI / 2 + 0.45}
+        rotation={[0, 0, 0]}
+        position={[0, -2.5, 0]}
+      />
+      <LevelSign
+        level={2}
+        angle={-Math.PI / 2 - 0.2}
+        rotation={[0, 0, 0]}
+        position={[0, 1, 0]}
+      />
+      <LevelSign
+        level={2}
+        angle={-Math.PI / 2 + 0.45}
+        rotation={[0, 0, 0]}
+        position={[0, 1, 0]}
+      />
+      <LevelSign
+        level={3}
+        angle={-Math.PI / 2 - 0.2}
+        rotation={[0, 0, 0]}
+        position={[0, 5, 0]}
+      />
     </>
   );
 };
