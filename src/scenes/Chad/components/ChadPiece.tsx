@@ -3,7 +3,7 @@ import { EnvironmentStoreHook } from "stores/environment";
 import { Color, Mesh } from "three";
 import ChadKnight from "models/ChadKnight";
 import { useFrame } from "react-three-fiber";
-import { CHAD_COLOR, CHAD_COLOR2 } from "../index";
+import LokLok from "./LokLok";
 
 type ChadKnightProps = {
   useEnvStore: EnvironmentStoreHook;
@@ -11,7 +11,7 @@ type ChadKnightProps = {
   effects: {
     bubble: boolean;
     metal: boolean;
-    reflect: boolean;
+    lok: boolean;
     color?: boolean;
   };
 };
@@ -31,7 +31,7 @@ const ChadKnightPieces = (props: ChadKnightProps) => {
   const {
     useEnvStore,
     isGallery,
-    effects: { bubble, metal, reflect, color },
+    effects: { bubble, metal, lok, color },
   } = props;
 
   const sphere = useRef<Mesh>();
@@ -62,16 +62,22 @@ const ChadKnightPieces = (props: ChadKnightProps) => {
           pieceScale={SCALE}
         />
       </Suspense>
-      <mesh ref={sphere} position={[0, 0, 0]} scale={[SCALE, SCALE, SCALE]}>
-        <sphereBufferGeometry attach="geometry" args={[8, 5 * 14, 3 * 14]} />
-        <meshLambertMaterial
-          attach="material"
-          wireframe
-          color={realColor}
-          emissive={new Color(0x000000)}
-          emissiveIntensity={10}
-        />
-      </mesh>
+      {lok ? (
+        <group scale={[SCALE, SCALE, SCALE]}>
+          <LokLok color={realColor} />
+        </group>
+      ) : (
+        <mesh ref={sphere} position={[0, 0, 0]} scale={[SCALE, SCALE, SCALE]}>
+          <sphereBufferGeometry attach="geometry" args={[8, 5 * 14, 3 * 14]} />
+          <meshLambertMaterial
+            attach="material"
+            wireframe
+            color={realColor}
+            emissive={new Color(0x000000)}
+            emissiveIntensity={10}
+          />
+        </mesh>
+      )}
     </group>
   );
 };
