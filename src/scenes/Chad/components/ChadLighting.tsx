@@ -8,9 +8,14 @@ const LIGHT_ANGLE = Math.PI / 2.4;
 
 const AMBIENT_INTENSITY = 0.2;
 
-const ChadLighting = () => {
+type LightingProps = {
+  time: boolean;
+};
+
+const ChadLighting = (props: LightingProps) => {
   const light1 = useMemo(() => new SpotLight(), []);
   const light2 = useMemo(() => new SpotLight(), []);
+  const { time } = props;
 
   const topLight = {
     distance: LIGHT_DISTANCE,
@@ -31,7 +36,7 @@ const ChadLighting = () => {
   return (
     <>
       <ambientLight intensity={AMBIENT_INTENSITY} color={0xffffff} />
-      <fog attach="fog" args={[0x000000, 1, 45]} />
+      {time ? <></> : <fog attach="fog" args={[0x000000, 1, 45]} />}
       <group position={[0, 30, 0]}>
         <primitive object={light1} {...topLight} />
         <primitive object={light1.target} position={[0, -100, 0]} />

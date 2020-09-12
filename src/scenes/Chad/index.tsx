@@ -11,7 +11,7 @@ import ChadPiece from "./components/ChadPiece";
 import ChadLighting from "./components/ChadLighting";
 import ChadSceneSelector from "./components/ChadSceneSelector";
 import PlatformPlatform from "./components/PlatformPlatform";
-import { Stars } from "drei";
+import { Sky, Stars } from "drei";
 import { Color } from "three";
 import ToggleEffect from "three-components/ToggleEffect";
 import { Raycaster, Vector3 } from "three";
@@ -44,9 +44,10 @@ const Chad: SceneComponent = (props) => {
   const [bubble, setBubble] = useState(false);
   const [rotate, setRotate] = useState(false);
   const [lok, setLok] = useState(false);
+  const [time, setTime] = useState(false);
   const [color, setColor] = useState(false);
 
-  const effects = { bubble, rotate, lok, color };
+  const effects = { bubble, rotate, lok, time, color };
 
   const onFrame = useCallback(
     (bodyApi: any) => {
@@ -74,7 +75,12 @@ const Chad: SceneComponent = (props) => {
       <Analytics />
       <Canvas {...defaultCanvasProps} camera={{ far: 150 }}>
         {children}
-        <Stars radius={30} depth={50} count={1000} factor={2} fade />
+        {time ? (
+          // @ts-ignore
+          <Sky distance={60000} />
+        ) : (
+          <Stars radius={30} depth={50} count={1000} factor={2} fade />
+        )}
         <Physics {...physicsProps}>
           {/* @ts-ignore */}
           <Player
@@ -85,7 +91,7 @@ const Chad: SceneComponent = (props) => {
             raycaster={raycaster}
             lockControls={lockControls}
           />
-          <ChadLighting />
+          <ChadLighting time={time} />
           <ChadSceneSelector
             useEnvStore={useEnvStore}
             sceneState={sceneState}
@@ -105,6 +111,7 @@ const Chad: SceneComponent = (props) => {
           <Effects />
           {sceneState === "gallery" && (
             <>
+              {/*{time ? <Sky distance={60000} /> : <></>}*/}
               <Suspense fallback={null}>
                 <ChadGallery useEnvStore={useEnvStore} />
               </Suspense>
@@ -127,8 +134,8 @@ const Chad: SceneComponent = (props) => {
               <ToggleEffect
                 position={[-25, -4, 1.5]}
                 raycaster={raycaster}
-                effect={color}
-                setEffect={setColor}
+                effect={time}
+                setEffect={setTime}
                 color="white"
               />
               <ToggleEffect
@@ -136,7 +143,7 @@ const Chad: SceneComponent = (props) => {
                 raycaster={raycaster}
                 effect={rotate}
                 setEffect={setRotate}
-                color="orange"
+                color="red"
               />
             </>
           )}
