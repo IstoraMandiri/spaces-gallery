@@ -76,6 +76,7 @@ const Chad: SceneComponent = (props) => {
       <Canvas {...defaultCanvasProps} camera={{ far: 150 }}>
         {children}
         {time ? (
+          // @ts-ignore
           <Sky distance={60000} />
         ) : (
           <Stars radius={30} depth={50} count={1000} factor={2} fade />
@@ -142,7 +143,7 @@ const Chad: SceneComponent = (props) => {
                 raycaster={raycaster}
                 effect={rotate}
                 setEffect={setRotate}
-                color="orange"
+                color="red"
               />
             </>
           )}
