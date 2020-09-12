@@ -28,11 +28,9 @@ const MouseFPSCamera = (props: MouseFPSCameraProps) => {
   const setPaused = useEnvStore((st) => st.setPaused);
   const paused = useEnvStore((st) => st.paused);
   const addEvent = useEnvStore((st) => st.addEvent);
-  const { scene, camera, gl } = useThree();
+  const { camera, gl } = useThree();
 
   const controls = useRef<PointerLockControls>();
-  const clickContainer = document.getElementById("click-container");
-  const pauseButton = document.getElementById("pause-button");
 
   useFrame(() => {
     if (controls?.current?.isLocked === true) {
@@ -81,18 +79,20 @@ const MouseFPSCamera = (props: MouseFPSCameraProps) => {
   }, []);
 
   useEffect(() => {
-    clickContainer?.addEventListener("click", lockCamera);
-    pauseButton?.addEventListener("click", lockCamera);
+    setTimeout(() => {
+      if (!controls?.current?.isLocked && !paused) {
+        setPaused(true);
+      }
+    }, 50);
+
     controls?.current?.addEventListener("lock", onLock);
     controls?.current?.addEventListener("unlock", onUnlock);
 
     return () => {
-      clickContainer?.removeEventListener("click", lockCamera);
-      pauseButton?.removeEventListener("click", lockCamera);
       controls?.current?.removeEventListener("lock", onLock);
       controls?.current?.removeEventListener("unlock", onUnlock);
     };
-  }, [paused]);
+  }, [paused, controls]);
 
   // @ts-ignore
   return <pointerLockControls ref={controls} args={[camera, gl.domElement]} />;
