@@ -10,7 +10,7 @@ type ChadKnightProps = {
   isGallery: boolean;
   effects: {
     bubble: boolean;
-    metal: boolean;
+    rotate: boolean;
     lok: boolean;
     color?: boolean;
   };
@@ -31,7 +31,7 @@ const ChadKnightPieces = (props: ChadKnightProps) => {
   const {
     useEnvStore,
     isGallery,
-    effects: { bubble, metal, lok, color },
+    effects: { bubble, rotate, lok, color },
   } = props;
 
   const sphere = useRef<Mesh>();
@@ -60,6 +60,7 @@ const ChadKnightPieces = (props: ChadKnightProps) => {
           useEnvStore={useEnvStore}
           color={realColor}
           pieceScale={SCALE}
+          rotate={rotate}
         />
       </Suspense>
       {lok ? (

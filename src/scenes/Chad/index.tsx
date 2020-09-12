@@ -18,7 +18,6 @@ import { Raycaster, Vector3 } from "three";
 import ChadMusic from "./components/ChadMusic";
 import ChadEntrance from "./components/ChadEntrance";
 import Signs from "./components/Signs";
-import LokLok from "./components/LokLok";
 
 const physicsProps = {
   iterations: 20,
@@ -43,11 +42,11 @@ const Chad: SceneComponent = (props) => {
 
   const [lockControls, setLockControls] = useState(false);
   const [bubble, setBubble] = useState(false);
-  const [metal, setMetal] = useState(false);
+  const [rotate, setRotate] = useState(false);
   const [lok, setLok] = useState(false);
   const [color, setColor] = useState(false);
 
-  const effects = { bubble, metal, lok, color };
+  const effects = { bubble, rotate, lok, color };
 
   const onFrame = useCallback(
     (bodyApi: any) => {
@@ -135,8 +134,8 @@ const Chad: SceneComponent = (props) => {
               <ToggleEffect
                 position={[25, -4, 1.5]}
                 raycaster={raycaster}
-                effect={color}
-                setEffect={setColor}
+                effect={rotate}
+                setEffect={setRotate}
                 color="orange"
               />
             </>
