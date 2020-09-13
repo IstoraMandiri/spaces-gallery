@@ -5,6 +5,7 @@ import { useFrame } from "react-three-fiber";
 import { EnvironmentStoreHook } from "stores/environment";
 import { useChannel, useEvent } from "@harelpls/use-pusher";
 import backend from "services/backend";
+import { Color } from "three";
 
 function usePlayerUpdates(
   useEnvStore: EnvironmentStoreHook,
@@ -17,7 +18,7 @@ function usePlayerUpdates(
     if (!paused) {
       elapsedSeconds.current += delta;
 
-      if (elapsedSeconds.current > 1) {
+      if (elapsedSeconds.current > 0.1) {
         elapsedSeconds.current = 0;
 
         await backend.post("/event", {
@@ -51,11 +52,13 @@ const PlayerSet: React.FC<PlayersSetProps> = (props) => {
   const players = usePlayersStore((store) => store.players);
   usePlayerUpdates(useEnvStore, usePlayersStore);
 
+  const color = useRef(new Color().setHSL(Math.random(), 1, 0.7));
+
   return (
     <>
       {Object.entries(players).map(([key, player]) => (
         <Box key={key} position={player.position}>
-          <meshBasicMaterial attach="material" color="rebeccapurple" />
+          <meshBasicMaterial attach="material" color={color.current} />
         </Box>
       ))}
     </>
