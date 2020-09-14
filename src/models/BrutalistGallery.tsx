@@ -14,41 +14,43 @@ import { BufferGeometry } from "three";
 
 type GLTFResult = GLTF & {
   nodes: {
-    handrail: THREE.Mesh;
-    ["Stairs-A"]: THREE.Mesh;
-    ["Stairs-B"]: THREE.Mesh;
     Collision: THREE.Mesh;
-    ["roof-2nd-level"]: THREE.Mesh;
-    ["Stairs-2nd-floor"]: THREE.Mesh;
-    ["Floor-Level-2"]: THREE.Mesh;
-    ["side-wall"]: THREE.Mesh;
     glass: THREE.Mesh;
+    roof: THREE.Mesh;
+    ["walls-far"]: THREE.Mesh;
+    ["door-rail-walls"]: THREE.Mesh;
+    floor: THREE.Mesh;
+    columns: THREE.Mesh;
     ground: THREE.Mesh;
     frame: THREE.Mesh;
     horizontal: THREE.Mesh;
-    columns: THREE.Mesh;
     ["walls-ground-level"]: THREE.Mesh;
-    ["Plato-D"]: THREE.Mesh;
-    ["Plato-C"]: THREE.Mesh;
-    ["Plato-B"]: THREE.Mesh;
     ["Plato-A"]: THREE.Mesh;
+    ["Plato-B"]: THREE.Mesh;
+    ["Plato-C"]: THREE.Mesh;
+    ["Plato-D"]: THREE.Mesh;
+    ["Stairs-A"]: THREE.Mesh;
+    ["Stairs-B"]: THREE.Mesh;
+    ["Stairs-C"]: THREE.Mesh;
   };
   materials: {
-    wood: THREE.MeshStandardMaterial;
-    Stairs: THREE.MeshStandardMaterial;
-    Blue: THREE.MeshStandardMaterial;
-    concrete: THREE.MeshStandardMaterial;
-    sidewalls: THREE.MeshStandardMaterial;
     glass: THREE.MeshStandardMaterial;
+    roof: THREE.MeshStandardMaterial;
+    ["walls-far"]: THREE.MeshStandardMaterial;
+    ["door-rail-walls"]: THREE.MeshStandardMaterial;
+    floor: THREE.MeshStandardMaterial;
+    columns: THREE.MeshStandardMaterial;
     ground: THREE.MeshStandardMaterial;
     frame: THREE.MeshStandardMaterial;
     horizontal: THREE.MeshStandardMaterial;
-    columns: THREE.MeshStandardMaterial;
     ["walls-ground-level"]: THREE.MeshStandardMaterial;
-    ["Plato-D"]: THREE.MeshStandardMaterial;
-    ["Plato-C"]: THREE.MeshStandardMaterial;
-    ["Plato-B"]: THREE.MeshStandardMaterial;
     ["Plato-A"]: THREE.MeshStandardMaterial;
+    ["Plato-B"]: THREE.MeshStandardMaterial;
+    ["Plato-C"]: THREE.MeshStandardMaterial;
+    ["Plato-D"]: THREE.MeshStandardMaterial;
+    ["Stairs-A"]: THREE.MeshStandardMaterial;
+    ["Stairs-B"]: THREE.MeshStandardMaterial;
+    ["Stairs-C"]: THREE.MeshStandardMaterial;
   };
 };
 
@@ -59,113 +61,109 @@ export default function Model(props: ModelProps) {
   const group = useRef<THREE.Group>();
   const { nodes, materials } = useLoader<GLTFResult>(
     GLTFLoader,
-    "https://d27rt3a60hh1lx.cloudfront.net/models/BrutalistGallery2/BrutalistGallery2.glb",
+    "https://d27rt3a60hh1lx.cloudfront.net/models/BrutalistGallery3/BrutalistGallery3.glb",
     loadModel(setLoading)
   );
 
   useTrimeshCollision(
     (nodes.Collision.geometry as BufferGeometry)
       .clone()
-      .translate(-0.000011, 0, 870.000061)
-      .scale(0.01, 0.01, 0.01)
+      .translate(-8.883761, -3.433639, 7.782213)
+      .translate(0, 3.98, 0)
   );
 
   return (
     <group ref={group} {...props} dispose={null}>
-      <group scale={[0.01, 0.01, 0.01]}>
-        <group position={[0.000001, 0, -750]}>
-          <mesh
-            material={materials.wood}
-            geometry={nodes.handrail.geometry}
-            position={[810, 25.980762, -82.508141]}
-          />
-        </group>
-        <group position={[-0.000011, -180, 870.000061]}>
-          <mesh
-            material={materials.Stairs}
-            geometry={nodes["Stairs-A"].geometry}
-          />
-        </group>
-        <group position={[-0.000011, -60, 990.000061]}>
-          <mesh
-            material={materials.Stairs}
-            geometry={nodes["Stairs-B"].geometry}
-          />
-        </group>
+      <group position={[0, 3.98, 0]}>
         <mesh
-          material={materials.Blue}
+          material={nodes.Collision.material}
           geometry={nodes.Collision.geometry}
-          position={[-0.000011, 0, 870.000061]}
-        />
-        <mesh
-          material={materials.concrete}
-          geometry={nodes["roof-2nd-level"].geometry}
-          position={[-0.000011, 945, -959.999939]}
-        />
-        <mesh
-          material={materials.concrete}
-          geometry={nodes["Stairs-2nd-floor"].geometry}
-          position={[0.000001, 0, -60]}
-        />
-        <mesh
-          material={materials.concrete}
-          geometry={nodes["Floor-Level-2"].geometry}
-          position={[-0.000011, 15, -964.769958]}
-        />
-        <mesh
-          material={materials.sidewalls}
-          geometry={nodes["side-wall"].geometry}
-          position={[0.000001, 1013.606201, 15.000053]}
+          position={[-8.883761, -3.433639, 7.782213]}
         />
         <mesh
           material={materials.glass}
           geometry={nodes.glass.geometry}
-          position={[0.000001, 900, 689.062561]}
+          position={[-9.327085, 3.442923, 9.929964]}
         />
         <mesh
-          material={materials.ground}
-          geometry={nodes.ground.geometry}
-          position={[0.000001, 0, -194.999985]}
+          material={materials.roof}
+          geometry={nodes.roof.geometry}
+          position={[-9.350093, 5.921006, -3.185983]}
         />
         <mesh
-          material={materials.frame}
-          geometry={nodes.frame.geometry}
-          position={[0.000001, 900, 689.062561]}
+          material={materials["walls-far"]}
+          geometry={nodes["walls-far"].geometry}
+          position={[-8.142455, 9.968623, 21.273808]}
         />
         <mesh
-          material={materials.horizontal}
-          geometry={nodes.horizontal.geometry}
-          position={[0.000001, 742.5, 524.531311]}
+          material={materials["door-rail-walls"]}
+          geometry={nodes["door-rail-walls"].geometry}
+          position={[-9.331779, -0.269577, 8.944376]}
+        />
+        <mesh
+          material={materials.floor}
+          geometry={nodes.floor.geometry}
+          position={[-9.333344, -3.250827, 0.71996]}
         />
         <mesh
           material={materials.columns}
           geometry={nodes.columns.geometry}
-          position={[0.000001, -15, 360.000061]}
+          position={[-9.333344, -4.132077, 9.918971]}
+        />
+        <mesh
+          material={materials.ground}
+          geometry={nodes.ground.geometry}
+          position={[-9.333344, -3.982077, 4.368971]}
+        />
+        <mesh
+          material={materials.frame}
+          geometry={nodes.frame.geometry}
+          position={[-9.333344, 5.017923, 13.209597]}
+        />
+        <mesh
+          material={materials.horizontal}
+          geometry={nodes.horizontal.geometry}
+          position={[-9.330215, 3.105423, 10.747125]}
         />
         <mesh
           material={materials["walls-ground-level"]}
           geometry={nodes["walls-ground-level"].geometry}
-          position={[-1620, 585, 1320]}
-        />
-        <mesh
-          material={materials["Plato-D"]}
-          geometry={nodes["Plato-D"].geometry}
-          position={[89.999992, 0, 1035]}
-        />
-        <mesh
-          material={materials["Plato-C"]}
-          geometry={nodes["Plato-C"].geometry}
-          position={[89.999992, 0, 1035]}
-        />
-        <mesh
-          material={materials["Plato-B"]}
-          geometry={nodes["Plato-B"].geometry}
-          position={[89.999992, 0, 1035]}
+          position={[-25.533344, 1.867923, 19.51897]}
         />
         <mesh
           material={materials["Plato-A"]}
           geometry={nodes["Plato-A"].geometry}
-          position={[89.999992, 0, 1035]}
+          position={[-8.433345, -3.982077, 16.668972]}
+        />
+        <mesh
+          material={materials["Plato-B"]}
+          geometry={nodes["Plato-B"].geometry}
+          position={[-8.433345, -3.982077, 16.668972]}
+        />
+        <mesh
+          material={materials["Plato-C"]}
+          geometry={nodes["Plato-C"].geometry}
+          position={[-8.433345, -3.982077, 16.668972]}
+        />
+        <mesh
+          material={materials["Plato-D"]}
+          geometry={nodes["Plato-D"].geometry}
+          position={[-8.433345, -3.982077, 16.668972]}
+        />
+        <mesh
+          material={materials["Stairs-A"]}
+          geometry={nodes["Stairs-A"].geometry}
+          position={[-9.333345, -5.182077, 15.618972]}
+        />
+        <mesh
+          material={materials["Stairs-B"]}
+          geometry={nodes["Stairs-B"].geometry}
+          position={[-9.333345, -5.182077, 15.618972]}
+        />
+        <mesh
+          material={materials["Stairs-C"]}
+          geometry={nodes["Stairs-C"].geometry}
+          position={[-9.333345, -2.519577, -2.929051]}
         />
       </group>
     </group>
