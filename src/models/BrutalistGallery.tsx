@@ -65,6 +65,8 @@ export default function Model(props: ModelProps) {
     loadModel(setLoading)
   );
 
+  materials.glass.refractionRatio = 0.8;
+
   useTrimeshCollision(
     (nodes.Collision.geometry as BufferGeometry)
       .clone()
