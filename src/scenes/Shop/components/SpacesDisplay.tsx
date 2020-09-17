@@ -4,6 +4,7 @@ import { softShadows } from "drei";
 
 import SpacesShirt from "models/SpacesShirt";
 import { UseStore } from "zustand";
+import { Canvas } from "react-three-fiber";
 
 // @ts-ignore
 softShadows();
@@ -33,10 +34,17 @@ type DisplayProps = {
 const SpacesDisplay = (props: DisplayProps) => {
   const { useEnvStore, position } = props;
   const [hover, setHover] = useState<boolean>(false);
+  const shirt = useRef();
 
   return (
     <group position={position}>
-      <group position={[0, -2, 0]}>
+      <directionalLight
+        position={[0, 5, 7]}
+        target={shirt.current}
+        intensity={2}
+        castShadow
+      />
+      <group ref={shirt} position={[0, -2, 0]}>
         <Suspense fallback={null}>
           <SpacesShirt useEnvStore={useEnvStore} />
         </Suspense>

@@ -66,7 +66,7 @@ const Shop: SceneComponent = (props) => {
           scale={[Math.random() * 5, Math.random() * 5, Math.random() * 5]}
           position={[
             Math.random() * 40 + 7,
-            Math.random() * 40 + 5,
+            Math.random() * 40 + 10,
             Math.random() * 40 + 7,
           ]}
           color={"white"}
@@ -78,7 +78,7 @@ const Shop: SceneComponent = (props) => {
           scale={[Math.random() * 5, Math.random() * 5, Math.random() * 5]}
           position={[
             -Math.random() * 40 + 7,
-            Math.random() * 40 + 5,
+            Math.random() * 40 + 10,
             Math.random() * 40 + 7,
           ]}
           color={"white"}
@@ -90,7 +90,7 @@ const Shop: SceneComponent = (props) => {
           scale={[Math.random() * 5, Math.random() * 5, Math.random() * 5]}
           position={[
             Math.random() * 40 + 7,
-            Math.random() * 40 + 5,
+            Math.random() * 40 + 10,
             -Math.random() * 40 + 7,
           ]}
           color={"white"}
@@ -102,14 +102,14 @@ const Shop: SceneComponent = (props) => {
           scale={[Math.random() * 5, Math.random() * 5, Math.random() * 5]}
           position={[
             -Math.random() * 40 + 7,
-            Math.random() * 40 + 5,
+            Math.random() * 40 + 10,
             -Math.random() * 40 + 7,
           ]}
           color={"white"}
         />
       );
     }
-    return PrismArr;
+    return <>{PrismArr}</>;
   };
 
   return (
@@ -117,12 +117,17 @@ const Shop: SceneComponent = (props) => {
       <Analytics />
       <Canvas
         {...defaultCanvasProps}
-        camera={{ position: [1, 3, 7], far: 150 }}
+        camera={{ position: [1, 3, 7], far: 300 }}
       >
         <Sky />
         <OrbitControls target={[0, 2, 0]} {...cameraControls} />
         <ambientLight intensity={0.2} />
-        <pointLight position={[0, 50, 50]} intensity={2} castShadow />
+        <pointLight
+          position={[0, 50, 50]}
+          intensity={1}
+          color="blue"
+          castShadow
+        />
         {/*<Prism useEnvStore={useEnvStore} scale={[10, 5, 7]} position={[0, 40, 0]} color={"blue"} />*/}
         \
         <Prisms />
