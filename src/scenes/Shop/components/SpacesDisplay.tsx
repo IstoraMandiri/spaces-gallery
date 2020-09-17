@@ -2,7 +2,7 @@ import React, { Suspense, useEffect, useRef, useState } from "react";
 import { EnvironmentStoreHook } from "stores/environment";
 import { softShadows } from "drei";
 
-import Shirt from "models/Shirt";
+import SpacesShirt from "models/SpacesShirt";
 import { UseStore } from "zustand";
 
 // @ts-ignore
@@ -36,13 +36,13 @@ const SpacesDisplay = (props: DisplayProps) => {
 
   return (
     <group position={position}>
-      <group position={[0, 5, 0]}>
+      <group position={[0, -2, 0]}>
         <Suspense fallback={null}>
-          <Shirt useEnvStore={useEnvStore} />
+          <SpacesShirt useEnvStore={useEnvStore} />
         </Suspense>
       </group>
       <mesh
-        position={[0, 2, 0]}
+        position={[8, 2, 0]}
         castShadow
         // mouseOver={() => {setHover(!hover)}}
       >

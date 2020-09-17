@@ -18,37 +18,32 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default function Shirt(props: ModelProps) {
+export default function SpacesShirt(props: ModelProps) {
   const { useEnvStore } = props;
 
   const setLoading = useEnvStore((st) => st.setLoading);
   const group = useRef<THREE.Group>();
   const { nodes, materials } = useLoader<GLTFResult>(
     GLTFLoader,
-    "https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/models/SpacesShop/shirtSleeve.glb",
+    "https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/models/SpacesShop/shirt.glb",
     loadModel(setLoading)
   );
 
-  useFrame(({ clock }) => {
-    if (group.current) {
-      group.current.rotation.y = clock.getElapsedTime() / 10;
-    }
-  });
+  // Auto Rotate
+  // useFrame(({ clock }) => {
+  //   if (group.current) {
+  //     group.current.rotation.y = clock.getElapsedTime() / 10;
+  //   }
+  // });
 
   return (
     <group ref={group} {...props} dispose={null}>
-      <group scale={[0.0025, 0.0025, 0.0025]}>
+      <group scale={[25, 25, 25]}>
         <mesh
-          // material={materials["New Shirt"]}
+          material={materials["New Shirt"]}
           geometry={nodes.Body_Front1.geometry}
           castShadow
-        >
-          <meshStandardMaterial
-            attach="material"
-            color="blue"
-            side={THREE.DoubleSide}
-          />
-        </mesh>
+        />
       </group>
     </group>
   );

@@ -6,7 +6,7 @@ const { NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS } = process.env;
 
 const client = ShopifyBuy.buildClient({
   domain: "spaceslabs.myshopify.com",
-  storefrontAccessToken: "2de3e766aeb0c53a72f66ae9e8d5597b",
+  storefrontAccessToken: "84e84d37acf5cdb8f5ef71bb019287ac",
 });
 
 export const useShopify = () => {
