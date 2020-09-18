@@ -135,8 +135,8 @@ const ShopOverlay = (props: ShopProps) => {
       variantId: products[0].variants[size].id,
       quantity: 1,
     };
-    // @ts-ignore
     const newCheckout = await client.checkout.addLineItems(
+      // @ts-ignore
       checkout.id,
       itemsToAdd
     );
