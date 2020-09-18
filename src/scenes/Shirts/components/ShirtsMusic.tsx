@@ -2,15 +2,17 @@ import * as THREE from "three";
 import React, { useEffect, useRef } from "react";
 import { useThree } from "react-three-fiber";
 import { EnvironmentStoreHook } from "stores/environment";
+import { AudioAnalyserStoreHook } from "stores/audio";
 import { PositionalAudioHelper } from "three/examples/jsm/helpers/PositionalAudioHelper";
+import { threadId } from "worker_threads";
 
 type OutsideAudioProps = JSX.IntrinsicElements["group"] & {
   useEnvStore: EnvironmentStoreHook;
+  useAAStore: AudioAnalyserStoreHook;
   url: string;
 };
-
 const ShirtsMusic = (props: OutsideAudioProps) => {
-  const { useEnvStore, url } = props;
+  const { useEnvStore, useAAStore, url } = props;
 
   const paused = useEnvStore((st) => st.paused);
 
@@ -19,6 +21,7 @@ const ShirtsMusic = (props: OutsideAudioProps) => {
   const speaker = useRef<THREE.PositionalAudio>();
   const { camera, scene } = useThree();
   const listener = useRef<THREE.AudioListener>();
+  const setAnalyser = useAAStore((st) => st.setAnalyser);
 
   useEffect(() => {
     if (container?.current && !audioRef.current) {
@@ -61,7 +64,8 @@ const ShirtsMusic = (props: OutsideAudioProps) => {
       speaker.current.setRolloffFactor(0.2);
       speaker.current.setVolume(10);
 
-      //init audio analyser from here
+      //init audio analyser
+      setAnalyser(new THREE.AudioAnalyser(speaker.current, 32));
 
       const helper = new PositionalAudioHelper(speaker.current);
       speaker.current.add(helper);

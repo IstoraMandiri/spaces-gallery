@@ -4,8 +4,10 @@ import { Canvas, useFrame } from "react-three-fiber";
 import InfinitePlane from "three-components/InfinitePlane";
 import Player from "core/Player";
 import { SceneComponent } from "types/scene";
-import SpacesSphere from "models/SpacesSphere";
 import ShirtsMusic from "./components/ShirtsMusic";
+import ShirtsPiece from "./components/ShirtsPiece";
+
+import { getAudioAnalyserStore } from "stores/audio";
 
 import Analytics from "ui-components/Analytics";
 import HDRISky from "three-components/HDRI/HDRISky";
@@ -29,6 +31,7 @@ const physicsProps = {
 const Multiplayer: SceneComponent = (props) => {
   const { useEnvStore, defaultCanvasProps, children } = props;
 
+  const [useAAStore] = getAudioAnalyserStore(() => ({}));
   return (
     <>
       <Analytics />
@@ -42,11 +45,12 @@ const Multiplayer: SceneComponent = (props) => {
           <group position={[0, 0, 23]}>
             <ShirtsMusic
               useEnvStore={useEnvStore}
+              useAAStore={useAAStore}
               url="https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/audio/harris+cole+mix.mp3"
             />
           </group>
           <Suspense fallback={null}>
-            <SpacesSphere useEnvStore={useEnvStore} />
+            <ShirtsPiece useEnvStore={useEnvStore} useAAStore={useAAStore} />
           </Suspense>
         </Physics>
       </Canvas>
