@@ -63,7 +63,7 @@ const SpacesDisplay = (props: DisplayProps) => {
         intensity={0.2}
         castShadow
       />
-      <group ref={shirt} position={[0, -2, 0]}>
+      <group ref={shirt} position={[0, -5, 0]}>
         <Suspense fallback={null}>
           <SpacesShirt
             useEnvStore={useEnvStore}

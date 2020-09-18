@@ -61,7 +61,7 @@ export default function SpacesShirt(props: ShirtProps) {
 
   return (
     <group ref={group} {...props} dispose={null}>
-      <group scale={[25, 25, 25]}>
+      <group scale={[60, 60, 60]}>
         <mesh
           onClick={onClick}
           material={materials["New Shirt"]}

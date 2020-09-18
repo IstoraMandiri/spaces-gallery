@@ -85,6 +85,7 @@ const Sizes = styled.div`
 
 const SingleSize = styled.button`
   border: 1px solid black;
+  outline: none;
   border-radius: 50%;
   height: 32px;
   width: 32px;
@@ -117,10 +118,13 @@ const AddToCart = styled.div`
 
 const ShopOverlay = (props: ShopProps) => {
   const { overlay, setOverlay } = props;
-  const [size, setSize] = useState<number>(0);
+  const [size, setSize] = useState<number>();
+  const [small, setSmall] = useState<boolean>(false);
+  const [medium, setMedium] = useState<boolean>(false);
+  const [large, setLarge] = useState<boolean>(false);
   const shopifyState = useShopify(); // /products/0/variants/available
   const { client, checkout, products } = shopifyState;
-  console.log(shopifyState);
+  // console.log(shopifyState);
 
   if (!overlay) {
     return <></>;
@@ -128,6 +132,9 @@ const ShopOverlay = (props: ShopProps) => {
 
   const Checkout = async () => {
     if (!shopifyState.products) {
+      return;
+    }
+    if (!small && !medium && !large) {
       return;
     }
     const itemsToAdd = {
@@ -140,7 +147,7 @@ const ShopOverlay = (props: ShopProps) => {
       checkout.id,
       itemsToAdd
     );
-    console.log(newCheckout);
+    // console.log(newCheckout);
     window.open(newCheckout.webUrl);
   };
 
@@ -162,24 +169,45 @@ const ShopOverlay = (props: ShopProps) => {
           <h4 id="selectSize">Select Size: </h4>
           <SingleSize
             id="small"
+            style={{
+              backgroundColor: small ? "white" : "black",
+              color: small ? "black" : "white",
+            }}
             onClick={() => {
               setSize(0);
+              setSmall(true);
+              setMedium(false);
+              setLarge(false);
             }}
           >
             S
           </SingleSize>
           <SingleSize
             id="medium"
+            style={{
+              backgroundColor: medium ? "white" : "black",
+              color: medium ? "black" : "white",
+            }}
             onClick={() => {
               setSize(1);
+              setSmall(false);
+              setMedium(true);
+              setLarge(false);
             }}
           >
             M
           </SingleSize>
           <SingleSize
             id="large"
+            style={{
+              backgroundColor: large ? "white" : "black",
+              color: large ? "black" : "white",
+            }}
             onClick={() => {
               setSize(2);
+              setSmall(false);
+              setMedium(false);
+              setLarge(true);
             }}
           >
             L
