@@ -55,7 +55,7 @@ export default function SpacesShirt(props: ShirtProps) {
 
   const onClick = useCallback(() => {
     setOverlay(!overlay);
-  }, [group.current, overlay]);
+  }, [overlay]);
 
   materials["New Shirt"].opacity = hovered ? 0.5 : 1;
 
