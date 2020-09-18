@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { EnvironmentStoreHook } from "stores/environment";
 import { useShopify } from "services/shopify";
+import { isMobile } from "react-device-detect";
 
 type ShopProps = {
   overlay: boolean;
@@ -20,7 +21,8 @@ const Overlay = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  border: 2px dashed white;
+  //border: 2px dashed white;
+  font-family: "Lato", sans-serif;
 `;
 
 const Exit = styled.div`
@@ -42,13 +44,13 @@ const ProductDesc = styled.div`
   position: absolute;
   top: 20%;
   color: white;
-  border: 2px dashed red;
+  //border: 2px dashed red;
 `;
 
 const ProductImage = styled.div`
   width: 100%;
   height: 90%;
-  border: 2px dashed red;
+  //border: 2px dashed red;
   border-radius: 5%;
   background-image: url("https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/images/shirtPhoto.png");
   background-size: cover;
@@ -59,8 +61,8 @@ const ProductImage = styled.div`
 
 const ProductContent = styled.div`
   width: min(90%, 300px);
-  height: 40%;
-  border: 2px dashed green;
+  //height: 50%;
+  //border: 2px dashed green;
   border-radius: 5%;
   position: absolute;
   top: 35%;
@@ -72,14 +74,14 @@ const ProductContent = styled.div`
 const Sizes = styled.div`
   width: 100%;
   height: auto;
-  border: 2px dashed blue;
+  //border: 2px dashed blue;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
   text-align: center;
   #selectSize {
-    border: 1px dashed purple;
+    //border: 1px dashed purple;
   }
 `;
 
@@ -108,7 +110,7 @@ const AddToCart = styled.div`
   background-color: white;
   color: black;
   position: absolute;
-  bottom: 15%;
+  bottom: 12%;
   transition: background-color 0.5s ease-out, color 0.5s ease-out;
   :hover {
     background-color: red;
@@ -163,7 +165,11 @@ const ShopOverlay = (props: ShopProps) => {
       <ProductDesc>
         <h2>Spaces Tee - $50</h2>
       </ProductDesc>
-      <ProductContent>
+      <ProductContent
+        style={{
+          height: isMobile ? "50%" : "43%",
+        }}
+      >
         <ProductImage />
         <Sizes>
           <h4 id="selectSize">Select Size: </h4>
