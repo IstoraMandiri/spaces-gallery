@@ -27,12 +27,13 @@ const Base = () => {
 type DisplayProps = {
   useEnvStore: UseStore<any>;
   shopifyState?: any;
-  raycaster?: any;
   position: [number, number, number];
+  overlay: boolean;
+  setOverlay: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const SpacesDisplay = (props: DisplayProps) => {
-  const { useEnvStore, position } = props;
+  const { useEnvStore, position, overlay, setOverlay } = props;
   const [hover, setHover] = useState<boolean>(false);
   const shirt = useRef();
 
@@ -41,22 +42,36 @@ const SpacesDisplay = (props: DisplayProps) => {
       <directionalLight
         position={[0, 5, 7]}
         target={shirt.current}
-        intensity={2}
+        intensity={1.5}
+        castShadow
+      />
+      <directionalLight
+        position={[0, 5, -7]}
+        target={shirt.current}
+        intensity={0.5}
+        castShadow
+      />
+      <directionalLight
+        position={[7, 5, 0]}
+        target={shirt.current}
+        intensity={0.2}
+        castShadow
+      />
+      <directionalLight
+        position={[-7, 5, 0]}
+        target={shirt.current}
+        intensity={0.2}
         castShadow
       />
       <group ref={shirt} position={[0, -2, 0]}>
         <Suspense fallback={null}>
-          <SpacesShirt useEnvStore={useEnvStore} />
+          <SpacesShirt
+            useEnvStore={useEnvStore}
+            overlay={overlay}
+            setOverlay={setOverlay}
+          />
         </Suspense>
       </group>
-      <mesh
-        position={[8, 2, 0]}
-        castShadow
-        // mouseOver={() => {setHover(!hover)}}
-      >
-        <sphereBufferGeometry attach="geometry" args={[1, 50, 50]} />
-        <meshStandardMaterial attach="material" color="blue" />
-      </mesh>
       <Base />
     </group>
   );

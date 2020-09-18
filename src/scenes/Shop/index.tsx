@@ -3,35 +3,25 @@ import { Physics, usePlane } from "use-cannon";
 import { Canvas, useFrame } from "react-three-fiber";
 import { Sky, OrbitControls, softShadows } from "drei";
 import { SceneComponent } from "types/scene";
-import { Raycaster, Vector3 } from "three";
+import { Quaternion, Raycaster, Vector3, Vector2 } from "three";
 import styled from "@emotion/styled";
 import * as THREE from "three";
 
 import Analytics from "ui-components/Analytics";
 import Player from "../../core/Player";
+import RaycasterUtil from "../../core/RaycasterUtil";
 import SpacesDisplay from "./components/SpacesDisplay";
 import Prism from "./components/Prism";
-import { useShopify } from "../../services/shopify";
-
-const Footer = styled.div`
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  height: auto;
-  bottom: 0;
-  padding: 10px 0 10px 0;
-  text-align: center;
-  border: 2px dashed black;
-`;
+import ShopOverlay from "../../overlays/ShopOverlay";
 
 const Shop: SceneComponent = (props) => {
   const { useEnvStore, defaultCanvasProps, children } = props;
-  const shopifyState = useShopify(); // /products/0/variants/available
-  // console.log(shopifyState);
 
-  const raycaster = useRef(new Raycaster(new Vector3(), new Vector3(), 0, 3));
+  const raycaster = new Raycaster(new Vector3(), new Vector3(), 0, 3);
+  const quaternion = useRef(new Quaternion(0, 0, 0, 0));
+  const position = useRef(new Vector3(0, 0, 0));
+
+  const [overlay, setOverlay] = useState<boolean>(false);
 
   const cameraControls = {
     autoRotate: true,
@@ -75,7 +65,11 @@ const Shop: SceneComponent = (props) => {
       PrismArr.push(
         <Prism
           useEnvStore={useEnvStore}
-          scale={[Math.random() * 5, Math.random() * 5, Math.random() * 5]}
+          scale={[
+            Math.random() * 5 + 1,
+            Math.random() * 5 + 1,
+            Math.random() * 5 + 1,
+          ]}
           position={[
             -Math.random() * 40 + 7,
             Math.random() * 40 + 10,
@@ -87,7 +81,11 @@ const Shop: SceneComponent = (props) => {
       PrismArr.push(
         <Prism
           useEnvStore={useEnvStore}
-          scale={[Math.random() * 5, Math.random() * 5, Math.random() * 5]}
+          scale={[
+            Math.random() * 5 + 1,
+            Math.random() * 5 + 1,
+            Math.random() * 5 + 1,
+          ]}
           position={[
             Math.random() * 40 + 7,
             Math.random() * 40 + 10,
@@ -99,7 +97,11 @@ const Shop: SceneComponent = (props) => {
       PrismArr.push(
         <Prism
           useEnvStore={useEnvStore}
-          scale={[Math.random() * 5, Math.random() * 5, Math.random() * 5]}
+          scale={[
+            Math.random() * 5 + 1,
+            Math.random() * 5 + 1,
+            Math.random() * 5 + 1,
+          ]}
           position={[
             -Math.random() * 40 + 7,
             Math.random() * 40 + 10,
@@ -128,8 +130,11 @@ const Shop: SceneComponent = (props) => {
           color="blue"
           castShadow
         />
-        {/*<Prism useEnvStore={useEnvStore} scale={[10, 5, 7]} position={[0, 40, 0]} color={"blue"} />*/}
-        \
+        {/*<RaycasterUtil*/}
+        {/*  position={position}*/}
+        {/*  quaternion={quaternion}*/}
+        {/*  raycaster={raycaster}*/}
+        {/*/>*/}
         <Prisms />
         <Physics>
           {/*<Player*/}
@@ -141,18 +146,13 @@ const Shop: SceneComponent = (props) => {
           <SpacesDisplay
             useEnvStore={useEnvStore}
             position={[0, 0, 0]}
-            raycaster={raycaster}
+            overlay={overlay}
+            setOverlay={setOverlay}
           />
           <Plane position={[0, -0.1, 0]} rotation={[-Math.PI / 2, 0, 0]} />
         </Physics>
       </Canvas>
-      <Footer>
-        <p>Spaces Tee</p>
-        <p>S</p>
-        <p>M</p>
-        <p>L</p>
-        <p>Add To Cart</p>
-      </Footer>
+      <ShopOverlay overlay={overlay} setOverlay={setOverlay} />
     </>
   );
 };

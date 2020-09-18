@@ -16,7 +16,7 @@ const ChadPage: NextPage = () => {
           rel="stylesheet"
         />
       </Head>
-      <Environment scene={Shop} />
+      <Environment scene={Shop} hideCrosshair={true} />
     </>
   );
 };
