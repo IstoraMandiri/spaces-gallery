@@ -1,7 +1,7 @@
-import React, { Suspense, useCallback, useRef, useState } from "react";
+import React, { useState } from "react";
 import { Physics, usePlane } from "use-cannon";
-import { Canvas, useFrame } from "react-three-fiber";
-import { Sky, OrbitControls, softShadows } from "drei";
+import { Canvas } from "react-three-fiber";
+import { Sky, OrbitControls } from "drei";
 import { SceneComponent } from "types/scene";
 import * as THREE from "three";
 

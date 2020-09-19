@@ -133,21 +133,9 @@ const ShopOverlay = (props: ShopProps) => {
         </Sizes>
       </ProductContent>
       <Price>$45</Price>
-      {isMobile ? (
-        <Purchase
-          onTouchStart={Checkout}
-          style={{ bottom: isMobile ? "7%" : "15%" }}
-        >
-          Purchase
-        </Purchase>
-      ) : (
-        <Purchase
-          onClick={Checkout}
-          style={{ bottom: isMobile ? "7%" : "15%" }}
-        >
-          Purchase
-        </Purchase>
-      )}
+      <Purchase onClick={Checkout} style={{ bottom: isMobile ? "7%" : "15%" }}>
+        Purchase
+      </Purchase>
     </Overlay>
   );
 };
