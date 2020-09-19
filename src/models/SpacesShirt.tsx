@@ -45,8 +45,8 @@ export default function SpacesShirt(props: ShirtProps) {
       <group scale={[60, 60, 60]}>
         {isMobile ? (
           <mesh
-            // onClick={onClick}
-            onPointerDown={onClick}
+            onClick={onClick}
+            // onPointerDown={onClick}
             material={materials["New Shirt"]}
             geometry={nodes.Body_Front1.geometry}
           />

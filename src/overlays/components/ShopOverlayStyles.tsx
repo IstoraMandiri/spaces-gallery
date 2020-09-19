@@ -74,7 +74,7 @@ export const SingleSize = styled.button`
   height: 48px;
   width: 48px;
   text-align: center;
-  font-size: 1em;
+  font-size: 0.7em;
   cursor: pointer;
   transition: border 0.5s ease-out;
   :hover {
