@@ -30,7 +30,6 @@ type EnvironmentProps = {
   title?: string;
   artist?: string;
   link?: string;
-  hideCrosshair?: boolean;
 };
 
 const defaultCanvasProps: Partial<ContainerProps> = {
@@ -40,8 +39,8 @@ const defaultCanvasProps: Partial<ContainerProps> = {
   camera: { position: [0, 2, 0], near: 0.01, far: 100 },
 };
 
-const Environment = (props: EnvironmentProps) => {
-  const { scene: Scene, artist, title, link, hideCrosshair } = props;
+const PlayerEnvironment = (props: EnvironmentProps) => {
+  const { scene: Scene, artist, title, link } = props;
 
   // create container ref and pass into environment store
   const container = useRef<HTMLDivElement>(null);
@@ -58,9 +57,9 @@ const Environment = (props: EnvironmentProps) => {
         title={title}
       />
       {isMobile && <MobilePause useEnvStore={useStore} />}
-      {hideCrosshair ? <></> : <Crosshair />}
+      <Crosshair />
     </Container>
   );
 };
 
-export default Environment;
+export default PlayerEnvironment;

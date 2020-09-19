@@ -3,7 +3,7 @@ import { NextPage } from "next";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 
-const Environment = dynamic(import("core/Environment"), { ssr: false });
+const Environment = dynamic(import("core/PlayerEnvironment"), { ssr: false });
 const Outside = dynamic(import("scenes/Outside"), { ssr: false });
 
 const BroadwayPage: NextPage = () => {

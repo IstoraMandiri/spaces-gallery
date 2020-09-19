@@ -43,25 +43,21 @@ const SpacesDisplay = (props: DisplayProps) => {
         position={[0, 5, 7]}
         target={shirt.current}
         intensity={1.5}
-        castShadow
       />
       <directionalLight
         position={[0, 5, -7]}
         target={shirt.current}
         intensity={0.5}
-        castShadow
       />
       <directionalLight
         position={[7, 5, 0]}
         target={shirt.current}
         intensity={0.2}
-        castShadow
       />
       <directionalLight
         position={[-7, 5, 0]}
         target={shirt.current}
         intensity={0.2}
-        castShadow
       />
       <group ref={shirt} position={[0, -5, 0]}>
         <Suspense fallback={null}>

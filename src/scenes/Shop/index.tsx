@@ -28,8 +28,9 @@ const Shop: SceneComponent = (props) => {
     autoRotateSpeed: 1.25,
     enableKeys2: false,
     enableZoom: true,
-    minDistance: 5,
+    minDistance: 5.5,
     maxDistance: 15,
+    minPolarAngle: Math.PI / 6,
     maxPolarAngle: Math.PI / 2.3,
     mouseButtons: {
       LEFT: THREE.MOUSE.ROTATE,
@@ -49,67 +50,76 @@ const Shop: SceneComponent = (props) => {
     );
   };
 
+  const prismColors = [
+    "#af9fff",
+    "#fcfdfe",
+    "#d7dbe2",
+    "#dc7da8",
+    "#8b8c89",
+    // "white"
+  ];
+
   const Prisms = () => {
     const PrismArr = [];
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 30; i++) {
       PrismArr.push(
         <Prism
           useEnvStore={useEnvStore}
           scale={[Math.random() * 5, Math.random() * 5, Math.random() * 5]}
           position={[
-            Math.random() * 40 + 7,
-            Math.random() * 40 + 10,
-            Math.random() * 40 + 7,
+            Math.floor(Math.random() * 40),
+            Math.floor(Math.random() * 30) + 1.5,
+            Math.floor(Math.random() * 40),
           ]}
-          color={"white"}
+          color={prismColors[Math.floor(Math.random() * prismColors.length)]}
         />
       );
       PrismArr.push(
         <Prism
           useEnvStore={useEnvStore}
           scale={[
-            Math.random() * 5 + 1,
-            Math.random() * 5 + 1,
-            Math.random() * 5 + 1,
+            Math.random() * 4 + 2,
+            Math.random() * 4 + 2,
+            Math.random() * 4 + 2,
           ]}
           position={[
-            -Math.random() * 40 + 7,
-            Math.random() * 40 + 10,
-            Math.random() * 40 + 7,
+            Math.floor(-Math.random() * 40),
+            Math.floor(Math.random() * 30) + 1.5,
+            Math.floor(Math.random() * 40),
           ]}
-          color={"white"}
+          color={prismColors[Math.floor(Math.random() * prismColors.length)]}
         />
       );
       PrismArr.push(
         <Prism
           useEnvStore={useEnvStore}
           scale={[
-            Math.random() * 5 + 1,
-            Math.random() * 5 + 1,
-            Math.random() * 5 + 1,
+            Math.random() * 4 + 2,
+            Math.random() * 4 + 2,
+            Math.random() * 4 + 2,
           ]}
           position={[
-            Math.random() * 40 + 7,
-            Math.random() * 40 + 10,
-            -Math.random() * 40 + 7,
+            Math.floor(Math.random() * 40),
+            Math.floor(Math.random() * 30) + 1.5,
+            Math.floor(-Math.random() * 40),
           ]}
-          color={"white"}
+          color={prismColors[Math.floor(Math.random() * prismColors.length)]}
         />
       );
       PrismArr.push(
         <Prism
           useEnvStore={useEnvStore}
           scale={[
-            Math.random() * 5 + 1,
-            Math.random() * 5 + 1,
-            Math.random() * 5 + 1,
+            Math.random() * 4 + 2,
+            Math.random() * 4 + 2,
+            Math.random() * 4 + 2,
           ]}
           position={[
-            -Math.random() * 40 + 7,
-            Math.random() * 40 + 10,
-            -Math.random() * 40 + 7,
+            Math.floor(-Math.random() * 40),
+            Math.floor(Math.random() * 30) + 1.5,
+            Math.floor(-Math.random() * 40),
           ]}
-          color={"white"}
+          color={prismColors[Math.floor(Math.random() * prismColors.length)]}
         />
       );
     }
@@ -127,9 +137,9 @@ const Shop: SceneComponent = (props) => {
         <OrbitControls target={[0, 2, 0]} {...cameraControls} />
         <ambientLight intensity={0.2} />
         <pointLight
-          position={[0, 50, 50]}
+          position={[0, 75, 0]}
           intensity={1}
-          color="blue"
+          color="white"
           castShadow
         />
         {/*<RaycasterUtil*/}

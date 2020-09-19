@@ -66,7 +66,6 @@ export default function SpacesShirt(props: ShirtProps) {
           onClick={onClick}
           material={materials["New Shirt"]}
           geometry={nodes.Body_Front1.geometry}
-          castShadow
         />
       </group>
     </group>

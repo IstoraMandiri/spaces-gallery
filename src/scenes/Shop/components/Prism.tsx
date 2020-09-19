@@ -12,10 +12,15 @@ type PrismProps = {
 const Prism = (props: PrismProps) => {
   const { useEnvStore, scale = [1, 1, 1], position, color } = props;
   const group = useRef();
+  const newPosition = position;
+
+  if (position[0] < 5.5 && position[2] < 6) {
+    newPosition[1] += 7;
+  }
 
   return (
     <>
-      <group ref={group} position={position}>
+      <group ref={group} position={newPosition}>
         <mesh castShadow>
           <boxBufferGeometry attach="geometry" args={scale} />
           <meshStandardMaterial attach="material" color={color} />
