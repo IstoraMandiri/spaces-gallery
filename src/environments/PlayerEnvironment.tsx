@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import styled from "@emotion/styled";
 import PauseMenu from "overlays/PauseMenu";
-import Crosshair from "./Crosshair";
+import Crosshair from "../core/Crosshair";
 import { SceneComponent } from "types/scene";
 import { getEnvironmentStore } from "stores/environment";
 import LoadingScreen from "ui-components/LoadingScreen";

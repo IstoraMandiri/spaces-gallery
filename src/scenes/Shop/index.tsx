@@ -3,23 +3,15 @@ import { Physics, usePlane } from "use-cannon";
 import { Canvas, useFrame } from "react-three-fiber";
 import { Sky, OrbitControls, softShadows } from "drei";
 import { SceneComponent } from "types/scene";
-import { Quaternion, Raycaster, Vector3, Vector2 } from "three";
-import styled from "@emotion/styled";
 import * as THREE from "three";
 
 import Analytics from "ui-components/Analytics";
-import Player from "../../core/Player";
-import RaycasterUtil from "../../core/RaycasterUtil";
 import SpacesDisplay from "./components/SpacesDisplay";
 import Prism from "./components/Prism";
 import ShopOverlay from "../../overlays/ShopOverlay";
 
 const Shop: SceneComponent = (props) => {
   const { useEnvStore, defaultCanvasProps, children } = props;
-
-  const raycaster = new Raycaster(new Vector3(), new Vector3(), 0, 3);
-  const quaternion = useRef(new Quaternion(0, 0, 0, 0));
-  const position = useRef(new Vector3(0, 0, 0));
 
   const [overlay, setOverlay] = useState<boolean>(false);
 
@@ -44,20 +36,12 @@ const Shop: SceneComponent = (props) => {
     return (
       <mesh ref={ref} receiveShadow>
         <planeBufferGeometry attach="geometry" args={[500, 500]} />
-        {/*<meshStandardMaterial attach="material" color="green" opacity={0.5} />*/}
         <shadowMaterial attach="material" opacity={0.5} />
       </mesh>
     );
   };
 
-  const prismColors = [
-    "#af9fff",
-    "#fcfdfe",
-    "#d7dbe2",
-    "#dc7da8",
-    "#8b8c89",
-    // "white"
-  ];
+  const prismColors = ["#af9fff", "#fcfdfe", "#d7dbe2", "#dc7da8", "#8b8c89"];
 
   const Prisms = () => {
     const PrismArr = [];
@@ -142,19 +126,8 @@ const Shop: SceneComponent = (props) => {
           color="white"
           castShadow
         />
-        {/*<RaycasterUtil*/}
-        {/*  position={position}*/}
-        {/*  quaternion={quaternion}*/}
-        {/*  raycaster={raycaster}*/}
-        {/*/>*/}
         <Prisms />
         <Physics>
-          {/*<Player*/}
-          {/*  useEnvStore={useEnvStore}*/}
-          {/*  initPos={[0, 1, 6]}*/}
-          {/*  initLook={[0, 1, 0]}*/}
-          {/*  raycaster={raycaster}*/}
-          {/*/>*/}
           <SpacesDisplay
             useEnvStore={useEnvStore}
             position={[0, 0, 0]}

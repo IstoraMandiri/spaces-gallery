@@ -36,7 +36,7 @@ const defaultCanvasProps: Partial<ContainerProps> = {
   camera: { position: [0, 2, 0], near: 0.01, far: 100 },
 };
 
-const BasicEnvironment = (props: BasicEnvironmentProps) => {
+const ShopEnvironment = (props: BasicEnvironmentProps) => {
   const { scene: Scene, artist, title, link } = props;
 
   // create container ref and pass into environment store
@@ -51,4 +51,4 @@ const BasicEnvironment = (props: BasicEnvironmentProps) => {
   );
 };
 
-export default BasicEnvironment;
+export default ShopEnvironment;

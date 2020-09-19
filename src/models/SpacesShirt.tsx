@@ -27,7 +27,6 @@ type ShirtProps = {
 export default function SpacesShirt(props: ShirtProps) {
   const { useEnvStore, overlay, setOverlay } = props;
 
-  const [hovered, setHover] = useState<boolean>(false);
   const setLoading = useEnvStore((st) => st.setLoading);
   const group = useRef<THREE.Group>();
   const { nodes, materials } = useLoader<GLTFResult>(
@@ -36,28 +35,9 @@ export default function SpacesShirt(props: ShirtProps) {
     loadModel(setLoading)
   );
 
-  // Auto Rotate
-  // useFrame(({ clock }) => {
-  //   if (group.current) {
-  //     group.current.rotation.y = clock.getElapsedTime() / 10;
-  //   }
-  // });
-
-  // const onHover = useCallback(() => {
-  //   setHover(false)
-  //   // console.log(`ON HOVER: ${hovered}`);
-  // }, [hovered]);
-  //
-  // const onHoverOff = useCallback(() => {
-  //   setHover(true)
-  //   // console.log(`ON HOVER OFF: ${hovered}`);
-  // }, [hovered]);
-
   const onClick = useCallback(() => {
     setOverlay(!overlay);
   }, [overlay]);
-
-  materials["New Shirt"].opacity = hovered ? 0.5 : 1;
 
   return (
     <group ref={group} {...props} dispose={null}>
