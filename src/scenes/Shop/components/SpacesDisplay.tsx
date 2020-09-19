@@ -1,7 +1,9 @@
 import React, { Suspense, useEffect, useRef, useState } from "react";
 import { UseStore } from "zustand";
+import { Text } from "drei";
 
 import SpacesShirt from "models/SpacesShirt";
+import { isMobile } from "react-device-detect";
 
 type DisplayProps = {
   useEnvStore: UseStore<any>;
@@ -59,6 +61,19 @@ const SpacesDisplay = (props: DisplayProps) => {
           />
           <meshStandardMaterial attach="material" color="grey" />
         </mesh>
+      </group>
+      <group name="floatingCard" position={[3, 4, 0]}>
+        <mesh position={[0, 0, 0]}>
+          <boxBufferGeometry attach="geometry" args={[1.5, 0.3, 0.2]} />
+          <meshStandardMaterial attach="material" color="grey" />
+        </mesh>
+        <group position={[0, 0, 0.105]}>
+          <Text color="purple">
+            {isMobile
+              ? "Tap the Shirt to Place an Order"
+              : "Click the Shirt to Place an Order"}
+          </Text>
+        </group>
       </group>
     </group>
   );
