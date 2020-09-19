@@ -87,11 +87,13 @@ const Sizes = styled.div`
 
 const SingleSize = styled.button`
   border: 1px solid black;
+  margin: 20px 0 20px 0;
   outline: none;
   border-radius: 50%;
-  height: 32px;
-  width: 32px;
+  height: 48px;
+  width: 48px;
   text-align: center;
+  font-size: 1em;
   cursor: pointer;
   transition: border 0.5s ease-out;
   :hover {
@@ -99,7 +101,7 @@ const SingleSize = styled.button`
   }
 `;
 
-const AddToCart = styled.div`
+const Purchase = styled.div`
   width: min(200px, 90%);
   height: auto;
   text-align: center;
@@ -110,7 +112,7 @@ const AddToCart = styled.div`
   background-color: white;
   color: black;
   position: absolute;
-  bottom: 12%;
+  bottom: 15%;
   transition: background-color 0.5s ease-out, color 0.5s ease-out;
   :hover {
     background-color: red;
@@ -118,9 +120,21 @@ const AddToCart = styled.div`
   }
 `;
 
+const Price = styled.div`
+  width: auto;
+  height: auto;
+  position: absolute;
+  //bottom: 19%;
+  top: 29%;
+  color: white;
+  margin: auto;
+  //font-weight: bold;
+  font-size: 1.5em;
+`;
+
 const ShopOverlay = (props: ShopProps) => {
   const { overlay, setOverlay } = props;
-  const [size, setSize] = useState<number>();
+  const [size, setSize] = useState<number | undefined>(undefined);
   const [small, setSmall] = useState<boolean>(false);
   const [medium, setMedium] = useState<boolean>(false);
   const [large, setLarge] = useState<boolean>(false);
@@ -136,7 +150,7 @@ const ShopOverlay = (props: ShopProps) => {
     if (!shopifyState.products) {
       return;
     }
-    if (!small && !medium && !large) {
+    if (size === undefined) {
       return;
     }
     const itemsToAdd = {
@@ -163,7 +177,7 @@ const ShopOverlay = (props: ShopProps) => {
         X
       </Exit>
       <ProductDesc>
-        <h2>Spaces Tee - $50</h2>
+        <h2>Spaces Portal 001</h2>
       </ProductDesc>
       <ProductContent
         style={{
@@ -172,7 +186,7 @@ const ShopOverlay = (props: ShopProps) => {
       >
         <ProductImage />
         <Sizes>
-          <h4 id="selectSize">Select Size: </h4>
+          {/*<h4 id="selectSize">Select Size: </h4>*/}
           <SingleSize
             id="small"
             style={{
@@ -180,10 +194,15 @@ const ShopOverlay = (props: ShopProps) => {
               color: small ? "black" : "white",
             }}
             onClick={() => {
-              setSize(0);
-              setSmall(true);
-              setMedium(false);
-              setLarge(false);
+              if (size === 0) {
+                setSize(undefined);
+                setSmall(false);
+              } else {
+                setSize(0);
+                setSmall(true);
+                setMedium(false);
+                setLarge(false);
+              }
             }}
           >
             S
@@ -195,10 +214,15 @@ const ShopOverlay = (props: ShopProps) => {
               color: medium ? "black" : "white",
             }}
             onClick={() => {
-              setSize(1);
-              setSmall(false);
-              setMedium(true);
-              setLarge(false);
+              if (size === 1) {
+                setSize(undefined);
+                setMedium(false);
+              } else {
+                setSize(1);
+                setSmall(false);
+                setMedium(true);
+                setLarge(false);
+              }
             }}
           >
             M
@@ -210,17 +234,23 @@ const ShopOverlay = (props: ShopProps) => {
               color: large ? "black" : "white",
             }}
             onClick={() => {
-              setSize(2);
-              setSmall(false);
-              setMedium(false);
-              setLarge(true);
+              if (size === 2) {
+                setSize(undefined);
+                setLarge(false);
+              } else {
+                setSize(2);
+                setSmall(false);
+                setMedium(false);
+                setLarge(true);
+              }
             }}
           >
             L
           </SingleSize>
         </Sizes>
       </ProductContent>
-      <AddToCart onClick={Checkout}>Add To Cart</AddToCart>
+      <Price>$45</Price>
+      <Purchase onClick={Checkout}>Purchase</Purchase>
     </Overlay>
   );
 };

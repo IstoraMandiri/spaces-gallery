@@ -21,7 +21,7 @@ const Prism = (props: PrismProps) => {
   return (
     <>
       <group ref={group} position={newPosition}>
-        <mesh castShadow>
+        <mesh castShadow receiveShadow>
           <boxBufferGeometry attach="geometry" args={scale} />
           <meshStandardMaterial attach="material" color={color} />
         </mesh>
