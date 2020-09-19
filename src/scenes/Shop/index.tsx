@@ -7,7 +7,7 @@ import * as THREE from "three";
 
 import Analytics from "ui-components/Analytics";
 import SpacesDisplay from "./components/SpacesDisplay";
-import Prism from "./components/Prism";
+import Prisms from "./components/PrismArray";
 import ShopOverlay from "../../overlays/ShopOverlay";
 
 const Shop: SceneComponent = (props) => {
@@ -39,75 +39,6 @@ const Shop: SceneComponent = (props) => {
         <shadowMaterial attach="material" opacity={0.5} />
       </mesh>
     );
-  };
-
-  const prismColors = ["#af9fff", "#fcfdfe", "#d7dbe2", "#dc7da8", "#8b8c89"];
-
-  const Prisms = () => {
-    const PrismArr = [];
-    for (let i = 0; i < 30; i++) {
-      PrismArr.push(
-        <Prism
-          useEnvStore={useEnvStore}
-          scale={[Math.random() * 5, Math.random() * 5, Math.random() * 5]}
-          position={[
-            Math.floor(Math.random() * 40),
-            Math.floor(Math.random() * 30) + 1.5,
-            Math.floor(Math.random() * 40),
-          ]}
-          color={prismColors[Math.floor(Math.random() * prismColors.length)]}
-        />
-      );
-      PrismArr.push(
-        <Prism
-          useEnvStore={useEnvStore}
-          scale={[
-            Math.random() * 4 + 2,
-            Math.random() * 4 + 2,
-            Math.random() * 4 + 2,
-          ]}
-          position={[
-            Math.floor(-Math.random() * 40),
-            Math.floor(Math.random() * 30) + 1.5,
-            Math.floor(Math.random() * 40),
-          ]}
-          color={prismColors[Math.floor(Math.random() * prismColors.length)]}
-        />
-      );
-      PrismArr.push(
-        <Prism
-          useEnvStore={useEnvStore}
-          scale={[
-            Math.random() * 4 + 2,
-            Math.random() * 4 + 2,
-            Math.random() * 4 + 2,
-          ]}
-          position={[
-            Math.floor(Math.random() * 40),
-            Math.floor(Math.random() * 30) + 1.5,
-            Math.floor(-Math.random() * 40),
-          ]}
-          color={prismColors[Math.floor(Math.random() * prismColors.length)]}
-        />
-      );
-      PrismArr.push(
-        <Prism
-          useEnvStore={useEnvStore}
-          scale={[
-            Math.random() * 4 + 2,
-            Math.random() * 4 + 2,
-            Math.random() * 4 + 2,
-          ]}
-          position={[
-            Math.floor(-Math.random() * 40),
-            Math.floor(Math.random() * 30) + 1.5,
-            Math.floor(-Math.random() * 40),
-          ]}
-          color={prismColors[Math.floor(Math.random() * prismColors.length)]}
-        />
-      );
-    }
-    return <>{PrismArr}</>;
   };
 
   return (

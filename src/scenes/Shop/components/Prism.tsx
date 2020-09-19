@@ -4,13 +4,12 @@ import { UseStore } from "zustand";
 import { useFrame } from "react-three-fiber";
 
 type PrismProps = {
-  useEnvStore: UseStore<any>;
   scale?: [number, number, number];
   position: [number, number, number];
   color: string;
 };
 const Prism = (props: PrismProps) => {
-  const { useEnvStore, scale = [1, 1, 1], position, color } = props;
+  const { scale = [1, 1, 1], position, color } = props;
   const group = useRef();
   const newPosition = position;
 

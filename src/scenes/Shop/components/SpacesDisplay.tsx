@@ -1,28 +1,7 @@
 import React, { Suspense, useEffect, useRef, useState } from "react";
-import { EnvironmentStoreHook } from "stores/environment";
-import { softShadows } from "drei";
+import { UseStore } from "zustand";
 
 import SpacesShirt from "models/SpacesShirt";
-import { UseStore } from "zustand";
-import { Canvas } from "react-three-fiber";
-
-// @ts-ignore
-softShadows();
-
-const Base = () => {
-  return (
-    <group>
-      <mesh position={[0, 0, 0]} receiveShadow>
-        <cylinderBufferGeometry attach="geometry" args={[5, 5, 0.1, 80]} />
-        <meshStandardMaterial attach="material" color="grey" />
-      </mesh>
-      <mesh position={[0, 0.1, 0]} receiveShadow>
-        <cylinderBufferGeometry attach="geometry" args={[3.5, 3.5, 0.2, 80]} />
-        <meshStandardMaterial attach="material" color="grey" />
-      </mesh>
-    </group>
-  );
-};
 
 type DisplayProps = {
   useEnvStore: UseStore<any>;
@@ -68,7 +47,19 @@ const SpacesDisplay = (props: DisplayProps) => {
           />
         </Suspense>
       </group>
-      <Base />
+      <group name="cylinderBase">
+        <mesh position={[0, 0, 0]} receiveShadow>
+          <cylinderBufferGeometry attach="geometry" args={[5, 5, 0.1, 80]} />
+          <meshStandardMaterial attach="material" color="grey" />
+        </mesh>
+        <mesh position={[0, 0.1, 0]} receiveShadow>
+          <cylinderBufferGeometry
+            attach="geometry"
+            args={[3.5, 3.5, 0.2, 80]}
+          />
+          <meshStandardMaterial attach="material" color="grey" />
+        </mesh>
+      </group>
     </group>
   );
 };
