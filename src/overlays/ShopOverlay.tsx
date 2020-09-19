@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import styled from "@emotion/styled";
-import { EnvironmentStoreHook } from "stores/environment";
 import { useShopify } from "services/shopify";
 import {
   Overlay,
@@ -67,7 +65,7 @@ const ShopOverlay = (props: ShopProps) => {
       </ProductDesc>
       <ProductContent
         style={{
-          height: isMobile ? "50%" : "43%",
+          height: isMobile ? "51%" : "43%",
         }}
       >
         <ProductImage />
@@ -135,7 +133,9 @@ const ShopOverlay = (props: ShopProps) => {
         </Sizes>
       </ProductContent>
       <Price>$45</Price>
-      <Purchase onClick={Checkout}>Purchase</Purchase>
+      <Purchase onClick={Checkout} style={{ bottom: isMobile ? "7%" : "15%" }}>
+        Purchase
+      </Purchase>
     </Overlay>
   );
 };

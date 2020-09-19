@@ -20,10 +20,12 @@ const Shop: SceneComponent = (props) => {
     autoRotateSpeed: 1.25,
     enableKeys2: false,
     enableZoom: true,
+    enablePan: false,
     minDistance: 5.5,
     maxDistance: 15,
     minPolarAngle: Math.PI / 6,
     maxPolarAngle: Math.PI / 2.3,
+    cancelable: false,
     mouseButtons: {
       LEFT: THREE.MOUSE.ROTATE,
       MIDDLE: THREE.MOUSE.ROTATE,
