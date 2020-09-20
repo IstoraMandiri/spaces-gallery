@@ -3,27 +3,22 @@ import { NextPage } from "next";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 
-const Environment = dynamic(import("environments/PlayerEnvironment"), {
+const Environment = dynamic(import("environments/ShopEnvironment"), {
   ssr: false,
 });
-const Chad = dynamic(import("scenes/Chad"), { ssr: false });
+const Shop = dynamic(import("scenes/Shop"), { ssr: false });
 
 const ChadPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Chad Knight | Spaces Gallery</title>
+        <title>Spaces Gallery - Shop</title>
         <link
           href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,300&family=Space+Mono&display=swap"
           rel="stylesheet"
         />
       </Head>
-      <Environment
-        scene={Chad}
-        artist="Harris Cole"
-        title="Virtual Genesis by Chad Knight"
-        link="https://www.instagram.com/_harris.cole/"
-      />
+      <Environment scene={Shop} />
     </>
   );
 };

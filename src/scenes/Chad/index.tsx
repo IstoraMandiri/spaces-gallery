@@ -1,8 +1,10 @@
 import React, { Suspense, useCallback, useRef, useState } from "react";
 import { Physics } from "use-cannon";
 import { Canvas } from "react-three-fiber";
-import Player from "core/Player";
+import { Sky, Stars } from "drei";
+import { Color } from "three";
 import { SceneComponent } from "types/scene";
+import { Raycaster, Vector3 } from "three";
 
 import Analytics from "ui-components/Analytics";
 import Effects from "core/Effects";
@@ -11,10 +13,8 @@ import ChadPiece from "./components/ChadPiece";
 import ChadLighting from "./components/ChadLighting";
 import ChadSceneSelector from "./components/ChadSceneSelector";
 import PlatformPlatform from "./components/PlatformPlatform";
-import { Sky, Stars } from "drei";
-import { Color } from "three";
+import Player from "core/Player";
 import ToggleEffect from "three-components/ToggleEffect";
-import { Raycaster, Vector3 } from "three";
 import ChadMusic from "./components/ChadMusic";
 import ChadEntrance from "./components/ChadEntrance";
 import Signs from "./components/Signs";

@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import styled from "@emotion/styled";
 import PauseMenu from "overlays/PauseMenu";
-import Crosshair from "./Crosshair";
+import Crosshair from "../core/Crosshair";
 import { SceneComponent } from "types/scene";
 import { getEnvironmentStore } from "stores/environment";
 import LoadingScreen from "ui-components/LoadingScreen";
@@ -39,7 +39,7 @@ const defaultCanvasProps: Partial<ContainerProps> = {
   camera: { position: [0, 2, 0], near: 0.01, far: 100 },
 };
 
-const Environment = (props: EnvironmentProps) => {
+const PlayerEnvironment = (props: EnvironmentProps) => {
   const { scene: Scene, artist, title, link } = props;
 
   // create container ref and pass into environment store
@@ -62,4 +62,4 @@ const Environment = (props: EnvironmentProps) => {
   );
 };
 
-export default Environment;
+export default PlayerEnvironment;

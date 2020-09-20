@@ -5,7 +5,7 @@ import ShopifyBuy from "shopify-buy";
 const { NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS } = process.env;
 
 const client = ShopifyBuy.buildClient({
-  domain: "awge-2018.myshopify.com",
+  domain: "spaceslabs.myshopify.com",
   storefrontAccessToken: NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS,
 });
 
