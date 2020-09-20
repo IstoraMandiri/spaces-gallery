@@ -10,14 +10,13 @@ export const Overlay = styled.div`
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
   font-family: "Lato", sans-serif;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;
 
 export const Exit = styled.div`
-  width: auto;
-  height: auto;
   color: white;
   cursor: pointer;
   position: absolute;
@@ -29,11 +28,16 @@ export const Exit = styled.div`
 `;
 
 export const ProductDesc = styled.div`
-  width: auto;
-  height: auto;
-  position: absolute;
-  top: 20%;
   color: white;
+  text-align: center;
+
+  & > h2 {
+    margin-bottom: 10px;
+  }
+
+  & > h4 {
+    margin-top: 0;
+  }
 `;
 
 export const ProductImage = styled.div`
@@ -49,8 +53,6 @@ export const ProductImage = styled.div`
 export const ProductContent = styled.div`
   width: min(90%, 300px);
   border-radius: 5%;
-  position: absolute;
-  top: 35%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,7 +60,6 @@ export const ProductContent = styled.div`
 
 export const Sizes = styled.div`
   width: 100%;
-  height: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -84,15 +85,12 @@ export const SingleSize = styled.button`
 
 export const Purchase = styled.div`
   width: min(200px, 90%);
-  height: auto;
   text-align: center;
   border-radius: 5px;
   padding: 10px 0 10px 0;
   cursor: pointer;
   background-color: white;
   color: black;
-  position: absolute;
-  bottom: 15%;
   transition: background-color 0.5s ease-out, color 0.5s ease-out;
   :hover {
     background-color: red;
@@ -100,13 +98,8 @@ export const Purchase = styled.div`
   }
 `;
 
-export const Price = styled.div`
-  width: auto;
-  height: auto;
-  position: absolute;
-  //bottom: 19%;
-  top: 29%;
+export const Price = styled.h2`
   color: white;
-  margin: auto;
-  font-size: 1.5em;
+  font-size: 1.25em;
+  margin: 5px 0;
 `;
