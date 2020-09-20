@@ -62,6 +62,7 @@ const ShopOverlay = (props: ShopProps) => {
       </Exit>
       <ProductDesc>
         <h2>Spaces Portal 001</h2>
+        <h4>a portal to a space made just for you</h4>
       </ProductDesc>
       <ProductContent
         style={{

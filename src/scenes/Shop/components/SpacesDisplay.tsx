@@ -62,7 +62,7 @@ const SpacesDisplay = (props: DisplayProps) => {
           <meshStandardMaterial attach="material" color="grey" />
         </mesh>
       </group>
-      <group name="floatingCard" position={[-3, 4, 0]}>
+      <group name="floatingCard" position={[0, 1, 1.5]} scale={[1.5, 1.5, 1.5]}>
         <mesh position={[0, 0, 0]}>
           <boxBufferGeometry attach="geometry" args={[1.5, 0.3, 0.2]} />
           <meshStandardMaterial attach="material" color="grey" />
