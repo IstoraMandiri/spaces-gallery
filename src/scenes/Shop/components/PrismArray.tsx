@@ -3,7 +3,7 @@ import Prism from "./Prism";
 
 const prismColors = ["#af9fff", "#fcfdfe", "#d7dbe2", "#dc7da8", "#8b8c89"];
 
-const PrismArray = () => {
+const PrismArray = React.memo(() => {
   const PrismArr = [];
   for (let i = 0; i < 30; i++) {
     PrismArr.push(
@@ -64,6 +64,6 @@ const PrismArray = () => {
     );
   }
   return <>{PrismArr}</>;
-};
+});
 
 export default PrismArray;
