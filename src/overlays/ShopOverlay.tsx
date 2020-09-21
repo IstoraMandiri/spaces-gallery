@@ -48,7 +48,7 @@ const ShopOverlay = (props: ShopProps) => {
       checkout.id,
       itemsToAdd
     );
-    window.open(newCheckout.webUrl);
+    window.location.href = newCheckout.webUrl;
   };
 
   return (
