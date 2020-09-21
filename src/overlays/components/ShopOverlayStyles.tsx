@@ -62,6 +62,8 @@ export const SingleSize = styled.button<{
   available: boolean;
   selected: boolean;
 }>`
+  text-align: center;
+  padding: 0;
   border: 1px solid black;
   margin: 0 5px;
   outline: none;
