@@ -4,14 +4,16 @@ import {
   Overlay,
   Exit,
   ProductDesc,
-  ProductContent,
+  Description,
   ProductImage,
   Sizes,
   SingleSize,
-  Price,
   Purchase,
+  LeftSide,
+  RightSide,
+  Input,
+  Form,
 } from "./components/ShopOverlayStyles";
-import { isMobile } from "react-device-detect";
 
 type ShopProps = {
   overlay: boolean;
@@ -20,123 +22,75 @@ type ShopProps = {
 
 const ShopOverlay = (props: ShopProps) => {
   const { overlay, setOverlay } = props;
-  const [size, setSize] = useState<number | undefined>(undefined);
-  const [small, setSmall] = useState<boolean>(false);
-  const [medium, setMedium] = useState<boolean>(false);
-  const [large, setLarge] = useState<boolean>(false);
+  const [curVariantId, setCurVariantId] = useState<string>();
   const shopifyState = useShopify(); // /products/0/variants/available
   const { client, checkout, products } = shopifyState;
+  const [username, setUsername] = useState("");
 
-  if (!overlay) {
+  if (!overlay || !products) {
     return <></>;
   }
 
+  // @ts-ignore
+  const { variants, images, description, title } = products[0];
+  const closeOverlay = () => setOverlay(!overlay);
+  const price = variants[0].price;
+
   const Checkout = async () => {
-    if (!shopifyState.products) {
+    if (!products || !curVariantId || !username) {
       return;
     }
-    if (size === undefined) {
-      return;
-    }
+
     const itemsToAdd = {
       // @ts-ignore
-      variantId: products[0].variants[size].id,
+      variantId: curVariantId,
       quantity: 1,
+      customAttributes: [{ key: "instagram", value: username }],
     };
-    const newCheckout = await client.checkout.addLineItems(
+    const newCheckout1 = await client.checkout.addLineItems(
       // @ts-ignore
       checkout.id,
       itemsToAdd
     );
-    window.location.href = newCheckout.webUrl;
+
+    window.location.href = newCheckout1.webUrl;
   };
 
   return (
     <Overlay>
-      <Exit
-        onClick={() => {
-          setOverlay(!overlay);
-        }}
-      >
-        X
-      </Exit>
-      <ProductDesc>
-        <h2>Spaces Portal 001</h2>
-        <h4>a portal to a space made just for you</h4>
-      </ProductDesc>
-      <ProductContent
-        style={{
-          height: isMobile ? "51%" : "43%",
-        }}
-      >
-        <ProductImage />
-        <Sizes>
-          <SingleSize
-            id="small"
-            style={{
-              backgroundColor: small ? "white" : "black",
-              color: small ? "black" : "white",
-            }}
-            onClick={() => {
-              if (size === 0) {
-                setSize(undefined);
-                setSmall(false);
-              } else {
-                setSize(0);
-                setSmall(true);
-                setMedium(false);
-                setLarge(false);
-              }
-            }}
-          >
-            S
-          </SingleSize>
-          <SingleSize
-            id="medium"
-            style={{
-              backgroundColor: medium ? "white" : "black",
-              color: medium ? "black" : "white",
-            }}
-            onClick={() => {
-              if (size === 1) {
-                setSize(undefined);
-                setMedium(false);
-              } else {
-                setSize(1);
-                setSmall(false);
-                setMedium(true);
-                setLarge(false);
-              }
-            }}
-          >
-            M
-          </SingleSize>
-          <SingleSize
-            id="large"
-            style={{
-              backgroundColor: large ? "white" : "black",
-              color: large ? "black" : "white",
-            }}
-            onClick={() => {
-              if (size === 2) {
-                setSize(undefined);
-                setLarge(false);
-              } else {
-                setSize(2);
-                setSmall(false);
-                setMedium(false);
-                setLarge(true);
-              }
-            }}
-          >
-            L
-          </SingleSize>
-        </Sizes>
-      </ProductContent>
-      <Price>$45</Price>
-      <Purchase onClick={Checkout} style={{ bottom: isMobile ? "7%" : "15%" }}>
-        Purchase
-      </Purchase>
+      <LeftSide>
+        <ProductImage src={images[0].src} />
+      </LeftSide>
+      <RightSide>
+        <Exit onClick={closeOverlay}>X</Exit>
+        <ProductDesc>
+          <h3>{title.toUpperCase()}</h3>
+          <h5>${price}</h5>
+          <Description>{description}</Description>
+        </ProductDesc>
+        <Form>
+          <Sizes>
+            {/* @ts-ignore */}
+            {variants.map(({ id, available, title }) => (
+              <SingleSize
+                key={id}
+                onClick={() => setCurVariantId(id)}
+                selected={id === curVariantId}
+                available={available}
+                disabled={!available}
+              >
+                {title.substr(0, 1).toUpperCase()}
+              </SingleSize>
+            ))}
+          </Sizes>
+          <Input
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Your Instagram Username"
+          />
+          <Purchase onClick={Checkout}>Purchase</Purchase>
+        </Form>
+      </RightSide>
     </Overlay>
   );
 };
