@@ -65,7 +65,7 @@ const ShirtsMusic = (props: OutsideAudioProps) => {
       speaker.current.setVolume(10);
 
       //init audio analyser
-      setAnalyser(new THREE.AudioAnalyser(speaker.current, 32));
+      setAnalyser(new THREE.AudioAnalyser(speaker.current, 128));
 
       const helper = new PositionalAudioHelper(speaker.current);
       speaker.current.add(helper);
