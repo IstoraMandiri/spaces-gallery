@@ -7301,6 +7301,11 @@ text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
 
+three.modifiers@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/three.modifiers/-/three.modifiers-2.2.3.tgz#c5be756a8118e9c643ec85d3229f477c2a79d089"
+  integrity sha512-fNos74srQ7d3uat6kp4TYTkuDRRchV/03Xb0hwl4j9MLSaMoKXckPzmZdI4zYygwur9+iCDiYCGayzGoxVLuww==
+
 three@0.118.3:
   version "0.118.3"
   resolved "https://registry.yarnpkg.com/three/-/three-0.118.3.tgz#c0bf8c10a68155478f12f4ccac2ff979526a4a0a"

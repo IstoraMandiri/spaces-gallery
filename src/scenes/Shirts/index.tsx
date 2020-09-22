@@ -7,6 +7,8 @@ import { SceneComponent } from "types/scene";
 import ShirtsMusic from "./components/ShirtsMusic";
 import ShirtsPiece from "./components/ShirtsPiece";
 
+import { SpotLight } from "three";
+
 import { getAudioAnalyserStore } from "stores/audio";
 
 import Analytics from "ui-components/Analytics";
@@ -31,6 +33,15 @@ const physicsProps = {
 const Multiplayer: SceneComponent = (props) => {
   const { useEnvStore, defaultCanvasProps, children } = props;
 
+  const light = useMemo(() => new SpotLight(), []);
+  const lightArgs = {
+    distance: 12,
+    color: 0xff00ff,
+    intensity: 8,
+    angle: Math.PI / 2.4,
+    penumbra: 0.5,
+  };
+
   const [useAAStore] = getAudioAnalyserStore(() => ({}));
   return (
     <>
@@ -41,7 +52,11 @@ const Multiplayer: SceneComponent = (props) => {
           <Sky />
           <InfinitePlane height={-0.001} />
           <Player useEnvStore={useEnvStore} />
-          <ambientLight intensity={1} />
+          <ambientLight intensity={0.3} />
+          <group position={[-4, 8, 5]}>
+            <primitive castShadow object={light} {...lightArgs} />
+            <primitive object={light.target} position={[-1, -1, -1]} />
+          </group>
           <group position={[0, 0, 23]}>
             <ShirtsMusic
               useEnvStore={useEnvStore}
