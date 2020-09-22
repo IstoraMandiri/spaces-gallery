@@ -3,9 +3,8 @@ import { EnvironmentStoreHook } from "stores/environment";
 import { AudioAnalyserStoreHook } from "stores/audio";
 import SpacesSphere from "models/SpacesSphere";
 import Wall from "./ReactiveWall";
-import { Color, Mesh } from "three";
 import { useFrame, useLoader } from "react-three-fiber";
-import { Cloth, ModifierStack, Noise } from "three.modifiers";
+// import { Cloth, ModifierStack, Noise } from "three.modifiers";
 import * as THREE from "three";
 
 type ShirtsProps = {
@@ -43,29 +42,28 @@ const ShirtsPiece = (props: ShirtsProps) => {
 
   const mesh = useRef();
 
-  let modifier: ModifierStack;
+  //   let modifier: ModifierStack;
 
-  const cloth = new Cloth(1, 0);
+  //   const cloth = new Cloth(1, 0);
 
-  if (mesh.current) {
-    modifier = new ModifierStack(mesh.current);
+  //   if (mesh.current) {
+  //     modifier = new ModifierStack(mesh.current);
 
-    cloth.setForce(0.02, -0.02, -0.02);
+  //     cloth.setForce(0.02, -0.02, -0.02);
 
-    modifier.addModifier(cloth);
-  }
+  //     modifier.addModifier(cloth);
+  //   }
 
   useFrame(({ clock }) => {
     //this is just to make sure the audio analyser is working
     // console.log(aa?.getFrequencyData());
-
     //update mesh modifiers on the floor mesh
-    try {
-      cloth.lockXMin(0);
-    } catch (err) {
-      console.log(err);
-    }
-    modifier && modifier.apply();
+    // try {
+    //   cloth.lockXMin(0);
+    // } catch (err) {
+    //   console.log(err);
+    // }
+    // modifier && modifier.apply();
   });
 
   //   const [realColor, setColor] = useState<string>("black");
