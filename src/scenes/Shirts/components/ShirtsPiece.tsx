@@ -145,7 +145,7 @@ const ShirtsPiece = (props: ShirtsProps) => {
     <group>
       <Suspense fallback={null}>
         {wallPieces}
-        <SpacesSphere useEnvStore={useEnvStore} />
+        {/* <SpacesSphere useEnvStore={useEnvStore} /> */}
         {meshes}
         <mesh
           receiveShadow
