@@ -10,15 +10,6 @@ import { useFrame, useLoader } from "react-three-fiber";
 import { EnvironmentStoreHook } from "stores/environment";
 import { AudioAnalyserStoreHook } from "stores/audio";
 
-// type GLTFResult = GLTF & {
-//   nodes: {
-//     Sphere: THREE.Mesh;
-//   };
-//   materials: {
-//     Sphere: THREE.MeshStandardMaterial;
-//   };
-// };
-
 //this should be moved to the types folder eventually
 type AudioReactiveModelProps = JSX.IntrinsicElements["group"] & {
   useEnvStore: EnvironmentStoreHook;
@@ -32,11 +23,6 @@ export default function Model(props: AudioReactiveModelProps) {
   //   const setLoading = useEnvStore((st) => st.setLoading);
   const group = useRef<THREE.Group>();
   const boxGroup = useRef<THREE.Group>();
-  //   const { nodes, materials } = useLoader<GLTFResult>(
-  //     GLTFLoader,
-  //     "https://d27rt3a60hh1lx.cloudfront.net/models/SpacesSphere1/SpacesSphere1.glb",
-  //     loadModel(setLoading)
-  //   );
 
   const aa = useAAStore((st) => st.audioAnalyser);
 
@@ -53,9 +39,9 @@ export default function Model(props: AudioReactiveModelProps) {
     <group ref={group} {...props} dispose={null} rotation={[0, 0, 0]}>
       <group ref={boxGroup} scale={[100, 100, 100]}>
         <group position={[-((8 * 0.04) / 2) + 0.04 * index, 0, -0.01]}>
-          <mesh receiveShadow>
+          <mesh receiveShadow castShadow>
             <boxGeometry args={[0.04, 0.02, 0.02]} attach="geometry" />
-            <meshStandardMaterial color="red" attach="material" />
+            <meshNormalMaterial color="red" attach="material" />
           </mesh>
         </group>
       </group>
