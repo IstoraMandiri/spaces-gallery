@@ -6,6 +6,25 @@ import Wall from "./ReactiveWall";
 import { useFrame, useLoader } from "react-three-fiber";
 // import { Cloth, ModifierStack, Noise } from "three.modifiers";
 import * as THREE from "three";
+import FramedImage from "three-components/FramedImage"; //need to make a custom component this is placeholder
+import Robert1 from "models/Robert1Generic"; //need to make a custom component this is placeholder
+
+type Asset = {
+  url: string;
+  type: string;
+  position?: THREE.Vector3;
+};
+
+const assignAssetSlots = (
+  slots: Array<THREE.Vector3>,
+  objects: Array<Asset>
+) => {
+  for (let i = 0; i < objects.length; i++) {
+    const rand = Math.floor(Math.random() * slots.length);
+    objects[i].position = slots[rand];
+    slots.splice(rand, 1);
+  }
+};
 
 type ShirtsProps = {
   useEnvStore: EnvironmentStoreHook;
@@ -14,15 +33,13 @@ type ShirtsProps = {
 
 const ShirtsPiece = (props: ShirtsProps) => {
   const { useEnvStore, useAAStore } = props;
-
-  const aa = useAAStore((st) => st.audioAnalyser);
-  //   const sphere = useRef<Mesh>();
+  //   const aa = useAAStore((st) => st.audioAnalyser);
   const num_spheres = 8;
   const bucket_size = 1;
   const initSpheres = (num: number) => {
-    const rows = [];
+    const wallPieces = [];
     for (let i = 0; i < num; i++) {
-      rows.unshift(
+      wallPieces.unshift(
         <Wall
           useEnvStore={useEnvStore}
           useAAStore={useAAStore}
@@ -31,16 +48,74 @@ const ShirtsPiece = (props: ShirtsProps) => {
         />
       );
     }
-    return rows;
+    return wallPieces;
   };
-  const rows = initSpheres(num_spheres);
+  const wallPieces = initSpheres(num_spheres);
+
+  //length of slots array and objects array should always be equal
+  const slots = [
+    new THREE.Vector3(8.5, 0, 8),
+    new THREE.Vector3(-8.5, 0, 4),
+    new THREE.Vector3(-2, 0, 10),
+    new THREE.Vector3(12, 0, -12),
+  ];
+  const objects: Array<Asset> = [
+    {
+      url:
+        "https://d27rt3a60hh1lx.cloudfront.net/content/chadknight/harris/chaptsikc.jpg",
+      type: "image",
+    },
+    {
+      url:
+        "https://d27rt3a60hh1lx.cloudfront.net/content/chadknight/harris/chaptsikc.jpg",
+      type: "image",
+    },
+    {
+      url:
+        "https://d27rt3a60hh1lx.cloudfront.net/content/opening/robert/Robert1/Robert1.glb",
+      type: "mesh",
+    },
+    {
+      url:
+        "https://d27rt3a60hh1lx.cloudfront.net/content/opening/robert/Robert1/Robert1.glb",
+      type: "mesh",
+    },
+  ];
+
+  assignAssetSlots(slots, objects);
+  const meshes = [];
+  for (let i = 0; i < objects.length; i++) {
+    switch (objects[i].type) {
+      case "image":
+        console.log(objects[i]);
+        meshes.push(
+          <FramedImage
+            src={objects[i].url}
+            ratio={[1, 1]}
+            sizeScale={5}
+            position={objects[i].position}
+            rotation={[0, (-Math.PI / 2) * Math.random(), 0]}
+            // floating
+          />
+        );
+        break;
+      case "video":
+        break;
+      case "mesh":
+        console.log(objects[i]);
+        meshes.push(
+          <Robert1 useEnvStore={useEnvStore} position={objects[i].position} />
+        );
+        break;
+    }
+  }
 
   const texture = useLoader(
     THREE.TextureLoader,
     "https://d27rt3a60hh1lx.cloudfront.net/content/chadknight/harris/chaptsikc.jpg"
   );
 
-  const mesh = useRef();
+  //   const mesh = useRef();
 
   //   let modifier: ModifierStack;
 
@@ -66,20 +141,12 @@ const ShirtsPiece = (props: ShirtsProps) => {
     // modifier && modifier.apply();
   });
 
-  //   const [realColor, setColor] = useState<string>("black");
-  //   useEffect(() => {
-  //     if (realColor === "black") {
-  //       setColor("#28FA92");
-  //     } else {
-  //       setColor(colors[Math.floor(Math.random() * colors.length)]);
-  //     }
-  //   }, [color]);
-
   return (
     <group>
       <Suspense fallback={null}>
-        {rows}
+        {wallPieces}
         <SpacesSphere useEnvStore={useEnvStore} />
+        {meshes}
         <mesh
           receiveShadow
           position={[0, -2, 0]}
@@ -88,7 +155,8 @@ const ShirtsPiece = (props: ShirtsProps) => {
           <planeGeometry args={[50, 70, 32]} attach="geometry" />
           <meshStandardMaterial color="red" attach="material" />
         </mesh>
-        <mesh
+        {/* this is the floor of the scene ^^^ */}
+        {/* <mesh
           ref={mesh}
           receiveShadow
           position={[0, 2, 0]}
@@ -96,7 +164,7 @@ const ShirtsPiece = (props: ShirtsProps) => {
         >
           <planeGeometry args={[50, 50, 32]} attach="geometry" />
           <meshStandardMaterial attach="material" map={texture} />
-        </mesh>
+        </mesh> */}
       </Suspense>
     </group>
   );
