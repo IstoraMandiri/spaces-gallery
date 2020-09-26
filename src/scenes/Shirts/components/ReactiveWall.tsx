@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import React, { useMemo, useRef } from "react";
-import { useFrame, useLoader } from "react-three-fiber";
+import { useFrame, useLoader, useThree } from "react-three-fiber";
 // import { GLTFLoader, GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 // import { draco } from "drei";
 // import { ModelProps } from "../types/model";
@@ -23,8 +23,11 @@ export default function Model(props: AudioReactiveModelProps) {
   //   const setLoading = useEnvStore((st) => st.setLoading);
   const group = useRef<THREE.Group>();
   const boxGroup = useRef<THREE.Group>();
+  const material = useRef<THREE.MeshStandardMaterial>();
 
   const aa = useAAStore((st) => st.audioAnalyser);
+
+  const { camera } = useThree();
 
   useFrame(({ clock }) => {
     if (group.current) {
@@ -32,6 +35,13 @@ export default function Model(props: AudioReactiveModelProps) {
         ? aa?.getFrequencyData()[index] / 10
         : 0;
       group.current.scale.y = 2 + freq_data;
+    }
+    if (material.current) {
+      material.current.color = new THREE.Color(
+        camera.rotation.x,
+        camera.rotation.y,
+        camera.rotation.z
+      );
     }
   });
 
@@ -41,7 +51,11 @@ export default function Model(props: AudioReactiveModelProps) {
         <group position={[-((8 * 0.04) / 2) + 0.04 * index, 0, -0.01]}>
           <mesh receiveShadow castShadow>
             <boxGeometry args={[0.04, 0.02, 0.02]} attach="geometry" />
-            <meshNormalMaterial color="red" attach="material" />
+            <meshStandardMaterial
+              ref={material}
+              color="red"
+              attach="material"
+            />
           </mesh>
         </group>
       </group>

@@ -69,7 +69,7 @@ const Multiplayer: SceneComponent = (props) => {
           <group position={[-4, 8, 5]}>
             <primitive castShadow object={light} {...lightArgs} />
             <primitive object={light.target} position={[-1, -1, -1]} />
-            {/* <primitive object={shadowHelper}/> */}
+            <primitive object={shadowHelper} />
             <primitive object={sun} position={[10, 10, 10]} castShadow />
           </group>
           <group position={[0, 0, 23]}>
