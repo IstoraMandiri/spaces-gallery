@@ -12,6 +12,7 @@ type FramedVideoProps = JSX.IntrinsicElements["group"] & {
   sizeScale: number;
   frameless?: boolean;
   floating?: boolean;
+  floatHeight?: number;
 };
 
 const frameWidth = 0.3;
@@ -19,7 +20,6 @@ const frameDepth = 0.1;
 const borderThickness = 0.2;
 const borderDepth = 0.2;
 const meshOffset = 0.0005;
-const floatHeight = 0.05;
 
 const FramedMutedVideo = (props: FramedVideoProps) => {
   const {
@@ -31,6 +31,7 @@ const FramedMutedVideo = (props: FramedVideoProps) => {
     rotation = [0, 0, 0],
     frameless,
     floating,
+    floatHeight = 0.5,
   } = props;
 
   const { camera, scene } = useThree();
@@ -143,7 +144,11 @@ const FramedMutedVideo = (props: FramedVideoProps) => {
         )}
         {!frameless && (
           <>
-            <mesh position={[0, 0, -0.1 - meshOffset]} material={material}>
+            <mesh
+              castShadow
+              position={[0, 0, -0.1 - meshOffset]}
+              material={material}
+            >
               <boxBufferGeometry
                 attach="geometry"
                 args={[width + frameWidth, height + frameWidth, frameDepth]}
