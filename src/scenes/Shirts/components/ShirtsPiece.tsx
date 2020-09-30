@@ -33,7 +33,7 @@ type ShirtsProps = {
 
 const ShirtsPiece = (props: ShirtsProps) => {
   const { useEnvStore, useAAStore, json } = props;
-  //   const aa = useAAStore((st) => st.audioAnalyser);
+
   const num_spheres = 8;
   const bucket_size = 1;
   const initSpheres = (num: number) => {
