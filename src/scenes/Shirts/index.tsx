@@ -19,6 +19,7 @@ import {
 import { getAudioAnalyserStore } from "stores/audio";
 
 import Analytics from "ui-components/Analytics";
+import HDRISky from "three-components/HDRI/HDRISky";
 import { Sky } from "drei";
 
 const physicsProps = {
@@ -40,8 +41,8 @@ const Multiplayer: SceneComponent = (props) => {
     axios
       .post(API_URL, { id: window.location.pathname.substring(8) })
       .then((res) => {
-        // console.log("res", res.data);
-        // console.log("window", window.location.pathname);
+        console.log("res", res.data);
+        console.log("window", window.location.pathname);
         setResponseData(res.data);
       });
   }, [setResponseData]);
@@ -82,7 +83,7 @@ const Multiplayer: SceneComponent = (props) => {
             {/* <primitive object={shadowHelper} /> */}
             <primitive object={sun} position={[10, 10, 10]} castShadow />
           </group>
-          <group position={[0, 0, 0]}>
+          <group position={[0, 0, 23]}>
             <ShirtsMusic
               useEnvStore={useEnvStore}
               useAAStore={useAAStore}
@@ -93,13 +94,28 @@ const Multiplayer: SceneComponent = (props) => {
               <ShirtsFloor
                 useEnvStore={useEnvStore}
                 position={[-30, -2.5, -30]}
-                scale={[2, 0.5, 2]}
-                cubes={30}
+                scale={[1, 0.5, 1]}
+                cubes={50}
                 hueStart={0.5}
                 hueEnd={0.8}
               />
             </Suspense>
           </group>
+          <Suspense fallback={null}>
+            <ShirtsPiece
+              useEnvStore={useEnvStore}
+              useAAStore={useAAStore}
+              json={responseData}
+            />
+            <ShirtsFloor
+              useEnvStore={useEnvStore}
+              position={[-30, -2.5, -30]}
+              scale={[1, 0.5, 1]}
+              cubes={50}
+              hueStart={0.5}
+              hueEnd={0.8}
+            />
+          </Suspense>
         </Physics>
       </Canvas>
     </>
