@@ -24,6 +24,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.14.0",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
+    "axios": "^0.20.0",
     "babel-plugin-macros": "^2.8.0",
     "drei": "^1.5.3",
     "glsl-noise": "^0.0.0",
