@@ -86,7 +86,7 @@ const Multiplayer: SceneComponent = (props) => {
             <ShirtsMusic
               useEnvStore={useEnvStore}
               useAAStore={useAAStore}
-              url="https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/audio/harris+cole+mix.mp3"
+              url="https://d27rt3a60hh1lx.cloudfront.net/audio/ini-bestmixever.mp3"
             />
           </group>
           <Suspense fallback={null}>

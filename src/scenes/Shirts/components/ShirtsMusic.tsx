@@ -3,8 +3,8 @@ import React, { useEffect, useRef } from "react";
 import { useThree } from "react-three-fiber";
 import { EnvironmentStoreHook } from "stores/environment";
 import { AudioAnalyserStoreHook } from "stores/audio";
-import { PositionalAudioHelper } from "three/examples/jsm/helpers/PositionalAudioHelper";
-import { threadId } from "worker_threads";
+// import { PositionalAudioHelper } from "three/examples/jsm/helpers/PositionalAudioHelper";
+// import { threadId } from "worker_threads";
 
 type OutsideAudioProps = JSX.IntrinsicElements["group"] & {
   useEnvStore: EnvironmentStoreHook;
@@ -67,8 +67,8 @@ const ShirtsMusic = (props: OutsideAudioProps) => {
       //init audio analyser
       setAnalyser(new THREE.AudioAnalyser(speaker.current, 128));
 
-      const helper = new PositionalAudioHelper(speaker.current);
-      speaker.current.add(helper);
+      // const helper = new PositionalAudioHelper(speaker.current);
+      // speaker.current.add(helper);
 
       scene.add(speaker.current);
     }
