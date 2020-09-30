@@ -8,6 +8,7 @@ import ShirtsMusic from "./components/ShirtsMusic";
 import ShirtsPiece from "./components/ShirtsPiece";
 import ShirtsFloor from "./components/ShirtsFloor";
 import axios from "axios";
+import ShirtsFloor from "./components/ShirtsFloor";
 
 
 import {
@@ -106,6 +107,14 @@ const Multiplayer: SceneComponent = (props) => {
               useEnvStore={useEnvStore}
               useAAStore={useAAStore}
               json={responseData}
+            />
+            <ShirtsFloor
+              useEnvStore={useEnvStore}
+              position={[-30, -2.5, -30]}
+              scale={[1, 0.5, 1]}
+              cubes={50}
+              hueStart={0.5}
+              hueEnd={0.8}
             />
           </Suspense>
         </Physics>

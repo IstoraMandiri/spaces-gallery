@@ -134,15 +134,6 @@ const ShirtsPiece = (props: ShirtsProps) => {
       <Suspense fallback={null}>
         {wallPieces}
         {meshes}
-        <mesh
-          receiveShadow
-          position={[0, -2, 0]}
-          rotation={[-Math.PI / 2, 0, 0]}
-        >
-          <planeGeometry args={[50, 70, 32]} attach="geometry" />
-          <meshStandardMaterial color="red" attach="material" />
-        </mesh>
-        {/* this is the floor of the scene ^^^ */}
       </Suspense>
     </group>
   );
