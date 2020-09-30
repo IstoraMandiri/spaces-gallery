@@ -143,6 +143,7 @@ const ShirtsPiece = (props: ShirtsProps) => {
             sizeScale={5 + 1 * Math.random()}
             position={objects[i].position}
             rotation={[0, 4 * Math.PI * Math.random(), 0]}
+            useAAStore={useAAStore}
             floating
           />
         );
