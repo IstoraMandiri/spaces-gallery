@@ -2,7 +2,7 @@ import React, { Suspense, useEffect, useRef, useState } from "react";
 import { EnvironmentStoreHook } from "stores/environment";
 import { AudioAnalyserStoreHook } from "stores/audio";
 import Wall from "./ReactiveWall";
-import { useFrame } from "react-three-fiber";
+import { useFrame, useLoader } from "react-three-fiber";
 import * as THREE from "three";
 import BasicImage from "three-components/BasicImage";
 import Robert1 from "models/Robert1Generic"; //need to make a custom component this is placeholder
@@ -66,59 +66,7 @@ const ShirtsPiece = (props: ShirtsProps) => {
     new THREE.Vector3(-1, 0, -14),
     new THREE.Vector3(-3, 0, -10),
   ];
-  // const objects: Array<Asset> = [
-  //   {
-  //     url:
-  //       "https://d27rt3a60hh1lx.cloudfront.net/portals/shirt/wonglok831/117222381_120107479541576_5937787846796282665_n.jpg",
-  //     type: "image",
-  //   },
-  //   {
-  //     url:
-  //       "https://d27rt3a60hh1lx.cloudfront.net/content/chadknight/harris/chaptsikc.jpg",
-  //     type: "image",
-  //   },
-  //   {
-  //     url:
-  //       "https://d27rt3a60hh1lx.cloudfront.net/content/opening/robert/Robert1/Robert1.glb",
-  //     type: "3d",
-  //   },
-  //   {
-  //     url:
-  //       "https://d27rt3a60hh1lx.cloudfront.net/content/opening/robert/Robert1/Robert1.glb",
-  //     type: "3d",
-  //   },
-  //   {
-  //     url:
-  //       "https://d27rt3a60hh1lx.cloudfront.net/content/opening/dennis/2_compositions.mp4",
-  //     type: "video",
-  //   },
-  //   {
-  //     url:
-  //       "https://d27rt3a60hh1lx.cloudfront.net/content/opening/dennis/2_compositions.mp4",
-  //     type: "video",
-  //   },
-  //   {
-  //     url:
-  //       "https://d27rt3a60hh1lx.cloudfront.net/portals/shirt/wonglok831/120219462_689612748644727_4947143331971474529_n.mp4",
-  //     type: "video",
-  //   },
-  //   {
-  //     url:
-  //       "https://d27rt3a60hh1lx.cloudfront.net/portals/shirt/wonglok831/120219462_689612748644727_4947143331971474529_n.mp4",
-  //     type: "video",
-  //   },
-  //   {
-  //     url:
-  //       "https://d27rt3a60hh1lx.cloudfront.net/portals/shirt/wonglok831/120219462_689612748644727_4947143331971474529_n.mp4",
-  //     type: "video",
-  //   },
-  //   {
-  //     url:
-  //       "https://d27rt3a60hh1lx.cloudfront.net/portals/shirt/wonglok831/120219462_689612748644727_4947143331971474529_n.mp4",
-  //     type: "video",
-  //   },
-  // ];
-
+  
   const objects = json.assets
     ? json.assets
     : [
@@ -179,6 +127,7 @@ const ShirtsPiece = (props: ShirtsProps) => {
     //this is just to make sure the audio analyser is working
     // console.log(aa?.getFrequencyData());
   });
+
 
   return (
     <group>

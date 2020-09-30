@@ -10,9 +10,10 @@ type OutsideAudioProps = JSX.IntrinsicElements["group"] & {
   useEnvStore: EnvironmentStoreHook;
   useAAStore: AudioAnalyserStoreHook;
   url: string;
+  muted?: boolean;
 };
 const ShirtsMusic = (props: OutsideAudioProps) => {
-  const { useEnvStore, useAAStore, url } = props;
+  const { useEnvStore, useAAStore, url, muted } = props;
 
   const paused = useEnvStore((st) => st.paused);
 
@@ -32,6 +33,12 @@ const ShirtsMusic = (props: OutsideAudioProps) => {
       audio.crossOrigin = "anonymous";
       audio.loop = true;
       container?.current?.appendChild(audio);
+
+      if (muted) {
+        audio.muted = true;
+      } else {
+        audio.muted = false;
+      }
 
       audioRef.current = audio;
 

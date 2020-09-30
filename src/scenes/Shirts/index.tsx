@@ -6,7 +6,9 @@ import Player from "core/Player";
 import { SceneComponent } from "types/scene";
 import ShirtsMusic from "./components/ShirtsMusic";
 import ShirtsPiece from "./components/ShirtsPiece";
+import ShirtsFloor from "./components/ShirtsFloor";
 import axios from "axios";
+
 
 import {
   // CameraHelper,
@@ -83,11 +85,21 @@ const Multiplayer: SceneComponent = (props) => {
             <primitive object={sun} position={[10, 10, 10]} castShadow />
           </group>
           <group position={[0, 0, 23]}>
-            <ShirtsMusic
+           <ShirtsMusic
               useEnvStore={useEnvStore}
               useAAStore={useAAStore}
               url="https://d27rt3a60hh1lx.cloudfront.net/audio/ini-bestmixever.mp3"
             />
+            <Suspense fallback={null}>
+              <ShirtsPiece useEnvStore={useEnvStore} useAAStore={useAAStore} />
+              <ShirtsFloor
+                useEnvStore={useEnvStore}
+                position={[-30, -2.5, -30]}
+                scale={[1, 0.5, 1]}
+                cubes={50}
+                hueStart={0.5}
+                hueEnd={0.8}
+              />
           </group>
           <Suspense fallback={null}>
             <ShirtsPiece
