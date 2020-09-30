@@ -6,6 +6,7 @@ import Player from "core/Player";
 import { SceneComponent } from "types/scene";
 import ShirtsMusic from "./components/ShirtsMusic";
 import ShirtsPiece from "./components/ShirtsPiece";
+import axios from "axios";
 
 import {
   // CameraHelper,
@@ -31,6 +32,20 @@ const physicsProps = {
 };
 
 const Multiplayer: SceneComponent = (props) => {
+  const [responseData, setResponseData] = React.useState("");
+
+  React.useEffect(() => {
+    const API_URL =
+      "https://27m2mbw4h0.execute-api.us-west-1.amazonaws.com/fetch";
+    axios
+      .post(API_URL, { id: window.location.pathname.substring(8) })
+      .then((res) => {
+        console.log("res", res.data);
+        console.log("window", window.location.pathname);
+        setResponseData(res.data);
+      });
+  }, [setResponseData]);
+
   const { useEnvStore, defaultCanvasProps, children } = props;
 
   const light = useMemo(() => new SpotLight(), []);
@@ -75,7 +90,11 @@ const Multiplayer: SceneComponent = (props) => {
             />
           </group>
           <Suspense fallback={null}>
-            <ShirtsPiece useEnvStore={useEnvStore} useAAStore={useAAStore} />
+            <ShirtsPiece
+              useEnvStore={useEnvStore}
+              useAAStore={useAAStore}
+              json={responseData}
+            />
           </Suspense>
         </Physics>
       </Canvas>
