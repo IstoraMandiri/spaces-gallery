@@ -4,10 +4,11 @@ import { AudioAnalyserStoreHook } from "stores/audio";
 import SpacesSphere from "models/SpacesSphere";
 import Wall from "./ReactiveWall";
 import { useFrame, useLoader } from "react-three-fiber";
-// import { Cloth, ModifierStack, Noise } from "three.modifiers";
+// import { Cloth, ModifierStack } from "three.modifiers";
 import * as THREE from "three";
-import FramedImage from "three-components/FramedImage"; //need to make a custom component this is placeholder
+import BasicImage from "three-components/BasicImage";
 import Robert1 from "models/Robert1Generic"; //need to make a custom component this is placeholder
+import FramedMutedVideo from "three-components/FramedMutedVideo"; //need to make a custom component this is placeholder
 
 type Asset = {
   url: string;
@@ -54,15 +55,21 @@ const ShirtsPiece = (props: ShirtsProps) => {
 
   //length of slots array and objects array should always be equal
   const slots = [
-    new THREE.Vector3(8.5, 0, 8),
-    new THREE.Vector3(-8.5, 0, 4),
-    new THREE.Vector3(-2, 0, 10),
-    new THREE.Vector3(12, 0, -12),
+    new THREE.Vector3(3, 0, 8),
+    new THREE.Vector3(-8, 0, 13),
+    new THREE.Vector3(-5, 0, 10),
+    new THREE.Vector3(3, 0, -12),
+    new THREE.Vector3(8, 0, 10),
+    new THREE.Vector3(-3, 0, 15),
+    new THREE.Vector3(4, 0, -5),
+    new THREE.Vector3(0, 0, 13),
+    new THREE.Vector3(-1, 0, -14),
+    new THREE.Vector3(-3, 0, -10),
   ];
   const objects: Array<Asset> = [
     {
       url:
-        "https://d27rt3a60hh1lx.cloudfront.net/content/chadknight/harris/chaptsikc.jpg",
+        "https://d27rt3a60hh1lx.cloudfront.net/portals/shirt/wonglok831/117222381_120107479541576_5937787846796282665_n.jpg",
       type: "image",
     },
     {
@@ -79,6 +86,36 @@ const ShirtsPiece = (props: ShirtsProps) => {
       url:
         "https://d27rt3a60hh1lx.cloudfront.net/content/opening/robert/Robert1/Robert1.glb",
       type: "mesh",
+    },
+    {
+      url:
+        "https://d27rt3a60hh1lx.cloudfront.net/content/opening/dennis/2_compositions.mp4",
+      type: "video",
+    },
+    {
+      url:
+        "https://d27rt3a60hh1lx.cloudfront.net/content/opening/dennis/2_compositions.mp4",
+      type: "video",
+    },
+    {
+      url:
+        "https://d27rt3a60hh1lx.cloudfront.net/portals/shirt/wonglok831/120219462_689612748644727_4947143331971474529_n.mp4",
+      type: "video",
+    },
+    {
+      url:
+        "https://d27rt3a60hh1lx.cloudfront.net/portals/shirt/wonglok831/120219462_689612748644727_4947143331971474529_n.mp4",
+      type: "video",
+    },
+    {
+      url:
+        "https://d27rt3a60hh1lx.cloudfront.net/portals/shirt/wonglok831/120219462_689612748644727_4947143331971474529_n.mp4",
+      type: "video",
+    },
+    {
+      url:
+        "https://d27rt3a60hh1lx.cloudfront.net/portals/shirt/wonglok831/120219462_689612748644727_4947143331971474529_n.mp4",
+      type: "video",
     },
   ];
 
@@ -89,17 +126,29 @@ const ShirtsPiece = (props: ShirtsProps) => {
       case "image":
         console.log(objects[i]);
         meshes.push(
-          <FramedImage
+          <BasicImage
             src={objects[i].url}
             ratio={[1, 1]}
-            sizeScale={5}
+            sizeScale={5 + 1 * Math.random()}
             position={objects[i].position}
-            rotation={[0, (-Math.PI / 2) * Math.random(), 0]}
-            // floating
+            rotation={[0, 4 * Math.PI * Math.random(), 0]}
+            floating
           />
         );
         break;
       case "video":
+        meshes.push(
+          <FramedMutedVideo
+            src={objects[i].url}
+            ratio={[730, 730]}
+            sizeScale={5 + 1 * Math.random()}
+            position={objects[i].position}
+            rotation={[0, 2 * Math.PI * Math.random(), 0]}
+            useEnvStore={useEnvStore}
+            floating
+            floatHeight={5}
+          />
+        );
         break;
       case "mesh":
         console.log(objects[i]);
@@ -110,33 +159,39 @@ const ShirtsPiece = (props: ShirtsProps) => {
     }
   }
 
-  const texture = useLoader(
-    THREE.TextureLoader,
-    "https://d27rt3a60hh1lx.cloudfront.net/content/chadknight/harris/chaptsikc.jpg"
-  );
+  // const texture = useLoader(
+  //   THREE.TextureLoader,
+  //   "https://d27rt3a60hh1lx.cloudfront.net/content/chadknight/harris/chaptsikc.jpg"
+  // );
 
-  //   const mesh = useRef();
+  // const mesh = useRef();
 
-  //   let modifier: ModifierStack;
+  // let modifier: ModifierStack;
 
-  //   const cloth = new Cloth(1, 0);
+  // const cloth = new Cloth(1, 0);
 
-  //   if (mesh.current) {
-  //     modifier = new ModifierStack(mesh.current);
+  // if (mesh.current) {
+  //   modifier = new ModifierStack(mesh.current);
 
-  //     cloth.setForce(0.02, -0.02, -0.02);
+  //   cloth.setForce(0.02, -0.02, -0.02);
 
-  //     modifier.addModifier(cloth);
-  //   }
+  //   modifier.addModifier(cloth);
+  // }
 
   useFrame(({ clock }) => {
     //this is just to make sure the audio analyser is working
     // console.log(aa?.getFrequencyData());
-    //update mesh modifiers on the floor mesh
+    //update mesh modifiers
+    // if (!modifier && mesh.current) {
+    //   modifier = new ModifierStack(mesh.current);
+    //   cloth.setForce(0.02, -0.02, -0.02);
+    //   modifier.addModifier(cloth);
+    // }
     // try {
     //   cloth.lockXMin(0);
     // } catch (err) {
     //   console.log(err);
+    //   modifier.addModifier(cloth);
     // }
     // modifier && modifier.apply();
   });
@@ -145,7 +200,7 @@ const ShirtsPiece = (props: ShirtsProps) => {
     <group>
       <Suspense fallback={null}>
         {wallPieces}
-        <SpacesSphere useEnvStore={useEnvStore} />
+        {/* <SpacesSphere useEnvStore={useEnvStore} /> */}
         {meshes}
         <mesh
           receiveShadow
