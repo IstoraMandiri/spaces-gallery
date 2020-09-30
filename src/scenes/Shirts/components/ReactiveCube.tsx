@@ -3,10 +3,8 @@ import { EnvironmentStoreHook } from "../../../stores/environment";
 import { AudioAnalyserStoreHook } from "../../../stores/audio";
 import { useFrame, useThree } from "react-three-fiber";
 import { Vector3 } from "three";
-import * as THREE from "three";
 // @ts-ignore
 import SimplexNoise from "simplex-noise";
-import { useBox } from "use-cannon";
 
 type ReactiveCubeProps = {
   position: [number, number, number];
@@ -81,18 +79,6 @@ const ReactiveCube = (props: ReactiveCubeProps) => {
       } else {
         // @ts-ignore
         cube.current.scale.y = scale[1] + 3 * simpValue;
-
-        // if (distance < 5) {
-        //   // @ts-ignore
-        //   cube.current.scale.y = Math.min(
-        //     7,
-        //   // @ts-ignore
-        //     cube.current.scale.y + delta*50
-        //   )
-        // } else {
-        //   // @ts-ignore
-        //   cube.current.scale.y = scale[1] + 3 * simpValue;
-        // }
       }
     }
   });
