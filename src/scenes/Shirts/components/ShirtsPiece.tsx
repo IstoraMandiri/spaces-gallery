@@ -66,8 +66,8 @@ const ShirtsPiece = (props: ShirtsProps) => {
     new THREE.Vector3(-1, 0, -14),
     new THREE.Vector3(-3, 0, -10),
   ];
-  
-  const objects = json.assets
+
+  const objects = json
     ? json.assets
     : [
         {
@@ -127,7 +127,6 @@ const ShirtsPiece = (props: ShirtsProps) => {
     //this is just to make sure the audio analyser is working
     // console.log(aa?.getFrequencyData());
   });
-
 
   return (
     <group>
