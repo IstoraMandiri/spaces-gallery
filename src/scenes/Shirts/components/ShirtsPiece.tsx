@@ -55,17 +55,21 @@ const ShirtsPiece = (props: ShirtsProps) => {
 
   //length of slots array and objects array should always be equal
   const slots = [
-    new THREE.Vector3(8.5, 0, 8),
-    new THREE.Vector3(-8.5, 0, 4),
-    new THREE.Vector3(-2, 0, 10),
-    new THREE.Vector3(12, 0, -12),
-    new THREE.Vector3(8, 0, 5),
-    new THREE.Vector3(-3, 0, -8),
+    new THREE.Vector3(3, 0, 8),
+    new THREE.Vector3(-8, 0, 13),
+    new THREE.Vector3(-5, 0, 10),
+    new THREE.Vector3(3, 0, -12),
+    new THREE.Vector3(8, 0, 10),
+    new THREE.Vector3(-3, 0, 15),
+    new THREE.Vector3(4, 0, -5),
+    new THREE.Vector3(0, 0, 13),
+    new THREE.Vector3(-1, 0, -14),
+    new THREE.Vector3(-3, 0, -10),
   ];
   const objects: Array<Asset> = [
     {
       url:
-        "https://d27rt3a60hh1lx.cloudfront.net/content/chadknight/harris/chaptsikc.jpg",
+        "https://d27rt3a60hh1lx.cloudfront.net/portals/shirt/wonglok831/117222381_120107479541576_5937787846796282665_n.jpg",
       type: "image",
     },
     {
@@ -91,6 +95,26 @@ const ShirtsPiece = (props: ShirtsProps) => {
     {
       url:
         "https://d27rt3a60hh1lx.cloudfront.net/content/opening/dennis/2_compositions.mp4",
+      type: "video",
+    },
+    {
+      url:
+        "https://d27rt3a60hh1lx.cloudfront.net/portals/shirt/wonglok831/120219462_689612748644727_4947143331971474529_n.mp4",
+      type: "video",
+    },
+    {
+      url:
+        "https://d27rt3a60hh1lx.cloudfront.net/portals/shirt/wonglok831/120219462_689612748644727_4947143331971474529_n.mp4",
+      type: "video",
+    },
+    {
+      url:
+        "https://d27rt3a60hh1lx.cloudfront.net/portals/shirt/wonglok831/120219462_689612748644727_4947143331971474529_n.mp4",
+      type: "video",
+    },
+    {
+      url:
+        "https://d27rt3a60hh1lx.cloudfront.net/portals/shirt/wonglok831/120219462_689612748644727_4947143331971474529_n.mp4",
       type: "video",
     },
   ];
@@ -105,9 +129,9 @@ const ShirtsPiece = (props: ShirtsProps) => {
           <BasicImage
             src={objects[i].url}
             ratio={[1, 1]}
-            sizeScale={5}
+            sizeScale={5 + 1 * Math.random()}
             position={objects[i].position}
-            rotation={[0, (-Math.PI / 2) * Math.random(), 0]}
+            rotation={[0, 4 * Math.PI * Math.random(), 0]}
             floating
           />
         );
@@ -116,10 +140,10 @@ const ShirtsPiece = (props: ShirtsProps) => {
         meshes.push(
           <FramedMutedVideo
             src={objects[i].url}
-            ratio={[730, 782]}
-            sizeScale={5}
+            ratio={[730, 730]}
+            sizeScale={5 + 1 * Math.random()}
             position={objects[i].position}
-            rotation={[0, (-Math.PI / 2) * Math.random(), 0]}
+            rotation={[0, 2 * Math.PI * Math.random(), 0]}
             useEnvStore={useEnvStore}
             floating
             floatHeight={5}
