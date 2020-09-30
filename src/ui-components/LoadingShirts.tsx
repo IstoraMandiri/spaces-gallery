@@ -41,7 +41,7 @@ const Begin = styled.div<{ finished: boolean }>`
 const BeginBackground = styled.div<{ finished: boolean }>`
   padding: 3px 3px 3px 3px;
   margin-top: 3%;
-  background-image: linear-gradient(120deg, lightblue, darkblue);
+  background-image: linear-gradient(120deg, magenta, rebeccapurple);
   border-radius: 5px;
   opacity: ${(props) => (props.finished ? 1 : 0)};
   transition: opacity 1s ease;
@@ -65,7 +65,7 @@ const Progress = styled.div<{ loading: number }>`
   width: ${(props) => Math.floor(props.loading * 100)}%;
   height: 100%;
   border-radius: 15px;
-  background-image: linear-gradient(to right, lightblue, darkblue);
+  background-image: linear-gradient(to right, magenta, rebeccapurple);
 `;
 
 type LoadingProps = {

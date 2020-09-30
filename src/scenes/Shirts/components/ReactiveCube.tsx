@@ -4,6 +4,7 @@ import { AudioAnalyserStoreHook } from "../../../stores/audio";
 import { useFrame, useThree } from "react-three-fiber";
 import { Vector3 } from "three";
 import * as THREE from "three";
+// @ts-ignore
 import SimplexNoise from "simplex-noise";
 import { useBox } from "use-cannon";
 
@@ -62,7 +63,7 @@ const ReactiveCube = (props: ReactiveCubeProps) => {
       const distance = camera.position.distanceTo(positionVector);
 
       if (wall) {
-        if (distance < 8) {
+        if (distance < 10) {
           // @ts-ignore
           cube.current.scale.y = Math.min(
             10,

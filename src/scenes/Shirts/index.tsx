@@ -19,7 +19,6 @@ import {
 import { getAudioAnalyserStore } from "stores/audio";
 
 import Analytics from "ui-components/Analytics";
-import HDRISky from "three-components/HDRI/HDRISky";
 import { Sky } from "drei";
 
 const physicsProps = {
@@ -83,39 +82,24 @@ const Multiplayer: SceneComponent = (props) => {
             {/* <primitive object={shadowHelper} /> */}
             <primitive object={sun} position={[10, 10, 10]} castShadow />
           </group>
-          <group position={[0, 0, 23]}>
-            <ShirtsMusic
-              useEnvStore={useEnvStore}
-              useAAStore={useAAStore}
-              url="https://d27rt3a60hh1lx.cloudfront.net/audio/ini-bestmixever.mp3"
-            />
+          <group position={[0, 0, 0]}>
+            {/*<ShirtsMusic*/}
+            {/*  useEnvStore={useEnvStore}*/}
+            {/*  useAAStore={useAAStore}*/}
+            {/*  url="https://d27rt3a60hh1lx.cloudfront.net/audio/ini-bestmixever.mp3"*/}
+            {/*/>*/}
             <Suspense fallback={null}>
               <ShirtsPiece useEnvStore={useEnvStore} useAAStore={useAAStore} />
               <ShirtsFloor
                 useEnvStore={useEnvStore}
                 position={[-30, -2.5, -30]}
-                scale={[1, 0.5, 1]}
-                cubes={50}
+                scale={[2, 0.5, 2]}
+                cubes={30}
                 hueStart={0.5}
                 hueEnd={0.8}
               />
             </Suspense>
           </group>
-          <Suspense fallback={null}>
-            <ShirtsPiece
-              useEnvStore={useEnvStore}
-              useAAStore={useAAStore}
-              json={responseData}
-            />
-            <ShirtsFloor
-              useEnvStore={useEnvStore}
-              position={[-30, -2.5, -30]}
-              scale={[1, 0.5, 1]}
-              cubes={50}
-              hueStart={0.5}
-              hueEnd={0.8}
-            />
-          </Suspense>
         </Physics>
       </Canvas>
     </>

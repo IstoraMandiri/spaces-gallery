@@ -48,7 +48,7 @@ const ShirtsEnvironment = (props: EnvironmentProps) => {
   return (
     <Container ref={container}>
       <Scene useEnvStore={useStore} defaultCanvasProps={defaultCanvasProps} />
-      <LoadingShirts useEnvStore={useStore} />
+      <LoadingShirts useEnvStore={useStore} name="Spaces" />
       <PauseMenu
         useEnvStore={useStore}
         artist={artist}
