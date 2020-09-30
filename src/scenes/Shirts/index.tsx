@@ -8,8 +8,6 @@ import ShirtsMusic from "./components/ShirtsMusic";
 import ShirtsPiece from "./components/ShirtsPiece";
 import ShirtsFloor from "./components/ShirtsFloor";
 import axios from "axios";
-import ShirtsFloor from "./components/ShirtsFloor";
-
 
 import {
   // CameraHelper,
@@ -86,7 +84,7 @@ const Multiplayer: SceneComponent = (props) => {
             <primitive object={sun} position={[10, 10, 10]} castShadow />
           </group>
           <group position={[0, 0, 23]}>
-           <ShirtsMusic
+            <ShirtsMusic
               useEnvStore={useEnvStore}
               useAAStore={useAAStore}
               url="https://d27rt3a60hh1lx.cloudfront.net/audio/ini-bestmixever.mp3"
@@ -101,6 +99,7 @@ const Multiplayer: SceneComponent = (props) => {
                 hueStart={0.5}
                 hueEnd={0.8}
               />
+            </Suspense>
           </group>
           <Suspense fallback={null}>
             <ShirtsPiece

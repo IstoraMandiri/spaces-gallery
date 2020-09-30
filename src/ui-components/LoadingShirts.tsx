@@ -91,10 +91,12 @@ const LoadingShirts = (props: LoadingScreenProps) => {
 
   const loading = useEnvStore((st) => st.loading);
   const setLoading = useEnvStore((st) => st.setLoading);
+  const setPaused = useEnvStore((st) => st.setPaused);
   const [start, setStart] = useState<boolean>(false);
 
   const handleClick = () => {
-    return setStart(true);
+    setPaused(false);
+    setStart(true);
   };
 
   useEffect(() => {
