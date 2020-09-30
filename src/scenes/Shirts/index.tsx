@@ -40,8 +40,8 @@ const Multiplayer: SceneComponent = (props) => {
     axios
       .post(API_URL, { id: window.location.pathname.substring(8) })
       .then((res) => {
-        console.log("res", res.data);
-        console.log("window", window.location.pathname);
+        // console.log("res", res.data);
+        // console.log("window", window.location.pathname);
         setResponseData(res.data);
       });
   }, [setResponseData]);
@@ -83,11 +83,11 @@ const Multiplayer: SceneComponent = (props) => {
             <primitive object={sun} position={[10, 10, 10]} castShadow />
           </group>
           <group position={[0, 0, 0]}>
-            {/*<ShirtsMusic*/}
-            {/*  useEnvStore={useEnvStore}*/}
-            {/*  useAAStore={useAAStore}*/}
-            {/*  url="https://d27rt3a60hh1lx.cloudfront.net/audio/ini-bestmixever.mp3"*/}
-            {/*/>*/}
+            <ShirtsMusic
+              useEnvStore={useEnvStore}
+              useAAStore={useAAStore}
+              url="https://d27rt3a60hh1lx.cloudfront.net/audio/ini-bestmixever.mp3"
+            />
             <Suspense fallback={null}>
               <ShirtsPiece useEnvStore={useEnvStore} useAAStore={useAAStore} />
               <ShirtsFloor
