@@ -4,29 +4,37 @@ import { fetchAccount } from "services/instagram";
 
 const BACKEND_ROUTE = process.env.NEXT_PUBLIC_BACKEND_ROUTE;
 
-const API_URL = `${BACKEND_ROUTE}/fetch`;
-
-export type PortalResult = {
-  portal?: any;
-  instagram?: any;
-};
-
 type PortalHookResponse = {
-  result?: PortalResult;
+  result?: Portal;
   error?: string;
 };
 
-export const usePortal = (id: string): PortalHookResponse => {
-  const [result, setResult] = useState<PortalResult>();
+/**
+ * Hook to fetch portal from backend gien an ID.
+ *
+ * If it finds an instagram username it will make network call to fetch instagram
+ *
+ * Will build assets from network fetch into a modified version of object
+ * using the passed in builder function (optional)
+ *
+ * @param id
+ * @param portalBuilder
+ */
+export const usePortal = (
+  id: string,
+  portalBuilder?: (portalResult: Portal) => Portal
+): PortalHookResponse => {
+  const [result, setResult] = useState<Portal>();
   const [error, setError] = useState<string>();
 
   useEffect(() => {
     const fetchData = async () => {
-      const localResult: PortalResult = {};
+      const localResult: Portal = {};
 
+      // fetch portal
       try {
-        const portalResult = await axios.post(API_URL, { id });
-        localResult.portal = portalResult.data;
+        const portalResult = await axios.post(`${BACKEND_ROUTE}/fetch`, { id });
+        Object.assign(localResult, portalResult.data);
       } catch (err) {
         setError(
           err.data?.message ||
@@ -34,7 +42,6 @@ export const usePortal = (id: string): PortalHookResponse => {
         );
         return;
       }
-
       if (!localResult) {
         setError(
           "Could not find portal. Please contact us if the problem persists"
@@ -43,7 +50,7 @@ export const usePortal = (id: string): PortalHookResponse => {
       }
 
       // fetch instagram
-      const instagramUsername = localResult?.portal?.instagramUsername;
+      const instagramUsername = localResult.instagramUsername;
       if (instagramUsername) {
         try {
           const instagramResponse = await fetchAccount(instagramUsername);
@@ -61,5 +68,7 @@ export const usePortal = (id: string): PortalHookResponse => {
     }
   }, [result, error]);
 
-  return { result, error };
+  const builtResult = portalBuilder && result ? portalBuilder(result) : result;
+
+  return { result: builtResult, error };
 };

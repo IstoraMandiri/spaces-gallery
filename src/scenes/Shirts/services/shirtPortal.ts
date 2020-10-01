@@ -1,23 +1,20 @@
-import { PortalResult } from "services/portal";
+/**
+ * Given data from portal, will rebuild result to match shirt portal needs
+ *
+ * - adds videos and images from instagram
+ *
+ * @param portalResult
+ */
+export const buildShirtPortal = (portalResult: Portal): Portal => {
+  const { instagram } = portalResult;
 
-type Asset = {
-  url: string;
-  type: "video" | "image" | "3d" | "text";
-  metadata?: any;
-};
-
-type ShirtPortalReturn = {
-  assets: any[];
-};
-
-export const shirtPortal = (portalResult: PortalResult): ShirtPortalReturn => {
-  const { portal, instagram } = portalResult;
-
-  // build assets
+  // rebuild base assets
   const assets: Asset[] = [];
-  if (portal.assets) {
-    portal.assets.map((ass: Asset) => assets.push(ass));
+  if (portalResult.assets) {
+    portalResult.assets.map((ass: Asset) => assets.push(ass));
   }
+
+  // build assets from instagram
   if (instagram) {
     // get profile picture
     const profilePic = instagram.profile_pic_url_hd;
@@ -27,8 +24,6 @@ export const shirtPortal = (portalResult: PortalResult): ShirtPortalReturn => {
       metadata: { profilePic: true },
     });
 
-    // get
-
     // get media
     const media = instagram.edge_owner_to_timeline_media.edges;
     if (media.length) {
@@ -36,10 +31,15 @@ export const shirtPortal = (portalResult: PortalResult): ShirtPortalReturn => {
     }
   }
 
-  return { assets };
+  return { ...portalResult, assets };
 };
 
-// find assets and format accordingly
+/**
+ * Find assets in instagram array and give proper types + some metadata
+ * @param assets - assets array to push to
+ * @param edges - edge array of assets to look through (could be sidecar)
+ * @param parentNode - base node in case of sidecar (used recursively)
+ */
 const aggregateInstagramAssets = (
   assets: Asset[],
   edges: any[],

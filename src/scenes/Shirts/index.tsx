@@ -13,7 +13,7 @@ import Analytics from "ui-components/Analytics";
 import { Sky } from "drei";
 import ShirtsLighting from "./components/ShirtsLighting";
 import { usePortal } from "services/portal";
-import { shirtPortal } from "./services/shirtPortal";
+import { buildShirtPortal } from "./services/shirtPortal";
 
 const physicsProps = {
   iterations: 20,
@@ -30,24 +30,15 @@ const Shirts: SceneComponent = (props) => {
 
   const id = window.location.pathname.substring(8);
   const [useAAStore] = getAudioAnalyserStore(() => ({}));
+  const { result, error } = usePortal(id, buildShirtPortal);
 
-  const { result: portalResult, error: portalError } = usePortal(id);
-
-  if (portalError) {
-    return <>{portalError}</>;
+  if (error) {
+    return <>{error}</>;
   }
 
-  if (!portalResult) {
-    return <>...</>;
+  if (!result) {
+    return <></>;
   }
-
-  const { assets } = shirtPortal(portalResult);
-
-  if (!assets) {
-    return <>...</>;
-  }
-
-  const finalResult = { ...portalResult, assets };
 
   return (
     <>
@@ -66,23 +57,12 @@ const Shirts: SceneComponent = (props) => {
               useAAStore={useAAStore}
               url="https://d27rt3a60hh1lx.cloudfront.net/audio/ini-bestmixever.mp3"
             />
-            <Suspense fallback={null}>
-              <ShirtsPiece useEnvStore={useEnvStore} useAAStore={useAAStore} />
-              <ShirtsFloor
-                useEnvStore={useEnvStore}
-                position={[-30, -2.5, -30]}
-                scale={[1, 0.5, 1]}
-                cubes={50}
-                hueStart={0.5}
-                hueEnd={0.8}
-              />
-            </Suspense>
           </group>
           <Suspense fallback={null}>
             <ShirtsPiece
               useEnvStore={useEnvStore}
               useAAStore={useAAStore}
-              json={finalResult}
+              json={result}
             />
             <ShirtsFloor
               useEnvStore={useEnvStore}
