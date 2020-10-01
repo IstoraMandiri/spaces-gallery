@@ -3,7 +3,7 @@ import { NextPage } from "next";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 
-const ShirtsEnvironment = dynamic(import("core/ShirtsEnvironment"), {
+const ShirtsEnvironment = dynamic(import("environments/ShirtsEnvironment"), {
   ssr: false,
 });
 const Shirts = dynamic(import("scenes/Shirts"), { ssr: false });
