@@ -10,6 +10,8 @@ import Analytics from "ui-components/Analytics";
 import { Color } from "three";
 import Floor from "./components/Floor";
 import NarrativeEffects from "./components/NarrativeEffects";
+import House from "./components/House";
+import { GRAY } from "./components/Colors";
 
 const physicsProps = {
   iterations: 20,
@@ -21,13 +23,10 @@ const physicsProps = {
   },
 };
 
-const BG_COLOR_HEX = 0x262626;
-const BG_COLOR = new Color(BG_COLOR_HEX);
+const BG_COLOR = new Color(GRAY);
 
 const Narrative: SceneComponent = (props) => {
   const { useEnvStore, defaultCanvasProps, children } = props;
-
-  const seed = useMemo(() => Math.random(), []);
 
   return (
     <>
@@ -42,17 +41,18 @@ const Narrative: SceneComponent = (props) => {
           attach="background"
           args={[BG_COLOR.r, BG_COLOR.g, BG_COLOR.b]}
         />
-        <fog attach="fog" args={[BG_COLOR_HEX, 100, 400]} />
+        <fog attach="fog" args={[GRAY, 100, 400]} />
         <Physics {...physicsProps}>
           <InfinitePlane height={-0.001} />
           <ambientLight intensity={1} />
           <Floor />
-          <Player useEnvStore={useEnvStore} initPos={[0, 0, 3]} />
+          <Player useEnvStore={useEnvStore} initPos={[0, 0, 8]} />
+          <House />
           <Logo
             floating
             rotating
             useEnvStore={useEnvStore}
-            position={[0, 1.25, 0]}
+            position={[0, -10, 0]}
           />
           <NarrativeEffects />
         </Physics>

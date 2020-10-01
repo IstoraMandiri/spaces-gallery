@@ -1,12 +1,12 @@
 import React from "react";
-const COLOR = 0x668575;
+import { GREEN } from "./Colors";
 
 const Floor = () => {
   return (
     <>
       <mesh rotation={[-Math.PI / 2, 0, 0]}>
         <planeBufferGeometry attach="geometry" args={[2000, 2000]} />
-        <meshBasicMaterial attach="material" color={COLOR} />
+        <meshBasicMaterial attach="material" color={GREEN} />
       </mesh>
     </>
   );
