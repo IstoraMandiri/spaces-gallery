@@ -6,17 +6,27 @@ const BACKEND_ROUTE = process.env.NEXT_PUBLIC_BACKEND_ROUTE;
 
 const API_URL = `${BACKEND_ROUTE}/fetch`;
 
-export const usePortal = (id: string): any => {
-  const [result, setResult] = useState<any>();
+export type PortalResult = {
+  portal?: any;
+  instagram?: any;
+};
+
+type PortalHookResponse = {
+  result?: PortalResult;
+  error?: string;
+};
+
+export const usePortal = (id: string): PortalHookResponse => {
+  const [result, setResult] = useState<PortalResult>();
   const [error, setError] = useState<string>();
 
   useEffect(() => {
     const fetchData = async () => {
-      let localResult;
+      const localResult: PortalResult = {};
 
       try {
-        localResult = await axios.post(API_URL, { id });
-        localResult = localResult.data;
+        const portalResult = await axios.post(API_URL, { id });
+        localResult.portal = portalResult.data;
       } catch (err) {
         setError(
           err.data?.message ||
@@ -32,23 +42,18 @@ export const usePortal = (id: string): any => {
         return;
       }
 
-      if (localResult.instagramUsername) {
+      // fetch instagram
+      const instagramUsername = localResult?.portal?.instagramUsername;
+      if (instagramUsername) {
         try {
-          const instagramResponse = await fetchAccount(
-            localResult.instagramUsername
-          );
-          const igAssets = [{ url: "", type: null }]; // to be filled
-          setResult({
-            ...localResult,
-            instagram: instagramResponse,
-            assets: [...localResult.assets, ...igAssets],
-          });
+          const instagramResponse = await fetchAccount(instagramUsername);
+          localResult.instagram = instagramResponse;
         } catch (err) {
-          console.error(`Failed to fetch @${localResult.instagramUsername}`);
+          console.error(`Failed to fetch @${instagramUsername}`);
         }
-      } else {
-        setResult(localResult);
       }
+
+      setResult(localResult);
     };
 
     if (!result && !error) {

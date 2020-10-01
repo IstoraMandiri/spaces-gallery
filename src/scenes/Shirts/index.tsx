@@ -13,6 +13,7 @@ import Analytics from "ui-components/Analytics";
 import { Sky } from "drei";
 import ShirtsLighting from "./components/ShirtsLighting";
 import { usePortal } from "services/portal";
+import { shirtPortal } from "./services/shirtPortal";
 
 const physicsProps = {
   iterations: 20,
@@ -30,13 +31,23 @@ const Shirts: SceneComponent = (props) => {
   const id = window.location.pathname.substring(8);
   const [useAAStore] = getAudioAnalyserStore(() => ({}));
 
-  const { result, error } = usePortal(id);
+  const { result: portalResult, error: portalError } = usePortal(id);
 
-  if (error) {
-    return <>{error}</>;
+  if (portalError) {
+    return <>{portalError}</>;
   }
 
-  console.log(result);
+  if (!portalResult) {
+    return <>...</>;
+  }
+
+  const { assets } = shirtPortal(portalResult);
+
+  if (!assets) {
+    return <>...</>;
+  }
+
+  const finalResult = { ...portalResult, assets };
 
   return (
     <>
@@ -71,7 +82,7 @@ const Shirts: SceneComponent = (props) => {
             <ShirtsPiece
               useEnvStore={useEnvStore}
               useAAStore={useAAStore}
-              json={result}
+              json={finalResult}
             />
             <ShirtsFloor
               useEnvStore={useEnvStore}
