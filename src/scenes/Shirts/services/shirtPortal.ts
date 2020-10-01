@@ -31,7 +31,14 @@ export const buildShirtPortal = (portalResult: Portal): Portal => {
     }
   }
 
-  return { ...portalResult, assets };
+  // calc seed
+  const seed = instagram
+    ? instagram.id
+    : portalResult.latitude + portalResult.longitude;
+
+  console.log(`seed: ${seed}`);
+
+  return { ...portalResult, assets, seed };
 };
 
 /**
