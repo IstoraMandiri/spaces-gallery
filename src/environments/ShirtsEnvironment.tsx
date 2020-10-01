@@ -1,12 +1,14 @@
 import React, { useRef } from "react";
 import styled from "@emotion/styled";
 import PauseMenu from "overlays/PauseMenu";
-import { SceneComponent } from "types/scene";
 import { getEnvironmentStore } from "stores/environment";
 import LoadingShirts from "ui-components/LoadingShirts";
 import { ContainerProps } from "react-three-fiber/targets/shared/web/ResizeContainer";
 import MobilePause from "ui-components/MobilePause";
 import { isMobile } from "react-device-detect";
+import { usePortal } from "../services/portal";
+import { buildShirtPortal } from "../scenes/Shirts/services/shirtPortal";
+import { ShirtsSceneComponent } from "../scenes/Shirts";
 
 const Container = styled.div`
   position: absolute;
@@ -25,7 +27,7 @@ const Container = styled.div`
 `;
 
 type EnvironmentProps = {
-  scene: SceneComponent;
+  scene: ShirtsSceneComponent;
   title?: string;
   artist?: string;
   link?: string;
@@ -45,10 +47,26 @@ const ShirtsEnvironment = (props: EnvironmentProps) => {
   const container = useRef<HTMLDivElement>(null);
   const [useStore] = getEnvironmentStore(() => ({ container }));
 
+  // get portal
+  const id = window.location.pathname.substring(8);
+  const { result, error } = usePortal(id, buildShirtPortal);
+
+  if (error) {
+    return <>{error}</>;
+  }
+
+  if (!result) {
+    return <>Loading...</>;
+  }
+
   return (
     <Container ref={container}>
-      <Scene useEnvStore={useStore} defaultCanvasProps={defaultCanvasProps} />
-      <LoadingShirts useEnvStore={useStore} name="Spaces" />
+      <Scene
+        useEnvStore={useStore}
+        defaultCanvasProps={defaultCanvasProps}
+        portal={result}
+      />
+      <LoadingShirts useEnvStore={useStore} name={result.firstName} />
       <PauseMenu
         useEnvStore={useStore}
         artist={artist}

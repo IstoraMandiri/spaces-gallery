@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 import { EnvironmentStoreHook } from "stores/environment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { faMusic } from "@fortawesome/free-solid-svg-icons";
 import { isMobile } from "react-device-detect";
 
 const { NEXT_PUBLIC_VERSION } = process.env;
@@ -171,7 +170,7 @@ const PauseMenu: React.FC<OverlayProps> = (props) => {
 
   return (
     <Container paused={paused}>
-      <ClickContainer id="click-container" onClick={closeOverlay} />
+      <ClickContainer onClick={closeOverlay} />
       <Window>
         <Version>v {NEXT_PUBLIC_VERSION}</Version>
         <Instagram

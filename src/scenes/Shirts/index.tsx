@@ -3,7 +3,7 @@ import { Physics } from "use-cannon";
 import { Canvas } from "react-three-fiber";
 import InfinitePlane from "three-components/InfinitePlane";
 import Player from "core/Player";
-import { SceneComponent } from "types/scene";
+import { SceneProps } from "types/scene";
 import ShirtsMusic from "./components/ShirtsMusic";
 import ShirtsPiece from "./components/ShirtsPiece";
 import ShirtsFloor from "./components/ShirtsFloor";
@@ -12,8 +12,7 @@ import { getAudioAnalyserStore } from "stores/audio";
 import Analytics from "ui-components/Analytics";
 import { Sky } from "drei";
 import ShirtsLighting from "./components/ShirtsLighting";
-import { usePortal } from "services/portal";
-import { buildShirtPortal } from "./services/shirtPortal";
+import Logo from "three-components/Logo";
 
 const physicsProps = {
   iterations: 20,
@@ -25,20 +24,13 @@ const physicsProps = {
   },
 };
 
-const Shirts: SceneComponent = (props) => {
-  const { useEnvStore, defaultCanvasProps, children } = props;
+type ShirtsSceneProps = SceneProps & { portal: Portal | undefined };
+export type ShirtsSceneComponent = React.ComponentType<ShirtsSceneProps>;
 
-  const id = window.location.pathname.substring(8);
+const Shirts: ShirtsSceneComponent = (props) => {
+  const { useEnvStore, defaultCanvasProps, portal, children } = props;
+
   const [useAAStore] = getAudioAnalyserStore(() => ({}));
-  const { result, error } = usePortal(id, buildShirtPortal);
-
-  if (error) {
-    return <>{error}</>;
-  }
-
-  if (!result) {
-    return <></>;
-  }
 
   return (
     <>
@@ -48,7 +40,7 @@ const Shirts: SceneComponent = (props) => {
         <Physics {...physicsProps}>
           <Sky />
           <InfinitePlane height={-0.001} />
-          <Player useEnvStore={useEnvStore} initPos={[0, 10, 14]} />
+          <Player useEnvStore={useEnvStore} initPos={[0, 2, 5]} />
           <ambientLight intensity={0.2} />
           <ShirtsLighting />
           <group position={[0, 0, 23]}>
@@ -62,16 +54,19 @@ const Shirts: SceneComponent = (props) => {
             <ShirtsPiece
               useEnvStore={useEnvStore}
               useAAStore={useAAStore}
-              json={result}
+              json={portal}
             />
             <ShirtsFloor
               useEnvStore={useEnvStore}
-              position={[-30, -2.5, -30]}
-              scale={[1, 0.5, 1]}
-              cubes={50}
+              position={[0, -2.5, 0]}
+              scale={[3, 0.5, 3]}
+              size={50}
               hueStart={0.5}
               hueEnd={0.8}
             />
+          </Suspense>
+          <Suspense fallback={null}>
+            <Logo useEnvStore={useEnvStore} />
           </Suspense>
         </Physics>
       </Canvas>
