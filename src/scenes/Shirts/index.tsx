@@ -5,14 +5,15 @@ import InfinitePlane from "three-components/InfinitePlane";
 import Player from "core/Player";
 import { SceneProps } from "types/scene";
 import ShirtsMusic from "./components/ShirtsMusic";
-import ShirtsPiece from "./components/ShirtsPiece";
+import ShirtsAssets from "./components/ShirtsAssets";
 import ShirtsFloor from "./components/ShirtsFloor";
 
 import { getAudioAnalyserStore } from "stores/audio";
 import Analytics from "ui-components/Analytics";
-import { Sky } from "drei";
 import ShirtsLighting from "./components/ShirtsLighting";
 import Logo from "three-components/Logo";
+import ColoredSky from "./components/ColoredSky";
+import WallPiece from "./components/WallPiece";
 
 const physicsProps = {
   iterations: 20,
@@ -38,9 +39,9 @@ const Shirts: ShirtsSceneComponent = (props) => {
       <Canvas {...defaultCanvasProps}>
         {children}
         <Physics {...physicsProps}>
-          <Sky />
+          <ColoredSky />
           <InfinitePlane height={-0.001} />
-          <Player useEnvStore={useEnvStore} initPos={[0, 2, 5]} />
+          <Player useEnvStore={useEnvStore} initPos={[0, 2, 20]} />
           <ambientLight intensity={0.2} />
           <ShirtsLighting />
           <group position={[0, 0, 23]}>
@@ -51,10 +52,11 @@ const Shirts: ShirtsSceneComponent = (props) => {
             />
           </group>
           <Suspense fallback={null}>
-            <ShirtsPiece
+            <WallPiece useEnvStore={useEnvStore} useAAStore={useAAStore} />
+            <ShirtsAssets
               useEnvStore={useEnvStore}
               useAAStore={useAAStore}
-              json={portal}
+              portal={portal}
             />
             <ShirtsFloor
               useEnvStore={useEnvStore}

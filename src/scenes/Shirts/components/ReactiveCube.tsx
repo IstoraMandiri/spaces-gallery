@@ -1,6 +1,4 @@
 import React, { useRef } from "react";
-import { EnvironmentStoreHook } from "../../../stores/environment";
-import { AudioAnalyserStoreHook } from "../../../stores/audio";
 import { useFrame, useThree } from "react-three-fiber";
 import { Vector3 } from "three";
 // @ts-ignore
@@ -14,7 +12,6 @@ type ReactiveCubeProps = {
   hueEnd: number;
   wall?: boolean;
   gridLength: number;
-  useEnvStore: EnvironmentStoreHook;
   positionOffset: [number, number, number];
 };
 
@@ -24,8 +21,7 @@ const ReactiveCube = (props: ReactiveCubeProps) => {
     scale,
     gridIndex,
     gridLength,
-    wall = false,
-    useEnvStore,
+    wall,
     positionOffset,
     hueStart,
     hueEnd,
@@ -42,8 +38,8 @@ const ReactiveCube = (props: ReactiveCubeProps) => {
   useFrame(({ clock }, delta) => {
     const simpValue =
       (simplex.current.noise3D(
-        gridIndex[0] / 18,
-        gridIndex[1] / 18,
+        gridIndex[0] / 15,
+        gridIndex[1] / 15,
         clock.getElapsedTime() * 0.08
       ) +
         1) /
@@ -58,36 +54,40 @@ const ReactiveCube = (props: ReactiveCubeProps) => {
       // @ts-ignore
       cube.current.material.metalness = gridIndex[1] / gridLength;
 
-      const distance = camera.position.distanceTo(positionVector);
+      const simpHeight = scale[1] + 8 * simpValue;
 
       if (wall) {
+        const distance = camera.position.distanceTo(positionVector);
+
         if (distance < 10) {
           // @ts-ignore
           cube.current.scale.y = Math.min(
-            10,
+            15,
             // @ts-ignore
             cube.current.scale.y + delta * 50
           );
         } else {
           // @ts-ignore
           cube.current.scale.y = Math.max(
-            scale[1],
+            simpHeight,
             // @ts-ignore
             cube.current.scale.y - delta * 50
           );
         }
       } else {
         // @ts-ignore
-        cube.current.scale.y = scale[1] + 3 * simpValue;
+        cube.current.scale.y = simpHeight;
       }
     }
   });
+
+  const materialProps = wall ? { transparent: true, opacity: 0.9 } : {};
 
   return (
     <>
       <mesh position={position} ref={cube}>
         <boxBufferGeometry attach="geometry" args={scale} />
-        <meshStandardMaterial attach="material" />
+        <meshStandardMaterial attach="material" {...materialProps} />
       </mesh>
     </>
   );

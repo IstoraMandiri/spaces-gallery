@@ -19,8 +19,8 @@ type AudioReactiveModelProps = JSX.IntrinsicElements["group"] & {
 };
 
 export default function Model(props: AudioReactiveModelProps) {
-  const { useEnvStore, useAAStore, index, bucket_size } = props;
-  //   const setLoading = useEnvStore((st) => st.setLoading);
+  const { useAAStore, index, bucket_size } = props;
+
   const group = useRef<THREE.Group>();
   const boxGroup = useRef<THREE.Group>();
   const material = useRef<THREE.MeshStandardMaterial>();
@@ -37,26 +37,37 @@ export default function Model(props: AudioReactiveModelProps) {
       group.current.scale.y = 2 + freq_data;
     }
     if (material.current) {
-      material.current.color = new THREE.Color(
-        camera.rotation.x,
-        camera.rotation.y,
-        camera.rotation.z
-      );
+      const { x: xRot, y: yRot, z: zRot } = camera.rotation;
+
+      const h = (xRot + clock.getElapsedTime() / 10) % 1;
+      const s = (yRot + clock.getElapsedTime() / 7) % 1;
+      const l = (zRot + clock.getElapsedTime() / 5) % 1;
+
+      material.current.color.setHSL(h, s * 0.4 + 0.4, l * 0.4 + 0.4);
     }
   });
 
+  const rotFactor = index / bucket_size;
+
   return (
-    <group ref={group} {...props} dispose={null} rotation={[0, 0, 0]}>
-      <group ref={boxGroup} scale={[100, 100, 100]}>
-        <group position={[-((8 * 0.04) / 2) + 0.04 * index, 0, -0.01]}>
-          <mesh receiveShadow castShadow>
-            <boxGeometry args={[0.04, 0.02, 0.02]} attach="geometry" />
-            <meshStandardMaterial
-              ref={material}
-              color="red"
-              attach="material"
-            />
-          </mesh>
+    <group rotation-y={rotFactor} position-y={-0.2}>
+      <group
+        ref={group}
+        {...props}
+        dispose={null}
+        rotation={[rotFactor * 0.16, rotFactor, 0]}
+      >
+        <group ref={boxGroup} scale={[200, 200, 200]}>
+          <group position={[0, 0, -0.01]}>
+            <mesh receiveShadow castShadow>
+              <boxGeometry args={[0.04, 0.02, 0.02]} attach="geometry" />
+              <meshStandardMaterial
+                ref={material}
+                color="white"
+                attach="material"
+              />
+            </mesh>
+          </group>
         </group>
       </group>
     </group>
