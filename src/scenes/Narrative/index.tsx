@@ -46,7 +46,6 @@ const Narrative: SceneComponent = (props) => {
         <Physics {...physicsProps}>
           <InfinitePlane height={-0.001} />
           <ambientLight intensity={1} />
-          {/*<pointLight intensity={4} position={[0, 8, 0]} />*/}
           <Floor />
           <Player useEnvStore={useEnvStore} initPos={[0, 0, 8]} />
           <House />
@@ -63,6 +62,12 @@ const Narrative: SceneComponent = (props) => {
             dimensions={[500, 90]}
             dist={250}
             tall={30}
+          />
+          <Hills
+            angle={Math.PI + Math.PI / 4}
+            dimensions={[500, 90]}
+            dist={340}
+            tall={40}
           />
           <Logo
             floating
