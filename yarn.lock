@@ -1253,6 +1253,23 @@
     "@react-spring/core" "9.0.0-rc.3"
     "@react-spring/shared" "9.0.0-rc.3"
 
+"@react-three/drei@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@react-three/drei/-/drei-2.1.0.tgz#5b7db85a64f01d002b9a0949a3947967c2d290bd"
+  integrity sha512-jAYx2Cbf+dihHe5JHx9AlyPB9wG+XNworBqXqiVErvIi8eT3eMjXoH5m8k2ypfv5DXd4QJaIswiYQ4VY7nU8vw==
+  dependencies:
+    "@babel/runtime" "^7.11.2"
+    "@react-spring/web" "^9.0.0-rc.3"
+    detect-gpu "^1.5.1"
+    glsl-noise "^0.0.0"
+    lodash.omit "^4.5.0"
+    lodash.pick "^4.4.0"
+    react-merge-refs "^1.0.0"
+    stats.js "^0.17.0"
+    troika-three-text "^0.33.1"
+    utility-types "^3.10.0"
+    zustand "^3.0.3"
+
 "@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
@@ -2926,17 +2943,17 @@ des.js@^1.0.0:
     inherits "^2.0.1"
     minimalistic-assert "^1.0.0"
 
-detect-gpu@^1.3.0:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/detect-gpu/-/detect-gpu-1.4.1.tgz#a30bb1a7ce6a6044d84b4850810f1b248a669372"
-  integrity sha512-joUURxxAwgAvJxj4Y9px6tfcHJlCdBBi/Lg3OmqhfgwihdxzLMTHds+q0LBcu5O1oC/ACQ+OqqDkbUSmd2ilBQ==
+detect-gpu@^1.3.0, detect-gpu@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/detect-gpu/-/detect-gpu-1.5.1.tgz#487c734334a0d41f64302cf77c7986b62aee19bc"
+  integrity sha512-Ws//qvt0Kv9uXli1xJbC4jvrJdm+KonOMBjkTkICy4Ko+6qIggOXaF567o4kpapsX+pqW9FXmxh4IIAmqB+q7Q==
   dependencies:
-    detect-ua "^1.0.1"
+    detect-ua "^1.0.2"
 
-detect-ua@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/detect-ua/-/detect-ua-1.0.1.tgz#001086a755dbfae509de51e71df580b2090cd704"
-  integrity sha512-FzBaVpuMBcuJkSS/r3bHmnhiAe0SMipQ3SJez/Gmq/ALzoxen1LgfukL556o8rgMUDyLfOXj9MvNnwkqJ35Fwg==
+detect-ua@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/detect-ua/-/detect-ua-1.0.2.tgz#4958d12a6af62adf522a26f0d9dec764ab3938c0"
+  integrity sha512-EsqFycxcggrkzRm3IaHr1nP1pSCDVLHW3haUvaSqws70B277a1SKk5hFtuJo3BKuPwTTRGTGsYYiJwS/97ptEg==
 
 diffie-hellman@^5.0.0:
   version "5.0.3"
@@ -7492,15 +7509,33 @@ troika-three-text@^0.31.0:
     troika-three-utils "^0.31.0"
     troika-worker-utils "^0.31.0"
 
+troika-three-text@^0.33.1:
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/troika-three-text/-/troika-three-text-0.33.1.tgz#580d73cace99b5944c33faf7a53af295fd75ccba"
+  integrity sha512-t/73wO62QxkpUWwNOB68+vsCda5S9qLNufplqC2olO1OK4yVIo7Y5fNxtUYX9SelRU5sXiLpmMqVxVfaZQPX9g==
+  dependencies:
+    troika-three-utils "^0.33.1"
+    troika-worker-utils "^0.33.0"
+
 troika-three-utils@^0.31.0:
   version "0.31.0"
   resolved "https://registry.yarnpkg.com/troika-three-utils/-/troika-three-utils-0.31.0.tgz#825d79313d04112fdfc63389ff5531ab8d7ba1a7"
   integrity sha512-IUy61i+Kv0EjievWhOmIkqjDa1acIO2J98oO2tZ+PpEfA+Q0syRknH4SN+iiYpa/MNJH1gQz0WfZF4Vk1/pumQ==
 
+troika-three-utils@^0.33.1:
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/troika-three-utils/-/troika-three-utils-0.33.1.tgz#628f0d69cd5d6b6847c488b1964ad89650332d74"
+  integrity sha512-cT1k+kSMRFGj4W+xKdvXk8ZNHvalVYN46Ist9Xnt0ZkhwHIjMZ5MD0Jaesq7js9nxiXRxR8HPcbjkwuiL25jMA==
+
 troika-worker-utils@^0.31.0:
   version "0.31.0"
   resolved "https://registry.yarnpkg.com/troika-worker-utils/-/troika-worker-utils-0.31.0.tgz#3d6783265f74cda1860e9d8369de433d29c70b92"
   integrity sha512-WxHhfFmy6dWBMACUnzInBlqlR601Dy3c9hiRp4aAN+ACzSldwsv1SHOqix4X2+6HTz/pBtHtfJVDbwJiO+lbCw==
+
+troika-worker-utils@^0.33.0:
+  version "0.33.0"
+  resolved "https://registry.yarnpkg.com/troika-worker-utils/-/troika-worker-utils-0.33.0.tgz#c9685056a709e4800c00f0f929196c1f4a7d24c1"
+  integrity sha512-S4M7oYhCGGFg2PbwZAFm0EprLcewIrug8E6CNGAF5U5Vq/0YcU1YFYwE30BCbzTk6B1R1gcEuGYaZwxtteGK6w==
 
 ts-pnp@^1.1.6:
   version "1.2.0"

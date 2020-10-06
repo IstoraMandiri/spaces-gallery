@@ -75,12 +75,13 @@ const BasicImage = (props: BasicImageProps) => {
     }
     try {
       cloth.lockXMin(0);
+      cloth.lockYMin(0);
       let freq_data = aa?.getFrequencyData()[0];
       if (freq_data === undefined) freq_data = 0.01;
       cloth.setForce(
-        0.002 * Math.random() * (freq_data / 50),
+        0.002 * Math.random() * (freq_data / 200),
         -0.002 * Math.random(),
-        -0.002 * Math.random() * (freq_data / 50)
+        -0.002 * Math.random() * (freq_data / 200)
       );
     } catch (err) {
       console.log(err);
@@ -93,7 +94,7 @@ const BasicImage = (props: BasicImageProps) => {
     <group {...props}>
       <group ref={group}>
         <mesh ref={mesh} castShadow>
-          <planeGeometry attach="geometry" args={[width, height, 32, 32]} />
+          <planeGeometry attach="geometry" args={[width, height, 16, 16]} />
           <meshStandardMaterial
             attach="material"
             map={texture}

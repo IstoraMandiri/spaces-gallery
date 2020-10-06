@@ -31,11 +31,10 @@ const ShirtsAssets = (props: ShirtsAssetsProps) => {
 
       const x = dist * Math.cos(angle);
       const z = dist * Math.sin(angle);
-      const position: [number, number, number] = [x, 3, z];
+      const position: [number, number, number] = [x, 3 + 5 * Math.random(), z];
 
       if (type === "image") {
-        if (Math.random() < 0.5) {
-          console.log("asdl");
+        if (Math.random() < 0.35) {
           locAssets.push(
             <BasicImage
               key={url}
@@ -67,7 +66,7 @@ const ShirtsAssets = (props: ShirtsAssetsProps) => {
             key={url}
             src={url}
             ratio={[730, 730]}
-            sizeScale={5 + 1 * Math.random()}
+            sizeScale={10 + 1 * Math.random()}
             position={position}
             rotation={[0, 2 * Math.PI * Math.random(), 0]}
             useEnvStore={useEnvStore}

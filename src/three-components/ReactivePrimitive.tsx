@@ -19,7 +19,7 @@ const ReactivePrimitive = (props: ReactiveProps) => {
   const aa = useAAStore((st) => st.audioAnalyser);
   const group = useRef<THREE.Group>();
   const material = useRef<THREE.MeshStandardMaterial>();
-  const freqIndex = useRef(Math.floor(Math.random() * 64));
+  const freqIndex = useRef(Math.floor(Math.random() * 16));
 
   useFrame(({ clock }) => {
     if (material.current) {
@@ -35,7 +35,7 @@ const ReactivePrimitive = (props: ReactiveProps) => {
 
       const modFreqData = (freqData - min) / (max - min);
 
-      const disp = THREE.MathUtils.lerp(-0.1, 0.8, modFreqData);
+      const disp = THREE.MathUtils.lerp(-0.4, 1.0, modFreqData);
 
       material.current.displacementScale = disp;
     }
@@ -47,10 +47,26 @@ const ReactivePrimitive = (props: ReactiveProps) => {
     }
   });
 
+  const primitives = [
+    <boxBufferGeometry
+      key={1}
+      attach="geometry"
+      args={[2, 2, 2, 20, 20, 20]}
+    />,
+    <icosahedronBufferGeometry key={2} attach="geometry" args={[1, 0]} />,
+    <sphereBufferGeometry
+      key={2}
+      attach="geometry"
+      args={[3 * Math.random(), 16, 16]}
+    />,
+  ];
+  const randomPrimitive =
+    primitives[Math.floor(Math.random() * primitives.length)];
+
   return (
     <group {...props} ref={group}>
       <mesh>
-        <boxBufferGeometry attach="geometry" args={[2, 2, 2, 20, 20, 20]} />
+        {randomPrimitive}
         <meshStandardMaterial
           ref={material}
           attach="material"

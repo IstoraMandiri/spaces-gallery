@@ -2,11 +2,13 @@ import React, { Suspense } from "react";
 import { Physics } from "use-cannon";
 import { Canvas, useFrame, useThree } from "react-three-fiber";
 import InfinitePlane from "three-components/InfinitePlane";
+import Player from "core/PlayerWithOrientationControls";
 import ShirtsPlayer from "core/ShirtsPlayer";
 import { SceneProps } from "types/scene";
 import ShirtsMusic from "./components/ShirtsMusic";
 import ShirtsAssets from "./components/ShirtsAssets";
 import ShirtsFloor from "./components/ShirtsFloor";
+import ShirtsCollisions from "./components/ShirtsCollisions";
 
 import { getAudioAnalyserStore } from "stores/audio";
 import Analytics from "ui-components/Analytics";
@@ -78,6 +80,7 @@ const Shirts: ShirtsSceneComponent = (props) => {
               hueStart={0.5}
               hueEnd={0.8}
             />
+            <ShirtsCollisions position={[0, 0, 0]} />
           </Suspense>
           <Suspense fallback={null}>
             <Logo useEnvStore={useEnvStore} />
