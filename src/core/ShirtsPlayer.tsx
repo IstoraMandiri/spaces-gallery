@@ -6,9 +6,9 @@ import { isMobile } from "react-device-detect";
 
 import MobileControls from "./Controls/MobileControls";
 import DesktopControls from "./Controls/DesktopControls";
+import { DeviceOrientationControls } from "three/examples/jsm/controls/DeviceOrientationControls";
 import { EnvironmentStoreHook } from "stores/environment";
 import RaycasterUtil from "./RaycasterUtil";
-import TouchFPSCamera from "./Controls/TouchFPSCamera";
 import MouseFPSCamera from "./Controls/MouseFPSCamera";
 
 const VELOCITY_FACTOR = 250;
@@ -66,6 +66,11 @@ const ShirtsPlayer = (props: ShirtsPlayerProps) => {
     },
   }));
 
+  let controls: any = null;
+  if (isMobile) {
+    controls = new DeviceOrientationControls(camera);
+  }
+
   // refs
   const prevTime = useRef(performance.now());
 
@@ -87,11 +92,15 @@ const ShirtsPlayer = (props: ShirtsPlayerProps) => {
   }, []);
 
   useFrame(({ clock }) => {
+    if (isMobile) {
+      controls.update();
+    }
+
     if (fixedPath) {
       const dist = (22 + 50) / 2;
       const x = dist * Math.cos(clock.getElapsedTime() / 10);
       const z = dist * Math.sin(clock.getElapsedTime() / 10);
-      bodyApi?.position.set(x, 2, z);
+      camera.position.set(x, 2, z);
       return;
     }
 
@@ -133,23 +142,20 @@ const ShirtsPlayer = (props: ShirtsPlayerProps) => {
     prevTime.current = time;
   });
 
-  const nippleContainer = useRef<HTMLElement>(null);
-
   return (
     <>
       {isMobile ? (
         <>
-          <TouchFPSCamera
-            quaternion={quaternion}
-            position={position}
-            nippleContainer={nippleContainer}
-          />
-          <MobileControls
-            quaternion={quaternion}
-            position={position}
-            useEnvStore={useEnvStore}
-            direction={direction}
-          />
+          {fixedPath ? (
+            <></>
+          ) : (
+            <MobileControls
+              quaternion={quaternion}
+              position={position}
+              useEnvStore={useEnvStore}
+              direction={direction}
+            />
+          )}
         </>
       ) : (
         <>

@@ -2,7 +2,6 @@ import React, { Suspense } from "react";
 import { Physics } from "use-cannon";
 import { Canvas, useFrame, useThree } from "react-three-fiber";
 import InfinitePlane from "three-components/InfinitePlane";
-import Player from "core/PlayerWithOrientationControls";
 import ShirtsPlayer from "core/ShirtsPlayer";
 import { SceneProps } from "types/scene";
 import ShirtsMusic from "./components/ShirtsMusic";
