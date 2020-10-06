@@ -1,8 +1,8 @@
 import React, { Suspense } from "react";
 import { Physics } from "use-cannon";
-import { Canvas } from "react-three-fiber";
+import { Canvas, useFrame, useThree } from "react-three-fiber";
 import InfinitePlane from "three-components/InfinitePlane";
-import Player from "core/Player";
+import ShirtsPlayer from "core/ShirtsPlayer";
 import { SceneProps } from "types/scene";
 import ShirtsMusic from "./components/ShirtsMusic";
 import ShirtsAssets from "./components/ShirtsAssets";
@@ -19,17 +19,25 @@ const physicsProps = {
   iterations: 20,
   size: 10,
   allowSleep: false,
-  gravity: [0, -30, 0],
   defaultContactMaterial: {
     friction: 0,
   },
 };
 
-type ShirtsSceneProps = SceneProps & { portal: Portal | undefined };
+type ShirtsSceneProps = SceneProps & {
+  portal: Portal | undefined;
+  fixedPath: boolean;
+};
 export type ShirtsSceneComponent = React.ComponentType<ShirtsSceneProps>;
 
 const Shirts: ShirtsSceneComponent = (props) => {
-  const { useEnvStore, defaultCanvasProps, portal, children } = props;
+  const {
+    useEnvStore,
+    defaultCanvasProps,
+    portal,
+    fixedPath,
+    children,
+  } = props;
 
   const [useAAStore] = getAudioAnalyserStore(() => ({}));
 
@@ -41,7 +49,11 @@ const Shirts: ShirtsSceneComponent = (props) => {
         <Physics {...physicsProps}>
           <ColoredSky />
           <InfinitePlane height={-0.001} />
-          <Player useEnvStore={useEnvStore} initPos={[0, 2, 20]} />
+          <ShirtsPlayer
+            useEnvStore={useEnvStore}
+            initPos={[0, 2, 20]}
+            fixedPath={fixedPath}
+          />
           <ambientLight intensity={0.2} />
           <ShirtsLighting />
           <group position={[0, 0, 23]}>

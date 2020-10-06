@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styled from "@emotion/styled";
 import PauseMenu from "overlays/PauseMenu";
 import { getEnvironmentStore } from "stores/environment";
@@ -51,6 +51,8 @@ const ShirtsEnvironment = (props: EnvironmentProps) => {
   const id = window.location.pathname.substring(8);
   const { result, error } = usePortal(id, buildShirtPortal);
 
+  const [fixedPath, setFixedPath] = useState<boolean>(true);
+
   if (error) {
     return <>{error}</>;
   }
@@ -65,8 +67,13 @@ const ShirtsEnvironment = (props: EnvironmentProps) => {
         useEnvStore={useStore}
         defaultCanvasProps={defaultCanvasProps}
         portal={result}
+        fixedPath={fixedPath}
       />
-      <LoadingShirts useEnvStore={useStore} name={result.firstName} />
+      <LoadingShirts
+        useEnvStore={useStore}
+        name={result.firstName}
+        setFixedPath={setFixedPath}
+      />
       <PauseMenu
         useEnvStore={useStore}
         artist={artist}

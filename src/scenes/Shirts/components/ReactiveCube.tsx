@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
 import { useFrame, useThree } from "react-three-fiber";
 import { Vector3 } from "three";
-// @ts-ignore
 import SimplexNoise from "simplex-noise";
+import { useBox } from "use-cannon";
 
 type ReactiveCubeProps = {
   position: [number, number, number];

@@ -48,6 +48,21 @@ const BeginBackground = styled.div<{ finished: boolean }>`
   transition-delay: 0.5s;
 `;
 
+const AlternateStart = styled.div<{ finished: boolean }>`
+  margin: 0 auto 0 auto;
+  position: absolute;
+  color: black;
+  font-size: 0.8rem;
+  bottom: 10%;
+  cursor: pointer;
+  :hover {
+    text-decoration: underline;
+  }
+  opacity: ${(props) => (props.finished ? 1 : 0)};
+  transition: opacity 1s ease;
+  transition-delay: 2s;
+`;
+
 const Title = styled.div`
   font-size: 9vw;
   margin: 0 auto 5% auto;
@@ -83,20 +98,26 @@ const LoadingProgress = ({ loading }: LoadingProps) => {
 
 type LoadingScreenProps = {
   useEnvStore: EnvironmentStoreHook;
+  setFixedPath: React.Dispatch<React.SetStateAction<boolean>>;
   name?: string;
 };
 
 const LoadingShirts = (props: LoadingScreenProps) => {
-  const { useEnvStore, name = "Name" } = props;
+  const { useEnvStore, name = "Name", setFixedPath } = props;
 
   const loading = useEnvStore((st) => st.loading);
   const setLoading = useEnvStore((st) => st.setLoading);
   const setPaused = useEnvStore((st) => st.setPaused);
   const [start, setStart] = useState(false);
 
-  const handleClick = () => {
+  const beginExperience = () => {
     setPaused(false);
     setStart(true);
+  };
+
+  const selfExplore = () => {
+    setFixedPath(false);
+    beginExperience();
   };
 
   useEffect(() => {
@@ -109,10 +130,13 @@ const LoadingShirts = (props: LoadingScreenProps) => {
       {(loading * 100).toFixed(0)}%
       <LoadingProgress loading={loading} />
       <BeginBackground finished={loading === 1}>
-        <Begin finished={loading === 1} onClick={handleClick}>
+        <Begin finished={loading === 1} onClick={beginExperience}>
           Begin Experiment
         </Begin>
       </BeginBackground>
+      <AlternateStart finished={loading === 1} onClick={selfExplore}>
+        Explore on Your Own
+      </AlternateStart>
     </Container>
   );
 };
