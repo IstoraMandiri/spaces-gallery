@@ -1,20 +1,20 @@
 import React, { Suspense, useMemo } from "react";
 import { EnvironmentStoreHook } from "stores/environment";
-import { AudioAnalyserStoreHook } from "stores/audio";
+import { MusicStoreHook } from "stores/music";
 import BasicImage from "three-components/BasicImage";
 import FramedMutedVideo from "three-components/FramedMutedVideo";
 import ReactivePrimitive from "three-components/ReactivePrimitive";
 
 type ShirtsAssetsProps = {
   useEnvStore: EnvironmentStoreHook;
-  useAAStore: AudioAnalyserStoreHook;
+  useMusicStore: MusicStoreHook;
   portal?: Portal;
 };
 
 const DIST_RANGE = [22, 50];
 
 const ShirtsAssets = (props: ShirtsAssetsProps) => {
-  const { useEnvStore, useAAStore, portal } = props;
+  const { useEnvStore, useMusicStore, portal } = props;
 
   const assets: Array<any> = useMemo(() => {
     if (!portal || !portal.assets) {
@@ -43,7 +43,7 @@ const ShirtsAssets = (props: ShirtsAssetsProps) => {
               sizeScale={5 + 1 * Math.random()}
               position={position}
               rotation={[0, 4 * Math.PI * Math.random(), 0]}
-              useAAStore={useAAStore}
+              useMusicStore={useMusicStore}
               floating
             />
           );
@@ -55,7 +55,7 @@ const ShirtsAssets = (props: ShirtsAssetsProps) => {
               url={url}
               position={position}
               rotation={[0, 4 * Math.PI * Math.random(), 0]}
-              useAAStore={useAAStore}
+              useMusicStore={useMusicStore}
               scale={[2, 2, 2]}
             />
           );

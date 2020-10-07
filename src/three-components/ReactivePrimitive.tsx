@@ -1,11 +1,11 @@
 import React, { useRef } from "react";
-import { AudioAnalyserStoreHook } from "stores/audio";
+import { MusicStoreHook } from "stores/music";
 import { useFrame, useLoader } from "react-three-fiber";
 import * as THREE from "three";
 
 type ReactiveProps = JSX.IntrinsicElements["group"] & {
   url: string;
-  useAAStore: AudioAnalyserStoreHook;
+  useMusicStore: MusicStoreHook;
   type: string;
 };
 
@@ -13,10 +13,10 @@ let min = 1000000;
 let max = -10000000;
 
 const ReactivePrimitive = (props: ReactiveProps) => {
-  const { url, type, useAAStore } = props;
+  const { url, type, useMusicStore } = props;
 
   const texture = useLoader(THREE.TextureLoader, url);
-  const aa = useAAStore((st) => st.audioAnalyser);
+  const aa = useMusicStore((st) => st.audioAnalyser);
   const group = useRef<THREE.Group>();
   const material = useRef<THREE.MeshStandardMaterial>();
   const freqIndex = useRef(Math.floor(Math.random() * 16));

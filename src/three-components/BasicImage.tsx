@@ -3,7 +3,7 @@ import * as THREE from "three";
 import { useFrame, useLoader } from "react-three-fiber";
 import { Color, Group, Vector2, Mesh } from "three";
 import { Cloth, ModifierStack } from "three.modifiers";
-import { AudioAnalyserStoreHook } from "stores/audio";
+import { MusicStoreHook } from "stores/music";
 
 type BasicImageProps = JSX.IntrinsicElements["group"] & {
   src: string;
@@ -11,7 +11,7 @@ type BasicImageProps = JSX.IntrinsicElements["group"] & {
   sizeScale: number;
   floating?: boolean;
   color?: Color;
-  useAAStore: AudioAnalyserStoreHook;
+  useMusicStore: MusicStoreHook;
 };
 const floatHeight = 2;
 
@@ -22,7 +22,7 @@ const BasicImage = (props: BasicImageProps) => {
     ratio,
     floating,
     color = 0x111111,
-    useAAStore,
+    useMusicStore,
   } = props;
 
   const texture = useLoader(THREE.TextureLoader, src);
@@ -40,7 +40,7 @@ const BasicImage = (props: BasicImageProps) => {
 
   const cloth = new Cloth(1, 0);
 
-  const aa = useAAStore((st) => st.audioAnalyser);
+  const aa = useMusicStore((st) => st.audioAnalyser);
 
   // if (mesh.current) {
   //   modifier = new ModifierStack(mesh.current);

@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useRef, useState } from "react";
 import { Physics } from "use-cannon";
 import { Canvas, useFrame, useThree } from "react-three-fiber";
 import InfinitePlane from "three-components/InfinitePlane";
@@ -9,12 +9,15 @@ import ShirtsAssets from "./components/ShirtsAssets";
 import ShirtsFloor from "./components/ShirtsFloor";
 import ShirtsCollisions from "./components/ShirtsCollisions";
 
-import { getAudioAnalyserStore } from "stores/audio";
+import { getMusicStore } from "stores/music";
 import Analytics from "ui-components/Analytics";
 import ShirtsLighting from "./components/ShirtsLighting";
 import Logo from "three-components/Logo";
 import ColoredSky from "./components/ColoredSky";
 import WallPiece from "./components/WallPiece";
+import SHIRT_SONGS from "./assets/songs";
+import { getSong, MusicManager } from "./services/musicManager";
+import Credits from "./components/Credits";
 
 const physicsProps = {
   iterations: 20,
@@ -40,13 +43,23 @@ const Shirts: ShirtsSceneComponent = (props) => {
     children,
   } = props;
 
-  const [useAAStore] = getAudioAnalyserStore(() => ({}));
+  const id = window.location.pathname.substring(8);
+  const song = getSong(id, SHIRT_SONGS);
+  const [useMusicStore] = getMusicStore(() => ({ song, eventIndex: 0 }));
+
+  const name = (portal && portal.firstName) || "❤";
 
   return (
     <>
       <Analytics />
+      <Credits
+        useMusicStore={useMusicStore}
+        name={name}
+        useEnvStore={useEnvStore}
+      />
       <Canvas {...defaultCanvasProps}>
         {children}
+        <MusicManager useMusicStore={useMusicStore} />
         <Physics {...physicsProps}>
           <ColoredSky />
           <InfinitePlane height={-0.001} />
@@ -60,15 +73,18 @@ const Shirts: ShirtsSceneComponent = (props) => {
           <group position={[0, 0, 23]}>
             <ShirtsMusic
               useEnvStore={useEnvStore}
-              useAAStore={useAAStore}
-              url="https://d27rt3a60hh1lx.cloudfront.net/audio/ini-bestmixever.mp3"
+              useMusicStore={useMusicStore}
+              url={song.url}
             />
           </group>
           <Suspense fallback={null}>
-            <WallPiece useEnvStore={useEnvStore} useAAStore={useAAStore} />
+            <WallPiece
+              useEnvStore={useEnvStore}
+              useMusicStore={useMusicStore}
+            />
             <ShirtsAssets
               useEnvStore={useEnvStore}
-              useAAStore={useAAStore}
+              useMusicStore={useMusicStore}
               portal={portal}
             />
             <ShirtsFloor

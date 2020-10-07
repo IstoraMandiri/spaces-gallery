@@ -2,18 +2,18 @@ import * as THREE from "three";
 import React, { useEffect, useRef } from "react";
 import { useThree } from "react-three-fiber";
 import { EnvironmentStoreHook } from "stores/environment";
-import { AudioAnalyserStoreHook } from "stores/audio";
+import { MusicStoreHook } from "stores/music";
 // import { PositionalAudioHelper } from "three/examples/jsm/helpers/PositionalAudioHelper";
-// import { threadId } from "worker_threads";
 
 type OutsideAudioProps = JSX.IntrinsicElements["group"] & {
   useEnvStore: EnvironmentStoreHook;
-  useAAStore: AudioAnalyserStoreHook;
+  useMusicStore: MusicStoreHook;
   url: string;
   muted?: boolean;
 };
+
 const ShirtsMusic = (props: OutsideAudioProps) => {
-  const { useEnvStore, useAAStore, url, muted } = props;
+  const { useEnvStore, useMusicStore, url, muted } = props;
 
   const paused = useEnvStore((st) => st.paused);
 
@@ -22,12 +22,13 @@ const ShirtsMusic = (props: OutsideAudioProps) => {
   const speaker = useRef<THREE.PositionalAudio>();
   const { camera, scene } = useThree();
   const listener = useRef<THREE.AudioListener>();
-  const setAnalyser = useAAStore((st) => st.setAnalyser);
+  const setAnalyser = useMusicStore((st) => st.setAnalyser);
+  const setAudioRef = useMusicStore((st) => st.setAudioRef);
 
   useEffect(() => {
     if (container?.current && !audioRef.current) {
       const audio = document.createElement("audio");
-      audio.src = url;
+      audio.src = `https://d27rt3a60hh1lx.cloudfront.net/audio/portal-shirt/${url}`;
       audio.autoplay = false;
       audio.preload = "auto";
       audio.crossOrigin = "anonymous";
@@ -41,6 +42,7 @@ const ShirtsMusic = (props: OutsideAudioProps) => {
       }
 
       audioRef.current = audio;
+      setAudioRef(audioRef);
 
       return () => {
         audio.pause();

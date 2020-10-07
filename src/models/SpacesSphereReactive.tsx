@@ -8,7 +8,7 @@ import { loadModel } from "../services/loader";
 // import { BufferGeometry } from "three";
 // import { useConvexPolyhedron } from "use-cannon";
 import { EnvironmentStoreHook } from "stores/environment";
-import { AudioAnalyserStoreHook } from "stores/audio";
+import { MusicStoreHook } from "stores/music";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -22,13 +22,13 @@ type GLTFResult = GLTF & {
 //this should be moved to the types folder eventually
 type AudioReactiveModelProps = JSX.IntrinsicElements["group"] & {
   useEnvStore: EnvironmentStoreHook;
-  useAAStore: AudioAnalyserStoreHook;
+  useMusicStore: MusicStoreHook;
   index: number;
   bucket_size: number;
 };
 
 export default function Model(props: AudioReactiveModelProps) {
-  const { useEnvStore, useAAStore, index, bucket_size } = props;
+  const { useEnvStore, useMusicStore, index, bucket_size } = props;
   const setLoading = useEnvStore((st) => st.setLoading);
   const group = useRef<THREE.Group>();
   const sphereGroup = useRef<THREE.Group>();
@@ -38,7 +38,7 @@ export default function Model(props: AudioReactiveModelProps) {
     loadModel(setLoading)
   );
 
-  const aa = useAAStore((st) => st.audioAnalyser);
+  const aa = useMusicStore((st) => st.audioAnalyser);
 
   // materials.Sphere.metalness = 1;
   // materials.Sphere.refractionRatio = 0.75;

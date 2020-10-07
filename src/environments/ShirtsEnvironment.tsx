@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import styled from "@emotion/styled";
 import PauseMenu from "overlays/PauseMenu";
 import { getEnvironmentStore } from "stores/environment";
-import LoadingShirts from "ui-components/LoadingShirts";
+import ShirtsLoading from "overlays/ShirtsLoading";
 import { ContainerProps } from "react-three-fiber/targets/shared/web/ResizeContainer";
 import MobilePause from "ui-components/MobilePause";
 import { isMobile } from "react-device-detect";
@@ -58,7 +58,7 @@ const ShirtsEnvironment = (props: EnvironmentProps) => {
   }
 
   if (!result) {
-    return <>Loading...</>;
+    return <></>;
   }
 
   return (
@@ -69,7 +69,7 @@ const ShirtsEnvironment = (props: EnvironmentProps) => {
         portal={result}
         fixedPath={fixedPath}
       />
-      <LoadingShirts
+      <ShirtsLoading
         useEnvStore={useStore}
         name={result.firstName}
         setFixedPath={setFixedPath}

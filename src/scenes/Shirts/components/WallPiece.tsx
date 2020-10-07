@@ -2,16 +2,16 @@ import React, { Suspense, useRef } from "react";
 import * as THREE from "three";
 import Wall from "./ReactiveWall";
 import { EnvironmentStoreHook } from "stores/environment";
-import { AudioAnalyserStoreHook } from "stores/audio";
+import { MusicStoreHook } from "stores/music";
 import { useFrame } from "react-three-fiber";
 
 type WallPieceProps = {
   useEnvStore: EnvironmentStoreHook;
-  useAAStore: AudioAnalyserStoreHook;
+  useMusicStore: MusicStoreHook;
 };
 
 const WallPiece = (props: WallPieceProps) => {
-  const { useEnvStore, useAAStore } = props;
+  const { useEnvStore, useMusicStore } = props;
 
   const wallGroup = useRef<THREE.Group>();
 
@@ -23,7 +23,7 @@ const WallPiece = (props: WallPieceProps) => {
       wallPieces.unshift(
         <Wall
           useEnvStore={useEnvStore}
-          useAAStore={useAAStore}
+          useMusicStore={useMusicStore}
           index={i}
           bucket_size={bucket_size}
           key={i}

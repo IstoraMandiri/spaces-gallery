@@ -8,24 +8,24 @@ import { useFrame, useLoader, useThree } from "react-three-fiber";
 // import { BufferGeometry } from "three";
 // import { useConvexPolyhedron } from "use-cannon";
 import { EnvironmentStoreHook } from "stores/environment";
-import { AudioAnalyserStoreHook } from "stores/audio";
+import { MusicStoreHook } from "stores/music";
 
 //this should be moved to the types folder eventually
 type AudioReactiveModelProps = JSX.IntrinsicElements["group"] & {
   useEnvStore: EnvironmentStoreHook;
-  useAAStore: AudioAnalyserStoreHook;
+  useMusicStore: MusicStoreHook;
   index: number;
   bucket_size: number;
 };
 
 export default function Model(props: AudioReactiveModelProps) {
-  const { useAAStore, index, bucket_size } = props;
+  const { useMusicStore, index, bucket_size } = props;
 
   const group = useRef<THREE.Group>();
   const boxGroup = useRef<THREE.Group>();
   const material = useRef<THREE.MeshStandardMaterial>();
 
-  const aa = useAAStore((st) => st.audioAnalyser);
+  const aa = useMusicStore((st) => st.audioAnalyser);
 
   const { camera } = useThree();
 
