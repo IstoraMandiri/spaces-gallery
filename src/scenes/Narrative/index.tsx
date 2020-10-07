@@ -12,10 +12,11 @@ import Floor from "./components/Floor";
 import NarrativeEffects from "./components/NarrativeEffects";
 import House from "./components/House";
 import { GRAY } from "./components/Colors";
-import Hills from "./components/Hills";
 import HillRange from "./components/HillRange";
-import SkyLine from "./components/SkyLine";
 import SkyLines from "./components/SkyLines";
+import Sun from "./components/Sun";
+import NarrativeTree from "models/NarrativeTree";
+import NarrativeLighting from "./components/NarrativeLighting";
 
 const physicsProps = {
   iterations: 20,
@@ -45,15 +46,18 @@ const Narrative: SceneComponent = (props) => {
           attach="background"
           args={[BG_COLOR.r, BG_COLOR.g, BG_COLOR.b]}
         />
-        <fog attach="fog" args={[GRAY, 100, 400]} />
         <Physics {...physicsProps}>
           <InfinitePlane height={-0.001} />
-          <ambientLight intensity={1} />
+          <NarrativeLighting />
           <Floor />
           <Player useEnvStore={useEnvStore} initPos={[0, 0, 8]} />
           <House />
           <HillRange />
           <SkyLines />
+          <Sun />
+          <Suspense fallback={null}>
+            <NarrativeTree useEnvStore={useEnvStore} position={[20, 0, 0]} />
+          </Suspense>
           <Logo
             floating
             rotating

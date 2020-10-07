@@ -14,12 +14,12 @@ type SkyLineProps = {
   freq?: number;
 } & JSX.IntrinsicElements["group"];
 
-const LINE_WIDTH = 0.7;
+const LINE_WIDTH = 0.9;
 const NUM_POINTS = 200;
 const STEP = 0.1;
 
 const SkyLine = (props: SkyLineProps) => {
-  const { width = 1200, height = 3, freq = 0.06, ...restProps } = props;
+  const { width = 1500, height = 3, freq = 0.06, ...restProps } = props;
 
   const seed = useMemo(() => Math.random(), []);
   const simplex = useMemo(() => new SimplexNoise(), []);
@@ -29,7 +29,7 @@ const SkyLine = (props: SkyLineProps) => {
     (time: number) => {
       const points: Vector3[] = [];
       const simplexFreq = 80;
-      const locFreq = freq + seed / 100;
+      const locFreq = freq + seed / 60;
 
       const OFFSET = seed * 10000;
       const SIN_TIME = time * (0.6 + seed / 5);
