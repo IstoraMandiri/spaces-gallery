@@ -36,19 +36,7 @@ export default function Model(props: AudioReactiveModelProps) {
 
   const aa = useMusicStore((st) => st.audioAnalyser);
 
-  // materials.Sphere.metalness = 1;
-  // materials.Sphere.refractionRatio = 0.75;
   materials.Sphere.color = new THREE.Color(0.2, 0.5, 0.5);
-
-  // const wallsGeo = useMemo(() => {
-  //   return new THREE.Geometry().fromBufferGeometry(
-  //     nodes.Sphere.geometry as BufferGeometry
-  //   );
-  // }, [nodes]);
-  // const [wallsHitbox] = useConvexPolyhedron(() => ({
-  //   type: "Static",
-  //   args: wallsGeo.clone().translate(0, 0.02, 0).scale(100, 100, 100),
-  // }));
 
   useFrame(({ clock }) => {
     if (group.current) {
