@@ -36,7 +36,7 @@ type ShirtsPlayerProps = {
 const ShirtsPlayer = (props: ShirtsPlayerProps) => {
   const {
     useEnvStore,
-    initPos = [0, 1, 0],
+    initPos = [0, 2, 0],
     initLook = [0, 2, 0],
     raycaster,
     onFrame,

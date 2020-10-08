@@ -24,7 +24,8 @@ import { useRouter } from "next/router";
 
 const physicsProps = {
   iterations: 20,
-  size: 10,
+  size: 300,
+  gravity: [0, -30, 0],
   allowSleep: false,
   defaultContactMaterial: {
     friction: 0,
@@ -84,7 +85,7 @@ const Shirts: ShirtsSceneComponent = (props) => {
           <InfinitePlane height={-0.001} />
           <ShirtsPlayer
             useEnvStore={useEnvStore}
-            initPos={[0, 2, 20]}
+            initPos={[0, 2, 53]}
             fixedPath={fixedPath}
           />
           <ambientLight intensity={0.2} />
@@ -121,7 +122,9 @@ const Shirts: ShirtsSceneComponent = (props) => {
             <ShirtsCollisions position={[0, 0, 0]} />
           </Suspense>
           <Suspense fallback={null}>
-            <Logo useEnvStore={useEnvStore} />
+            <group position={[15, 0.75, 15]}>
+              <Logo useEnvStore={useEnvStore} rotating={true} />
+            </group>
           </Suspense>
           <ShirtsEffects useMusicStore={useMusicStore} />
         </Physics>

@@ -16,8 +16,9 @@ type FloorProps = {
 };
 
 const NONE_RANGE = 17;
-const INNER_EDGE_RANGE = 19.5;
-const OUTER_EDGE_RANGE = 55;
+const INNER_EDGE_START = 19.5;
+const INNER_EDGE_END = 55;
+const OUTER_EDGE_START = 60;
 
 const ShirtsFloor = (props: FloorProps) => {
   const {
@@ -42,7 +43,9 @@ const ShirtsFloor = (props: FloorProps) => {
         continue;
       }
 
-      const wall = distance < INNER_EDGE_RANGE || distance > OUTER_EDGE_RANGE;
+      const wall =
+        distance < INNER_EDGE_START ||
+        (distance > INNER_EDGE_END && distance < OUTER_EDGE_START);
 
       cubes.push(
         <ReactiveCube
