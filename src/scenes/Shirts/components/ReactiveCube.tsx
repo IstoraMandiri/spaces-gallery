@@ -89,13 +89,7 @@ const ReactiveCube = (props: ReactiveCubeProps) => {
         <boxBufferGeometry attach="geometry" args={scale} />
         <meshStandardMaterial attach="material" {...materialProps} />
       </mesh>
-      {wall ? (
-        <group position={position}>
-          <BoxCollider scale={hitboxScale} />
-        </group>
-      ) : (
-        <></>
-      )}
+      {wall && <BoxCollider position={position} scale={hitboxScale} />}
     </>
   );
 };

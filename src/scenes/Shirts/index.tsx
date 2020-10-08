@@ -1,13 +1,12 @@
-import React, { Suspense, useRef, useState } from "react";
+import React, { Suspense } from "react";
 import { Physics } from "use-cannon";
-import { Canvas, useFrame, useThree } from "react-three-fiber";
+import { Canvas } from "react-three-fiber";
 import InfinitePlane from "three-components/InfinitePlane";
 import ShirtsPlayer from "core/ShirtsPlayer";
 import { SceneProps } from "types/scene";
 import ShirtsMusic from "./components/ShirtsMusic";
 import ShirtsAssets from "./components/ShirtsAssets";
 import ShirtsFloor from "./components/ShirtsFloor";
-import ShirtsCollisions from "./components/ShirtsCollisions";
 import FloatingProfilePic from "./components/FloatingProfilePic";
 
 import { getMusicStore } from "stores/music";
@@ -47,7 +46,6 @@ const Shirts: ShirtsSceneComponent = (props) => {
     children,
   } = props;
 
-
   const router = useRouter();
   const { id } = router.query;
   const song = getSong(id as string, SHIRT_SONGS);
@@ -63,7 +61,6 @@ const Shirts: ShirtsSceneComponent = (props) => {
     "cyan",
   ];
   const randomColor = colors[portal?.instagram.id % colors.length];
-
 
   const [useMusicStore] = getMusicStore(() => ({ song, eventIndex: 0 }));
 
@@ -119,7 +116,6 @@ const Shirts: ShirtsSceneComponent = (props) => {
               hueStart={0.5}
               hueEnd={0.8}
             />
-            <ShirtsCollisions position={[0, 0, 0]} />
           </Suspense>
           <Suspense fallback={null}>
             <group position={[15, 0.75, 15]}>

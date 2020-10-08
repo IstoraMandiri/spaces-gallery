@@ -16,13 +16,15 @@ const FloatingProfilePic = (props: FloatingProfilePicProps) => {
   const group = useRef<Mesh>();
 
   useFrame(({ clock }) => {
-    const current = group.current;
-    if (current && current.position) {
-      current.position.x =
-        camera.position.x + Math.sin(clock.elapsedTime / 2) * 10;
-      current.position.y = camera.position.y + 40;
-      current.position.z =
-        camera.position.z + Math.cos(clock.elapsedTime / 2) * 10;
+    if (src) {
+      const current = group.current;
+      if (current && current.position) {
+        current.position.x =
+          camera.position.x + Math.sin(clock.elapsedTime / 2) * 4;
+        current.position.y = camera.position.y + 1;
+        current.position.z =
+          camera.position.z + Math.cos(clock.elapsedTime / 2) * 4;
+      }
     }
   });
 
@@ -34,10 +36,8 @@ const FloatingProfilePic = (props: FloatingProfilePicProps) => {
     <group ref={group}>
       <ReactivePrimitive
         url={src}
-        rotation={[0, Math.PI, 0]}
         useMusicStore={useMusicStore}
         primitive={0}
-        scale={[6, 6, 6]}
       />
     </group>
   );

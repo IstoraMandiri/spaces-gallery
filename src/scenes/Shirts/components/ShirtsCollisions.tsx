@@ -7,26 +7,20 @@ type SphereColliderProps = {
 };
 
 type BoxColliderProps = {
+  position: [number, number, number];
   scale?: [number, number, number];
 };
 
 export const BoxCollider = (props: BoxColliderProps) => {
-  const { scale = [2, 10, 2] } = props;
+  const { position, scale = [2, 20, 2] } = props;
 
-  const [box] = useBox(() => ({
+  useBox(() => ({
     type: "Static",
-    position: [0, 0, 0],
-    args: [1, 1, 1],
+    position: position,
+    args: scale,
   }));
 
-  return (
-    <group>
-      <mesh ref={box}>
-        <boxBufferGeometry attach="geometry" args={scale} />
-        <meshStandardMaterial attach="material" visible={false} />
-      </mesh>
-    </group>
-  );
+  return <></>;
 };
 
 const SphereCollider = (props: SphereColliderProps) => {

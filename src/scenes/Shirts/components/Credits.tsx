@@ -26,10 +26,10 @@ const Message = styled.h1`
 `;
 
 const INTRO_MESSAGES = [
-  "damn, sick t-shirt 😎",
-  "we're glad you're here ❤️",
-  "have you ever seen shit like this? 😲",
-  "oh hello 🐛",
+  "damn, sick t-shirt",
+  "we're glad you're here️",
+  "have you ever seen shit like this?",
+  "oh hello",
   "we've been expecting you",
 ];
 
