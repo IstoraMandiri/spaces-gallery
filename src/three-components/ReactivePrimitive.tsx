@@ -6,14 +6,14 @@ import * as THREE from "three";
 type ReactiveProps = JSX.IntrinsicElements["group"] & {
   url: string;
   useMusicStore: MusicStoreHook;
-  type: string;
+  primitive?: number;
 };
 
 let min = 1000000;
 let max = -10000000;
 
 const ReactivePrimitive = (props: ReactiveProps) => {
-  const { url, type, useMusicStore } = props;
+  const { url, primitive, useMusicStore } = props;
 
   const texture = useLoader(THREE.TextureLoader, url);
   const aa = useMusicStore((st) => st.audioAnalyser);
@@ -61,7 +61,9 @@ const ReactivePrimitive = (props: ReactiveProps) => {
     />,
   ];
   const randomPrimitive =
-    primitives[Math.floor(Math.random() * primitives.length)];
+    typeof primitive === "number"
+      ? primitives[primitive % primitives.length]
+      : primitives[Math.floor(Math.random() * primitives.length)];
 
   return (
     <group {...props} ref={group}>

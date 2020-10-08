@@ -8,6 +8,7 @@ import ShirtsMusic from "./components/ShirtsMusic";
 import ShirtsAssets from "./components/ShirtsAssets";
 import ShirtsFloor from "./components/ShirtsFloor";
 import ShirtsCollisions from "./components/ShirtsCollisions";
+import FloatingProfilePic from "./components/FloatingProfilePic";
 
 import { getMusicStore } from "stores/music";
 import Analytics from "ui-components/Analytics";
@@ -43,6 +44,18 @@ const Shirts: ShirtsSceneComponent = (props) => {
     children,
   } = props;
 
+  const colors = [
+    "red",
+    "green",
+    "blue",
+    "purple",
+    "yellow",
+    "orange",
+    "pink",
+    "cyan",
+  ];
+  const randomColor = colors[portal?.instagram.id % colors.length];
+
   const id = window.location.pathname.substring(8);
   const song = getSong(id, SHIRT_SONGS);
   const [useMusicStore] = getMusicStore(() => ({ song, eventIndex: 0 }));
@@ -61,7 +74,7 @@ const Shirts: ShirtsSceneComponent = (props) => {
         {children}
         <MusicManager useMusicStore={useMusicStore} />
         <Physics {...physicsProps}>
-          <ColoredSky />
+          <ColoredSky color={randomColor} />
           <InfinitePlane height={-0.001} />
           <ShirtsPlayer
             useEnvStore={useEnvStore}
@@ -69,7 +82,7 @@ const Shirts: ShirtsSceneComponent = (props) => {
             fixedPath={fixedPath}
           />
           <ambientLight intensity={0.2} />
-          <ShirtsLighting />
+          <ShirtsLighting color={randomColor} />
           <group position={[0, 0, 23]}>
             <ShirtsMusic
               useEnvStore={useEnvStore}
@@ -86,6 +99,10 @@ const Shirts: ShirtsSceneComponent = (props) => {
               useEnvStore={useEnvStore}
               useMusicStore={useMusicStore}
               portal={portal}
+            />
+            <FloatingProfilePic
+              src={portal?.instagram?.profile_pic_url_hd}
+              useMusicStore={useMusicStore}
             />
             <ShirtsFloor
               useEnvStore={useEnvStore}
