@@ -2,11 +2,7 @@ import * as THREE from "three";
 import React, { useMemo, useRef } from "react";
 import { useFrame, useLoader } from "react-three-fiber";
 import { GLTFLoader, GLTF } from "three/examples/jsm/loaders/GLTFLoader";
-// import { draco } from "drei";
-// import { ModelProps } from "../types/model";
 import { loadModel } from "../services/loader";
-// import { BufferGeometry } from "three";
-// import { useConvexPolyhedron } from "use-cannon";
 import { EnvironmentStoreHook } from "stores/environment";
 import { MusicStoreHook } from "stores/music";
 
