@@ -16,9 +16,11 @@ import ShirtsLighting from "./components/ShirtsLighting";
 import Logo from "three-components/Logo";
 import ColoredSky from "./components/ColoredSky";
 import WallPiece from "./components/WallPiece";
+import ShirtsEffects from "./components/ShirtsEffects";
 import SHIRT_SONGS from "./assets/songs";
 import { getSong, MusicManager } from "./services/musicManager";
 import Credits from "./components/Credits";
+import { useRouter } from "next/router";
 
 const physicsProps = {
   iterations: 20,
@@ -44,6 +46,11 @@ const Shirts: ShirtsSceneComponent = (props) => {
     children,
   } = props;
 
+
+  const router = useRouter();
+  const { id } = router.query;
+  const song = getSong(id as string, SHIRT_SONGS);
+
   const colors = [
     "red",
     "green",
@@ -56,8 +63,7 @@ const Shirts: ShirtsSceneComponent = (props) => {
   ];
   const randomColor = colors[portal?.instagram.id % colors.length];
 
-  const id = window.location.pathname.substring(8);
-  const song = getSong(id, SHIRT_SONGS);
+
   const [useMusicStore] = getMusicStore(() => ({ song, eventIndex: 0 }));
 
   const name = (portal && portal.firstName) || "❤";
@@ -117,6 +123,7 @@ const Shirts: ShirtsSceneComponent = (props) => {
           <Suspense fallback={null}>
             <Logo useEnvStore={useEnvStore} />
           </Suspense>
+          <ShirtsEffects useMusicStore={useMusicStore} />
         </Physics>
       </Canvas>
     </>

@@ -12,7 +12,7 @@ const ShirtsPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Shirts Knight | Spaces Gallery</title>
+        <title>Spaces Portal 001</title>
         <link
           href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,300&family=Space+Mono&display=swap"
           rel="stylesheet"
