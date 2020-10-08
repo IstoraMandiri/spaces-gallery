@@ -21,7 +21,7 @@ import Credits from "./components/Credits";
 
 const physicsProps = {
   iterations: 20,
-  size: 200,
+  size: 300,
   gravity: [0, -30, 0],
   allowSleep: false,
   defaultContactMaterial: {

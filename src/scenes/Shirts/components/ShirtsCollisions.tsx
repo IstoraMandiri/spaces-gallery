@@ -12,18 +12,17 @@ type BoxColliderProps = {
 
 export const BoxCollider = (props: BoxColliderProps) => {
   const { scale = [2, 10, 2] } = props;
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+
   const [box] = useBox(() => ({
     type: "Static",
     position: [0, 0, 0],
     args: [1, 1, 1],
   }));
-  const boxScale: [number, number, number] = [scale[0], 20, scale[2]];
 
   return (
     <group>
       <mesh ref={box}>
-        <boxBufferGeometry attach="geometry" args={boxScale} />
+        <boxBufferGeometry attach="geometry" args={scale} />
         <meshStandardMaterial attach="material" visible={false} />
       </mesh>
     </group>
