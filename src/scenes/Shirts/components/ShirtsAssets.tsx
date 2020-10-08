@@ -4,6 +4,7 @@ import { MusicStoreHook } from "stores/music";
 import BasicImage from "three-components/BasicImage";
 import MutedVideo from "three-components/MutedVideo";
 import ReactivePrimitive from "three-components/ReactivePrimitive";
+import HypedAsset from "./HypedAsset";
 
 type ShirtsAssetsProps = {
   useEnvStore: EnvironmentStoreHook;
@@ -38,44 +39,47 @@ const ShirtsAssets = (props: ShirtsAssetsProps) => {
       if (type === "image") {
         if (Math.random() < 0.35) {
           locAssets.push(
-            <BasicImage
-              key={url}
-              src={url}
-              ratio={[1, 1]}
-              sizeScale={5 + 1 * Math.random()}
-              position={position}
-              rotation={[0, 4 * Math.PI * Math.random(), 0]}
-              useMusicStore={useMusicStore}
-              floating
-            />
+            <HypedAsset useMusicStore={useMusicStore} key={url}>
+              <BasicImage
+                src={url}
+                ratio={[1, 1]}
+                sizeScale={5 + 1 * Math.random()}
+                position={position}
+                rotation={[0, 4 * Math.PI * Math.random(), 0]}
+                useMusicStore={useMusicStore}
+                floating
+              />
+            </HypedAsset>
           );
         } else {
           locAssets.push(
-            <ReactivePrimitive
-              key={url}
-              url={url}
-              position={position}
-              rotation={[0, 4 * Math.PI * Math.random(), 0]}
-              useMusicStore={useMusicStore}
-              scale={[2, 2, 2]}
-            />
+            <HypedAsset useMusicStore={useMusicStore} key={url}>
+              <ReactivePrimitive
+                url={url}
+                position={position}
+                rotation={[0, 4 * Math.PI * Math.random(), 0]}
+                useMusicStore={useMusicStore}
+                scale={[2, 2, 2]}
+              />
+            </HypedAsset>
           );
         }
       } else if (type === "video") {
         videoCount++;
         if (videoCount < videoLimit)
           locAssets.push(
-            <MutedVideo
-              key={url}
-              src={url}
-              ratio={[730, 730]}
-              sizeScale={10 + 1 * Math.random()}
-              position={position}
-              rotation={[0, 2 * Math.PI * Math.random(), 0]}
-              useEnvStore={useEnvStore}
-              floating
-              floatHeight={5}
-            />
+            <HypedAsset useMusicStore={useMusicStore} key={url}>
+              <MutedVideo
+                src={url}
+                ratio={[730, 730]}
+                sizeScale={10 + 1 * Math.random()}
+                position={position}
+                rotation={[0, 2 * Math.PI * Math.random(), 0]}
+                useEnvStore={useEnvStore}
+                floating
+                floatHeight={5}
+              />
+            </HypedAsset>
           );
       }
     }
