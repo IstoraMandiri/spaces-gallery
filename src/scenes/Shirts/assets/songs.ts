@@ -1,6 +1,7 @@
 const SHIRT_SONGS: Array<Song> = [
   {
     url: "aedfx-bajo.mp3",
+    credits: "aedfx",
     events: [
       {
         time: 0, // begin music
@@ -19,6 +20,7 @@ const SHIRT_SONGS: Array<Song> = [
   },
   {
     url: "losco-party.mp3",
+    credits: "Losco, Dabow, & Mo Vibez",
     events: [
       {
         time: 0, // begin music
@@ -37,6 +39,7 @@ const SHIRT_SONGS: Array<Song> = [
   },
   {
     url: "ini-bestmixever.mp3",
+    credits: "Inimicvs",
     events: [
       {
         time: 0, // begin music
@@ -55,6 +58,7 @@ const SHIRT_SONGS: Array<Song> = [
   },
   {
     url: "singularis-buzz.mp3",
+    credits: "Singularis",
     events: [
       {
         time: 0, // begin music
@@ -73,6 +77,7 @@ const SHIRT_SONGS: Array<Song> = [
   },
   {
     url: "bbno-dumblit.mp3",
+    credits: "bbno$",
     events: [
       {
         time: 0, // begin music
@@ -91,6 +96,7 @@ const SHIRT_SONGS: Array<Song> = [
   },
   {
     url: "mai-marble.mp3",
+    credits: "mai & Evilkuff",
     events: [
       {
         time: 0, // begin music
@@ -109,6 +115,7 @@ const SHIRT_SONGS: Array<Song> = [
   },
   {
     url: "ini-fuze.mp3",
+    credits: "Inimicvs",
     events: [
       {
         time: 0, // begin music
@@ -127,6 +134,7 @@ const SHIRT_SONGS: Array<Song> = [
   },
   {
     url: "loj-238.mp3",
+    credits: "L*o*J",
     events: [
       {
         time: 0, // begin music
@@ -145,6 +153,7 @@ const SHIRT_SONGS: Array<Song> = [
   },
   {
     url: "dilip-bangitout.mp3",
+    credits: "Dilip",
     events: [
       {
         time: 0, // begin music
@@ -173,6 +182,7 @@ const SHIRT_SONGS: Array<Song> = [
   },
   {
     url: "loj-sir.mp3",
+    credits: "L*o*J",
     events: [
       {
         time: 0, // begin music

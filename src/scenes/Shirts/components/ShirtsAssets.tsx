@@ -2,7 +2,7 @@ import React, { Suspense, useMemo } from "react";
 import { EnvironmentStoreHook } from "stores/environment";
 import { MusicStoreHook } from "stores/music";
 import BasicImage from "three-components/BasicImage";
-import FramedMutedVideo from "three-components/FramedMutedVideo";
+import MutedVideo from "three-components/MutedVideo";
 import ReactivePrimitive from "three-components/ReactivePrimitive";
 
 type ShirtsAssetsProps = {
@@ -22,6 +22,8 @@ const ShirtsAssets = (props: ShirtsAssetsProps) => {
     }
 
     const locAssets: Array<any> = [];
+    let videoCount = 0;
+    const videoLimit = 9;
     for (const asset of portal.assets) {
       const type = asset.type;
       const url = asset.url;
@@ -51,7 +53,6 @@ const ShirtsAssets = (props: ShirtsAssetsProps) => {
           locAssets.push(
             <ReactivePrimitive
               key={url}
-              type={type}
               url={url}
               position={position}
               rotation={[0, 4 * Math.PI * Math.random(), 0]}
@@ -61,19 +62,21 @@ const ShirtsAssets = (props: ShirtsAssetsProps) => {
           );
         }
       } else if (type === "video") {
-        locAssets.push(
-          <FramedMutedVideo
-            key={url}
-            src={url}
-            ratio={[730, 730]}
-            sizeScale={10 + 1 * Math.random()}
-            position={position}
-            rotation={[0, 2 * Math.PI * Math.random(), 0]}
-            useEnvStore={useEnvStore}
-            floating
-            floatHeight={5}
-          />
-        );
+        videoCount++;
+        if (videoCount < videoLimit)
+          locAssets.push(
+            <MutedVideo
+              key={url}
+              src={url}
+              ratio={[730, 730]}
+              sizeScale={10 + 1 * Math.random()}
+              position={position}
+              rotation={[0, 2 * Math.PI * Math.random(), 0]}
+              useEnvStore={useEnvStore}
+              floating
+              floatHeight={5}
+            />
+          );
       }
     }
 

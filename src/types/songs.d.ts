@@ -6,5 +6,6 @@ type SongEvent = {
 
 type Song = {
   url: string;
+  credits: string;
   events: Array<SongEvent>;
 };

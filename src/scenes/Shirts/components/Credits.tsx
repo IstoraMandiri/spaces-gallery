@@ -67,10 +67,19 @@ const Credits = (props: CreditProps) => {
       const openTime = song.events[openIndex].time;
 
       const timeLeft = openTime * 1000 - audioRef.current.currentTime;
+      const messages = [
+        selected[0],
+        `music provided by ${song.credits}`,
+        "welcome to your space",
+        `Spaces x ${name}`,
+      ];
 
-      setMessage(selected[0]);
-      setTimeout(() => setMessage("welcome to your space"), timeLeft / 3);
-      setTimeout(() => setMessage(`Spaces x ${name}`), (timeLeft * 2) / 3);
+      for (let i = 0; i < messages.length; i++) {
+        setTimeout(
+          () => setMessage(messages[i]),
+          (timeLeft / messages.length) * i
+        );
+      }
     } else if (!message) {
       const interval = setInterval(() => {
         setCounter((counter) => counter + 1);

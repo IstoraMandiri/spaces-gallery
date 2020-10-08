@@ -9,6 +9,7 @@ import { isMobile } from "react-device-detect";
 import { usePortal } from "../services/portal";
 import { buildShirtPortal } from "../scenes/Shirts/services/shirtPortal";
 import { ShirtsSceneComponent } from "../scenes/Shirts";
+import { useRouter } from "next/router";
 
 const Container = styled.div`
   position: absolute;
@@ -26,11 +27,20 @@ const Container = styled.div`
   }
 `;
 
+const ErrorText = styled.p`
+  position: absolute;
+  text-align: center;
+  color: red;
+  width: 100%;
+  max-width: 500px;
+  padding: 0 10%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
 type EnvironmentProps = {
   scene: ShirtsSceneComponent;
-  title?: string;
-  artist?: string;
-  link?: string;
 };
 
 const defaultCanvasProps: Partial<ContainerProps> = {
@@ -41,25 +51,34 @@ const defaultCanvasProps: Partial<ContainerProps> = {
 };
 
 const ShirtsEnvironment = (props: EnvironmentProps) => {
-  const { scene: Scene, artist, title, link } = props;
+  const { scene: Scene } = props;
 
   // create container ref and pass into environment store
   const container = useRef<HTMLDivElement>(null);
   const [useStore] = getEnvironmentStore(() => ({ container }));
 
   // get portal
-  const id = window.location.pathname.substring(8);
-  const { result, error } = usePortal(id, buildShirtPortal);
+  const router = useRouter();
+  const { id } = router.query;
+  const { result, error } = usePortal(id as string, buildShirtPortal);
 
   const [fixedPath, setFixedPath] = useState<boolean>(true);
 
   if (error) {
-    return <>{error}</>;
+    return <ErrorText>{error}</ErrorText>;
   }
 
   if (!result) {
     return <></>;
   }
+
+  const numberedId = parseInt(id as string) || -1;
+  const pauseTitle =
+    numberedId > 0
+      ? `The ${ordinalSuffixOf(numberedId)} Portal, made just for ${
+          result.firstName
+        }`
+      : `Shirt Portal | ${id}`;
 
   return (
     <Container ref={container}>
@@ -74,15 +93,25 @@ const ShirtsEnvironment = (props: EnvironmentProps) => {
         name={result.firstName}
         setFixedPath={setFixedPath}
       />
-      <PauseMenu
-        useEnvStore={useStore}
-        artist={artist}
-        link={link}
-        title={title}
-      />
+      <PauseMenu useEnvStore={useStore} title={pauseTitle} />
       {isMobile && <MobilePause useEnvStore={useStore} />}
     </Container>
   );
 };
+
+function ordinalSuffixOf(i: number) {
+  const j = i % 10,
+    k = i % 100;
+  if (j == 1 && k != 11) {
+    return i + "st";
+  }
+  if (j == 2 && k != 12) {
+    return i + "nd";
+  }
+  if (j == 3 && k != 13) {
+    return i + "rd";
+  }
+  return i + "th";
+}
 
 export default ShirtsEnvironment;

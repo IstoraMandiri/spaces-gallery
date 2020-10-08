@@ -1,7 +1,12 @@
 import React, { useMemo } from "react";
 import { DirectionalLight, SpotLight } from "three";
 
-const ShirtsLighting = () => {
+type LightingProps = {
+  color: any;
+};
+
+const ShirtsLighting = (props: LightingProps) => {
+  const { color } = props;
   const light = useMemo(() => new SpotLight(), []);
   const lightArgs = {
     distance: 12,
@@ -11,7 +16,7 @@ const ShirtsLighting = () => {
     penumbra: 0.5,
   };
 
-  const sun = useMemo(() => new DirectionalLight(0xde00ff), []);
+  const sun = useMemo(() => new DirectionalLight(color), []);
 
   //Set up shadow properties for the light
   sun.shadow.camera.scale.set(4, 4, 4);
