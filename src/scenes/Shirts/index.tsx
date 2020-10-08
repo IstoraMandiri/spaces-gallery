@@ -21,7 +21,8 @@ import Credits from "./components/Credits";
 
 const physicsProps = {
   iterations: 20,
-  size: 10,
+  size: 200,
+  gravity: [0, -30, 0],
   allowSleep: false,
   defaultContactMaterial: {
     friction: 0,
@@ -65,7 +66,7 @@ const Shirts: ShirtsSceneComponent = (props) => {
           <InfinitePlane height={-0.001} />
           <ShirtsPlayer
             useEnvStore={useEnvStore}
-            initPos={[0, 2, 20]}
+            initPos={[0, 2, 53]}
             fixedPath={fixedPath}
           />
           <ambientLight intensity={0.2} />
@@ -98,7 +99,9 @@ const Shirts: ShirtsSceneComponent = (props) => {
             <ShirtsCollisions position={[0, 0, 0]} />
           </Suspense>
           <Suspense fallback={null}>
-            <Logo useEnvStore={useEnvStore} />
+            <group position={[15, 0.75, 15]}>
+              <Logo useEnvStore={useEnvStore} rotating={true} />
+            </group>
           </Suspense>
         </Physics>
       </Canvas>

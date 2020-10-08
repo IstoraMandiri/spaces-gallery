@@ -5,9 +5,11 @@ import * as THREE from "three";
 const ColoredSky = () => {
   return (
     <>
-      <Sky />
+      <group scale={[100, 100, 100]}>
+        <Sky />
+      </group>
       <mesh>
-        <sphereBufferGeometry attach="geometry" args={[70, 50, 50]} />
+        <sphereBufferGeometry attach="geometry" args={[100, 50, 50]} />
         <meshStandardMaterial
           attach="material"
           color="green"

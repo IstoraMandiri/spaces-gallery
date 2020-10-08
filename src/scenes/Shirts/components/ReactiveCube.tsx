@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { useFrame, useThree } from "react-three-fiber";
 import { Vector3 } from "three";
 import SimplexNoise from "simplex-noise";
-import { useBox } from "use-cannon";
+import { BoxCollider } from "./ShirtsCollisions";
 
 type ReactiveCubeProps = {
   position: [number, number, number];
@@ -34,6 +34,7 @@ const ReactiveCube = (props: ReactiveCubeProps) => {
     position[1] + positionOffset[1],
     position[2] + positionOffset[2]
   );
+  const hitboxScale: [number, number, number] = [scale[0], 20, scale[2]];
 
   useFrame(({ clock }, delta) => {
     const simpValue =
@@ -58,7 +59,6 @@ const ReactiveCube = (props: ReactiveCubeProps) => {
 
       if (wall) {
         const distance = camera.position.distanceTo(positionVector);
-
         if (distance < 10) {
           // @ts-ignore
           cube.current.scale.y = Math.min(
@@ -89,6 +89,13 @@ const ReactiveCube = (props: ReactiveCubeProps) => {
         <boxBufferGeometry attach="geometry" args={scale} />
         <meshStandardMaterial attach="material" {...materialProps} />
       </mesh>
+      {wall ? (
+        <group position={position}>
+          <BoxCollider scale={hitboxScale} />
+        </group>
+      ) : (
+        <></>
+      )}
     </>
   );
 };
