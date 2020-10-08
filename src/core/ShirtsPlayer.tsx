@@ -85,11 +85,6 @@ const ShirtsPlayer = (props: ShirtsPlayerProps) => {
   useEffect(() => {
     // store position and velocity
     bodyApi.position.subscribe((p) => {
-      // if (isMobile) {
-      //   position.current.set(p[0], p[1], p[2]);
-      // } else {
-      //   bodyApi.position.set(p[0], p[1], p[2]);
-      // }
       position.current.set(p[0], p[1], p[2]);
     });
     bodyApi.velocity.subscribe((v) => velocity.current.set(v[0], v[1], v[2]));
