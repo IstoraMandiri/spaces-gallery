@@ -14,6 +14,10 @@ export const Overlay = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+
+  @media screen and (max-width: 500px) {
+    overflow-y: auto;
+  }
 `;
 
 export const Exit = styled.div`
@@ -108,7 +112,7 @@ export const LeftSide = styled.div`
   max-width: 500px;
 
   @media screen and (max-width: 500px) {
-    display: none;
+    margin: 30px 0;
   }
 `;
 
@@ -117,6 +121,10 @@ export const RightSide = styled.div`
   max-width: 400px;
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: 500px) {
+    margin: 30px 0;
+  }
 `;
 
 export const Description = styled.p`

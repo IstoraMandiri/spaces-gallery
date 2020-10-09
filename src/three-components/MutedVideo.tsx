@@ -5,7 +5,7 @@ import { Vector2 } from "three";
 import { EnvironmentStoreHook } from "stores/environment";
 import { Group } from "three";
 
-type FramedVideoProps = JSX.IntrinsicElements["group"] & {
+type VideoProps = JSX.IntrinsicElements["group"] & {
   useEnvStore: EnvironmentStoreHook;
   src: string;
   ratio: [number, number];
@@ -21,7 +21,7 @@ const borderThickness = 0.2;
 const borderDepth = 0.2;
 const meshOffset = 0.0005;
 
-const FramedMutedVideo = (props: FramedVideoProps) => {
+const MutedVideo = (props: VideoProps) => {
   const {
     src,
     sizeScale,
@@ -139,17 +139,15 @@ const FramedMutedVideo = (props: FramedVideoProps) => {
         {texReady && (
           <mesh>
             <planeBufferGeometry attach="geometry" args={[width, height]} />
-            <meshStandardMaterial attach="material" map={textureRef.current} />
+            <meshStandardMaterial
+              attach="material"
+              map={textureRef.current}
+              side={THREE.DoubleSide}
+            />
           </mesh>
         )}
         {!frameless && (
           <>
-            <mesh position={[0, 0, -0.1 - meshOffset]} material={material}>
-              <boxBufferGeometry
-                attach="geometry"
-                args={[width + frameWidth, height + frameWidth, frameDepth]}
-              />
-            </mesh>
             {/* top */}
             <mesh
               position={[
@@ -213,4 +211,4 @@ const FramedMutedVideo = (props: FramedVideoProps) => {
   );
 };
 
-export default FramedMutedVideo;
+export default MutedVideo;

@@ -71,17 +71,28 @@ const ShopOverlay = (props: ShopProps) => {
         <Form>
           <Sizes>
             {/* @ts-ignore */}
-            {variants.map(({ id, available, title }) => (
-              <SingleSize
-                key={id}
-                onClick={() => setCurVariantId(id)}
-                selected={id === curVariantId}
-                available={available}
-                disabled={!available}
-              >
-                {title.substr(0, 1).toUpperCase()}
-              </SingleSize>
-            ))}
+            {variants.map(({ id, available, title }) => {
+              if (title.includes("xxl")) {
+                return <></>;
+              }
+
+              let name = title.substr(0, 1).toUpperCase();
+              if (name === "X") {
+                name = "XL";
+              }
+
+              return (
+                <SingleSize
+                  key={id}
+                  onClick={() => setCurVariantId(id)}
+                  selected={id === curVariantId}
+                  available={available}
+                  disabled={!available}
+                >
+                  {name}
+                </SingleSize>
+              );
+            })}
           </Sizes>
           <Input
             value={username}
