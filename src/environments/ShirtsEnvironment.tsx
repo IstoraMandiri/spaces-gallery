@@ -68,15 +68,11 @@ const ShirtsEnvironment = (props: EnvironmentProps) => {
     return <ErrorText>{error}</ErrorText>;
   }
 
-  if (!result) {
-    return <></>;
-  }
-
   const numberedId = parseInt(id as string) || -1;
   const pauseTitle =
     numberedId > 0
       ? `The ${ordinalSuffixOf(numberedId)} Portal, made just for ${
-          result.firstName
+          result ? result.firstName : ""
         }`
       : `Shirt Portal | ${id}`;
 
@@ -88,11 +84,7 @@ const ShirtsEnvironment = (props: EnvironmentProps) => {
         portal={result}
         fixedPath={fixedPath}
       />
-      <ShirtsLoading
-        useEnvStore={useStore}
-        name={result.firstName}
-        setFixedPath={setFixedPath}
-      />
+      <ShirtsLoading useEnvStore={useStore} setFixedPath={setFixedPath} />
       <PauseMenu useEnvStore={useStore} title={pauseTitle} />
       {isMobile && <MobilePause useEnvStore={useStore} />}
     </Container>
