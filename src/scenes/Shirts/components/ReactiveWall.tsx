@@ -1,12 +1,6 @@
 import * as THREE from "three";
 import React, { useMemo, useRef } from "react";
 import { useFrame, useLoader, useThree } from "react-three-fiber";
-// import { GLTFLoader, GLTF } from "three/examples/jsm/loaders/GLTFLoader";
-// import { draco } from "drei";
-// import { ModelProps } from "../types/model";
-// import { loadModel } from "../services/loader";
-// import { BufferGeometry } from "three";
-// import { useConvexPolyhedron } from "use-cannon";
 import { EnvironmentStoreHook } from "stores/environment";
 import { MusicStoreHook } from "stores/music";
 
@@ -15,11 +9,11 @@ type AudioReactiveModelProps = JSX.IntrinsicElements["group"] & {
   useEnvStore: EnvironmentStoreHook;
   useMusicStore: MusicStoreHook;
   index: number;
-  bucket_size: number;
+  bucketSize: number;
 };
 
 export default function Model(props: AudioReactiveModelProps) {
-  const { useMusicStore, index, bucket_size } = props;
+  const { useMusicStore, index, bucketSize } = props;
 
   const group = useRef<THREE.Group>();
   const boxGroup = useRef<THREE.Group>();
@@ -47,7 +41,7 @@ export default function Model(props: AudioReactiveModelProps) {
     }
   });
 
-  const rotFactor = index / bucket_size;
+  const rotFactor = index / bucketSize;
 
   return (
     <group rotation-y={rotFactor} position-y={-0.2}>
