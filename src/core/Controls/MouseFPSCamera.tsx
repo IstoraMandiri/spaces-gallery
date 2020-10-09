@@ -83,7 +83,7 @@ const MouseFPSCamera = (props: MouseFPSCameraProps) => {
       if (!controls?.current?.isLocked && !paused) {
         setPaused(true);
       }
-    }, 50);
+    }, 250);
 
     controls?.current?.addEventListener("lock", onLock);
     controls?.current?.addEventListener("unlock", onUnlock);

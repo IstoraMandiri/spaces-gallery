@@ -70,7 +70,11 @@ const FramedImage = (props: FramedImageProps) => {
         </mesh>
         {!frameless && (
           <>
-            <mesh position={[0, 0, -0.1 - meshOffset]} material={material}>
+            <mesh
+              castShadow
+              position={[0, 0, -0.1 - meshOffset]}
+              material={material}
+            >
               <boxBufferGeometry
                 attach="geometry"
                 args={[width + frameWidth, height + frameWidth, frameDepth]}
