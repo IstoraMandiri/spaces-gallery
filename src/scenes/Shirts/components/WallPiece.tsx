@@ -16,7 +16,7 @@ const WallPiece = (props: WallPieceProps) => {
   const wallGroup = useRef<THREE.Group>();
 
   const num_spheres = 8;
-  const bucket_size = 1;
+  const bucketSize = 1;
   const initSpheres = (num: number) => {
     const wallPieces = [];
     for (let i = 0; i < num; i++) {
@@ -25,7 +25,7 @@ const WallPiece = (props: WallPieceProps) => {
           useEnvStore={useEnvStore}
           useMusicStore={useMusicStore}
           index={i}
-          bucket_size={bucket_size}
+          bucketSize={bucketSize}
           key={i}
         />
       );

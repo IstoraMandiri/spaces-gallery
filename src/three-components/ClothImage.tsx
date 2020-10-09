@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from "react";
+import React, { useRef } from "react";
 import * as THREE from "three";
 import { useFrame, useLoader } from "react-three-fiber";
 import { Color, Group, Vector2, Mesh } from "three";
@@ -16,14 +16,7 @@ type ClothImageProps = JSX.IntrinsicElements["group"] & {
 const floatHeight = 2;
 
 const ClothImage = (props: ClothImageProps) => {
-  const {
-    src,
-    sizeScale,
-    ratio,
-    floating,
-    color = 0x111111,
-    useMusicStore,
-  } = props;
+  const { src, sizeScale, ratio, floating, useMusicStore } = props;
 
   const texture = useLoader(THREE.TextureLoader, src);
   const group = useRef<Group>();

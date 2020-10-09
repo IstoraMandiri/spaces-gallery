@@ -20,6 +20,7 @@ import SHIRT_SONGS from "./assets/songs";
 import { getSong, MusicManager } from "./services/musicManager";
 import Credits from "./components/Credits";
 import { useRouter } from "next/router";
+import { COLORS } from "./assets/colors";
 
 const physicsProps = {
   iterations: 20,
@@ -48,23 +49,12 @@ const Shirts: ShirtsSceneComponent = (props) => {
 
   const router = useRouter();
   const { id } = router.query;
+
   const song = getSong(id as string, SHIRT_SONGS);
-
-  const colors = [
-    "red",
-    "green",
-    "blue",
-    "purple",
-    "yellow",
-    "orange",
-    "pink",
-    "cyan",
-  ];
-  const randomColor = colors[portal?.instagram.id % colors.length];
-
   const [useMusicStore] = getMusicStore(() => ({ song, eventIndex: 0 }));
 
   const name = (portal && portal.firstName) || "❤";
+  const randomColor = COLORS[Math.abs(portal?.seed) % COLORS.length];
 
   return (
     <>

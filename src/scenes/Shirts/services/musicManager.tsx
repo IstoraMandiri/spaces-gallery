@@ -6,6 +6,12 @@ type MusicManagerProps = {
   useMusicStore: MusicStoreHook;
 };
 
+/**
+ * Music manager utilizes r3f's useFrame to update the music store's event index globally.
+ *
+ * @param props
+ * @constructor
+ */
 export const MusicManager = (props: MusicManagerProps) => {
   const { useMusicStore } = props;
 
@@ -30,6 +36,12 @@ export const MusicManager = (props: MusicManagerProps) => {
   return <></>;
 };
 
+/**
+ * Given a seed and an array of songs, gets the right song
+ *
+ * @param seed
+ * @param music
+ */
 export const getSong = (seed: string, music: Array<Song>) => {
   const index = Math.abs(parseInt(seed) || getNumFromString(seed));
   return music[index % music.length];

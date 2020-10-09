@@ -6,7 +6,7 @@
  * @param portalResult
  */
 export const buildShirtPortal = (portalResult: Portal): Portal => {
-  const { instagram } = portalResult;
+  const { firstName, instagram } = portalResult;
 
   // rebuild base assets
   const assets: Asset[] = [];
@@ -32,9 +32,7 @@ export const buildShirtPortal = (portalResult: Portal): Portal => {
   }
 
   // calc seed
-  const seed = instagram
-    ? instagram.id
-    : portalResult.latitude + portalResult.longitude;
+  const seed = instagram ? instagram.id : getNumFromString(firstName);
 
   console.log(`seed: ${seed}`);
 
@@ -80,4 +78,17 @@ const aggregateInstagramAssets = (
       );
     }
   });
+};
+
+// returns a number hashed from the input string
+const getNumFromString = (input: string) => {
+  let hash = 0,
+    i,
+    chr;
+  for (i = 0; i < input.length; i++) {
+    chr = input.charCodeAt(i);
+    hash = (hash << 5) - hash + chr;
+    hash |= 0; // Convert to 32bit integer
+  }
+  return hash;
 };

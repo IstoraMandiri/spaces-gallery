@@ -1,8 +1,9 @@
 import React, { useRef } from "react";
 import { useFrame, useThree } from "react-three-fiber";
-import { Vector3 } from "three";
+import { MeshStandardMaterial, Vector3 } from "three";
 import SimplexNoise from "simplex-noise";
 import { BoxCollider } from "./ShirtsCollisions";
+import * as THREE from "three";
 
 type ReactiveCubeProps = {
   position: [number, number, number];
@@ -26,7 +27,8 @@ const ReactiveCube = (props: ReactiveCubeProps) => {
     hueStart,
     hueEnd,
   } = props;
-  const cube = useRef();
+
+  const cube = useRef<THREE.Mesh>();
   const { camera } = useThree();
   const simplex = useRef(new SimplexNoise("seedyo"));
   const positionVector = new Vector3(
@@ -46,36 +48,30 @@ const ReactiveCube = (props: ReactiveCubeProps) => {
         1) /
       2;
     if (cube.current) {
-      // @ts-ignore
-      cube.current.material.color.setHSL(
+      (cube.current.material as MeshStandardMaterial).color.setHSL(
         hueStart + (hueEnd - hueStart) * (gridIndex[0] / gridLength),
         0.25,
         0.45 + simpValue / 2
       );
-      // @ts-ignore
-      cube.current.material.metalness = gridIndex[1] / gridLength;
+      (cube.current.material as MeshStandardMaterial).metalness =
+        gridIndex[1] / gridLength;
 
       const simpHeight = scale[1] + 8 * simpValue;
 
       if (wall) {
         const distance = camera.position.distanceTo(positionVector);
         if (distance < 10) {
-          // @ts-ignore
           cube.current.scale.y = Math.min(
             15,
-            // @ts-ignore
             cube.current.scale.y + delta * 50
           );
         } else {
-          // @ts-ignore
           cube.current.scale.y = Math.max(
             simpHeight,
-            // @ts-ignore
             cube.current.scale.y - delta * 50
           );
         }
       } else {
-        // @ts-ignore
         cube.current.scale.y = simpHeight;
       }
     }

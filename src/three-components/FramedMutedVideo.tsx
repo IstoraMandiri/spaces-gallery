@@ -144,11 +144,7 @@ const FramedMutedVideo = (props: FramedVideoProps) => {
         )}
         {!frameless && (
           <>
-            <mesh
-              castShadow
-              position={[0, 0, -0.1 - meshOffset]}
-              material={material}
-            >
+            <mesh position={[0, 0, -0.1 - meshOffset]} material={material}>
               <boxBufferGeometry
                 attach="geometry"
                 args={[width + frameWidth, height + frameWidth, frameDepth]}

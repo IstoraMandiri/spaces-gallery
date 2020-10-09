@@ -35,6 +35,10 @@ const Begin = styled.button`
   cursor: pointer;
   border: none;
   font-family: "Lato", sans-serif;
+
+  @media screen and (max-width: 650px) {
+    font-size: 2rem;
+  }
 `;
 
 const BeginBackground = styled.div`
@@ -63,6 +67,10 @@ const AlternateStart = styled.div`
   }
   transition: opacity 1s ease;
   transition-delay: 2s;
+
+  @media screen and (max-width: 650px) {
+    font-size: 1rem;
+  }
 `;
 
 type TransitionType = {
