@@ -9,11 +9,11 @@ type AudioReactiveModelProps = JSX.IntrinsicElements["group"] & {
   useEnvStore: EnvironmentStoreHook;
   useMusicStore: MusicStoreHook;
   index: number;
-  bucketSize: number;
+  bucket_size: number;
 };
 
 export default function Model(props: AudioReactiveModelProps) {
-  const { useMusicStore, index, bucketSize } = props;
+  const { useMusicStore, index, bucket_size } = props;
 
   const group = useRef<THREE.Group>();
   const boxGroup = useRef<THREE.Group>();
@@ -41,7 +41,7 @@ export default function Model(props: AudioReactiveModelProps) {
     }
   });
 
-  const rotFactor = index / bucketSize;
+  const rotFactor = index / bucket_size;
 
   return (
     <group rotation-y={rotFactor} position-y={-0.2}>
