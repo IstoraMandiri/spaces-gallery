@@ -13,18 +13,18 @@ type ShirtsAssetsProps = {
 };
 
 const DIST_RANGE = [22, 50];
+const VIDEO_LIMIT = 9;
 
 const ShirtsAssets = (props: ShirtsAssetsProps) => {
   const { useEnvStore, useMusicStore, portal } = props;
+  const locAssetts: Array<any> = [];
+  let videoCount = 0;
 
   const assets: Array<any> = useMemo(() => {
     if (!portal || !portal.assets) {
       return [];
     }
 
-    const locAssets: Array<any> = [];
-    let videoCount = 0;
-    const videoLimit = 9;
     for (const asset of portal.assets) {
       const type = asset.type;
       const url = asset.url;
@@ -38,7 +38,7 @@ const ShirtsAssets = (props: ShirtsAssetsProps) => {
 
       if (type === "image") {
         if (Math.random() < 0.35) {
-          locAssets.push(
+          locAssetts.push(
             <HypedAsset useMusicStore={useMusicStore} key={url}>
               <BasicImage
                 src={url}
@@ -52,7 +52,7 @@ const ShirtsAssets = (props: ShirtsAssetsProps) => {
             </HypedAsset>
           );
         } else {
-          locAssets.push(
+          locAssetts.push(
             <HypedAsset useMusicStore={useMusicStore} key={url}>
               <ReactivePrimitive
                 url={url}
@@ -66,8 +66,8 @@ const ShirtsAssets = (props: ShirtsAssetsProps) => {
         }
       } else if (type === "video") {
         videoCount++;
-        if (videoCount < videoLimit)
-          locAssets.push(
+        if (videoCount < VIDEO_LIMIT)
+          locAssetts.push(
             <HypedAsset useMusicStore={useMusicStore} key={url}>
               <MutedVideo
                 src={url}
@@ -84,7 +84,7 @@ const ShirtsAssets = (props: ShirtsAssetsProps) => {
       }
     }
 
-    return locAssets;
+    return locAssetts;
   }, [portal]);
 
   return (
