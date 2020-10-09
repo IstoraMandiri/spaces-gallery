@@ -146,7 +146,7 @@ const ShirtsPlayer = (props: ShirtsPlayerProps) => {
     <>
       {isMobile ? (
         <>
-          {fixedPath && (
+          {!fixedPath && (
             <MobileControls
               quaternion={quaternion}
               position={position}

@@ -10,11 +10,10 @@ const TIMEOUT = 0; //ms, 0 for no timeout
 type LoadingScreenProps = {
   useEnvStore: EnvironmentStoreHook;
   setFixedPath: React.Dispatch<React.SetStateAction<boolean>>;
-  name?: string;
 };
 
 const ShirtsLoading = (props: LoadingScreenProps) => {
-  const { useEnvStore, name = "Name", setFixedPath } = props;
+  const { useEnvStore, setFixedPath } = props;
 
   const loading = useEnvStore((st) => st.loading);
   const setLoading = useEnvStore((st) => st.setLoading);

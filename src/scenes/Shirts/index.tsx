@@ -56,6 +56,10 @@ const Shirts: ShirtsSceneComponent = (props) => {
   const name = (portal && portal.firstName) || "❤";
   const randomColor = COLORS[Math.abs(portal?.seed) % COLORS.length];
 
+  if (!portal) {
+    return <></>;
+  }
+
   return (
     <>
       <Analytics />
