@@ -20,7 +20,6 @@ const ShirtsLighting = (props: LightingProps) => {
 
   //Set up shadow properties for the light
   sun.shadow.camera.scale.set(4, 4, 4);
-  // sun.shadow.camera.near = 0.5;    // default
   sun.shadow.mapSize.width = 2048;
   sun.shadow.mapSize.height = 2048;
 
@@ -30,7 +29,6 @@ const ShirtsLighting = (props: LightingProps) => {
       <group position={[-4, 8, 5]}>
         <primitive castShadow object={light} {...lightArgs} />
         <primitive object={light.target} position={[-1, -1, -1]} />
-        {/* <primitive object={shadowHelper} /> */}
         <primitive object={sun} position={[10, 10, 10]} castShadow />
       </group>
     </>

@@ -55,9 +55,6 @@ const ShirtsEffects = (props: ShirtsEffectsProps) => {
     if (aa) {
       const freq = aa.getFrequencyData()[1];
 
-      // if (freq < min) min = freq;
-      // if (freq > max) max = freq;
-
       let newFreq = (freq - MIN) / (MAX - MIN);
       newFreq = MathUtils.clamp(newFreq, 0, 1);
       newFreq = MathUtils.lerp(0.5, 0.92, newFreq * newFreq);

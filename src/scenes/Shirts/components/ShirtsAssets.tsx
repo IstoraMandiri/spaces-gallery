@@ -1,7 +1,7 @@
 import React, { Suspense, useMemo } from "react";
 import { EnvironmentStoreHook } from "stores/environment";
 import { MusicStoreHook } from "stores/music";
-import BasicImage from "three-components/BasicImage";
+import ClothImage from "three-components/ClothImage";
 import MutedVideo from "three-components/MutedVideo";
 import ReactivePrimitive from "three-components/ReactivePrimitive";
 import HypedAsset from "./HypedAsset";
@@ -40,7 +40,7 @@ const ShirtsAssets = (props: ShirtsAssetsProps) => {
         if (Math.random() < 0.35) {
           locAssetts.push(
             <HypedAsset useMusicStore={useMusicStore} key={url}>
-              <BasicImage
+              <ClothImage
                 src={url}
                 ratio={[1, 1]}
                 sizeScale={5 + 1 * Math.random()}

@@ -5,7 +5,7 @@ import { Color, Group, Vector2, Mesh } from "three";
 import { Cloth, ModifierStack } from "three.modifiers";
 import { MusicStoreHook } from "stores/music";
 
-type BasicImageProps = JSX.IntrinsicElements["group"] & {
+type ClothImageProps = JSX.IntrinsicElements["group"] & {
   src: string;
   ratio: [number, number];
   sizeScale: number;
@@ -15,7 +15,7 @@ type BasicImageProps = JSX.IntrinsicElements["group"] & {
 };
 const floatHeight = 2;
 
-const BasicImage = (props: BasicImageProps) => {
+const ClothImage = (props: ClothImageProps) => {
   const {
     src,
     sizeScale,
@@ -41,14 +41,6 @@ const BasicImage = (props: BasicImageProps) => {
   const cloth = new Cloth(1, 0);
 
   const aa = useMusicStore((st) => st.audioAnalyser);
-
-  // if (mesh.current) {
-  //   modifier = new ModifierStack(mesh.current);
-
-  //   cloth.setForce(0.02, -0.02, -0.02);
-
-  //   modifier.addModifier(cloth);
-  // }
 
   useFrame(({ clock }) => {
     if (mesh.current && floating) {
@@ -106,4 +98,4 @@ const BasicImage = (props: BasicImageProps) => {
   );
 };
 
-export default BasicImage;
+export default ClothImage;
