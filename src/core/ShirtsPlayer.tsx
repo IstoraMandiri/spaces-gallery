@@ -66,10 +66,7 @@ const ShirtsPlayer = (props: ShirtsPlayerProps) => {
     },
   }));
 
-  let controls: any = null;
-  if (isMobile) {
-    controls = new DeviceOrientationControls(camera);
-  }
+  const controls = useRef<DeviceOrientationControls>();
 
   // refs
   const prevTime = useRef(performance.now());
@@ -89,11 +86,17 @@ const ShirtsPlayer = (props: ShirtsPlayerProps) => {
     });
     bodyApi.velocity.subscribe((v) => velocity.current.set(v[0], v[1], v[2]));
     camera?.lookAt(initLook[0], initLook[1], initLook[2]);
+
+    if (isMobile) {
+      window.addEventListener("click", () => {
+        controls.current = new DeviceOrientationControls(camera);
+      });
+    }
   }, []);
 
   useFrame(({ clock }) => {
-    if (isMobile) {
-      controls.update();
+    if (isMobile && controls.current) {
+      controls.current.update();
     }
 
     if (fixedPath) {
