@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { isMobile } from "react-device-detect";
 import { useFrame, useThree } from "react-three-fiber";
+import PauseMenuCard from "./components/PauseMenuCard";
 
 const { NEXT_PUBLIC_VERSION } = process.env;
 
@@ -23,6 +24,18 @@ const Container = styled.div<{ paused: boolean }>`
   align-items: center;
   opacity: ${(props) => (props.paused ? 1 : 0)};
   pointer-events: ${(props) => (props.paused ? "all" : "none")};
+  //border: dashed 2px white;
+`;
+
+const Content = styled.div`
+  width: 70%;
+  height: 70%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 auto 0 auto;
+  // border: dashed 2px red;
 `;
 
 const ClickContainer = styled.div`
@@ -173,34 +186,40 @@ const PauseMenu: React.FC<OverlayProps> = (props) => {
   return (
     <Container paused={paused}>
       <ClickContainer onClick={closeOverlay} />
-      <Window>
-        <Version>v {NEXT_PUBLIC_VERSION}</Version>
-        <Instagram
-          onClick={() => {
-            window.open("https://www.instagram.com/spaces3.0");
-          }}
-        >
-          <FontAwesomeIcon icon={faInstagram} size="lg" />
-        </Instagram>
-        {artist && (
-          <MusicCreds>
-            music provided by{" "}
-            <a id="artist" href={link} target="_blank" rel="noreferrer">
-              {artist}
-            </a>
-          </MusicCreds>
-        )}
-        <Header>
-          <Title>SPACES</Title>
-          <SubHeader>{title}</SubHeader>
-        </Header>
-        <Text>
-          <p>Move around: {isMobile ? "Joystick" : "W/A/S/D"}</p>
-          <p>Look around: {isMobile ? "Drag" : "Mouse"}</p>
-          <p>Pause: {isMobile ? "Menu Button" : "Esc"}</p>
-        </Text>
-      </Window>
-      <Continue onClick={closeOverlay}>continue</Continue>
+      <Content>
+        {/*<Window>*/}
+        {/*  <Version>v {NEXT_PUBLIC_VERSION}</Version>*/}
+        {/*  <Instagram*/}
+        {/*    onClick={() => {*/}
+        {/*      window.open("https://www.instagram.com/spaces3.0");*/}
+        {/*    }}*/}
+        {/*  >*/}
+        {/*    <FontAwesomeIcon icon={faInstagram} size="lg" />*/}
+        {/*  </Instagram>*/}
+        {/*  {artist && (*/}
+        {/*    <MusicCreds>*/}
+        {/*      music provided by{" "}*/}
+        {/*      <a id="artist" href={link} target="_blank" rel="noreferrer">*/}
+        {/*        {artist}*/}
+        {/*      </a>*/}
+        {/*    </MusicCreds>*/}
+        {/*  )}*/}
+        {/*  <Header>*/}
+        {/*    <Title>SPACES</Title>*/}
+        {/*    <SubHeader>{title}</SubHeader>*/}
+        {/*  </Header>*/}
+        {/*  <Text>*/}
+        {/*    <p>Move around: {isMobile ? "Joystick" : "W/A/S/D"}</p>*/}
+        {/*    <p>Look around: {isMobile ? "Drag" : "Mouse"}</p>*/}
+        {/*    <p>Pause: {isMobile ? "Menu Button" : "Esc"}</p>*/}
+        {/*  </Text>*/}
+        {/*</Window>*/}
+        {/*<Continue onClick={closeOverlay}>continue</Continue>*/}
+        <PauseMenuCard />
+        <PauseMenuCard />
+        <PauseMenuCard />
+        <PauseMenuCard />
+      </Content>
     </Container>
   );
 };

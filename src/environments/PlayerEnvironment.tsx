@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import styled from "@emotion/styled";
-import PauseMenu from "overlays/PauseMenu";
+import PauseMenu from "overlays/NewPauseMenu";
 import Crosshair from "../core/Crosshair";
 import { SceneComponent } from "types/scene";
 import { getEnvironmentStore } from "stores/environment";
