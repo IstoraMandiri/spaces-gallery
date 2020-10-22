@@ -8,7 +8,7 @@ const ClickContainer = styled.div<{ paused: boolean }>`
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 1;
   background: rgba(0, 0, 0, 0.1);
   opacity: ${(props) => (props.paused ? 1 : 0)};
   pointer-events: ${(props) => (props.paused ? "all" : "none")};

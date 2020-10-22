@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import styled from "@emotion/styled";
 import PauseMenu from "overlays/PauseMenu";
 import Crosshair from "../core/Crosshair";
+import Settings from "../core/Settings";
 import { SceneComponent } from "types/scene";
 import { getEnvironmentStore } from "stores/environment";
 import LoadingScreen from "ui-components/LoadingScreen";
@@ -39,16 +40,6 @@ const defaultCanvasProps: Partial<ContainerProps> = {
   camera: { position: [0, 2, 0], near: 0.01, far: 100 },
 };
 
-const ClickContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background: rgba(0, 0, 0, 0.5);
-  top: 0;
-  left: 0;
-  z-index: -1;
-`;
-
 const PlayerEnvironment = (props: EnvironmentProps) => {
   const { scene: Scene, artist, title, link } = props;
 
@@ -56,13 +47,12 @@ const PlayerEnvironment = (props: EnvironmentProps) => {
   const container = useRef<HTMLDivElement>(null);
   const [useStore] = getEnvironmentStore(() => ({ container }));
   const paused = useStore((st) => st.paused);
-  const setPaused = useStore((st) => st.setPaused);
-  const closeOverlay = () => setPaused(false);
 
   return (
     <Container ref={container}>
       <Scene useEnvStore={useStore} defaultCanvasProps={defaultCanvasProps} />
       <LoadingScreen useEnvStore={useStore} />
+      <Settings />
       {paused ? (
         <PauseMenu
           useEnvStore={useStore}
