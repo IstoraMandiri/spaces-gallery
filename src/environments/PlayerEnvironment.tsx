@@ -39,25 +39,41 @@ const defaultCanvasProps: Partial<ContainerProps> = {
   camera: { position: [0, 2, 0], near: 0.01, far: 100 },
 };
 
+const ClickContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  z-index: -1;
+`;
+
 const PlayerEnvironment = (props: EnvironmentProps) => {
   const { scene: Scene, artist, title, link } = props;
 
   // create container ref and pass into environment store
   const container = useRef<HTMLDivElement>(null);
   const [useStore] = getEnvironmentStore(() => ({ container }));
+  const paused = useStore((st) => st.paused);
+  const setPaused = useStore((st) => st.setPaused);
+  const closeOverlay = () => setPaused(false);
 
   return (
     <Container ref={container}>
       <Scene useEnvStore={useStore} defaultCanvasProps={defaultCanvasProps} />
       <LoadingScreen useEnvStore={useStore} />
-      <PauseMenu
-        useEnvStore={useStore}
-        artist={artist}
-        link={link}
-        title={title}
-      />
+      {paused ? (
+        <PauseMenu
+          useEnvStore={useStore}
+          artist={artist}
+          link={link}
+          title={title}
+        />
+      ) : (
+        <Crosshair />
+      )}
       {isMobile && <MobilePause useEnvStore={useStore} />}
-      <Crosshair />
     </Container>
   );
 };
