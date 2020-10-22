@@ -11,12 +11,13 @@ import { Color } from "three";
 import Floor from "./components/Floor";
 import NarrativeEffects from "./components/NarrativeEffects";
 import House from "./components/House";
-import { GRAY } from "./components/Colors";
+import { GRAY } from "./assets/Colors";
 import HillRange from "./components/HillRange";
 import SkyLines from "./components/SkyLines";
 import Sun from "./components/Sun";
 import NarrativeTree from "models/NarrativeTree";
 import NarrativeLighting from "./components/NarrativeLighting";
+import Road from "./components/Road";
 
 const physicsProps = {
   iterations: 20,
@@ -55,6 +56,7 @@ const Narrative: SceneComponent = (props) => {
           <HillRange />
           <SkyLines />
           <Sun />
+          <Road position-x={8} />
           <Suspense fallback={null}>
             <NarrativeTree useEnvStore={useEnvStore} position={[20, 0, 0]} />
           </Suspense>

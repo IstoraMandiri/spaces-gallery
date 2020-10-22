@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef } from "react";
 import SimplexNoise from "simplex-noise";
 
-import { PINK, GREEN } from "./Colors";
+import { PINK, GREEN } from "../assets/Colors";
 import { BufferGeometry, PlaneBufferGeometry } from "three";
 
 type HillsProps = {

@@ -1,5 +1,5 @@
 import React from "react";
-import { PINK } from "./Colors";
+import { PINK } from "../assets/Colors";
 
 const Sun = () => {
   return (

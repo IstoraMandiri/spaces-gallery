@@ -1,5 +1,5 @@
 import React from "react";
-import { GRAY } from "./Colors";
+import { GRAY } from "../assets/Colors";
 
 const NarrativeLighting = () => {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { PINK, GRAY } from "./Colors";
+import { PINK, GRAY } from "../assets/Colors";
 
 const House = () => {
   return (

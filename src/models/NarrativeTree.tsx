@@ -8,7 +8,7 @@ import { useLoader } from "react-three-fiber";
 import { GLTFLoader, GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { loadModel } from "../services/loader";
 import { ModelProps } from "../types/model";
-import { GRAY } from "../scenes/Narrative/components/Colors";
+import { GRAY } from "../scenes/Narrative/assets/Colors";
 
 type GLTFResult = GLTF & {
   nodes: {

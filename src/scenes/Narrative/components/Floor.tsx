@@ -1,5 +1,5 @@
 import React from "react";
-import { GREEN } from "./Colors";
+import { GREEN } from "../assets/Colors";
 
 const Floor = () => {
   return (

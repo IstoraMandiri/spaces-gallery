@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useRef } from "react";
-import { PINK } from "./Colors";
+import { PINK } from "../assets/Colors";
 import SimplexNoise from "simplex-noise";
 import { Geometry, Vector3 } from "three";
 import { extend, useFrame } from "react-three-fiber";
