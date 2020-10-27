@@ -1,4 +1,4 @@
-import create, { StoreApi, UseStore } from "zustand";
+import create, { UseStore } from "zustand";
 import { RefObject } from "react";
 import { EnvironmentEvent } from "core/types/events";
 
@@ -26,12 +26,7 @@ type EnvironmentStoreReducers = {
 };
 
 type EnvironmentStoreType = EnvironmentStoreState & EnvironmentStoreReducers;
-type EnvironmentStoreInstance = [
-  UseStore<EnvironmentStoreType>,
-  StoreApi<EnvironmentStoreType>
-];
-export type EnvironmentStoreHook = EnvironmentStoreInstance[0];
-export type EnvironmentStoreAPI = EnvironmentStoreInstance[1];
+export type EnvironmentStoreHook = UseStore<EnvironmentStoreType>;
 
 const defaultState: EnvironmentStoreState = {
   paused: true,
@@ -43,7 +38,7 @@ const defaultState: EnvironmentStoreState = {
 
 function createEnvironmentStore(
   initialState?: Partial<EnvironmentStoreState>
-): EnvironmentStoreInstance {
+): EnvironmentStoreHook {
   return create((set, get) => ({
     ...defaultState,
     ...initialState,
@@ -86,11 +81,11 @@ function createEnvironmentStore(
   }));
 }
 
-let storeInstance: EnvironmentStoreInstance;
+let storeInstance: EnvironmentStoreHook;
 
 export function getEnvironmentStore(
   initialStateFunction: () => Partial<EnvironmentStoreState> = () => ({})
-): EnvironmentStoreInstance {
+): EnvironmentStoreHook {
   if (!process.browser) {
     return createEnvironmentStore(initialStateFunction());
   }
