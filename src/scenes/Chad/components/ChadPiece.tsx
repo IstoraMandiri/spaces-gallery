@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect, useRef, useState } from "react";
-import { EnvironmentStoreHook } from "stores/environment";
+import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 import { Color, Mesh } from "three";
-import ChadKnight from "models/ChadKnight";
+import ChadKnight from "scenes/Chad/models/ChadKnight";
 import { useFrame } from "react-three-fiber";
 import LokLok from "./LokLok";
 

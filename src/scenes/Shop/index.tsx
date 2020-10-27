@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { Physics, usePlane } from "@react-three/cannon";
 import { Canvas } from "react-three-fiber";
 import { Sky, OrbitControls } from "@react-three/drei";
-import { SceneComponent } from "core/types/scene";
+import { SceneComponent } from "@spacesvr/core/types/scene";
 import * as THREE from "three";
 
-import Analytics from "ui-components/Analytics";
+import { useAnalytics } from "services/analytics";
 import SpacesDisplay from "./components/SpacesDisplay";
 import Prisms from "./components/PrismArray";
-import ShopOverlay from "../../overlays/ShopOverlay";
+import ShopOverlay from "./components/ShopOverlay";
 
 const Shop: SceneComponent = (props) => {
   const { useEnvStore, defaultCanvasProps, children } = props;
@@ -33,6 +33,8 @@ const Shop: SceneComponent = (props) => {
     },
   };
 
+  useAnalytics();
+
   const Plane = (props: any) => {
     const [ref] = usePlane(() => ({ mass: 0, ...props }));
     return (
@@ -45,7 +47,6 @@ const Shop: SceneComponent = (props) => {
 
   return (
     <>
-      <Analytics />
       <Canvas
         {...defaultCanvasProps}
         camera={{ position: [1, 3, 7], far: 300 }}

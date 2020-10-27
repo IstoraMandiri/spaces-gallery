@@ -2,7 +2,7 @@ import React, { Suspense, useEffect, useRef, useState } from "react";
 import { UseStore } from "zustand";
 import { Text } from "@react-three/drei";
 
-import SpacesShirt from "models/SpacesShirt";
+import SpacesShirt from "scenes/Shop/models/SpacesShirt";
 import { isMobile } from "react-device-detect";
 
 type DisplayProps = {

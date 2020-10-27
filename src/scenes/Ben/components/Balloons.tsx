@@ -1,6 +1,6 @@
 import React, { Suspense, useMemo } from "react";
-import Simpleballoon from "models/Simpleballoon";
-import { EnvironmentStoreHook } from "stores/environment";
+import Simpleballoon from "@spacesvr/models/SimpleBalloon";
+import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 
 type BallonPos = {
   angle: number;

@@ -1,4 +1,4 @@
-import FramedImage from "three-components/FramedImage";
+import Image from "@spacesvr/components/Image";
 import { Text } from "@react-three/drei";
 import React from "react";
 import { Color } from "three";
@@ -14,7 +14,7 @@ const RightWall = () => {
       scale={[0.7, 0.7, 0.7]}
     >
       <group position={[2.75, -0.25, 0]}>
-        <FramedImage
+        <Image
           sizeScale={3}
           ratio={[1, 1]}
           src={
@@ -24,7 +24,7 @@ const RightWall = () => {
           color={FRAME_COLOR}
           position={[-3.5, 0, 0]}
         />
-        <FramedImage
+        <Image
           sizeScale={3}
           ratio={[1, 1]}
           src={
@@ -33,7 +33,7 @@ const RightWall = () => {
           floating
           color={FRAME_COLOR}
         />
-        <FramedImage
+        <Image
           sizeScale={3}
           ratio={[1, 1]}
           src={

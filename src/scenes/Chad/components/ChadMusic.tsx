@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import React, { useEffect, useRef } from "react";
 import { useThree } from "react-three-fiber";
-import { EnvironmentStoreHook } from "stores/environment";
+import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 import { PositionalAudioHelper } from "three/examples/jsm/helpers/PositionalAudioHelper";
 
 type OutsideAudioProps = JSX.IntrinsicElements["group"] & {

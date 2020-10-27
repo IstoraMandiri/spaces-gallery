@@ -1,5 +1,5 @@
 import React, { MutableRefObject } from "react";
-import { EnvironmentStoreHook } from "stores/environment";
+import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 import RightWall from "./components/RightWall";
 import Credits from "./components/Credits";
 import Statement from "./components/Statement";

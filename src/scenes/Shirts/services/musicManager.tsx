@@ -1,6 +1,6 @@
 import React from "react";
 import { useFrame } from "react-three-fiber";
-import { MusicStoreHook } from "stores/music";
+import { MusicStoreHook } from "scenes/Shirts/stores/music";
 
 type MusicManagerProps = {
   useMusicStore: MusicStoreHook;

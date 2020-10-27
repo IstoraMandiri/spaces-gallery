@@ -1,8 +1,8 @@
-import ToggleEffect from "three-components/ToggleEffect";
+import ToggleEffect from "scenes/Chad/components/ToggleEffect";
 import React, { MutableRefObject, useState } from "react";
 import { Color, Raycaster } from "three";
 import { Text } from "@react-three/drei";
-import Arrow from "three-components/Arrow";
+import Arrow from "@spacesvr/components/Arrow";
 
 const ButtonTest = (props: { raycaster: MutableRefObject<Raycaster> }) => {
   const { raycaster } = props;

@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { EnvironmentStoreHook } from "stores/environment";
+import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 import { useFrame, useLoader } from "react-three-fiber";
 import * as THREE from "three";
 import { Mesh } from "three";

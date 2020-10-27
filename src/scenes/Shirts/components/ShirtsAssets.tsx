@@ -1,10 +1,10 @@
 import React, { Suspense, useMemo } from "react";
-import { EnvironmentStoreHook } from "stores/environment";
-import { MusicStoreHook } from "stores/music";
-import ClothImage from "three-components/ClothImage";
-import MutedVideo from "three-components/MutedVideo";
-import ReactivePrimitive from "three-components/ReactivePrimitive";
+import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
+import { MusicStoreHook } from "scenes/Shirts/stores/music";
+import ClothImage from "@spacesvr/components/ClothImage";
+import ReactivePrimitive from "scenes/Shirts/components/ReactivePrimitive";
 import HypedAsset from "./HypedAsset";
+import Video from "@spacesvr/components/Video";
 
 type ShirtsAssetsProps = {
   useEnvStore: EnvironmentStoreHook;
@@ -69,15 +69,14 @@ const ShirtsAssets = (props: ShirtsAssetsProps) => {
         if (videoCount < VIDEO_LIMIT)
           locAssetts.push(
             <HypedAsset useMusicStore={useMusicStore} key={url}>
-              <MutedVideo
+              <Video
                 src={url}
                 ratio={[730, 730]}
                 sizeScale={10 + 1 * Math.random()}
                 position={position}
                 rotation={[0, 2 * Math.PI * Math.random(), 0]}
                 useEnvStore={useEnvStore}
-                floating
-                floatHeight={5}
+                muted
               />
             </HypedAsset>
           );

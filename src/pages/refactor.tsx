@@ -3,7 +3,7 @@ import { NextPage } from "next";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 
-const Environment = dynamic(import("core/environments/Environment"), {
+const Environment = dynamic(import("@spacesvr/core/environments/Environment"), {
   ssr: false,
 });
 const Refactor = dynamic(import("scenes/Refactor"), { ssr: false });

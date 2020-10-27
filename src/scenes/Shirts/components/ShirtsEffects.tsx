@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass";
 import { FXAAShader } from "three/examples/jsm/shaders/FXAAShader";
 import { AfterimagePass } from "three/examples/jsm/postprocessing/AfterimagePass.js";
-import { MusicStoreHook } from "stores/music";
+import { MusicStoreHook } from "scenes/Shirts/stores/music";
 import { MathUtils } from "three";
 extend({
   EffectComposer,

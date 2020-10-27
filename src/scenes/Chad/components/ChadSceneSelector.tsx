@@ -1,7 +1,7 @@
 import React from "react";
 import { useFrame, useThree } from "react-three-fiber";
 
-import { EnvironmentStoreHook } from "stores/environment";
+import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 
 type SceneSelectorProps = {
   useEnvStore: EnvironmentStoreHook;

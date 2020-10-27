@@ -1,18 +1,18 @@
 import React, { Suspense } from "react";
 import { Physics } from "@react-three/cannon";
 import { Canvas } from "react-three-fiber";
-import InfinitePlane from "three-components/InfinitePlane";
-import ShirtsPlayer from "core/ShirtsPlayer";
-import { SceneProps } from "core/types/scene";
+import InfinitePlane from "@spacesvr/components/InfinitePlane";
+import ShirtsPlayer from "@spacesvr/core/players/ShirtsPlayer";
+import { SceneProps } from "@spacesvr/core/types/scene";
 import ShirtsMusic from "./components/ShirtsMusic";
 import ShirtsAssets from "./components/ShirtsAssets";
 import ShirtsFloor from "./components/ShirtsFloor";
 import FloatingProfilePic from "./components/FloatingProfilePic";
 
-import { getMusicStore } from "stores/music";
-import Analytics from "ui-components/Analytics";
+import { getMusicStore } from "scenes/Shirts/stores/music";
+import { useAnalytics } from "services/analytics";
 import ShirtsLighting from "./components/ShirtsLighting";
-import Logo from "three-components/Logo";
+import Logo from "@spacesvr/components/Logo";
 import ColoredSky from "./components/ColoredSky";
 import WallPiece from "./components/WallPiece";
 import ShirtsEffects from "./components/ShirtsEffects";
@@ -47,6 +47,8 @@ const Shirts: ShirtsSceneComponent = (props) => {
     children,
   } = props;
 
+  useAnalytics();
+
   const router = useRouter();
   const { id } = router.query;
 
@@ -62,7 +64,6 @@ const Shirts: ShirtsSceneComponent = (props) => {
 
   return (
     <>
-      <Analytics />
       <Credits
         useMusicStore={useMusicStore}
         name={name}

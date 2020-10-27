@@ -1,8 +1,8 @@
 import { Text } from "@react-three/drei";
 import React from "react";
 import ChadLogo from "../../ChadLogo";
-import Logo from "three-components/Logo";
-import { EnvironmentStoreHook } from "stores/environment";
+import Logo from "@spacesvr/components/Logo";
+import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 
 const Credits = (props: { useEnvStore: EnvironmentStoreHook }) => {
   const { useEnvStore } = props;

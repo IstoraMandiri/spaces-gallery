@@ -1,8 +1,8 @@
 import * as THREE from "three";
 import React, { useMemo, useRef } from "react";
 import { useFrame, useLoader, useThree } from "react-three-fiber";
-import { EnvironmentStoreHook } from "stores/environment";
-import { MusicStoreHook } from "stores/music";
+import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
+import { MusicStoreHook } from "scenes/Shirts/stores/music";
 
 //this should be moved to the types folder eventually
 type AudioReactiveModelProps = JSX.IntrinsicElements["group"] & {
