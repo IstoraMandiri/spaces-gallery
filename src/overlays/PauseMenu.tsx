@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { EnvironmentStoreHook } from "stores/environment";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { isMobile } from "react-device-detect";
 
 const { NEXT_PUBLIC_VERSION } = process.env;
@@ -178,7 +176,7 @@ const PauseMenu: React.FC<OverlayProps> = (props) => {
             window.open("https://www.instagram.com/spaces3.0");
           }}
         >
-          <FontAwesomeIcon icon={faInstagram} size="lg" />
+          IG
         </Instagram>
         {artist && (
           <MusicCreds>
