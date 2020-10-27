@@ -4,7 +4,6 @@ import { SceneComponent } from "core/types/scene";
 import { getEnvironmentStore } from "stores/environment";
 import LoadingScreen from "ui-components/LoadingScreen";
 import { ContainerProps } from "react-three-fiber/targets/shared/web/ResizeContainer";
-import Player from "../Player";
 
 const Container = styled.div`
   position: absolute;

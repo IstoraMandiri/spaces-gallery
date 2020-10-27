@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styled from "@emotion/styled";
 import { EnvironmentStoreHook } from "stores/environment";
-import SpinningLoading from "./components/SpinningLoading";
 import Transition from "./components/Transition";
 import Loading from "./components/Loading";
 

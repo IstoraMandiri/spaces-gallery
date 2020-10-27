@@ -20,11 +20,6 @@ const physicsProps = {
   gravity: [0, -30, 0],
   defaultContactMaterial: {
     friction: 0,
-    // restitution?: number
-    // contactEquationStiffness?: number
-    // contactEquationRelaxation?: number
-    // frictionEquationStiffness?: number
-    // frictionEquationRelaxation?: number
   },
 };
 

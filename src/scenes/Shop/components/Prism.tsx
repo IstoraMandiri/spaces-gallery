@@ -1,7 +1,4 @@
 import React, { useRef } from "react";
-import { ModelProps } from "../../../core/types/model";
-import { UseStore } from "zustand";
-import { useFrame } from "react-three-fiber";
 
 type PrismProps = {
   scale?: [number, number, number];

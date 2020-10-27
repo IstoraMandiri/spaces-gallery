@@ -1,5 +1,4 @@
 import React, { useMemo, useRef } from "react";
-import FramedImage from "three-components/FramedImage";
 import {
   DoubleSide,
   Mesh,
