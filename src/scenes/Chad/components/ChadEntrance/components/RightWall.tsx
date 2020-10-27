@@ -20,7 +20,6 @@ const RightWall = () => {
           src={
             "https://d27rt3a60hh1lx.cloudfront.net/content/chadknight/harris/chaptsikc.jpg"
           }
-          floating
           color={FRAME_COLOR}
           position={[-3.5, 0, 0]}
         />
@@ -30,7 +29,6 @@ const RightWall = () => {
           src={
             "https://d27rt3a60hh1lx.cloudfront.net/content/chadknight/harris/fishing.jpg"
           }
-          floating
           color={FRAME_COLOR}
         />
         <Image
@@ -39,7 +37,6 @@ const RightWall = () => {
           src={
             "https://d27rt3a60hh1lx.cloudfront.net/content/chadknight/harris/september.jpg"
           }
-          floating
           color={FRAME_COLOR}
           position={[3.5, 0, 0]}
         />
