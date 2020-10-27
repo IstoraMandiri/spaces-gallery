@@ -40,7 +40,7 @@ const ShopEnvironment = (props: BasicEnvironmentProps) => {
 
   // create container ref and pass into environment store
   const container = useRef<HTMLDivElement>(null);
-  const [useStore] = getEnvironmentStore(() => ({ container }));
+  const useStore = getEnvironmentStore(() => ({ container }));
 
   return (
     <Container ref={container}>

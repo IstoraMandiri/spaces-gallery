@@ -54,7 +54,7 @@ const ShirtsEnvironment = (props: EnvironmentProps) => {
 
   // create container ref and pass into environment store
   const container = useRef<HTMLDivElement>(null);
-  const [useStore] = getEnvironmentStore(() => ({ container }));
+  const useStore = getEnvironmentStore(() => ({ container }));
 
   // get portal
   const router = useRouter();
