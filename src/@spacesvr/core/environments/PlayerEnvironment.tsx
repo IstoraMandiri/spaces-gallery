@@ -1,13 +1,11 @@
 import React, { useRef } from "react";
 import styled from "@emotion/styled";
-import PauseMenu from "@spacesvr/overlays/PauseMenu";
+import PauseMenu from "@spacesvr/overlays/PauseMenu/";
 import Crosshair from "../ui/Crosshair";
 import { SceneComponent } from "@spacesvr/core/types/scene";
 import { getEnvironmentStore } from "@spacesvr/core/stores/environment";
 import LoadingScreen from "@spacesvr/overlays/LoadingScreen";
 import { ContainerProps } from "react-three-fiber/targets/shared/web/ResizeContainer";
-import MobilePause from "@spacesvr/overlays/MobilePause";
-import { isMobile } from "react-device-detect";
 
 const Container = styled.div`
   position: absolute;
@@ -55,7 +53,6 @@ const PlayerEnvironment = (props: EnvironmentProps) => {
         link={link}
         title={title}
       />
-      {isMobile && <MobilePause useEnvStore={useStore} />}
       <Crosshair />
     </Container>
   );

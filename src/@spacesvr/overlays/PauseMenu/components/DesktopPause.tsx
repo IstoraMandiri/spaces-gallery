@@ -153,7 +153,7 @@ type OverlayProps = {
   title?: string;
 };
 
-const PauseMenu: React.FC<OverlayProps> = (props) => {
+const DesktopPause: React.FC<OverlayProps> = (props) => {
   const { useEnvStore, artist, title, link } = props;
 
   const paused = useEnvStore((st) => st.paused);
@@ -201,4 +201,4 @@ const PauseMenu: React.FC<OverlayProps> = (props) => {
   );
 };
 
-export default PauseMenu;
+export default DesktopPause;

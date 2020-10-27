@@ -1,11 +1,9 @@
 import React, { useRef, useState } from "react";
 import styled from "@emotion/styled";
-import PauseMenu from "@spacesvr/overlays/PauseMenu";
 import { getEnvironmentStore } from "@spacesvr/core/stores/environment";
 import ShirtsLoading from "scenes/Shirts/ShirtsLoading";
 import { ContainerProps } from "react-three-fiber/targets/shared/web/ResizeContainer";
-import MobilePause from "@spacesvr/overlays/MobilePause";
-import { isMobile } from "react-device-detect";
+import PauseMenu from "@spacesvr/overlays/PauseMenu/";
 import { usePortal } from "../../../services/portal";
 import { buildShirtPortal } from "../../../scenes/Shirts/services/shirtPortal";
 import { ShirtsSceneComponent } from "../../../scenes/Shirts";
@@ -85,7 +83,6 @@ const ShirtsEnvironment = (props: EnvironmentProps) => {
       />
       <ShirtsLoading useEnvStore={useStore} setFixedPath={setFixedPath} />
       <PauseMenu useEnvStore={useStore} title={pauseTitle} />
-      {isMobile && <MobilePause useEnvStore={useStore} />}
     </Container>
   );
 };

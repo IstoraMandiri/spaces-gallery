@@ -44,10 +44,7 @@ const Environment = (props: EnvironmentProps) => {
   return (
     <Container ref={container}>
       <LoadingScreen useEnvStore={useStore} />
-      <Scene
-        useEnvStore={useStore}
-        defaultCanvasProps={defaultCanvasProps}
-      ></Scene>
+      <Scene useEnvStore={useStore} defaultCanvasProps={defaultCanvasProps} />
     </Container>
   );
 };
