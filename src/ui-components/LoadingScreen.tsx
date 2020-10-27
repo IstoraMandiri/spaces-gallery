@@ -33,15 +33,15 @@ const LoadingScreen = (props: LoadingScreenProps) => {
   const loading = useEnvStore((st) => st.loading);
   const setLoading = useEnvStore((st) => st.setLoading);
 
-  const { active, progress, errors, item, loaded, total } = useProgress();
-
-  console.table({ active, progress, errors, item, loaded, total });
-
   useEffect(() => {
     if (TIMEOUT > 0) setTimeout(() => setLoading(1), TIMEOUT);
   }, [setLoading]);
 
-  return <Container landing={false}>{progress}% loaded</Container>;
+  return (
+    <Container finished={loading === 1} landing={false}>
+      {(loading * 100).toFixed(0)}%
+    </Container>
+  );
 };
 
 export default LoadingScreen;
