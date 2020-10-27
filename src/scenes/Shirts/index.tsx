@@ -51,7 +51,7 @@ const Shirts: ShirtsSceneComponent = (props) => {
   const { id } = router.query;
 
   const song = getSong(id as string, SHIRT_SONGS);
-  const [useMusicStore] = getMusicStore(() => ({ song, eventIndex: 0 }));
+  const useMusicStore = getMusicStore(() => ({ song, eventIndex: 0 }));
 
   const name = (portal && portal.firstName) || "❤";
   const randomColor = COLORS[Math.abs(portal?.seed) % COLORS.length];

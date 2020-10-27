@@ -21,9 +21,7 @@ type MusicStoreReducers = {
 };
 
 type MusicStoreType = MusicStoreState & MusicStoreReducers;
-type MusicStoreInstance = [UseStore<MusicStoreType>, StoreApi<MusicStoreType>];
-export type MusicStoreHook = MusicStoreInstance[0];
-export type MusicStoreAPI = MusicStoreInstance[1];
+export type MusicStoreHook = UseStore<MusicStoreType>;
 
 const defaultState: MusicStoreState = {
   eventIndex: 0,
@@ -31,7 +29,7 @@ const defaultState: MusicStoreState = {
 
 function createMusicStore(
   initialState?: Partial<MusicStoreState>
-): MusicStoreInstance {
+): MusicStoreHook {
   return create((set, get) => ({
     ...defaultState,
     ...initialState,
@@ -48,11 +46,11 @@ function createMusicStore(
   }));
 }
 
-let storeInstance: MusicStoreInstance;
+let storeInstance: MusicStoreHook;
 
 export function getMusicStore(
   initialStateFunction: () => Partial<MusicStoreState> = () => ({})
-): MusicStoreInstance {
+): MusicStoreHook {
   if (!process.browser) {
     return createMusicStore(initialStateFunction());
   }
