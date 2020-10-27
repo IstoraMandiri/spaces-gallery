@@ -1,5 +1,5 @@
 import FramedImage from "three-components/FramedImage";
-import { Text } from "drei";
+import { Text } from "@react-three/drei";
 import React from "react";
 import { Color } from "three";
 

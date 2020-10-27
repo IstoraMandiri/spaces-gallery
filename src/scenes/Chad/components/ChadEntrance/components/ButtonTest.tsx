@@ -1,7 +1,7 @@
 import ToggleEffect from "three-components/ToggleEffect";
 import React, { MutableRefObject, useState } from "react";
 import { Color, Raycaster } from "three";
-import { Text } from "drei";
+import { Text } from "@react-three/drei";
 import Arrow from "three-components/Arrow";
 
 const ButtonTest = (props: { raycaster: MutableRefObject<Raycaster> }) => {

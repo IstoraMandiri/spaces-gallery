@@ -1,4 +1,4 @@
-import { Text } from "drei";
+import { Text } from "@react-three/drei";
 import React from "react";
 import Arrow from "three-components/Arrow";
 

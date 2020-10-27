@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Physics, usePlane } from "@react-three/cannon";
 import { Canvas } from "react-three-fiber";
-import { Sky, OrbitControls } from "drei";
+import { Sky, OrbitControls } from "@react-three/drei";
 import { SceneComponent } from "core/types/scene";
 import * as THREE from "three";
 

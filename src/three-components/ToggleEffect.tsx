@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState, useEffect } from "react";
 import { Raycaster } from "three";
 import { useFrame } from "react-three-fiber";
-import { Text } from "drei";
+import { Text } from "@react-three/drei";
 
 type EffectProps = {
   position: [number, number, number];

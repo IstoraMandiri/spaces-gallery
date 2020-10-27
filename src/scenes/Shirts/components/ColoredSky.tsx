@@ -1,5 +1,5 @@
 import React from "react";
-import { Sky } from "drei";
+import { Sky } from "@react-three/drei";
 import * as THREE from "three";
 import { Color } from "three";
 

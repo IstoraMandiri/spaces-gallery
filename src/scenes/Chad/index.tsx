@@ -1,7 +1,7 @@
 import React, { Suspense, useCallback, useRef, useState } from "react";
 import { Physics } from "@react-three/cannon";
 import { Canvas } from "react-three-fiber";
-import { Sky, Stars } from "drei";
+import { Sky, Stars } from "@react-three/drei";
 import { Color } from "three";
 import { SceneComponent } from "core/types/scene";
 import { Raycaster, Vector3 } from "three";

@@ -35,7 +35,7 @@
     "glslify": "^7.1.0",
     "next": "9.4.4",
     "nipplejs": "^0.8.7",
-    "react": "16.13.1",
+    "react": "17.0.1",
     "react-device-detect": "^1.13.1",
     "react-dom": "16.13.1",
     "react-facebook-pixel": "^1.0.3",
