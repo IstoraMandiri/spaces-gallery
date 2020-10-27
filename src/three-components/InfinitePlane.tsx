@@ -1,5 +1,5 @@
 import React from "react";
-import { usePlane } from "use-cannon";
+import { usePlane } from "@react-three/cannon";
 
 type InfinitePlaneProps = {
   height: number;

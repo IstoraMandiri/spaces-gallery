@@ -1,17 +1,17 @@
 import React, { Suspense, useMemo, useState } from "react";
-import { Physics } from "use-cannon";
+import { Physics } from "@react-three/cannon";
 import { Canvas } from "react-three-fiber";
 import InfinitePlane from "three-components/InfinitePlane";
 import Logo from "three-components/Logo";
 import Player from "core/Player";
-import { SceneComponent } from "types/scene";
+import { SceneComponent } from "core/types/scene";
 
 import SpacesGallery from "models/SpacesGallery";
 import SpacesPlaques from "models/SpacesPlaques";
 import Analytics from "ui-components/Analytics";
 import RobertRoom from "./components/RobertRoom";
 import HDRISky from "three-components/HDRI/HDRISky";
-import Effects from "core/Effects";
+import RealisticEffects from "core/effects/RealisticEffects";
 import ZachRoom from "./components/ZachRoom";
 import DennisRoom from "./components/DennisRoom";
 import OutsideLighting from "./components/OutsideLighting";
@@ -94,7 +94,7 @@ const Outside: SceneComponent = (props) => {
           <Suspense fallback={null}>
             <SpacesPlaques useEnvStore={useEnvStore} />
           </Suspense>
-          <Effects />
+          <RealisticEffects />
         </Physics>
       </Canvas>
     </>

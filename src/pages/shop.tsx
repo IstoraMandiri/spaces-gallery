@@ -3,7 +3,7 @@ import { NextPage } from "next";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 
-const Environment = dynamic(import("environments/ShopEnvironment"), {
+const Environment = dynamic(import("core/environments/ShopEnvironment"), {
   ssr: false,
 });
 const Shop = dynamic(import("scenes/Shop"), { ssr: false });

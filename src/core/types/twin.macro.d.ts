@@ -1,4 +1,4 @@
-import "types/twin.macro";
+import "core/types/twin.macro";
 import styledComponent from "@emotion/styled";
 import { css as cssProperty } from "@emotion/core";
 

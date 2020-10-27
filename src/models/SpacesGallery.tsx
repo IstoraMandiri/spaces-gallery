@@ -7,9 +7,9 @@ import React, { useMemo, useRef } from "react";
 import { useLoader } from "react-three-fiber";
 import { GLTFLoader, GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { loadModel } from "../services/loader";
-import { ModelProps } from "../types/model";
+import { ModelProps } from "../core/types/model";
 import { BufferGeometry } from "three";
-import { useConvexPolyhedron } from "use-cannon";
+import { useConvexPolyhedron } from "@react-three/cannon";
 
 type GLTFResult = GLTF & {
   nodes: {

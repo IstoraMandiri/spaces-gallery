@@ -7,7 +7,7 @@ import React, { useRef } from "react";
 import { useLoader } from "react-three-fiber";
 import { GLTFLoader, GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { draco } from "drei";
-import { ModelProps } from "../types/model";
+import { ModelProps } from "../core/types/model";
 import { loadModel } from "../services/loader";
 
 type GLTFResult = GLTF & {

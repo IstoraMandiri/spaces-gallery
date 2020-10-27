@@ -1,13 +1,13 @@
 import React, { useRef, useEffect, MutableRefObject } from "react";
 import { useFrame, useThree } from "react-three-fiber";
 import { Quaternion, Raycaster, Vector3 } from "three";
-import { Event, useSphere } from "use-cannon";
+import { Event, useSphere } from "@react-three/cannon";
 import { isMobile } from "react-device-detect";
 
-import MobileControls from "./Controls/MobileControls";
-import DesktopControls from "./Controls/DesktopControls";
+import MobileControls from "./controls/MobileControls";
+import DesktopControls from "./controls/DesktopControls";
 import { EnvironmentStoreHook } from "stores/environment";
-import RaycasterUtil from "./RaycasterUtil";
+import RaycasterUtil from "./utils/RaycasterUtil";
 
 const VELOCITY_FACTOR = 250;
 const SHOW_PLAYER_HITBOX = false;

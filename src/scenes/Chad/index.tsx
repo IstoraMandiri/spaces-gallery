@@ -1,13 +1,13 @@
 import React, { Suspense, useCallback, useRef, useState } from "react";
-import { Physics } from "use-cannon";
+import { Physics } from "@react-three/cannon";
 import { Canvas } from "react-three-fiber";
 import { Sky, Stars } from "drei";
 import { Color } from "three";
-import { SceneComponent } from "types/scene";
+import { SceneComponent } from "core/types/scene";
 import { Raycaster, Vector3 } from "three";
 
 import Analytics from "ui-components/Analytics";
-import Effects from "core/Effects";
+import RealisticEffects from "core/effects/RealisticEffects";
 import ChadGallery from "models/ChadGallery";
 import ChadPiece from "./components/ChadPiece";
 import ChadLighting from "./components/ChadLighting";
@@ -108,7 +108,7 @@ const Chad: SceneComponent = (props) => {
               url="https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/audio/harris+cole+mix.mp3"
             />
           </group>
-          <Effects />
+          <RealisticEffects />
           {sceneState === "gallery" && (
             <>
               {/*{time ? <Sky distance={60000} /> : <></>}*/}

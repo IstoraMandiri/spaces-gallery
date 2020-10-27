@@ -1,5 +1,5 @@
 import React from "react";
-import { usePlane } from "use-cannon";
+import { usePlane } from "@react-three/cannon";
 import Robert0 from "../models/Robert0";
 import Robert1 from "../models/Robert1";
 import Robert2 from "../models/Robert2";

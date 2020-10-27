@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import styled from "@emotion/styled";
-import { SceneComponent } from "types/scene";
+import { SceneComponent } from "core/types/scene";
 import { getEnvironmentStore } from "stores/environment";
 import LoadingScreen from "ui-components/LoadingScreen";
 import { ContainerProps } from "react-three-fiber/targets/shared/web/ResizeContainer";

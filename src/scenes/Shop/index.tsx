@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Physics, usePlane } from "use-cannon";
+import { Physics, usePlane } from "@react-three/cannon";
 import { Canvas } from "react-three-fiber";
 import { Sky, OrbitControls } from "drei";
-import { SceneComponent } from "types/scene";
+import { SceneComponent } from "core/types/scene";
 import * as THREE from "three";
 
 import Analytics from "ui-components/Analytics";

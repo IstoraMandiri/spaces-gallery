@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { ModelProps } from "../../../types/model";
+import { ModelProps } from "../../../core/types/model";
 import { UseStore } from "zustand";
 import { useFrame } from "react-three-fiber";
 

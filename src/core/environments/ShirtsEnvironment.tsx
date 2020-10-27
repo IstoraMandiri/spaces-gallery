@@ -6,9 +6,9 @@ import ShirtsLoading from "overlays/ShirtsLoading";
 import { ContainerProps } from "react-three-fiber/targets/shared/web/ResizeContainer";
 import MobilePause from "ui-components/MobilePause";
 import { isMobile } from "react-device-detect";
-import { usePortal } from "../services/portal";
-import { buildShirtPortal } from "../scenes/Shirts/services/shirtPortal";
-import { ShirtsSceneComponent } from "../scenes/Shirts";
+import { usePortal } from "../../services/portal";
+import { buildShirtPortal } from "../../scenes/Shirts/services/shirtPortal";
+import { ShirtsSceneComponent } from "../../scenes/Shirts";
 import { useRouter } from "next/router";
 
 const Container = styled.div`

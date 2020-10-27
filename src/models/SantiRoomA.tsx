@@ -15,7 +15,7 @@ import { useFrame, useLoader } from "react-three-fiber";
 import { GLTFLoader, GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { draco } from "drei";
 import { loadModel } from "../services/loader";
-import { ModelProps } from "../types/model";
+import { ModelProps } from "../core/types/model";
 import { MeshBasicMaterial } from "three";
 
 type GLTFResult = GLTF & {

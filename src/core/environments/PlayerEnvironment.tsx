@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
 import styled from "@emotion/styled";
 import PauseMenu from "overlays/PauseMenu";
-import Crosshair from "../core/Crosshair";
-import { SceneComponent } from "types/scene";
+import Crosshair from "../ui/Crosshair";
+import { SceneComponent } from "core/types/scene";
 import { getEnvironmentStore } from "stores/environment";
 import LoadingScreen from "ui-components/LoadingScreen";
 import { ContainerProps } from "react-three-fiber/targets/shared/web/ResizeContainer";

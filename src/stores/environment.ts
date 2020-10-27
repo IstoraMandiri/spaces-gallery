@@ -1,6 +1,6 @@
 import create, { StoreApi, UseStore } from "zustand";
 import { RefObject } from "react";
-import { EnvironmentEvent } from "types/events";
+import { EnvironmentEvent } from "core/types/events";
 
 /**
  * actual state of the environment

@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import * as THREE from "three";
 import { BufferGeometry } from "three";
-import { useConvexPolyhedron, useTrimesh } from "use-cannon";
+import { useConvexPolyhedron, useTrimesh } from "@react-three/cannon";
 
 export const useTrimeshCollision = (geometry: BufferGeometry) => {
   const vertices = geometry.attributes.position.array;

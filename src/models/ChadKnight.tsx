@@ -6,7 +6,7 @@ import * as THREE from "three";
 import React, { useMemo, useRef } from "react";
 import { useFrame, useLoader } from "react-three-fiber";
 import { GLTFLoader, GLTF } from "three/examples/jsm/loaders/GLTFLoader";
-import { ModelProps } from "../types/model";
+import { ModelProps } from "../core/types/model";
 import { loadModel } from "../services/loader";
 import { Color } from "three";
 

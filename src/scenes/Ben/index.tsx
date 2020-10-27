@@ -1,13 +1,13 @@
 import React, { useMemo } from "react";
-import { Physics } from "use-cannon";
+import { Physics } from "@react-three/cannon";
 import { Canvas } from "react-three-fiber";
 import InfinitePlane from "three-components/InfinitePlane";
 import Logo from "three-components/Logo";
 import Player from "core/Player";
-import { SceneComponent } from "types/scene";
+import { SceneComponent } from "core/types/scene";
 
 import Analytics from "ui-components/Analytics";
-import Effects from "core/Effects";
+import RealisticEffects from "core/effects/RealisticEffects";
 import Balloons from "./components/Balloons";
 import { Color } from "three";
 import Sign from "../Chad/components/Sign";
@@ -79,7 +79,7 @@ const Ben: SceneComponent = (props) => {
           <Balloons useEnvStore={useEnvStore} />
           <ambientLight intensity={1} />
           <pointLight intensity={5} color={"white"} distance={55} />
-          <Effects />
+          <RealisticEffects />
         </Physics>
       </Canvas>
     </>

@@ -1,9 +1,9 @@
 import React, { Suspense } from "react";
-import { Physics } from "use-cannon";
+import { Physics } from "@react-three/cannon";
 import { Canvas } from "react-three-fiber";
 import InfinitePlane from "three-components/InfinitePlane";
 import ShirtsPlayer from "core/ShirtsPlayer";
-import { SceneProps } from "types/scene";
+import { SceneProps } from "core/types/scene";
 import ShirtsMusic from "./components/ShirtsMusic";
 import ShirtsAssets from "./components/ShirtsAssets";
 import ShirtsFloor from "./components/ShirtsFloor";

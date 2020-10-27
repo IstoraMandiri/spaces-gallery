@@ -3,12 +3,12 @@ import { NextPage } from "next";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 
-const Environment = dynamic(import("core/environments/PlayerEnvironment"), {
+const Environment = dynamic(import("core/environments/Environment"), {
   ssr: false,
 });
-const Ben = dynamic(import("scenes/Ben"), { ssr: false });
+const Refactor = dynamic(import("scenes/Refactor"), { ssr: false });
 
-const BenPage: NextPage = () => {
+const RefactorPage: NextPage = () => {
   return (
     <>
       <Head>
@@ -18,9 +18,14 @@ const BenPage: NextPage = () => {
           rel="stylesheet"
         />
       </Head>
-      <Environment scene={Ben} artist="Ben" title="Ben" link="Ben" />
+      <Environment
+        scene={Refactor}
+        artist="Lucid Monday"
+        title="Opening Gallery"
+        link="https://lucidmonday.com"
+      />
     </>
   );
 };
 
-export default BenPage;
+export default RefactorPage;
