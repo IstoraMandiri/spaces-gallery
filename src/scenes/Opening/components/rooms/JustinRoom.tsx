@@ -36,7 +36,6 @@ const JustinRoom = (props: JustinProps) => {
         <group position={[0, -1, 0]}>
           <Suspense fallback={null}>
             <JustinSkull
-              useEnvStore={useEnvStore}
               position={[-4, 0, -4]}
               rotation={[0, Math.PI / 2, 0]}
             />
