@@ -46,7 +46,7 @@ const PlayerEnvironment = (props: EnvironmentProps) => {
   return (
     <Container ref={container}>
       <Scene useEnvStore={useStore} defaultCanvasProps={defaultCanvasProps} />
-      <LoadingScreen useEnvStore={useStore} />
+      <LoadingScreen />
       <PauseMenu
         useEnvStore={useStore}
         artist={artist}

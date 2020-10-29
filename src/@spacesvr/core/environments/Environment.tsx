@@ -35,7 +35,7 @@ const defaultCanvasProps: Partial<ContainerProps> = {
 };
 
 const Environment = (props: EnvironmentProps) => {
-  const { scene: Scene, artist, title, link } = props;
+  const { scene: Scene } = props;
 
   // create container ref and pass into environment store
   const container = useRef<HTMLDivElement>(null);
@@ -43,7 +43,7 @@ const Environment = (props: EnvironmentProps) => {
 
   return (
     <Container ref={container}>
-      <LoadingScreen useEnvStore={useStore} />
+      <LoadingScreen />
       <Scene useEnvStore={useStore} defaultCanvasProps={defaultCanvasProps} />
     </Container>
   );

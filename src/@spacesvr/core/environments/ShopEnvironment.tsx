@@ -45,7 +45,7 @@ const ShopEnvironment = (props: BasicEnvironmentProps) => {
   return (
     <Container ref={container}>
       <Scene useEnvStore={useStore} defaultCanvasProps={defaultCanvasProps} />
-      <LoadingScreen useEnvStore={useStore} />
+      <LoadingScreen />
     </Container>
   );
 };
