@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, Suspense } from "react";
 import { Physics } from "@react-three/cannon";
 import { Canvas } from "react-three-fiber";
 import InfinitePlane from "@spacesvr/components/InfinitePlane";
@@ -53,8 +53,8 @@ const Ben: SceneComponent = (props) => {
       }}
     >
       {children}
-      <fog attach="fog" args={[0xe7e7e7, 1, 10]} />
       <Physics {...physicsProps}>
+        <fog attach="fog" args={[0xe7e7e7, 1, 10]} />
         <InfinitePlane height={-0.001} />
         <Player
           useEnvStore={useEnvStore}
@@ -65,13 +65,8 @@ const Ben: SceneComponent = (props) => {
           <Sign text="find ben" rotation={[0, -ANGLE + Math.PI / 2, 0]} />
         </group>
         <Present />
-        <Logo
-          floating
-          rotating
-          useEnvStore={useEnvStore}
-          position={[0, 1.25, 0]}
-        />
-        <Balloons useEnvStore={useEnvStore} />
+        <Logo floating rotating position={[0, 1.25, 0]} />
+        <Balloons />
         <ambientLight intensity={1} />
         <pointLight intensity={5} color={"white"} distance={55} />
         <RealisticEffects />

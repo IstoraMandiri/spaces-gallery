@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 import Transition from "./components/Transition";
 import Loading from "./components/Loading";
-
-const TIMEOUT = 0; //ms, 0 for no timeout
+import { useProgress } from "@react-three/drei";
 
 type LoadingScreenProps = {
   useEnvStore: EnvironmentStoreHook;
@@ -13,8 +12,6 @@ type LoadingScreenProps = {
 const ShirtsLoading = (props: LoadingScreenProps) => {
   const { useEnvStore, setFixedPath } = props;
 
-  const loading = useEnvStore((st) => st.loading);
-  const setLoading = useEnvStore((st) => st.setLoading);
   const setPaused = useEnvStore((st) => st.setPaused);
   const [start, setStart] = useState(false);
 
@@ -28,16 +25,13 @@ const ShirtsLoading = (props: LoadingScreenProps) => {
     beginExperience();
   };
 
-  useEffect(() => {
-    if (TIMEOUT > 0) setTimeout(() => setLoading(1), TIMEOUT);
-  }, [setLoading]);
+  const { progress } = useProgress();
 
   return (
     <>
-      <Loading progress={loading} />
+      <Loading progress={progress} />
       <Transition
         start={start}
-        progress={loading}
         beginExperience={beginExperience}
         selfExplore={selfExplore}
       />

@@ -11,11 +11,11 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { useFrame, useLoader } from "react-three-fiber";
-import { GLTFLoader, GLTF } from "three/examples/jsm/loaders/GLTFLoader";
-import { loadModel } from "../../../services/loader";
-import { ModelProps } from "../../../@spacesvr/core/types/model";
+import { useFrame } from "react-three-fiber";
+import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
+
 import { MeshBasicMaterial } from "three";
+import { useGLTF } from "@react-three/drei";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -39,22 +39,22 @@ type GLTFResult = GLTF & {
   };
 };
 
+const FILE_URL =
+  "https://d27rt3a60hh1lx.cloudfront.net/content/opening/santi/room_a/room_a.glb";
+
 type ActionName = "Walk";
 type GLTFActions = Record<ActionName, THREE.AnimationAction>;
 
 export default function Model(
-  props: ModelProps & { setGLTF: Dispatch<SetStateAction<GLTF | undefined>> }
+  props: JSX.IntrinsicElements["group"] & {
+    setGLTF: Dispatch<SetStateAction<GLTF | undefined>>;
+  }
 ) {
-  const { useEnvStore, setGLTF } = props;
+  const { setGLTF } = props;
 
   const humanMaterial = useMemo(() => new MeshBasicMaterial(), []);
-  const setLoading = useEnvStore((st) => st.setLoading);
   const group = useRef<THREE.Group>();
-  const gltf = useLoader<GLTFResult>(
-    GLTFLoader,
-    "https://d27rt3a60hh1lx.cloudfront.net/content/opening/santi/room_a/room_a.glb",
-    loadModel(setLoading)
-  );
+  const gltf = useGLTF(FILE_URL) as GLTFResult;
   const { nodes, materials, animations, scene } = gltf;
   const actions = useRef<GLTFActions>();
   const [mixer] = useState(() => new THREE.AnimationMixer(scene));
@@ -135,3 +135,5 @@ export default function Model(
     </group>
   );
 }
+
+useGLTF.preload(FILE_URL);

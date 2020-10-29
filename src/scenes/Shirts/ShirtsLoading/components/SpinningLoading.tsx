@@ -356,7 +356,7 @@ const SpinningLoading = (props: { progress: number }) => {
   const { progress } = props;
   const listElements = [...Array(62)].map((x, ind) => <i key={ind} />);
 
-  return <Wrapper finished={progress === 1}>{listElements}</Wrapper>;
+  return <Wrapper finished={progress === 100}>{listElements}</Wrapper>;
 };
 
 export default SpinningLoading;

@@ -75,7 +75,6 @@ const AlternateStart = styled.div`
 
 type TransitionType = {
   start: boolean;
-  progress: number;
   beginExperience: any;
   selfExplore: any;
 };

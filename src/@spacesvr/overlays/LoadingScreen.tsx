@@ -1,9 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "@emotion/styled";
-import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 import { useProgress } from "@react-three/drei";
-
-const TIMEOUT = 0; //ms, 0 for no timeout
 
 const Container = styled.div<{ finished: boolean; landing: boolean }>`
   width: 100%;
@@ -23,23 +20,12 @@ const Container = styled.div<{ finished: boolean; landing: boolean }>`
   flex-direction: column;
 `;
 
-type LoadingScreenProps = {
-  useEnvStore: EnvironmentStoreHook;
-};
-
-const LoadingScreen = (props: LoadingScreenProps) => {
-  const { useEnvStore } = props;
-
-  const loading = useEnvStore((st) => st.loading);
-  const setLoading = useEnvStore((st) => st.setLoading);
-
-  useEffect(() => {
-    if (TIMEOUT > 0) setTimeout(() => setLoading(1), TIMEOUT);
-  }, [setLoading]);
+const LoadingScreen = () => {
+  const { progress } = useProgress();
 
   return (
-    <Container finished={loading === 1} landing={false}>
-      {(loading * 100).toFixed(0)}%
+    <Container finished={progress === 100} landing={false}>
+      {Math.floor(progress)}%
     </Container>
   );
 };

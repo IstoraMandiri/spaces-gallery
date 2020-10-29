@@ -8,20 +8,17 @@ import { EnvironmentEvent } from "@spacesvr/core/types/events";
  * paused: whether user movements are consumed by controls or not
  * pausedWindow: when paused, which window to show (undefined = pause menu)
  * container: ref to parent container
- * loading: loading progress of current scene => [0, 1]
  * events: functions to be called during environment lifecycle, to be cleaned up...
  */
 export type EnvironmentStoreState = {
   paused: boolean;
   overlay: string | undefined;
   container: RefObject<HTMLDivElement> | null;
-  loading: number;
   events: EnvironmentEvent[];
 };
 
 type EnvironmentStoreReducers = {
   setPaused: (p: boolean, overlay?: string) => void;
-  setLoading: (l: number) => void;
   addEvent: (name: string, callback: (...args: any[]) => void) => void;
 };
 
@@ -32,7 +29,6 @@ const defaultState: EnvironmentStoreState = {
   paused: true,
   overlay: undefined,
   container: null,
-  loading: 0,
   events: [],
 };
 
@@ -62,11 +58,6 @@ function createEnvironmentStore(
           ev.callback.apply(null, [p, o]);
         }
       });
-    },
-    setLoading: (l) => {
-      set((state) => ({
-        loading: Math.min(Math.max(l, state.loading), 1),
-      }));
     },
     addEvent: (name: string, callback: (...args: any[]) => void) => {
       const event: EnvironmentEvent = {

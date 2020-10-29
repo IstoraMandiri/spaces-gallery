@@ -32,10 +32,10 @@ FILE_NAME=`basename ${FILES} .${EXTENSION}`
 # file outputs
 DATE_S=`date +%s`
 STAGED_FILE="${STAGED_FOLDER}/${FILE_NAME}.${EXTENSION}"
-OUTPUT_FILE="${STAGED_FOLDER}/${FILE_NAME}-${DATE_S}.glb"
+OUTPUT_FILE="${STAGED_FOLDER}/${FILE_NAME}.glb"
 JSX_FILE="/src/models/${FILE_NAME}.tsx"
 CLOUD_FOLDER="${NAME}-${DATE_S}"
-CLOUD_URL="https://d27rt3a60hh1lx.cloudfront.net/models/${CLOUD_FOLDER}/${CLOUD_FOLDER}.glb"
+CLOUD_URL="https://d27rt3a60hh1lx.cloudfront.net/models/${CLOUD_FOLDER}/${FILE_NAME}.glb"
 
 # convert gltf to glb
 if [ $EXTENSION == "gltf" ]
@@ -49,7 +49,7 @@ fi
 echo -e "👉 Found\t\t${STAGED_FILE}"
 
 # draco compression, if it fails assume it's already compressed and rename to output file
-gltf-pipeline -i "${STAGED_FILE}" -o "${OUTPUT_FILE}" -d || cp ${STAGED_FILE} ${OUTPUT_FILE}
+gltf-pipeline -i "${STAGED_FILE}" -o "${OUTPUT_FILE}" -d
 echo -e "👉 Draco\t\tComplete"
 
 # gltfjsx
@@ -61,7 +61,6 @@ aws s3 cp "${STAGED_FOLDER}" "s3://spaces-gallery-assets/models/${CLOUD_FOLDER}"
 echo -e "👉 Upload\t\tComplete, file available at ${CLOUD_URL}"
 
 # clean folder
-rm ${STAGED_FOLDER}/${FILE_NAME}-*.glb
 if [ $EXTENSION == "gltf" ]
 then
     rm ${STAGED_FOLDER}/*.glb

@@ -6,10 +6,11 @@ import * as THREE from "three";
 import React, { useEffect, useRef } from "react";
 import { useLoader } from "react-three-fiber";
 import { GLTFLoader, GLTF } from "three/examples/jsm/loaders/GLTFLoader";
-import { ModelProps } from "@spacesvr/core/types/model";
+
 import { loadModel } from "services/loader";
 import { useTrimeshCollision } from "@spacesvr/services/collision";
 import { BufferGeometry } from "three";
+import { useGLTF } from "@react-three/drei";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -38,16 +39,12 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default function Model(props: ModelProps) {
-  const { useEnvStore } = props;
+const FILE_URL =
+  "https://d27rt3a60hh1lx.cloudfront.net/models/ChadGallery18/ChadGallery18.glb";
 
-  const setLoading = useEnvStore((st) => st.setLoading);
+export default function Model(props: JSX.IntrinsicElements["group"]) {
   const group = useRef<THREE.Group>();
-  const { nodes, materials } = useLoader<GLTFResult>(
-    GLTFLoader,
-    "https://d27rt3a60hh1lx.cloudfront.net/models/ChadGallery18/ChadGallery18.glb",
-    loadModel(setLoading)
-  );
+  const { nodes, materials } = useGLTF(FILE_URL) as GLTFResult;
 
   useEffect(() => {
     if (group.current) {
@@ -115,3 +112,5 @@ export default function Model(props: ModelProps) {
     </group>
   );
 }
+
+useGLTF.preload(FILE_URL);

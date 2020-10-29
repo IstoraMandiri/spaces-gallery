@@ -1,11 +1,10 @@
-import React, { Suspense, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
-import SantiRoomA from "scenes/Opening/models/SantiRoomA";
 import { default as THREE, Group, WebGLRenderer } from "three";
-import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import Room from "./room";
-import { useFrame, useLoader, useThree } from "react-three-fiber";
-import { loadModel } from "../../../../../services/loader";
+import { useFrame, useThree } from "react-three-fiber";
+import { useGLTF } from "@react-three/drei";
 
 type SantiProps = {
   useEnvStore: EnvironmentStoreHook;
@@ -34,19 +33,17 @@ type GLTFResult = GLTF & {
   };
 };
 
+const FILE_URL =
+  "https://d27rt3a60hh1lx.cloudfront.net/content/opening/santi/room_a/room_a.glb";
+
 const SantiRoom = (props: SantiProps) => {
-  const { useEnvStore, renderer } = props;
+  const { renderer } = props;
 
   const room = useRef<Group>();
   const { scene } = useThree();
-  const setLoading = useEnvStore((st) => st.setLoading);
   const [added, setAdded] = useState(false);
 
-  const gltf = useLoader<GLTFResult>(
-    GLTFLoader,
-    "https://d27rt3a60hh1lx.cloudfront.net/content/opening/santi/room_a/room_a.glb",
-    loadModel(setLoading)
-  );
+  const gltf = useGLTF(FILE_URL) as GLTFResult;
 
   useEffect(() => {
     if (gltf && renderer && !room.current) {
@@ -82,3 +79,5 @@ const SantiRoom = (props: SantiProps) => {
 };
 
 export default SantiRoom;
+
+useGLTF.preload(FILE_URL);

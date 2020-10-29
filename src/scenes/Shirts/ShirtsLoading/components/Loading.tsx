@@ -54,9 +54,9 @@ const Loading = (props: { progress: number }) => {
   const { progress } = props;
 
   return (
-    <Container finished={progress === 1}>
+    <Container finished={progress === 100}>
       <TextContainer finished={progress === 1}>
-        <Text>{(progress * 100).toFixed(0)}</Text>
+        <Text>{Math.floor(progress)}</Text>
       </TextContainer>
       <SpinningLoading progress={progress} />
     </Container>
