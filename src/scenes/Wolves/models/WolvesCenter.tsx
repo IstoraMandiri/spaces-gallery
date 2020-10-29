@@ -10,33 +10,31 @@ import { BufferGeometry } from "three";
 
 type GLTFResult = GLTF & {
   nodes: {
-    Collider: THREE.Mesh;
-    ["1"]: THREE.Mesh;
-    ["2"]: THREE.Mesh;
-    ["3"]: THREE.Mesh;
-    ["4"]: THREE.Mesh;
-    ["5"]: THREE.Mesh;
-    ["11"]: THREE.Mesh;
-    ["210"]: THREE.Mesh;
-    ["320"]: THREE.Mesh;
-    ["430"]: THREE.Mesh;
-    ["540"]: THREE.Mesh;
-    ["6100"]: THREE.Mesh;
+    ["550"]: THREE.Mesh;
+    ["440"]: THREE.Mesh;
+    ["330"]: THREE.Mesh;
+    ["220"]: THREE.Mesh;
+    ["110"]: THREE.Mesh;
+    ["50"]: THREE.Mesh;
+    ["40"]: THREE.Mesh;
+    ["30"]: THREE.Mesh;
+    ["20"]: THREE.Mesh;
+    ["10"]: THREE.Mesh;
+    collider: THREE.Mesh;
   };
   materials: {
+    ["font color"]: THREE.MeshStandardMaterial;
+    ["50"]: THREE.MeshStandardMaterial;
+    ["40"]: THREE.MeshStandardMaterial;
+    ["30"]: THREE.MeshStandardMaterial;
+    ["20"]: THREE.MeshStandardMaterial;
+    ["10"]: THREE.MeshStandardMaterial;
     collider: THREE.MeshStandardMaterial;
-    ["text color"]: THREE.MeshStandardMaterial;
-    ["1.1"]: THREE.MeshStandardMaterial;
-    ["2.10"]: THREE.MeshStandardMaterial;
-    ["3.20"]: THREE.MeshStandardMaterial;
-    ["4.30"]: THREE.MeshStandardMaterial;
-    ["5.40"]: THREE.MeshStandardMaterial;
-    ["6.100"]: THREE.MeshStandardMaterial;
   };
 };
 
 const FILE_URL =
-  "https://d27rt3a60hh1lx.cloudfront.net/models/WolvesCenter2-1604002028/UVPercentageTests.glb";
+  "https://d27rt3a60hh1lx.cloudfront.net/models/WolvesCenter3-1604008965/UVPercentageTests_02.glb";
 
 export default function Model(props: JSX.IntrinsicElements["group"]) {
   const group = useRef<THREE.Group>();
@@ -47,7 +45,7 @@ export default function Model(props: JSX.IntrinsicElements["group"]) {
   const SCALE = 6;
 
   useTrimeshCollision(
-    (nodes.Collider.geometry as BufferGeometry)
+    (nodes.collider.geometry as BufferGeometry)
       .translate(0, 0.813, 0)
       .scale(SCALE, SCALE, SCALE)
   );
@@ -57,68 +55,59 @@ export default function Model(props: JSX.IntrinsicElements["group"]) {
       <group scale={[SCALE, SCALE, SCALE]}>
         <group position-y={0.813}>
           <mesh
+            material={materials["font color"]}
+            geometry={nodes["550"].geometry}
+            name="550"
+          />
+          <mesh
+            material={materials["font color"]}
+            geometry={nodes["440"].geometry}
+            name="440"
+          />
+          <mesh
+            material={materials["font color"]}
+            geometry={nodes["330"].geometry}
+            name="330"
+          />
+          <mesh
+            material={materials["font color"]}
+            geometry={nodes["220"].geometry}
+            name="220"
+          />
+          <mesh
+            material={materials["font color"]}
+            geometry={nodes["110"].geometry}
+            name="110"
+          />
+          <mesh
+            material={materials["50"]}
+            geometry={nodes["50"].geometry}
+            name="50"
+          />
+          <mesh
+            material={materials["40"]}
+            geometry={nodes["40"].geometry}
+            name="40"
+          />
+          <mesh
+            material={materials["30"]}
+            geometry={nodes["30"].geometry}
+            name="30"
+          />
+          <mesh
+            material={materials["20"]}
+            geometry={nodes["20"].geometry}
+            name="20"
+          />
+          <mesh
+            material={materials["10"]}
+            geometry={nodes["10"].geometry}
+            name="10"
+          />
+          <mesh
             material={materials.collider}
-            geometry={nodes.Collider.geometry}
-            name="Collider"
-          />
-          <mesh
-            material={materials["text color"]}
-            geometry={nodes["1"].geometry}
-            name="1"
-          />
-          <mesh
-            material={materials["text color"]}
-            geometry={nodes["2"].geometry}
-            name="2"
-          />
-          <mesh
-            material={materials["text color"]}
-            geometry={nodes["3"].geometry}
-            name="3"
-          />
-          <mesh
-            material={materials["text color"]}
-            geometry={nodes["4"].geometry}
-            name="4"
-          />
-          <mesh
-            material={materials["text color"]}
-            geometry={nodes["5"].geometry}
-            name="5"
-          />
-          <mesh
-            material={materials["1.1"]}
-            geometry={nodes["11"].geometry}
-            name="11"
-          />
-          <mesh
-            material={materials["2.10"]}
-            geometry={nodes["210"].geometry}
-            name="210"
-            rotation={[0, -1.2566, 0]}
-          />
-          <mesh
-            material={materials["3.20"]}
-            geometry={nodes["320"].geometry}
-            name="320"
-            rotation={[Math.PI, -Math.PI / 5, Math.PI]}
-          />
-          <mesh
-            material={materials["4.30"]}
-            geometry={nodes["430"].geometry}
-            name="430"
-            rotation={[-Math.PI, Math.PI / 5, -Math.PI]}
-          />
-          <mesh
-            material={materials["5.40"]}
-            geometry={nodes["540"].geometry}
-            name="540"
-            rotation={[0, 1.2566, 0]}
-          />
-          <mesh
-            material={materials["6.100"]}
-            geometry={nodes["6100"].geometry}
-            name="6100"
+            geometry={nodes.collider.geometry}
+            name="collider"
           />
         </group>
       </group>
