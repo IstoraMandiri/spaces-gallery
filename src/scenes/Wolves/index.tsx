@@ -10,7 +10,7 @@ import RealisticEffects from "@spacesvr/core/effects/RealisticEffects";
 import Logo from "@spacesvr/components/Logo";
 import WolvesCenter from "./models/WolvesCenter";
 import { Color } from "three";
-import { Sky } from "@react-three/drei";
+import { Reflector, Sky } from "@react-three/drei";
 
 const physicsProps = {
   iterations: 20,

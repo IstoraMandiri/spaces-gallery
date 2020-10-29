@@ -10,28 +10,44 @@ import { BufferGeometry } from "three";
 
 type GLTFResult = GLTF & {
   nodes: {
-    COLLIDER: THREE.Mesh;
-    TERRAIN: THREE.Mesh;
+    Collider: THREE.Mesh;
+    ["1"]: THREE.Mesh;
+    ["2"]: THREE.Mesh;
+    ["3"]: THREE.Mesh;
+    ["4"]: THREE.Mesh;
+    ["5"]: THREE.Mesh;
+    ["11"]: THREE.Mesh;
+    ["210"]: THREE.Mesh;
+    ["320"]: THREE.Mesh;
+    ["430"]: THREE.Mesh;
+    ["540"]: THREE.Mesh;
+    ["6100"]: THREE.Mesh;
   };
   materials: {
-    Mat: THREE.MeshStandardMaterial;
+    collider: THREE.MeshStandardMaterial;
+    ["text color"]: THREE.MeshStandardMaterial;
+    ["1.1"]: THREE.MeshStandardMaterial;
+    ["2.10"]: THREE.MeshStandardMaterial;
+    ["3.20"]: THREE.MeshStandardMaterial;
+    ["4.30"]: THREE.MeshStandardMaterial;
+    ["5.40"]: THREE.MeshStandardMaterial;
+    ["6.100"]: THREE.MeshStandardMaterial;
   };
 };
 
 const FILE_URL =
-  "https://d27rt3a60hh1lx.cloudfront.net/models/WolvesCenter1-1603956215/50uv180m.glb";
+  "https://d27rt3a60hh1lx.cloudfront.net/models/WolvesCenter2-1604002028/UVPercentageTests.glb";
 
 export default function Model(props: JSX.IntrinsicElements["group"]) {
   const group = useRef<THREE.Group>();
   const { nodes, materials } = useGLTF(FILE_URL) as GLTFResult;
 
-  materials.Mat.side = THREE.DoubleSide;
-  materials.Mat.metalness = 0.01;
+  // materials.Mat.side = THREE.DoubleSide;
+  // materials.Mat.metalness = 0.01;
   const SCALE = 6;
 
   useTrimeshCollision(
-    (nodes.COLLIDER.geometry as BufferGeometry)
-      .translate(0, -0.6654, 0)
+    (nodes.Collider.geometry as BufferGeometry)
       .translate(0, 0.813, 0)
       .scale(SCALE, SCALE, SCALE)
   );
@@ -40,17 +56,69 @@ export default function Model(props: JSX.IntrinsicElements["group"]) {
     <group ref={group} {...props}>
       <group scale={[SCALE, SCALE, SCALE]}>
         <group position-y={0.813}>
-          {/*<mesh*/}
-          {/*  material={nodes.COLLIDER.material}*/}
-          {/*  geometry={nodes.COLLIDER.geometry}*/}
-          {/*  name="COLLIDER"*/}
-          {/*  position={[0, -0.6654, 0]}*/}
-          {/*/>*/}
           <mesh
-            material={materials.Mat}
-            geometry={nodes.TERRAIN.geometry}
-            name="TERRAIN"
-            position={[0, -0.8089, 0]}
+            material={materials.collider}
+            geometry={nodes.Collider.geometry}
+            name="Collider"
+          />
+          <mesh
+            material={materials["text color"]}
+            geometry={nodes["1"].geometry}
+            name="1"
+          />
+          <mesh
+            material={materials["text color"]}
+            geometry={nodes["2"].geometry}
+            name="2"
+          />
+          <mesh
+            material={materials["text color"]}
+            geometry={nodes["3"].geometry}
+            name="3"
+          />
+          <mesh
+            material={materials["text color"]}
+            geometry={nodes["4"].geometry}
+            name="4"
+          />
+          <mesh
+            material={materials["text color"]}
+            geometry={nodes["5"].geometry}
+            name="5"
+          />
+          <mesh
+            material={materials["1.1"]}
+            geometry={nodes["11"].geometry}
+            name="11"
+          />
+          <mesh
+            material={materials["2.10"]}
+            geometry={nodes["210"].geometry}
+            name="210"
+            rotation={[0, -1.2566, 0]}
+          />
+          <mesh
+            material={materials["3.20"]}
+            geometry={nodes["320"].geometry}
+            name="320"
+            rotation={[Math.PI, -Math.PI / 5, Math.PI]}
+          />
+          <mesh
+            material={materials["4.30"]}
+            geometry={nodes["430"].geometry}
+            name="430"
+            rotation={[-Math.PI, Math.PI / 5, -Math.PI]}
+          />
+          <mesh
+            material={materials["5.40"]}
+            geometry={nodes["540"].geometry}
+            name="540"
+            rotation={[0, 1.2566, 0]}
+          />
+          <mesh
+            material={materials["6.100"]}
+            geometry={nodes["6100"].geometry}
+            name="6100"
           />
         </group>
       </group>
