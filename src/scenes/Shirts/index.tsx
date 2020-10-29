@@ -90,10 +90,7 @@ const Shirts: ShirtsSceneComponent = (props) => {
             />
           </group>
           <Suspense fallback={null}>
-            <WallPiece
-              useEnvStore={useEnvStore}
-              useMusicStore={useMusicStore}
-            />
+            <WallPiece useMusicStore={useMusicStore} />
             <ShirtsAssets
               useEnvStore={useEnvStore}
               useMusicStore={useMusicStore}
@@ -104,7 +101,6 @@ const Shirts: ShirtsSceneComponent = (props) => {
               useMusicStore={useMusicStore}
             />
             <ShirtsFloor
-              useEnvStore={useEnvStore}
               position={[0, -2.5, 0]}
               scale={[3, 0.5, 3]}
               size={50}

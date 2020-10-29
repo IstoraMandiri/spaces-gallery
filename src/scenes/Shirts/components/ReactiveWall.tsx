@@ -6,7 +6,6 @@ import { MusicStoreHook } from "scenes/Shirts/stores/music";
 
 //this should be moved to the types folder eventually
 type AudioReactiveModelProps = JSX.IntrinsicElements["group"] & {
-  useEnvStore: EnvironmentStoreHook;
   useMusicStore: MusicStoreHook;
   index: number;
   bucketSize: number;

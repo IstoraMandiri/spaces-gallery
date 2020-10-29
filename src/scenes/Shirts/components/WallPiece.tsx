@@ -6,12 +6,11 @@ import { MusicStoreHook } from "scenes/Shirts/stores/music";
 import { useFrame } from "react-three-fiber";
 
 type WallPieceProps = {
-  useEnvStore: EnvironmentStoreHook;
   useMusicStore: MusicStoreHook;
 };
 
 const WallPiece = (props: WallPieceProps) => {
-  const { useEnvStore, useMusicStore } = props;
+  const { useMusicStore } = props;
 
   const wallGroup = useRef<THREE.Group>();
 
@@ -22,7 +21,6 @@ const WallPiece = (props: WallPieceProps) => {
     for (let i = 0; i < num; i++) {
       wallPieces.unshift(
         <Wall
-          useEnvStore={useEnvStore}
           useMusicStore={useMusicStore}
           index={i}
           bucketSize={bucketSize}

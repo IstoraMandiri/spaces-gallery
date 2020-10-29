@@ -93,15 +93,10 @@ const Chad: SceneComponent = (props) => {
         />
         <ChadLighting time={time} />
         <ChadSceneSelector
-          useEnvStore={useEnvStore}
           sceneState={sceneState}
           setSceneState={setSceneState}
         />
-        <ChadPiece
-          useEnvStore={useEnvStore}
-          isGallery={isGallery}
-          effects={effects}
-        />
+        <ChadPiece isGallery={isGallery} effects={effects} />
         <group position={[0, 0, 23]}>
           <ChadMusic
             useEnvStore={useEnvStore}
@@ -113,9 +108,9 @@ const Chad: SceneComponent = (props) => {
           <>
             {/*{time ? <Sky distance={60000} /> : <></>}*/}
             <Suspense fallback={null}>
-              <ChadGallery useEnvStore={useEnvStore} />
+              <ChadGallery />
             </Suspense>
-            <ChadEntrance useEnvStore={useEnvStore} raycaster={raycaster} />
+            <ChadEntrance raycaster={raycaster} />
             <Signs />
             <ToggleEffect
               position={[25, 4, 1.5]}

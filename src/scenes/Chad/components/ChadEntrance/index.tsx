@@ -7,19 +7,18 @@ import ButtonTest from "./components/ButtonTest";
 import { Raycaster } from "three";
 
 type EntranceType = {
-  useEnvStore: EnvironmentStoreHook;
   raycaster: MutableRefObject<Raycaster>;
 };
 
 const ChadEntrance = (props: EntranceType) => {
-  const { useEnvStore, raycaster } = props;
+  const { raycaster } = props;
 
   // light in button test
 
   return (
     <group position={[-2, -2, 65]}>
       <Statement />
-      <Credits useEnvStore={useEnvStore} />
+      <Credits />
       <RightWall />
       <ButtonTest raycaster={raycaster} />
     </group>

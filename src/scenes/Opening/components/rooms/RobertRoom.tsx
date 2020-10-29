@@ -3,8 +3,7 @@ import Image from "@spacesvr/components/Image";
 import RobertPlaque from "scenes/Opening/components/RobertPlaque";
 import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 
-const RobertRoom = (props: { useEnvStore: EnvironmentStoreHook }) => {
-  const { useEnvStore } = props;
+const RobertRoom = () => {
   return (
     <group rotation={[0, Math.PI / 3, 0]}>
       <group position={[0, 5, -45]}>
@@ -18,7 +17,6 @@ const RobertRoom = (props: { useEnvStore: EnvironmentStoreHook }) => {
         />
         <RobertPlaque
           label="3"
-          useEnvStore={useEnvStore}
           position={[8.5, -0.25, 9]}
           rotation={[0, -Math.PI / 2, 0]}
         />
@@ -32,7 +30,6 @@ const RobertRoom = (props: { useEnvStore: EnvironmentStoreHook }) => {
         />
         <RobertPlaque
           label="1"
-          useEnvStore={useEnvStore}
           position={[8, -0.25, 1]}
           rotation={[0, -Math.PI / 3, 0]}
         />
@@ -44,11 +41,7 @@ const RobertRoom = (props: { useEnvStore: EnvironmentStoreHook }) => {
           position={[0, 0, -4]}
           framed
         />
-        <RobertPlaque
-          label="5"
-          useEnvStore={useEnvStore}
-          position={[1, 0, -4]}
-        />
+        <RobertPlaque label="5" position={[1, 0, -4]} />
         <Image
           src="https://d27rt3a60hh1lx.cloudfront.net/content/opening/robert/dontgoin.jpg"
           ratio={[1, 1]}
@@ -59,7 +52,6 @@ const RobertRoom = (props: { useEnvStore: EnvironmentStoreHook }) => {
         />
         <RobertPlaque
           label="2"
-          useEnvStore={useEnvStore}
           position={[-6, -0.25, -1]}
           rotation={[0, Math.PI / 3, 0]}
         />
@@ -73,7 +65,6 @@ const RobertRoom = (props: { useEnvStore: EnvironmentStoreHook }) => {
         />
         <RobertPlaque
           label="4"
-          useEnvStore={useEnvStore}
           position={[-8.5, -0.25, 7]}
           rotation={[0, Math.PI / 2, 0]}
         />

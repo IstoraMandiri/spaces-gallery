@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { Physics } from "@react-three/cannon";
 import { Canvas } from "react-three-fiber";
 import InfinitePlane from "@spacesvr/components/InfinitePlane";
@@ -7,7 +7,6 @@ import { SceneComponent } from "@spacesvr/core/types/scene";
 
 import { useAnalytics } from "services/analytics";
 import RealisticEffects from "@spacesvr/core/effects/RealisticEffects";
-import Logo from "@spacesvr/components/Logo";
 
 const physicsProps = {
   iterations: 20,

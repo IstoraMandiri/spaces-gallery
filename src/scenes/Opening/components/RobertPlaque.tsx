@@ -25,12 +25,11 @@ const PlaqueLookup: PlaqueItem[] = [
 ];
 
 type RobertProps = JSX.IntrinsicElements["group"] & {
-  useEnvStore: EnvironmentStoreHook;
   label: string;
 };
 
 const RobertPlaque = (props: RobertProps) => {
-  const { useEnvStore, label } = props;
+  const { label } = props;
 
   const plaque = PlaqueLookup.find((tel) => tel.url === label);
 
@@ -43,8 +42,7 @@ const RobertPlaque = (props: RobertProps) => {
   return (
     <group {...props}>
       <group scale={[SCALE, SCALE, SCALE]}>
-        {/* @ts-ignore */}
-        <Model useEnvStore={useEnvStore} />
+        <Model />
       </group>
     </group>
   );

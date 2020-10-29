@@ -28,11 +28,6 @@ const physicsProps = {
   gravity: [0, -30, 0],
   defaultContactMaterial: {
     friction: 0,
-    // restitution?: number
-    // contactEquationStiffness?: number
-    // contactEquationRelaxation?: number
-    // frictionEquationStiffness?: number
-    // frictionEquationRelaxation?: number
   },
 };
 
@@ -70,18 +65,13 @@ const Opening: SceneComponent = (props) => {
             Math.sin(initAngle) * RADIUS * -100,
           ]}
         />
-        <RobertRoom useEnvStore={useEnvStore} />
+        <RobertRoom />
         <HectorRoom useEnvStore={useEnvStore} />
         <ZachRoom />
         <JustinRoom useEnvStore={useEnvStore} />
         <SantiRoom useEnvStore={useEnvStore} renderer={renderer} />
         <DennisRoom useEnvStore={useEnvStore} />
-        <Logo
-          floating
-          rotating
-          useEnvStore={useEnvStore}
-          position={[0, 1.25, 0]}
-        />
+        <Logo floating rotating position={[0, 1.25, 0]} />
         <OutsideAudio
           url="https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/audio/LucidMondayMix.mp3"
           useEnvStore={useEnvStore}
@@ -89,10 +79,10 @@ const Opening: SceneComponent = (props) => {
         />
         <OutsideLighting />
         <Suspense fallback={null}>
-          <SpacesGallery useEnvStore={useEnvStore} />
+          <SpacesGallery />
         </Suspense>
         <Suspense fallback={null}>
-          <SpacesPlaques useEnvStore={useEnvStore} />
+          <SpacesPlaques />
         </Suspense>
         <RealisticEffects />
       </Physics>

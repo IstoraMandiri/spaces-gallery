@@ -4,7 +4,6 @@ import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 import ReactiveCube from "./ReactiveCube";
 
 type FloorProps = {
-  useEnvStore: EnvironmentStoreHook;
   position: [number, number, number];
   scale?: [number, number, number];
   size?: number;
@@ -22,7 +21,6 @@ const OUTER_EDGE_START = 60;
 
 const ShirtsFloor = (props: FloorProps) => {
   const {
-    useEnvStore,
     position,
     scale = [1, 0.5, 1],
     size = 10,

@@ -11,7 +11,7 @@ import Prisms from "./components/PrismArray";
 import ShopOverlay from "./components/ShopOverlay";
 
 const Shop: SceneComponent = (props) => {
-  const { useEnvStore, defaultCanvasProps, children } = props;
+  const { defaultCanvasProps } = props;
 
   const [overlay, setOverlay] = useState<boolean>(false);
 
@@ -63,7 +63,6 @@ const Shop: SceneComponent = (props) => {
         <Prisms />
         <Physics>
           <SpacesDisplay
-            useEnvStore={useEnvStore}
             position={[0, 0, 0]}
             overlay={overlay}
             setOverlay={setOverlay}
