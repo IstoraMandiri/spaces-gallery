@@ -25,7 +25,7 @@ const Credits = (props: { useEnvStore: EnvironmentStoreHook }) => {
       <Text scale={[3.5, 3.5, 3.5]} position={[-1.6, 0, 0]}>
         x
       </Text>
-      <Logo useEnvStore={useEnvStore} floating rotation={[0, Math.PI / 2, 0]} />
+      <Logo floating rotation={[0, Math.PI / 2, 0]} />
     </group>
   );
 };
