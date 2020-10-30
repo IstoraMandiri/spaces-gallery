@@ -10,7 +10,8 @@ import RealisticEffects from "@spacesvr/core/effects/RealisticEffects";
 import Logo from "@spacesvr/components/Logo";
 import WolvesCenter from "./models/WolvesCenter";
 import { Color } from "three";
-import { Reflector, Sky } from "@react-three/drei";
+import WolvesTitle from "./components/WolvesTitle";
+import SpacesTitle from "./components/SpacesTitle";
 
 const physicsProps = {
   iterations: 20,
@@ -30,19 +31,21 @@ const Wolves: SceneComponent = (props) => {
   return (
     <Canvas
       {...defaultCanvasProps}
+      camera={{ near: 0.1, far: 150 }}
       onCreated={({ scene }) => {
         scene.background = new Color(0x66e8ff);
       }}
     >
       {children}
-      <fog attach="fog" args={[0x66e8ff, 1, 50]} />
+      <fog attach="fog" args={[0x66e8ff, 10, 80]} />
       <Physics {...physicsProps}>
         <InfinitePlane height={-0.001} />
         <Player useEnvStore={useEnvStore} initPos={[6, 9, 2]} />
         <ambientLight intensity={1} />
         <directionalLight intensity={1} />
-        <Logo position={[0, 9, 0]} rotating />
         <RealisticEffects />
+        <WolvesTitle />
+        <SpacesTitle />
         <Suspense fallback={null}>
           <WolvesCenter />
         </Suspense>

@@ -24,6 +24,7 @@
     "@react-three/postprocessing": "^1.4.1",
     "@react-three/xr": "^1.1.0",
     "axios": "^0.20.0",
+    "babel-plugin-glsl": "^1.0.0",
     "babel-plugin-macros": "^2.8.0",
     "detect-gpu": "^2.0.4",
     "glsl-noise": "^0.0.0",

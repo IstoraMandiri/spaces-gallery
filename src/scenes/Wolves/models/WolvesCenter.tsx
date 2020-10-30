@@ -10,31 +10,122 @@ import { BufferGeometry } from "three";
 
 type GLTFResult = GLTF & {
   nodes: {
-    ["550"]: THREE.Mesh;
-    ["440"]: THREE.Mesh;
-    ["330"]: THREE.Mesh;
-    ["220"]: THREE.Mesh;
-    ["110"]: THREE.Mesh;
-    ["50"]: THREE.Mesh;
-    ["40"]: THREE.Mesh;
-    ["30"]: THREE.Mesh;
-    ["20"]: THREE.Mesh;
-    ["10"]: THREE.Mesh;
-    collider: THREE.Mesh;
+    TREE_1: THREE.Mesh;
+    TREE_2: THREE.Mesh;
+    TREE_3: THREE.Mesh;
+    TREE_4: THREE.Mesh;
+    TREE_5: THREE.Mesh;
+    TREE_6: THREE.Mesh;
+    TREE_7: THREE.Mesh;
+    TREE_8: THREE.Mesh;
+    TREE_9: THREE.Mesh;
+    TREE_10: THREE.Mesh;
+    TREE_11: THREE.Mesh;
+    TREE_12: THREE.Mesh;
+    TREE_13: THREE.Mesh;
+    TREE_14: THREE.Mesh;
+    TREE_15: THREE.Mesh;
+    TREE_16: THREE.Mesh;
+    TREE_17: THREE.Mesh;
+    TREE_18: THREE.Mesh;
+    TREE_19: THREE.Mesh;
+    TREE_20: THREE.Mesh;
+    TREE_21: THREE.Mesh;
+    TREE_22: THREE.Mesh;
+    TREE_23: THREE.Mesh;
+    TREE_24: THREE.Mesh;
+    TREE_25: THREE.Mesh;
+    TREE_26: THREE.Mesh;
+    TREE_27: THREE.Mesh;
+    TREE_28: THREE.Mesh;
+    TREE_29: THREE.Mesh;
+    TREE_30: THREE.Mesh;
+    TREE_31: THREE.Mesh;
+    TREE_32: THREE.Mesh;
+    TREE_33: THREE.Mesh;
+    TREE_34: THREE.Mesh;
+    TREE_35: THREE.Mesh;
+    TREE_36: THREE.Mesh;
+    TREE_37: THREE.Mesh;
+    TREE_38: THREE.Mesh;
+    TREE_39: THREE.Mesh;
+    TREE_40: THREE.Mesh;
+    TREE_41: THREE.Mesh;
+    TREE_42: THREE.Mesh;
+    TREE_43: THREE.Mesh;
+    TREE_44: THREE.Mesh;
+    TREE_45: THREE.Mesh;
+    TREE_46: THREE.Mesh;
+    TREE_47: THREE.Mesh;
+    TREE_48: THREE.Mesh;
+    TREE_49: THREE.Mesh;
+    TREE_50: THREE.Mesh;
+    TREE_51: THREE.Mesh;
+    TREE_52: THREE.Mesh;
+    TREE_53: THREE.Mesh;
+    TREE_54: THREE.Mesh;
+    TREE_55: THREE.Mesh;
+    TREE_56: THREE.Mesh;
+    TREE_57: THREE.Mesh;
+    TREE_58: THREE.Mesh;
+    TREE_59: THREE.Mesh;
+    TREE_60: THREE.Mesh;
+    TREE_61: THREE.Mesh;
+    TREE_62: THREE.Mesh;
+    TREE_63: THREE.Mesh;
+    TREE_64: THREE.Mesh;
+    TREE_65: THREE.Mesh;
+    TREE_66: THREE.Mesh;
+    TREE_67: THREE.Mesh;
+    TREE_68: THREE.Mesh;
+    TREE_69: THREE.Mesh;
+    TREE_70: THREE.Mesh;
+    TREE_71: THREE.Mesh;
+    TREE_72: THREE.Mesh;
+    TREE_73: THREE.Mesh;
+    TREE_74: THREE.Mesh;
+    TREE_75: THREE.Mesh;
+    TREE_76: THREE.Mesh;
+    TREE_77: THREE.Mesh;
+    TREE_78: THREE.Mesh;
+    TREE_79: THREE.Mesh;
+    TREE_80: THREE.Mesh;
+    TREE_81: THREE.Mesh;
+    TREE_82: THREE.Mesh;
+    TREE_83: THREE.Mesh;
+    TREE_84: THREE.Mesh;
+    TREE_85: THREE.Mesh;
+    TREE_86: THREE.Mesh;
+    TREE_87: THREE.Mesh;
+    TREE_88: THREE.Mesh;
+    TREE_89: THREE.Mesh;
+    TREE_90: THREE.Mesh;
+    TREE_91: THREE.Mesh;
+    TREE_92: THREE.Mesh;
+    TREE_93: THREE.Mesh;
+    TREE_94: THREE.Mesh;
+    TREE_95: THREE.Mesh;
+    TREE_96: THREE.Mesh;
+    TREE_97: THREE.Mesh;
+    TREE_98: THREE.Mesh;
+    TREE_99: THREE.Mesh;
+    TREE_100: THREE.Mesh;
+    COLLIDER: THREE.Mesh;
+    CLIFF: THREE.Mesh;
+    BUTTE: THREE.Mesh;
+    TREE: THREE.Mesh;
+    ENVIRONMENT: THREE.Mesh;
   };
   materials: {
-    ["font color"]: THREE.MeshStandardMaterial;
-    ["50"]: THREE.MeshStandardMaterial;
-    ["40"]: THREE.MeshStandardMaterial;
-    ["30"]: THREE.MeshStandardMaterial;
-    ["20"]: THREE.MeshStandardMaterial;
-    ["10"]: THREE.MeshStandardMaterial;
-    collider: THREE.MeshStandardMaterial;
+    ["TREELEAVES.MAT"]: THREE.MeshStandardMaterial;
+    ["CLIFF.MAT"]: THREE.MeshStandardMaterial;
+    ["ROAD.MAT"]: THREE.MeshStandardMaterial;
+    ["ENVIRONMENT.MAT"]: THREE.MeshStandardMaterial;
   };
 };
 
 const FILE_URL =
-  "https://d27rt3a60hh1lx.cloudfront.net/models/WolvesCenter3-1604008965/UVPercentageTests_02.glb";
+  "https://d27rt3a60hh1lx.cloudfront.net/models/WolvesCenter6-1604047435/WeAreWolves_03.glb";
 
 export default function Model(props: JSX.IntrinsicElements["group"]) {
   const group = useRef<THREE.Group>();
@@ -42,10 +133,11 @@ export default function Model(props: JSX.IntrinsicElements["group"]) {
 
   // materials.Mat.side = THREE.DoubleSide;
   // materials.Mat.metalness = 0.01;
-  const SCALE = 6;
+  const SCALE = 5;
 
   useTrimeshCollision(
-    (nodes.collider.geometry as BufferGeometry)
+    (nodes.COLLIDER.geometry as BufferGeometry)
+      .translate(0.0001, 0, 0.0162)
       .translate(0, 0.813, 0)
       .scale(SCALE, SCALE, SCALE)
   );
@@ -54,61 +146,536 @@ export default function Model(props: JSX.IntrinsicElements["group"]) {
     <group ref={group} {...props}>
       <group scale={[SCALE, SCALE, SCALE]}>
         <group position-y={0.813}>
-          <mesh
-            material={materials["font color"]}
-            geometry={nodes["550"].geometry}
-            name="550"
-          />
-          <mesh
-            material={materials["font color"]}
-            geometry={nodes["440"].geometry}
-            name="440"
-          />
-          <mesh
-            material={materials["font color"]}
-            geometry={nodes["330"].geometry}
-            name="330"
-          />
-          <mesh
-            material={materials["font color"]}
-            geometry={nodes["220"].geometry}
-            name="220"
-          />
-          <mesh
-            material={materials["font color"]}
-            geometry={nodes["110"].geometry}
-            name="110"
-          />
-          <mesh
-            material={materials["50"]}
-            geometry={nodes["50"].geometry}
-            name="50"
-          />
-          <mesh
-            material={materials["40"]}
-            geometry={nodes["40"].geometry}
-            name="40"
-          />
-          <mesh
-            material={materials["30"]}
-            geometry={nodes["30"].geometry}
-            name="30"
-          />
-          <mesh
-            material={materials["20"]}
-            geometry={nodes["20"].geometry}
-            name="20"
-          />
-          <mesh
-            material={materials["10"]}
-            geometry={nodes["10"].geometry}
-            name="10"
-          />
-          <mesh
-            material={materials.collider}
-            geometry={nodes.collider.geometry}
-            name="collider"
-          />
+          <group>
+            <group name="Hair">
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_1.geometry}
+                name="TREE_1"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_2.geometry}
+                name="TREE_2"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_3.geometry}
+                name="TREE_3"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_4.geometry}
+                name="TREE_4"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_5.geometry}
+                name="TREE_5"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_6.geometry}
+                name="TREE_6"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_7.geometry}
+                name="TREE_7"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_8.geometry}
+                name="TREE_8"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_9.geometry}
+                name="TREE_9"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_10.geometry}
+                name="TREE_10"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_11.geometry}
+                name="TREE_11"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_12.geometry}
+                name="TREE_12"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_13.geometry}
+                name="TREE_13"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_14.geometry}
+                name="TREE_14"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_15.geometry}
+                name="TREE_15"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_16.geometry}
+                name="TREE_16"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_17.geometry}
+                name="TREE_17"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_18.geometry}
+                name="TREE_18"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_19.geometry}
+                name="TREE_19"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_20.geometry}
+                name="TREE_20"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_21.geometry}
+                name="TREE_21"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_22.geometry}
+                name="TREE_22"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_23.geometry}
+                name="TREE_23"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_24.geometry}
+                name="TREE_24"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_25.geometry}
+                name="TREE_25"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_26.geometry}
+                name="TREE_26"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_27.geometry}
+                name="TREE_27"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_28.geometry}
+                name="TREE_28"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_29.geometry}
+                name="TREE_29"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_30.geometry}
+                name="TREE_30"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_31.geometry}
+                name="TREE_31"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_32.geometry}
+                name="TREE_32"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_33.geometry}
+                name="TREE_33"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_34.geometry}
+                name="TREE_34"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_35.geometry}
+                name="TREE_35"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_36.geometry}
+                name="TREE_36"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_37.geometry}
+                name="TREE_37"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_38.geometry}
+                name="TREE_38"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_39.geometry}
+                name="TREE_39"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_40.geometry}
+                name="TREE_40"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_41.geometry}
+                name="TREE_41"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_42.geometry}
+                name="TREE_42"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_43.geometry}
+                name="TREE_43"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_44.geometry}
+                name="TREE_44"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_45.geometry}
+                name="TREE_45"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_46.geometry}
+                name="TREE_46"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_47.geometry}
+                name="TREE_47"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_48.geometry}
+                name="TREE_48"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_49.geometry}
+                name="TREE_49"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_50.geometry}
+                name="TREE_50"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_51.geometry}
+                name="TREE_51"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_52.geometry}
+                name="TREE_52"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_53.geometry}
+                name="TREE_53"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_54.geometry}
+                name="TREE_54"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_55.geometry}
+                name="TREE_55"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_56.geometry}
+                name="TREE_56"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_57.geometry}
+                name="TREE_57"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_58.geometry}
+                name="TREE_58"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_59.geometry}
+                name="TREE_59"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_60.geometry}
+                name="TREE_60"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_61.geometry}
+                name="TREE_61"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_62.geometry}
+                name="TREE_62"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_63.geometry}
+                name="TREE_63"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_64.geometry}
+                name="TREE_64"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_65.geometry}
+                name="TREE_65"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_66.geometry}
+                name="TREE_66"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_67.geometry}
+                name="TREE_67"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_68.geometry}
+                name="TREE_68"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_69.geometry}
+                name="TREE_69"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_70.geometry}
+                name="TREE_70"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_71.geometry}
+                name="TREE_71"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_72.geometry}
+                name="TREE_72"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_73.geometry}
+                name="TREE_73"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_74.geometry}
+                name="TREE_74"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_75.geometry}
+                name="TREE_75"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_76.geometry}
+                name="TREE_76"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_77.geometry}
+                name="TREE_77"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_78.geometry}
+                name="TREE_78"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_79.geometry}
+                name="TREE_79"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_80.geometry}
+                name="TREE_80"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_81.geometry}
+                name="TREE_81"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_82.geometry}
+                name="TREE_82"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_83.geometry}
+                name="TREE_83"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_84.geometry}
+                name="TREE_84"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_85.geometry}
+                name="TREE_85"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_86.geometry}
+                name="TREE_86"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_87.geometry}
+                name="TREE_87"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_88.geometry}
+                name="TREE_88"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_89.geometry}
+                name="TREE_89"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_90.geometry}
+                name="TREE_90"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_91.geometry}
+                name="TREE_91"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_92.geometry}
+                name="TREE_92"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_93.geometry}
+                name="TREE_93"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_94.geometry}
+                name="TREE_94"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_95.geometry}
+                name="TREE_95"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_96.geometry}
+                name="TREE_96"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_97.geometry}
+                name="TREE_97"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_98.geometry}
+                name="TREE_98"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_99.geometry}
+                name="TREE_99"
+              />
+              <mesh
+                material={materials["TREELEAVES.MAT"]}
+                geometry={nodes.TREE_100.geometry}
+                name="TREE_100"
+              />
+            </group>
+            <mesh
+              material={nodes.COLLIDER.material}
+              geometry={nodes.COLLIDER.geometry}
+              name="COLLIDER"
+              position={[0.0001, 0, 0.0162]}
+            />
+            <mesh
+              material={materials["CLIFF.MAT"]}
+              geometry={nodes.CLIFF.geometry}
+              name="CLIFF"
+            />
+            <mesh
+              material={materials["ROAD.MAT"]}
+              geometry={nodes.BUTTE.geometry}
+              name="BUTTE"
+            />
+            <mesh
+              material={materials["TREELEAVES.MAT"]}
+              geometry={nodes.TREE.geometry}
+              name="TREE"
+            />
+            <mesh
+              material={materials["ENVIRONMENT.MAT"]}
+              geometry={nodes.ENVIRONMENT.geometry}
+              name="ENVIRONMENT"
+            />
+          </group>
         </group>
       </group>
     </group>
