@@ -37,7 +37,7 @@ const Wolves: SceneComponent = (props) => {
       }}
     >
       {children}
-      <fog attach="fog" args={[0x66e8ff, 10, 80]} />
+      <fog attach="fog" args={[0x66e8ff, 10, 60]} />
       <Physics {...physicsProps}>
         <InfinitePlane height={-0.001} />
         <Player useEnvStore={useEnvStore} initPos={[6, 9, 2]} />

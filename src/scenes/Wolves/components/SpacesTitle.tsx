@@ -10,7 +10,7 @@ const SpacesTitle = () => {
   const { camera } = useThree();
 
   const material = useRef(new CrazyMaterial());
-  const SCALE = 9;
+  const SCALE = 7;
 
   useFrame(({ clock }, delta) => {
     if (material?.current) {
