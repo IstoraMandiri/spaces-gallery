@@ -9,6 +9,7 @@ import { useAnalytics } from "services/analytics";
 import RealisticEffects from "@spacesvr/core/effects/RealisticEffects";
 import Logo from "@spacesvr/components/Logo";
 import WolvesCenter from "./models/WolvesCenter";
+import Shop from "./components/Shop";
 import { Color } from "three";
 import { Sky } from "@react-three/drei";
 
@@ -46,6 +47,7 @@ const Wolves: SceneComponent = (props) => {
         <Suspense fallback={null}>
           <WolvesCenter />
         </Suspense>
+        <Shop />
       </Physics>
     </Canvas>
   );
