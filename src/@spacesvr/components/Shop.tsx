@@ -19,7 +19,7 @@ const Shop = (props: ShopProps) => {
     token,
     itemSize = 5,
     itemRatio = [1, 1],
-    spaceBetween = 3,
+    spaceBetween = 5,
     position = [0, 9, 0],
     rotation = [0, 0, 0],
   } = props;
@@ -33,23 +33,23 @@ const Shop = (props: ShopProps) => {
   if (products) {
     // @ts-ignore
     products.forEach((product) => {
-      console.log(product);
-      const src = product.images[0].src;
-      const productImage = (
-        <Image
-          src={src}
-          ratio={itemRatio}
-          sizeScale={itemSize}
-          position={[spaceBetween * positionOffset, 2, 0]}
-          rotation={[0, Math.PI, 0]}
-          framed
-        />
-      );
-      productImages.push(productImage);
-      positionOffset++;
+      if (product.images[0]) {
+        const src = product.images[0].src;
+        const productImage = (
+          <Image
+            src={src}
+            ratio={itemRatio}
+            sizeScale={itemSize}
+            position={[spaceBetween * positionOffset, 2, 0]}
+            rotation={[0, Math.PI, 0]}
+            framed
+          />
+        );
+        productImages.push(productImage);
+        positionOffset++;
+      }
     });
   }
-  console.log(productImages);
 
   return (
     <group position={position} rotation={rotation}>
