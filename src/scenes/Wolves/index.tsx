@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useRef, useState } from "react";
 import { Physics } from "@react-three/cannon";
 import { Canvas } from "react-three-fiber";
 import InfinitePlane from "@spacesvr/components/InfinitePlane";
@@ -10,7 +10,7 @@ import RealisticEffects from "@spacesvr/core/effects/RealisticEffects";
 import Logo from "@spacesvr/components/Logo";
 import WolvesCenter from "./models/WolvesCenter";
 import Shop from "./components/Shop";
-import { Color } from "three";
+import { Color, Raycaster, Vector3 } from "three";
 import { Sky } from "@react-three/drei";
 
 const physicsProps = {
@@ -25,6 +25,8 @@ const physicsProps = {
 
 const Wolves: SceneComponent = (props) => {
   const { useEnvStore, defaultCanvasProps, children } = props;
+  const raycaster = useRef(new Raycaster(new Vector3(), new Vector3(), 0, 3));
+  const [lockControls, setLockControls] = useState(false);
 
   useAnalytics();
 
@@ -39,7 +41,12 @@ const Wolves: SceneComponent = (props) => {
       <fog attach="fog" args={[0x66e8ff, 1, 50]} />
       <Physics {...physicsProps}>
         <InfinitePlane height={-0.001} />
-        <Player useEnvStore={useEnvStore} initPos={[6, 9, 2]} />
+        <Player
+          useEnvStore={useEnvStore}
+          initPos={[6, 9, 2]}
+          raycaster={raycaster}
+          lockControls={lockControls}
+        />
         <ambientLight intensity={1} />
         <directionalLight intensity={1} />
         <Logo position={[0, 9, 0]} rotating />
@@ -47,7 +54,7 @@ const Wolves: SceneComponent = (props) => {
         <Suspense fallback={null}>
           <WolvesCenter />
         </Suspense>
-        <Shop />
+        <Shop {...raycaster} />
       </Physics>
     </Canvas>
   );
