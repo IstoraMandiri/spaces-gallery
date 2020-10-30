@@ -12,6 +12,8 @@ import WolvesCenter from "./models/WolvesCenter";
 import Shop from "./components/Shop";
 import { Color, Raycaster, Vector3 } from "three";
 import { Sky } from "@react-three/drei";
+import WolvesTitle from "./components/WolvesTitle";
+import SpacesTitle from "./components/SpacesTitle";
 
 const physicsProps = {
   iterations: 20,
@@ -33,12 +35,13 @@ const Wolves: SceneComponent = (props) => {
   return (
     <Canvas
       {...defaultCanvasProps}
+      camera={{ near: 0.1, far: 150 }}
       onCreated={({ scene }) => {
         scene.background = new Color(0x66e8ff);
       }}
     >
       {children}
-      <fog attach="fog" args={[0x66e8ff, 1, 50]} />
+      <fog attach="fog" args={[0x66e8ff, 10, 60]} />
       <Physics {...physicsProps}>
         <InfinitePlane height={-0.001} />
         <Player
@@ -49,8 +52,9 @@ const Wolves: SceneComponent = (props) => {
         />
         <ambientLight intensity={1} />
         <directionalLight intensity={1} />
-        <Logo position={[0, 9, 0]} rotating />
         <RealisticEffects />
+        <WolvesTitle />
+        <SpacesTitle />
         <Suspense fallback={null}>
           <WolvesCenter />
         </Suspense>
