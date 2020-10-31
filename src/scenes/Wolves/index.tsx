@@ -48,7 +48,7 @@ const Wolves: SceneComponent = (props) => {
           useEnvStore={useEnvStore}
           initPos={[6, 9, 2]}
           raycaster={raycaster}
-          lockControls={lockControls}
+          // lockControls={lockControls}
         />
         <ambientLight intensity={1} />
         <directionalLight intensity={1} />

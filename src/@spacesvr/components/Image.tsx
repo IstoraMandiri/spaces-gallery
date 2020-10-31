@@ -8,6 +8,7 @@ import React, {
 import * as THREE from "three";
 import { useFrame, useLoader } from "react-three-fiber";
 import { Color, Group, Raycaster, Vector2 } from "three";
+import CrazyMaterial from "../../scenes/Wolves/shaders/crazy";
 
 type ImageProps = JSX.IntrinsicElements["group"] & {
   src: string;
@@ -45,18 +46,20 @@ const Image = (props: ImageProps) => {
   const width = normalizedRatio.x * sizeScale;
   const height = normalizedRatio.y * sizeScale;
 
-  const material = useMemo(
-    () =>
-      new THREE.MeshStandardMaterial({
-        color: color,
-        roughness: 0.8,
-        metalness: 0.05,
-      }),
-    []
-  );
+  // const material = useMemo(
+  //   () =>
+  //     new THREE.MeshStandardMaterial({
+  //       color: color,
+  //       roughness: 0.8,
+  //       metalness: 0.05,
+  //     }),
+  //   []
+  // );
 
   const [hovered, setHovered] = useState<boolean>(false);
-  useFrame(({ clock }) => {
+  const material = useRef(new CrazyMaterial());
+
+  useFrame(({ clock }, delta) => {
     if (image.current) {
       // @ts-ignore
       const intersections = raycaster.current.intersectObject(image.current);
@@ -70,6 +73,10 @@ const Image = (props: ImageProps) => {
           setHovered(false);
         }
       }
+    }
+    if (material?.current) {
+      // @ts-ignore
+      material.current.time += delta;
     }
   });
 
@@ -95,7 +102,7 @@ const Image = (props: ImageProps) => {
         </mesh>
         {framed && (
           <>
-            <mesh position-z={[-0.1 - meshOffset]} material={material}>
+            <mesh position-z={[-0.1 - meshOffset]} material={material.current}>
               <boxBufferGeometry
                 attach="geometry"
                 args={[width + frameWidth, height + frameWidth, frameDepth]}
@@ -104,7 +111,7 @@ const Image = (props: ImageProps) => {
             {/* top */}
             <mesh
               position-y={height / 2 + frameWidth / 2 - borderThickness / 2}
-              material={material}
+              // material={material}
             >
               <boxBufferGeometry
                 attach="geometry"
@@ -114,7 +121,7 @@ const Image = (props: ImageProps) => {
             {/* bottom */}
             <mesh
               position-y={-height / 2 - frameWidth / 2 + borderThickness / 2}
-              material={material}
+              // material={material}
             >
               <boxBufferGeometry
                 attach="geometry"
@@ -124,7 +131,7 @@ const Image = (props: ImageProps) => {
             {/* left */}
             <mesh
               position-x={-width / 2 - frameWidth / 2 + borderThickness / 2}
-              material={material}
+              // material={material}
             >
               <boxBufferGeometry
                 attach="geometry"
@@ -134,7 +141,7 @@ const Image = (props: ImageProps) => {
             {/* right */}
             <mesh
               position-x={width / 2 + frameWidth / 2 - borderThickness / 2}
-              material={material}
+              // material={material}
             >
               <boxBufferGeometry
                 attach="geometry"

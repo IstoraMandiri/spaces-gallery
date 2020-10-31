@@ -24,14 +24,15 @@ const Shop = (props: ShopProps) => {
     localProducts,
     links,
     raycaster,
-    itemSize = 5,
+    itemSize = 4,
     itemRatio = [1, 1],
-    spaceBetween = 5,
-    position = [0, 9, 0],
-    rotation = [0, 0, 0],
+    spaceBetween = 9,
+    position = [-9, 4, 0],
+    rotation = [0, Math.PI / 9, 0],
   } = props;
   const productImages: any[] = [];
   let positionOffset = 0;
+  let offset = 0;
   let linkIndex = 0;
   if (localProducts) {
     for (const product of localProducts) {
@@ -40,14 +41,19 @@ const Shop = (props: ShopProps) => {
           src={product}
           ratio={itemRatio}
           sizeScale={itemSize}
-          position={[spaceBetween * positionOffset, 2, 0]}
-          rotation={[0, Math.PI, 0]}
+          position={[
+            Math.cos(offset) * 19 + spaceBetween,
+            2,
+            Math.sin(offset) * 19,
+          ]}
+          rotation={[0, Math.PI / 2 - offset + Math.PI, 0]}
           link={links ? links[linkIndex] : undefined}
           raycaster={raycaster ? raycaster : undefined}
           framed
         />
       );
       productImages.push(productImage);
+      offset += (2 * Math.PI) / 9;
       positionOffset++;
       linkIndex++;
     }
