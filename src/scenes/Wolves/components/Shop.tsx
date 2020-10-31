@@ -1,6 +1,7 @@
 import React from "react";
 import Shopify from "@spacesvr/components/Shop";
 import { Raycaster } from "three";
+import { EnvironmentStoreHook } from "../../../@spacesvr/core/stores/environment";
 const { NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS } = process.env;
 
 // const domain = "spaceslabs.myshopify.com";
@@ -33,7 +34,14 @@ const links = [
   "https://store.killbrand.com/collections/we-are-wolves/products/we-are-wolves-orange-hoodie",
 ];
 
-const Shop = (raycaster: React.MutableRefObject<Raycaster>) => {
+type ShopProps = {
+  raycaster: React.MutableRefObject<Raycaster>;
+  useEnvStore: EnvironmentStoreHook;
+};
+
+const Shop = (props: ShopProps) => {
+  const { raycaster, useEnvStore } = props;
+  const paused = useEnvStore((st) => st.paused);
   return (
     <group>
       <Shopify
@@ -43,6 +51,7 @@ const Shop = (raycaster: React.MutableRefObject<Raycaster>) => {
         localProducts={productImages}
         links={links}
         raycaster={raycaster}
+        paused={paused}
       />
     </group>
   );

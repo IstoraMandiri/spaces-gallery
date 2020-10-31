@@ -17,6 +17,7 @@ type ImageProps = JSX.IntrinsicElements["group"] & {
   framed?: boolean;
   link?: string;
   raycaster?: React.MutableRefObject<Raycaster>;
+  paused?: boolean;
   color?: Color;
 };
 
@@ -34,6 +35,7 @@ const Image = (props: ImageProps) => {
     framed,
     link,
     raycaster,
+    paused = false,
     color = 0x111111,
   } = props;
 
@@ -87,7 +89,9 @@ const Image = (props: ImageProps) => {
   }, [hovered]);
 
   useEffect(() => {
-    document.addEventListener("click", onClick);
+    if (!paused) {
+      document.addEventListener("click", onClick);
+    }
     return () => {
       document.removeEventListener("click", onClick);
     };

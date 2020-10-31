@@ -10,6 +10,7 @@ type ShopProps = {
   localProducts?: string[];
   links?: string[];
   raycaster?: React.MutableRefObject<Raycaster>;
+  paused?: boolean;
   itemSize?: number;
   itemRatio?: [number, number];
   spaceBetween?: number;
@@ -24,6 +25,7 @@ const Shop = (props: ShopProps) => {
     localProducts,
     links,
     raycaster,
+    paused = false,
     itemSize = 4,
     itemRatio = [1, 1],
     spaceBetween = 9,
@@ -49,6 +51,7 @@ const Shop = (props: ShopProps) => {
           rotation={[0, Math.PI / 2 - offset + Math.PI, 0]}
           link={links ? links[linkIndex] : undefined}
           raycaster={raycaster ? raycaster : undefined}
+          paused={paused}
           framed
         />
       );

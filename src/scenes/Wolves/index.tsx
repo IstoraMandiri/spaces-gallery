@@ -58,7 +58,7 @@ const Wolves: SceneComponent = (props) => {
         <Suspense fallback={null}>
           <WolvesCenter />
         </Suspense>
-        <Shop {...raycaster} />
+        <Shop raycaster={raycaster} useEnvStore={useEnvStore} />
       </Physics>
     </Canvas>
   );
