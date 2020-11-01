@@ -1,4 +1,4 @@
-import React, { Suspense, useMemo, useState } from "react";
+import React, { Suspense, useState } from "react";
 import { Physics } from "@react-three/cannon";
 import { Canvas } from "react-three-fiber";
 import InfinitePlane from "@spacesvr/components/InfinitePlane";
