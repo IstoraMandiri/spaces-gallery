@@ -19,6 +19,7 @@ type ImageProps = JSX.IntrinsicElements["group"] & {
   raycaster?: React.MutableRefObject<Raycaster>;
   crazyMaterial?: boolean;
   paused?: boolean;
+  doubleSided?: boolean;
   color?: Color;
 };
 
@@ -38,6 +39,7 @@ const Image = (props: ImageProps) => {
     raycaster,
     crazyMaterial,
     paused = false,
+    doubleSided,
     color = 0x111111,
   } = props;
 
@@ -76,7 +78,7 @@ const Image = (props: ImageProps) => {
   const material = useMemo(
     () =>
       new THREE.MeshStandardMaterial({
-        color: 0x111111,
+        color: color,
         roughness: 0.8,
         metalness: 0.05,
       }),
@@ -103,7 +105,11 @@ const Image = (props: ImageProps) => {
       <group ref={group}>
         <mesh castShadow ref={image}>
           <planeBufferGeometry attach="geometry" args={[width, height]} />
-          <meshStandardMaterial attach="material" map={texture} />
+          <meshStandardMaterial
+            attach="material"
+            map={texture}
+            side={doubleSided ? THREE.DoubleSide : undefined}
+          />
         </mesh>
         {framed && (
           <>

@@ -77,6 +77,7 @@ const ShirtsAssets = (props: ShirtsAssetsProps) => {
                 rotation={[0, 2 * Math.PI * Math.random(), 0]}
                 useEnvStore={useEnvStore}
                 muted
+                framed
               />
             </HypedAsset>
           );

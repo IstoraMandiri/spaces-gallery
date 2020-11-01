@@ -21,7 +21,7 @@ const WolvesPage: NextPage = () => {
           rel="stylesheet"
         />
       </Head>
-      <Environment scene={Wolves} artist="Wolves" title="Wolves" />
+      <Environment scene={Wolves} title="Wolves" />
     </>
   );
 };
