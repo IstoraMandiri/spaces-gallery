@@ -78,6 +78,7 @@ const ShirtsAssets = (props: ShirtsAssetsProps) => {
                 useEnvStore={useEnvStore}
                 muted
                 framed
+                doubleSided
               />
             </HypedAsset>
           );

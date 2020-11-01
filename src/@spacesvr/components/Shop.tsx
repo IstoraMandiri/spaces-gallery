@@ -36,7 +36,6 @@ const Shop = (props: ShopProps) => {
   let linkIndex = 0;
   if (localProducts) {
     for (const product of localProducts) {
-      console.log(`Image: ${product[0]}\nStorePage: ${product[1]}`);
       const productImage = (
         <Image
           src={product[0]}
@@ -53,10 +52,11 @@ const Shop = (props: ShopProps) => {
           paused={paused}
           framed
           crazyMaterial
+          key={product[0]}
         />
       );
       productImages.push(productImage);
-      offset += (2 * Math.PI) / 9;
+      offset += (2 * Math.PI) / localProducts.length;
       positionOffset++;
       linkIndex++;
     }

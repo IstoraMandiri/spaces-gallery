@@ -7,7 +7,7 @@ const { NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS } = process.env;
 // const domain = "spaceslabs.myshopify.com";
 const domain = "awge-2018.myshopify.com";
 const token = "c5d54a8eba89e37765872377e087d987";
-const productImages = [
+const localProducts = [
   [
     "https://cdn.shopify.com/s/files/1/0001/8435/products/image_2ea1ae1e-72aa-4942-8338-d8b08a269a02_large.jpg?v=1603501447",
     "https://store.killbrand.com/collections/we-are-wolves/products/wolves-chain-gold",
@@ -68,7 +68,7 @@ const Shop = (props: ShopProps) => {
         // domain={domain}
         // token={`${NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS}`}
         // token={token}
-        localProducts={productImages}
+        localProducts={localProducts}
         raycaster={raycaster}
         paused={paused}
       />

@@ -87,7 +87,8 @@ const Image = (props: ImageProps) => {
 
   const onClick = useCallback(() => {
     if (hovered) {
-      window.open(link);
+      // window.open(link);
+      window.location.href = `${link}`;
     }
   }, [hovered]);
 
@@ -113,15 +114,17 @@ const Image = (props: ImageProps) => {
         </mesh>
         {framed && (
           <>
-            <mesh
-              position-z={[-0.1 - meshOffset]}
-              material={crazyMaterial ? crazyMat.current : material}
-            >
-              <boxBufferGeometry
-                attach="geometry"
-                args={[width + frameWidth, height + frameWidth, frameDepth]}
-              />
-            </mesh>
+            {!doubleSided && (
+              <mesh
+                position-z={[-0.1 - meshOffset]}
+                material={crazyMaterial ? crazyMat.current : material}
+              >
+                <boxBufferGeometry
+                  attach="geometry"
+                  args={[width + frameWidth, height + frameWidth, frameDepth]}
+                />
+              </mesh>
+            )}
             {/* top */}
             <mesh
               position-y={height / 2 + frameWidth / 2 - borderThickness / 2}

@@ -24,10 +24,18 @@ const WolvesTitle = () => {
     }
 
     if (camera && wolf.current) {
-      const xCom = camera.position.x + wolf.current.position.x;
-      const yCom = camera.position.z + wolf.current.position.z;
-      const diff = v1.set(yCom, xCom).normalize();
-      wolf.current.rotation.y = -diff.angle() - Math.PI / 2 - Math.PI / 4;
+      // console.log(`PlayerX: ${camera.position.x}\nPlayerZ: ${camera.position.z}\nWolfX: ${wolf.current.position.x}\nWolfZ: ${wolf.current.position.z}`)
+      const xCom = camera.position.z + 45;
+      const yCom = camera.position.x;
+      camera.updateMatrixWorld();
+      // const diff = v1.set(xCom, yCom).normalize();
+      const xVector = v1.set(xCom, 0).normalize();
+      const yVector = v2.set(0, yCom).normalize();
+      const targetVector = new Vector2().addVectors(xVector, yVector);
+      // wolf.current.rotation.y = targetVector.angle();
+      // wolf.current.rotation.y = -diff.angle() - Math.PI / 2 - Math.PI / 4;
+      // wolf.current.rotation.y = Math.atan(yCom/xCom);
+      wolf.current.rotation.y = 0;
     }
   });
 
