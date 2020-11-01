@@ -62,7 +62,7 @@ const Image = (props: ImageProps) => {
   const material = useRef(new CrazyMaterial());
 
   useFrame(({ clock }, delta) => {
-    if (image.current) {
+    if (raycaster && image.current) {
       // @ts-ignore
       const intersections = raycaster.current.intersectObject(image.current);
       if (intersections && intersections.length > 0) {
