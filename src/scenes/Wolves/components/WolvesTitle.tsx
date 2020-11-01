@@ -1,12 +1,9 @@
 import React, { Suspense, useRef } from "react";
 import WolfHead from "../models/WolfHead";
-import { Mesh, Vector2, Vector3 } from "three";
+import { Mesh } from "three";
 import { useFrame, useThree } from "react-three-fiber";
 import Text from "@spacesvr/components/Text";
 import CrazyMaterial from "../shaders/crazy";
-
-const v1 = new Vector2();
-const v2 = new Vector2();
 
 const WolvesTitle = () => {
   const group = useRef<Mesh>();
@@ -24,17 +21,6 @@ const WolvesTitle = () => {
     }
 
     if (camera && wolf.current) {
-      // console.log(`PlayerX: ${camera.position.x}\nPlayerZ: ${camera.position.z}\nWolfX: ${wolf.current.position.x}\nWolfZ: ${wolf.current.position.z}`)
-      const xCom = camera.position.z + 45;
-      const yCom = camera.position.x;
-      camera.updateMatrixWorld();
-      // const diff = v1.set(xCom, yCom).normalize();
-      const xVector = v1.set(xCom, 0).normalize();
-      const yVector = v2.set(0, yCom).normalize();
-      const targetVector = new Vector2().addVectors(xVector, yVector);
-      // wolf.current.rotation.y = targetVector.angle();
-      // wolf.current.rotation.y = -diff.angle() - Math.PI / 2 - Math.PI / 4;
-      // wolf.current.rotation.y = Math.atan(yCom/xCom);
       wolf.current.rotation.y = 0;
     }
   });
@@ -46,7 +32,7 @@ const WolvesTitle = () => {
           <mesh ref={group}>
             <Text
               text="We Are Wolves"
-              font="fonts/AnotherDanger.json"
+              font="https://d27rt3a60hh1lx.cloudfront.net/fonts/AnotherDanger.json"
               size={SCALE}
               material={material.current}
             />

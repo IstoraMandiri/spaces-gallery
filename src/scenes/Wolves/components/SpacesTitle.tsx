@@ -26,7 +26,7 @@ const SpacesTitle = () => {
           <mesh ref={group}>
             <Text
               text="Spaces"
-              font="fonts/AnotherDanger.json"
+              font="https://d27rt3a60hh1lx.cloudfront.net/fonts/AnotherDanger.json"
               size={SCALE}
               material={material.current}
             />

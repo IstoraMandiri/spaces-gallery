@@ -1,12 +1,10 @@
 import React from "react";
-import { usePlane } from "@react-three/cannon";
 import Robert0 from "../models/Robert0";
 import Robert1 from "../models/Robert1";
 import Robert2 from "../models/Robert2";
 import Robert3 from "../models/Robert3";
 import Robert4 from "../models/Robert4";
 import Robert5 from "../models/Robert5";
-import { EnvironmentStoreHook } from "../../../@spacesvr/core/stores/environment";
 
 const SCALE = 100;
 

@@ -18,12 +18,7 @@ const RefactorPage: NextPage = () => {
           rel="stylesheet"
         />
       </Head>
-      <Environment
-        scene={Refactor}
-        artist="Lucid Monday"
-        title="Opening Gallery"
-        link="https://lucidmonday.com"
-      />
+      <Environment scene={Refactor} />
     </>
   );
 };
