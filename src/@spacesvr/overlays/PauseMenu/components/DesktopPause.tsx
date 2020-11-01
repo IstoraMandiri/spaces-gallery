@@ -84,7 +84,7 @@ const Instagram = styled.div`
   color: white;
   cursor: pointer;
   transition: opacity 0.15s linear;
-  font-size: 1em;
+  font-size: 0.6em;
   line-height: 1em;
   :hover {
     opacity: 0.5;
@@ -176,7 +176,7 @@ const DesktopPause: React.FC<OverlayProps> = (props) => {
             window.open("https://www.instagram.com/spaces3.0");
           }}
         >
-          IG
+          @spaces3.0
         </Instagram>
         {artist && (
           <MusicCreds>

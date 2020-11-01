@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { FontLoader, Vector3 } from "three";
 import { useLoader, useUpdate } from "react-three-fiber";
+import * as THREE from "three";
 
 const FONT_FILE = "fonts/Couture_Bold.json";
 
@@ -11,6 +12,8 @@ type TextProps = JSX.IntrinsicElements["group"] & {
   size?: number;
   color?: string;
   bevel?: boolean;
+  font?: string;
+  material?: THREE.Material;
 };
 
 const Text: React.FC<TextProps> = (props) => {
@@ -21,10 +24,12 @@ const Text: React.FC<TextProps> = (props) => {
     size = 1,
     bevel = false,
     color = "#000000",
+    font: fontFile,
+    material,
     ...restProps
   } = props;
 
-  const font = useLoader(FontLoader, FONT_FILE);
+  const font = useLoader(FontLoader, fontFile || FONT_FILE);
 
   const config = useMemo(
     () => ({
@@ -56,9 +61,15 @@ const Text: React.FC<TextProps> = (props) => {
 
   return (
     <group {...restProps} scale={[0.1 * size, 0.1 * size, 0.1]}>
-      <mesh ref={mesh}>
+      <mesh ref={mesh} material={material}>
         <textGeometry attach="geometry" args={[text, config]} />
-        <meshPhongMaterial attach="material" color={color} reflectivity={30} />
+        {!material && (
+          <meshPhongMaterial
+            attach="material"
+            color={color}
+            reflectivity={30}
+          />
+        )}
       </mesh>
     </group>
   );

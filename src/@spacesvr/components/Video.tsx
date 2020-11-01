@@ -12,6 +12,7 @@ type VideoProps = JSX.IntrinsicElements["group"] & {
   sizeScale: number;
   framed?: boolean;
   muted?: boolean;
+  doubleSided?: boolean;
 };
 
 const frameWidth = 0.3;
@@ -30,6 +31,7 @@ const Video = (props: VideoProps) => {
     position,
     rotation,
     muted,
+    doubleSided,
   } = props;
 
   const { camera, scene } = useThree();
@@ -162,17 +164,23 @@ const Video = (props: VideoProps) => {
         {texReady && (
           <mesh>
             <planeBufferGeometry attach="geometry" args={[width, height]} />
-            <meshStandardMaterial attach="material" map={textureRef.current} />
+            <meshStandardMaterial
+              attach="material"
+              map={textureRef.current}
+              side={doubleSided ? THREE.DoubleSide : undefined}
+            />
           </mesh>
         )}
         {framed && (
           <>
-            <mesh position-z={[-0.1 - meshOffset]} material={material}>
-              <boxBufferGeometry
-                attach="geometry"
-                args={[width + frameWidth, height + frameWidth, frameDepth]}
-              />
-            </mesh>
+            {!doubleSided && (
+              <mesh position-z={[-0.1 - meshOffset]} material={material}>
+                <boxBufferGeometry
+                  attach="geometry"
+                  args={[width + frameWidth, height + frameWidth, frameDepth]}
+                />
+              </mesh>
+            )}
             {/* top */}
             <mesh
               position-y={height / 2 + frameWidth / 2 - borderThickness / 2}
