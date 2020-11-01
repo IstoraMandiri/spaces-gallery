@@ -12,6 +12,7 @@ import WolvesCenter from "./models/WolvesCenter";
 import Shop from "./components/Shop";
 import { Color, Raycaster, Vector3 } from "three";
 import { Sky } from "@react-three/drei";
+import WolvesDecorations from "./models/WolvesDecorations";
 import WolvesTitle from "./components/WolvesTitle";
 import SpacesTitle from "./components/SpacesTitle";
 
@@ -28,7 +29,6 @@ const physicsProps = {
 const Wolves: SceneComponent = (props) => {
   const { useEnvStore, defaultCanvasProps, children } = props;
   const raycaster = useRef(new Raycaster(new Vector3(), new Vector3(), 0, 3));
-  const [lockControls, setLockControls] = useState(false);
 
   useAnalytics();
 
@@ -48,7 +48,6 @@ const Wolves: SceneComponent = (props) => {
           useEnvStore={useEnvStore}
           initPos={[6, 9, 2]}
           raycaster={raycaster}
-          // lockControls={lockControls}
         />
         <ambientLight intensity={1} />
         <directionalLight intensity={1} />
@@ -57,6 +56,9 @@ const Wolves: SceneComponent = (props) => {
         <SpacesTitle />
         <Suspense fallback={null}>
           <WolvesCenter />
+        </Suspense>
+        <Suspense fallback={null}>
+          <WolvesDecorations />
         </Suspense>
         <Shop raycaster={raycaster} useEnvStore={useEnvStore} />
       </Physics>
