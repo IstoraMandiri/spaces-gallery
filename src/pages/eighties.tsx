@@ -3,9 +3,12 @@ import { NextPage } from "next";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 
-const Environment = dynamic(import("environments/PlayerEnvironment"), {
-  ssr: false,
-});
+const Environment = dynamic(
+  import("@spacesvr/core/environments/PlayerEnvironment"),
+  {
+    ssr: false,
+  }
+);
 const Eighties = dynamic(import("scenes/Eighties"), { ssr: false });
 
 const EightiesPage: NextPage = () => {
@@ -18,7 +21,7 @@ const EightiesPage: NextPage = () => {
           rel="stylesheet"
         />
       </Head>
-      <Environment scene={Eighties} artist="Eighties" title="Ben" link="Ben" />
+      <Environment scene={Eighties} />
     </>
   );
 };
