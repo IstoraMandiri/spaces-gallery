@@ -1,10 +1,9 @@
 import React from "react";
 import { useFrame, useThree } from "react-three-fiber";
 
-import { EnvironmentStoreHook } from "stores/environment";
+import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 
 type SceneSelectorProps = {
-  useEnvStore: EnvironmentStoreHook;
   sceneState: "gallery" | "falling" | "piece" | "ending";
   setSceneState: React.Dispatch<
     React.SetStateAction<"gallery" | "falling" | "piece" | "ending">
@@ -12,7 +11,7 @@ type SceneSelectorProps = {
 };
 
 const ChadSceneSelector = (props: SceneSelectorProps) => {
-  const { useEnvStore, sceneState, setSceneState } = props;
+  const { sceneState, setSceneState } = props;
   const { camera } = useThree();
 
   useFrame(() => {

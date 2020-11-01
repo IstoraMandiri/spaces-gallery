@@ -1,12 +1,10 @@
-import React, { Suspense, useEffect, useRef, useState } from "react";
-import { UseStore } from "zustand";
-import { Text } from "drei";
+import React, { Suspense, useRef } from "react";
+import { Text } from "@react-three/drei";
 
-import SpacesShirt from "models/SpacesShirt";
+import SpacesShirt from "scenes/Shop/models/SpacesShirt";
 import { isMobile } from "react-device-detect";
 
 type DisplayProps = {
-  useEnvStore: UseStore<any>;
   shopifyState?: any;
   position: [number, number, number];
   overlay: boolean;
@@ -14,8 +12,7 @@ type DisplayProps = {
 };
 
 const SpacesDisplay = (props: DisplayProps) => {
-  const { useEnvStore, position, overlay, setOverlay } = props;
-  const [hover, setHover] = useState<boolean>(false);
+  const { position, overlay, setOverlay } = props;
   const shirt = useRef();
 
   return (
@@ -42,11 +39,7 @@ const SpacesDisplay = (props: DisplayProps) => {
       />
       <group ref={shirt} position={[0, -5, 0]}>
         <Suspense fallback={null}>
-          <SpacesShirt
-            useEnvStore={useEnvStore}
-            overlay={overlay}
-            setOverlay={setOverlay}
-          />
+          <SpacesShirt overlay={overlay} setOverlay={setOverlay} />
         </Suspense>
       </group>
       <group name="cylinderBase">

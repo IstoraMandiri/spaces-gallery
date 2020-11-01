@@ -2,13 +2,10 @@ import React from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
 
-import "styles/global.css";
-import BrowserChecker from "ui-components/BrowserChecker";
-import { useValidAgent } from "services/userAgent";
+import "@spacesvr/core/styles/global.css";
+import BrowserChecker from "@spacesvr/utils/BrowserChecker";
 
 const App = ({ Component, pageProps }: AppProps) => {
-  const valid = useValidAgent();
-
   return (
     <>
       <Head>
@@ -35,8 +32,9 @@ const App = ({ Component, pageProps }: AppProps) => {
         <meta name="theme-color" content="#ffffff" />
         <title>Spaces</title>
       </Head>
-      <BrowserChecker />
-      {valid && <Component {...pageProps} />}
+      <BrowserChecker>
+        <Component {...pageProps} />
+      </BrowserChecker>
     </>
   );
 };

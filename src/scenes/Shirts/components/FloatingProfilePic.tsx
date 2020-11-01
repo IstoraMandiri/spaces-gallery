@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
 import { useThree, useFrame } from "react-three-fiber";
-import { MusicStoreHook } from "stores/music";
+import { MusicStoreHook } from "scenes/Shirts/stores/music";
 import { Mesh } from "three";
-import ReactivePrimitive from "three-components/ReactivePrimitive";
+import ReactivePrimitive from "scenes/Shirts/components/ReactivePrimitive";
 
 type FloatingProfilePicProps = JSX.IntrinsicElements["group"] & {
   useMusicStore: MusicStoreHook;

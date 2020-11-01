@@ -1,18 +1,18 @@
 import React, { Suspense } from "react";
-import { Physics } from "use-cannon";
+import { Physics } from "@react-three/cannon";
 import { Canvas } from "react-three-fiber";
-import InfinitePlane from "three-components/InfinitePlane";
-import ShirtsPlayer from "core/ShirtsPlayer";
-import { SceneProps } from "types/scene";
+import InfinitePlane from "@spacesvr/components/InfinitePlane";
+import ShirtsPlayer from "@spacesvr/core/players/ShirtsPlayer";
+import { SceneProps } from "@spacesvr/core/types/scene";
 import ShirtsMusic from "./components/ShirtsMusic";
 import ShirtsAssets from "./components/ShirtsAssets";
 import ShirtsFloor from "./components/ShirtsFloor";
 import FloatingProfilePic from "./components/FloatingProfilePic";
 
-import { getMusicStore } from "stores/music";
-import Analytics from "ui-components/Analytics";
+import { getMusicStore } from "scenes/Shirts/stores/music";
+import { useAnalytics } from "services/analytics";
 import ShirtsLighting from "./components/ShirtsLighting";
-import Logo from "three-components/Logo";
+import Logo from "@spacesvr/components/Logo";
 import ColoredSky from "./components/ColoredSky";
 import WallPiece from "./components/WallPiece";
 import ShirtsEffects from "./components/ShirtsEffects";
@@ -47,11 +47,13 @@ const Shirts: ShirtsSceneComponent = (props) => {
     children,
   } = props;
 
+  useAnalytics();
+
   const router = useRouter();
   const { id } = router.query;
 
   const song = getSong(id as string, SHIRT_SONGS);
-  const [useMusicStore] = getMusicStore(() => ({ song, eventIndex: 0 }));
+  const useMusicStore = getMusicStore(() => ({ song, eventIndex: 0 }));
 
   const name = (portal && portal.firstName) || "❤";
   const randomColor = COLORS[Math.abs(portal?.seed) % COLORS.length];
@@ -62,7 +64,6 @@ const Shirts: ShirtsSceneComponent = (props) => {
 
   return (
     <>
-      <Analytics />
       <Credits
         useMusicStore={useMusicStore}
         name={name}
@@ -89,10 +90,7 @@ const Shirts: ShirtsSceneComponent = (props) => {
             />
           </group>
           <Suspense fallback={null}>
-            <WallPiece
-              useEnvStore={useEnvStore}
-              useMusicStore={useMusicStore}
-            />
+            <WallPiece useMusicStore={useMusicStore} />
             <ShirtsAssets
               useEnvStore={useEnvStore}
               useMusicStore={useMusicStore}
@@ -103,7 +101,6 @@ const Shirts: ShirtsSceneComponent = (props) => {
               useMusicStore={useMusicStore}
             />
             <ShirtsFloor
-              useEnvStore={useEnvStore}
               position={[0, -2.5, 0]}
               scale={[3, 0.5, 3]}
               size={50}
@@ -113,7 +110,7 @@ const Shirts: ShirtsSceneComponent = (props) => {
           </Suspense>
           <Suspense fallback={null}>
             <group position={[15, 0.75, 15]}>
-              <Logo useEnvStore={useEnvStore} rotating={true} />
+              <Logo rotating />
             </group>
           </Suspense>
           <ShirtsEffects useMusicStore={useMusicStore} />
