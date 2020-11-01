@@ -7,8 +7,7 @@ const { NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS } = process.env;
 type ShopProps = {
   domain?: string;
   token?: string;
-  localProducts?: string[];
-  links?: string[];
+  localProducts?: string[][];
   raycaster?: React.MutableRefObject<Raycaster>;
   paused?: boolean;
   itemSize?: number;
@@ -23,7 +22,6 @@ const Shop = (props: ShopProps) => {
     domain,
     token,
     localProducts,
-    links,
     raycaster,
     paused = false,
     itemSize = 4,
@@ -38,9 +36,10 @@ const Shop = (props: ShopProps) => {
   let linkIndex = 0;
   if (localProducts) {
     for (const product of localProducts) {
+      console.log(`Image: ${product[0]}\nStorePage: ${product[1]}`);
       const productImage = (
         <Image
-          src={product}
+          src={product[0]}
           ratio={itemRatio}
           sizeScale={itemSize}
           position={[
@@ -49,10 +48,11 @@ const Shop = (props: ShopProps) => {
             Math.sin(offset) * 19,
           ]}
           rotation={[0, Math.PI / 2 - offset + Math.PI, 0]}
-          link={links ? links[linkIndex] : undefined}
+          link={product[1]}
           raycaster={raycaster ? raycaster : undefined}
           paused={paused}
           framed
+          crazyMaterial
         />
       );
       productImages.push(productImage);
@@ -89,7 +89,6 @@ const Shop = (props: ShopProps) => {
             position={[spaceBetween * positionOffset, 2, 0]}
             rotation={[0, Math.PI, 0]}
             framed
-            link={links ? links[linkIndex] : undefined}
           />
         );
         productImages.push(productImage);

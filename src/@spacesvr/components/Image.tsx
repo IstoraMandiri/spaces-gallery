@@ -17,6 +17,7 @@ type ImageProps = JSX.IntrinsicElements["group"] & {
   framed?: boolean;
   link?: string;
   raycaster?: React.MutableRefObject<Raycaster>;
+  crazyMaterial?: boolean;
   paused?: boolean;
   color?: Color;
 };
@@ -35,6 +36,7 @@ const Image = (props: ImageProps) => {
     framed,
     link,
     raycaster,
+    crazyMaterial,
     paused = false,
     color = 0x111111,
   } = props;
@@ -48,18 +50,8 @@ const Image = (props: ImageProps) => {
   const width = normalizedRatio.x * sizeScale;
   const height = normalizedRatio.y * sizeScale;
 
-  // const material = useMemo(
-  //   () =>
-  //     new THREE.MeshStandardMaterial({
-  //       color: color,
-  //       roughness: 0.8,
-  //       metalness: 0.05,
-  //     }),
-  //   []
-  // );
-
   const [hovered, setHovered] = useState<boolean>(false);
-  const material = useRef(new CrazyMaterial());
+  const crazyMat = useRef(new CrazyMaterial());
 
   useFrame(({ clock }, delta) => {
     if (raycaster && image.current) {
@@ -68,7 +60,6 @@ const Image = (props: ImageProps) => {
       if (intersections && intersections.length > 0) {
         if (!hovered) {
           setHovered(true);
-          console.log("hovered");
         }
       } else {
         if (hovered) {
@@ -76,11 +67,21 @@ const Image = (props: ImageProps) => {
         }
       }
     }
-    if (material?.current) {
+    if (crazyMat?.current) {
       // @ts-ignore
-      material.current.time += delta;
+      crazyMat.current.time += delta;
     }
   });
+
+  const material = useMemo(
+    () =>
+      new THREE.MeshStandardMaterial({
+        color: 0x111111,
+        roughness: 0.8,
+        metalness: 0.05,
+      }),
+    []
+  );
 
   const onClick = useCallback(() => {
     if (hovered) {
@@ -106,7 +107,10 @@ const Image = (props: ImageProps) => {
         </mesh>
         {framed && (
           <>
-            <mesh position-z={[-0.1 - meshOffset]} material={material.current}>
+            <mesh
+              position-z={[-0.1 - meshOffset]}
+              material={crazyMaterial ? crazyMat.current : material}
+            >
               <boxBufferGeometry
                 attach="geometry"
                 args={[width + frameWidth, height + frameWidth, frameDepth]}
@@ -115,7 +119,7 @@ const Image = (props: ImageProps) => {
             {/* top */}
             <mesh
               position-y={height / 2 + frameWidth / 2 - borderThickness / 2}
-              // material={material}
+              material={crazyMaterial ? undefined : material}
             >
               <boxBufferGeometry
                 attach="geometry"
@@ -125,7 +129,7 @@ const Image = (props: ImageProps) => {
             {/* bottom */}
             <mesh
               position-y={-height / 2 - frameWidth / 2 + borderThickness / 2}
-              // material={material}
+              material={crazyMaterial ? undefined : material}
             >
               <boxBufferGeometry
                 attach="geometry"
@@ -135,7 +139,7 @@ const Image = (props: ImageProps) => {
             {/* left */}
             <mesh
               position-x={-width / 2 - frameWidth / 2 + borderThickness / 2}
-              // material={material}
+              material={crazyMaterial ? undefined : material}
             >
               <boxBufferGeometry
                 attach="geometry"
@@ -145,7 +149,7 @@ const Image = (props: ImageProps) => {
             {/* right */}
             <mesh
               position-x={width / 2 + frameWidth / 2 - borderThickness / 2}
-              // material={material}
+              material={crazyMaterial ? undefined : material}
             >
               <boxBufferGeometry
                 attach="geometry"
