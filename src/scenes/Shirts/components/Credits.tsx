@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { MusicStoreHook } from "scenes/Shirts/stores/music";
-import { EnvironmentStoreHook } from "../../../@spacesvr/core/stores/environment";
+import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 import { getOpenIndex } from "../services/musicManager";
 
 const Container = styled.div<{ open: boolean }>`

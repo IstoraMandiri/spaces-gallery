@@ -1,5 +1,4 @@
 import React from "react";
-import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 
 import ReactiveCube from "./ReactiveCube";
 

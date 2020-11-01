@@ -110,7 +110,7 @@ const Shirts: ShirtsSceneComponent = (props) => {
           </Suspense>
           <Suspense fallback={null}>
             <group position={[15, 0.75, 15]}>
-              <Logo rotating={true} />
+              <Logo rotating />
             </group>
           </Suspense>
           <ShirtsEffects useMusicStore={useMusicStore} />
