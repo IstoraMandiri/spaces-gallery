@@ -1,12 +1,11 @@
 import React, { Suspense, useEffect, useRef, useState } from "react";
-import { EnvironmentStoreHook } from "stores/environment";
+import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 import { Color, Mesh } from "three";
-import ChadKnight from "models/ChadKnight";
+import ChadKnight from "scenes/Chad/models/ChadKnight";
 import { useFrame } from "react-three-fiber";
 import LokLok from "./LokLok";
 
 type ChadKnightProps = {
-  useEnvStore: EnvironmentStoreHook;
   isGallery: boolean;
   effects: {
     bubble: boolean;
@@ -29,9 +28,8 @@ const colors = [
 
 const ChadKnightPieces = (props: ChadKnightProps) => {
   const {
-    useEnvStore,
     isGallery,
-    effects: { bubble, rotate, lok, color },
+    effects: { rotate, lok, color },
   } = props;
 
   const sphere = useRef<Mesh>();
@@ -56,12 +54,7 @@ const ChadKnightPieces = (props: ChadKnightProps) => {
   return (
     <group>
       <Suspense fallback={null}>
-        <ChadKnight
-          useEnvStore={useEnvStore}
-          color={realColor}
-          pieceScale={SCALE}
-          rotate={rotate}
-        />
+        <ChadKnight color={realColor} pieceScale={SCALE} rotate={rotate} />
       </Suspense>
       {lok ? (
         <group scale={[SCALE, SCALE, SCALE]}>

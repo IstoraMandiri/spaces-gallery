@@ -3,6 +3,7 @@
     "next/babel"
   ],
   "plugins": [
-    "babel-plugin-macros"
+    "babel-plugin-macros",
+    "babel-plugin-glsl"
   ]
 }

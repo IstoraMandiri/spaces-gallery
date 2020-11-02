@@ -1,9 +1,8 @@
 import * as THREE from "three";
 import React, { useEffect, useRef } from "react";
 import { useThree } from "react-three-fiber";
-import { EnvironmentStoreHook } from "stores/environment";
-import { MusicStoreHook } from "stores/music";
-// import { PositionalAudioHelper } from "three/examples/jsm/helpers/PositionalAudioHelper";
+import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
+import { MusicStoreHook } from "scenes/Shirts/stores/music";
 
 type OutsideAudioProps = JSX.IntrinsicElements["group"] & {
   useEnvStore: EnvironmentStoreHook;
@@ -73,10 +72,6 @@ const ShirtsMusic = (props: OutsideAudioProps) => {
 
       //init audio analyser
       setAnalyser(new THREE.AudioAnalyser(speaker.current, 128));
-
-      // const helper = new PositionalAudioHelper(speaker.current);
-      // speaker.current.add(helper);
-
       scene.add(speaker.current);
     }
   }, [audioRef.current, camera, speaker.current, listener.current, paused]);

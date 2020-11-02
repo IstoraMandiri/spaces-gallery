@@ -3,12 +3,15 @@ import { NextPage } from "next";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 
-const Environment = dynamic(import("environments/PlayerEnvironment"), {
-  ssr: false,
-});
-const Outside = dynamic(import("scenes/Outside"), { ssr: false });
+const Environment = dynamic(
+  import("@spacesvr/core/environments/PlayerEnvironment"),
+  {
+    ssr: false,
+  }
+);
+const Opening = dynamic(import("scenes/Opening"), { ssr: false });
 
-const BroadwayPage: NextPage = () => {
+const OpeningPage: NextPage = () => {
   return (
     <>
       <Head>
@@ -19,7 +22,7 @@ const BroadwayPage: NextPage = () => {
         />
       </Head>
       <Environment
-        scene={Outside}
+        scene={Opening}
         artist="Lucid Monday"
         title="Opening Gallery"
         link="https://lucidmonday.com"
@@ -28,4 +31,4 @@ const BroadwayPage: NextPage = () => {
   );
 };
 
-export default BroadwayPage;
+export default OpeningPage;

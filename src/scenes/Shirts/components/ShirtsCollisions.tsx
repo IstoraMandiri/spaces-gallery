@@ -1,5 +1,5 @@
 import React from "react";
-import { useBox, useSphere } from "use-cannon";
+import { useBox, useSphere } from "@react-three/cannon";
 
 type SphereColliderProps = {
   position: [number, number, number];

@@ -1,6 +1,6 @@
-import React, { Suspense, useMemo } from "react";
-import Simpleballoon from "models/Simpleballoon";
-import { EnvironmentStoreHook } from "stores/environment";
+import React, { useMemo } from "react";
+import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
+import { Color } from "three";
 
 type BallonPos = {
   angle: number;
@@ -10,23 +10,22 @@ type BallonPos = {
 
 const NUM_BALLOONS = 500;
 
-const Balloon = (props: { useEnvStore: EnvironmentStoreHook } & BallonPos) => {
-  const { useEnvStore, angle, dist, seed } = props;
+const Balloon = (props: BallonPos) => {
+  const { angle, dist, seed } = props;
 
   return (
     <group rotation={[0, angle, 0]}>
       <group position={[0, 0, -dist]}>
-        <Suspense fallback={null}>
-          <Simpleballoon useEnvStore={useEnvStore} seed={seed} />
-        </Suspense>
+        <mesh>
+          <sphereBufferGeometry args={[seed * 1.8 + 0.3, 30, 30]} />
+          <meshBasicMaterial color={new Color().setHSL(seed * 360, 0.8, 0.8)} />
+        </mesh>
       </group>
     </group>
   );
 };
 
-const Balloons = (props: { useEnvStore: EnvironmentStoreHook }) => {
-  const { useEnvStore } = props;
-
+const Balloons = () => {
   const positions: BallonPos[] = useMemo(() => {
     const arr = [];
     for (let i = 0; i < NUM_BALLOONS; i++) {
@@ -50,7 +49,6 @@ const Balloons = (props: { useEnvStore: EnvironmentStoreHook }) => {
       {positions.map((pos) => (
         <Balloon
           key={pos.seed}
-          useEnvStore={useEnvStore}
           angle={pos.angle}
           dist={pos.dist}
           seed={pos.seed}

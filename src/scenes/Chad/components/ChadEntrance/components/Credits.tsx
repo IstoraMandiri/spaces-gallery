@@ -1,12 +1,9 @@
-import { Text } from "drei";
+import { Text } from "@react-three/drei";
 import React from "react";
 import ChadLogo from "../../ChadLogo";
-import Logo from "three-components/Logo";
-import { EnvironmentStoreHook } from "stores/environment";
+import Logo from "@spacesvr/components/Logo";
 
-const Credits = (props: { useEnvStore: EnvironmentStoreHook }) => {
-  const { useEnvStore } = props;
-
+const Credits = () => {
   return (
     <group
       name="wall"
@@ -17,15 +14,11 @@ const Credits = (props: { useEnvStore: EnvironmentStoreHook }) => {
       <Text scale={[6, 6, 6]} position={[-4, -0.7, 0]} textAlign="left">
         CHAD KNIGHT
       </Text>
-      <ChadLogo
-        useEnvStore={useEnvStore}
-        position={[-4, 0.4, -0.2]}
-        scale={[0.8, 0.8, 0.8]}
-      />
+      <ChadLogo position={[-4, 0.4, -0.2]} scale={[0.8, 0.8, 0.8]} />
       <Text scale={[3.5, 3.5, 3.5]} position={[-1.6, 0, 0]}>
         x
       </Text>
-      <Logo useEnvStore={useEnvStore} floating rotation={[0, Math.PI / 2, 0]} />
+      <Logo floating rotation={[0, Math.PI / 2, 0]} />
     </group>
   );
 };
