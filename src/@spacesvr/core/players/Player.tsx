@@ -88,7 +88,7 @@ const Player = (props: PlayerProps) => {
 
       // get forward/back movement and left/right movement velocities
       const inputVelocity = new Vector3(0, 0, 0);
-      if (!lockControls) {
+      if (!lockControls.current) {
         inputVelocity.x = direction.current.x * delta * 0.75 * VELOCITY_FACTOR;
         inputVelocity.z = direction.current.y * delta * VELOCITY_FACTOR;
       }

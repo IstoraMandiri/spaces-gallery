@@ -3,7 +3,7 @@ import { Api } from "@react-three/cannon";
 import { MutableRefObject } from "react";
 import * as THREE from "three";
 
-type PlayerRef = {
+export type PlayerRef = {
   position: PlayerVec;
   velocity: PlayerVec;
   controls: PlayerControls;
@@ -48,7 +48,7 @@ export function createPlayerRef(
     position: posVec,
     velocity: velVec,
     controls,
-    raycaster,
+    raycaster: raycaster.current,
   };
 
   return playerRef;

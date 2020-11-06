@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 import { isMobile } from "react-device-detect";
 import { useEnvironment } from "../core/utils/hooks";
 
@@ -92,27 +91,6 @@ const Instagram = styled.div`
   }
 `;
 
-const MusicCreds = styled.div`
-  position: absolute;
-  width: 100%;
-  bottom: 14px;
-  font-size: 0.6em;
-  cursor: pointer;
-  transition: opacity 0.1s linear;
-  text-align: center;
-
-  & > a {
-    text-decoration: underline;
-  }
-
-  #artist {
-    :hover {
-      opacity: 0.5;
-      transition: opacity 0.1s linear;
-    }
-  }
-`;
-
 const Header = styled.div`
   margin-top: 8%;
   width: auto;
@@ -127,12 +105,6 @@ const Title = styled.div`
   text-align: center;
   margin-bottom: 0em;
   line-height: 1em;
-`;
-
-const SubHeader = styled.div`
-  width: auto;
-  height: auto;
-  font-size: 0.6em;
 `;
 
 const Text = styled.div`

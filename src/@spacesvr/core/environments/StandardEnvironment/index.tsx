@@ -42,7 +42,6 @@ const defaultPhysicsProps: Partial<ProviderProps> = {
   iterations: 20,
   size: 10,
   allowSleep: false,
-  gravity: [0, -30, 0],
   defaultContactMaterial: {
     friction: 0,
   },
@@ -53,8 +52,8 @@ type StandardEnvironmentProps = {
     pos?: Vector3;
     rot?: number;
   };
+  disableGround?: boolean;
   disableEffects?: boolean;
-  disablePlayer?: boolean;
 };
 
 export const stateContext = React.createContext<EnvironmentState>(
@@ -74,7 +73,14 @@ export const stateContext = React.createContext<EnvironmentState>(
 const StandardEnvironment = (
   props: EnvironmentProps & StandardEnvironmentProps
 ) => {
-  const { children, canvasProps, physicsProps, player, disableEffects } = props;
+  const {
+    children,
+    canvasProps,
+    physicsProps,
+    player,
+    disableGround,
+    disableEffects,
+  } = props;
 
   const state = useEnvironmentState();
 
@@ -83,17 +89,19 @@ const StandardEnvironment = (
       <Canvas {...defaultCanvasProps} {...canvasProps}>
         <Physics {...defaultPhysicsProps} {...physicsProps}>
           <stateContext.Provider value={state}>
-            <InfinitePlane height={-0.001} />
             <Player initPos={player?.pos} initRot={player?.rot} />
+            {!disableGround && <InfinitePlane height={-0.001} />}
             {!disableEffects && <RealisticEffects />}
             {children}
           </stateContext.Provider>
         </Physics>
       </Canvas>
-      <LoadingScreen />
-      <DesktopPause />
-      {isMobile && <MobilePause />}
-      <Crosshair />
+      <stateContext.Provider value={state}>
+        <LoadingScreen />
+        <DesktopPause />
+        {isMobile && <MobilePause />}
+        <Crosshair />
+      </stateContext.Provider>
     </Container>
   );
 };

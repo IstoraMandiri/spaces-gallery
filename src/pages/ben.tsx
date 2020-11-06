@@ -3,12 +3,6 @@ import { NextPage } from "next";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 
-const Environment = dynamic(
-  import("@spacesvr/core/environments/PlayerEnvironment"),
-  {
-    ssr: false,
-  }
-);
 const Ben = dynamic(import("scenes/Ben"), { ssr: false });
 
 const BenPage: NextPage = () => {
@@ -21,7 +15,7 @@ const BenPage: NextPage = () => {
           rel="stylesheet"
         />
       </Head>
-      <Environment scene={Ben} artist="Ben" title="Ben" link="Ben" />
+      <Ben />
     </>
   );
 };
