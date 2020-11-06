@@ -1,34 +1,30 @@
 import * as THREE from "three";
 import React, { useEffect, useRef } from "react";
 import { useThree } from "react-three-fiber";
-import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
-import { PositionalAudioHelper } from "three/examples/jsm/helpers/PositionalAudioHelper";
+import { useEnvironment } from "@spacesvr/core/utils/hooks";
 
 type OutsideAudioProps = JSX.IntrinsicElements["group"] & {
-  useEnvStore: EnvironmentStoreHook;
   url: string;
 };
 
 const OutsideAudio = (props: OutsideAudioProps) => {
-  const { useEnvStore, url } = props;
+  const { url } = props;
+  const { paused, container } = useEnvironment();
 
-  const paused = useEnvStore((st) => st.paused);
-
-  const container = useEnvStore((st) => st.container);
   const audioRef = useRef<HTMLAudioElement>();
   const speaker = useRef<THREE.PositionalAudio>();
   const { camera, scene } = useThree();
   const listener = useRef<THREE.AudioListener>();
 
   useEffect(() => {
-    if (container?.current && !audioRef.current) {
+    if (container && !audioRef.current) {
       const audio = document.createElement("audio");
       audio.src = url;
       audio.autoplay = false;
       audio.preload = "auto";
       audio.crossOrigin = "anonymous";
       audio.loop = true;
-      container?.current?.appendChild(audio);
+      container?.appendChild(audio);
 
       audioRef.current = audio;
 
@@ -46,7 +42,7 @@ const OutsideAudio = (props: OutsideAudioProps) => {
         }
       };
     }
-  }, [container?.current, audioRef.current]);
+  }, [container, audioRef.current]);
 
   // audio
   useEffect(() => {

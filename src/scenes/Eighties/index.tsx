@@ -27,9 +27,9 @@ const Eighties: SceneComponent = (props) => {
 
   return (
     <Canvas {...defaultCanvasProps}>
-      {children}
-      <fog attach="fog" args={[0x000000, 1, 100]} />
       <Physics {...physicsProps}>
+        {children}
+        <fog attach="fog" args={[0x000000, 1, 100]} />
         <InfinitePlane height={-0.001} />
         <Player useEnvStore={useEnvStore} />
         <Grid />

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
+import { useEnvironment } from "../core/utils/hooks";
 
 const Container = styled.div<{ paused: boolean }>`
   position: absolute;
@@ -29,15 +29,8 @@ const Window = styled.div`
   background-size: cover;
 `;
 
-type MobilePauseProps = {
-  useEnvStore: EnvironmentStoreHook;
-};
-
-const MobilePause = (props: MobilePauseProps) => {
-  const { useEnvStore } = props;
-
-  const paused = useEnvStore((st) => st.paused);
-  const setPaused = useEnvStore((st) => st.setPaused);
+const MobilePause = () => {
+  const { paused, setPaused } = useEnvironment();
 
   const togglePause = () => setPaused(!paused);
 

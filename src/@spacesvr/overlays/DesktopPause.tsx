@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 import { isMobile } from "react-device-detect";
+import { useEnvironment } from "../core/utils/hooks";
 
 const { NEXT_PUBLIC_VERSION } = process.env;
 
@@ -146,20 +147,8 @@ const Text = styled.div`
   justify-content: center;
 `;
 
-type OverlayProps = {
-  useEnvStore: EnvironmentStoreHook;
-  artist?: string;
-  link?: string;
-  title?: string;
-};
-
-const DesktopPause: React.FC<OverlayProps> = (props) => {
-  const { useEnvStore, artist, title, link } = props;
-
-  const paused = useEnvStore((st) => st.paused);
-  const overlay = useEnvStore((st) => st.overlay);
-  const setPaused = useEnvStore((st) => st.setPaused);
-
+const DesktopPause = () => {
+  const { paused, overlay, setPaused } = useEnvironment();
   const closeOverlay = () => setPaused(false);
 
   if (overlay) {
@@ -178,17 +167,8 @@ const DesktopPause: React.FC<OverlayProps> = (props) => {
         >
           @spaces3.0
         </Instagram>
-        {artist && (
-          <MusicCreds>
-            music provided by{" "}
-            <a id="artist" href={link} target="_blank" rel="noreferrer">
-              {artist}
-            </a>
-          </MusicCreds>
-        )}
         <Header>
           <Title>SPACES</Title>
-          <SubHeader>{title}</SubHeader>
         </Header>
         <Text>
           <p>Move around: {isMobile ? "Joystick" : "W/A/S/D"}</p>

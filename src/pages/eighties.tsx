@@ -4,7 +4,7 @@ import Head from "next/head";
 import dynamic from "next/dynamic";
 
 const Environment = dynamic(
-  import("@spacesvr/core/environments/PlayerEnvironment"),
+  import("@spacesvr/core/environments/StandardEnviroment"),
   {
     ssr: false,
   }

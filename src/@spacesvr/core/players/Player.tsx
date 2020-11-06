@@ -6,16 +6,15 @@ import { isMobile } from "react-device-detect";
 
 import MobileControls from "../controls/MobileControls";
 import DesktopControls from "../controls/DesktopControls";
-import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 import RaycasterUtil from "../utils/RaycasterUtil";
+import { useEnvironment } from "../utils/hooks";
 
 const VELOCITY_FACTOR = 250;
 const SHOW_PLAYER_HITBOX = false;
 
-type PlayerProps = {
-  useEnvStore: EnvironmentStoreHook;
-  initPos?: [number, number, number];
-  initLook?: [number, number, number];
+export type PlayerProps = {
+  initPos?: Vector3;
+  initRot?: number;
   raycaster?: MutableRefObject<Raycaster>;
   onFrame?: (bodyApi: any) => void;
   lockControls?: boolean;
@@ -32,22 +31,19 @@ type PlayerProps = {
  */
 const Player = (props: PlayerProps) => {
   const {
-    useEnvStore,
-    initPos = [0, 1, 0],
-    initLook = [0, 2, 0],
+    initPos = new Vector3(0, 1, 0),
+    initRot = 0,
     raycaster,
     onFrame,
     lockControls,
   } = props;
   const { camera } = useThree();
-
-  // get pause status
-  const paused = useEnvStore((st) => st.paused);
+  const { paused } = useEnvironment();
 
   // physical body
   const [bodyRef, bodyApi] = useSphere(() => ({
     mass: 500,
-    position: initPos,
+    position: initPos.toArray(),
     args: 1,
     fixedRotation: true,
     onCollide: (e: Event) => {
@@ -79,7 +75,10 @@ const Player = (props: PlayerProps) => {
       position.current.set(p[0], p[1], p[2]);
     });
     bodyApi.velocity.subscribe((v) => velocity.current.set(v[0], v[1], v[2]));
-    camera?.lookAt(initLook[0], initLook[1], initLook[2]);
+
+    const xLook = initPos.x + 100 * Math.cos(initRot);
+    const zLook = initPos.z + 100 * Math.sin(initRot);
+    camera?.lookAt(xLook, initPos.y, zLook);
   }, []);
 
   useFrame(() => {

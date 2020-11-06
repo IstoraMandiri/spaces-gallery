@@ -1,15 +1,8 @@
 import React from "react";
 import Image from "@spacesvr/components/Image";
 import Video from "@spacesvr/components/Video";
-import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 
-type Props = {
-  useEnvStore: EnvironmentStoreHook;
-};
-
-const HectorRoom = (props: Props) => {
-  const { useEnvStore } = props;
-
+const HectorRoom = () => {
   return (
     <group rotation={[0, (2 / 3) * Math.PI, 0]}>
       <group position={[0, 2.5, -40]}>
@@ -30,7 +23,6 @@ const HectorRoom = (props: Props) => {
           framed
         />
         <Video
-          useEnvStore={useEnvStore}
           src="https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/content/opening/hector/TravisVideo.mp4"
           ratio={[1260, 720]}
           sizeScale={4}
