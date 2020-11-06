@@ -3,10 +3,10 @@ import styled from "@emotion/styled";
 import { getEnvironmentStore } from "@spacesvr/core/stores/environment";
 import ShirtsLoading from "scenes/Shirts/ShirtsLoading";
 import { ContainerProps } from "react-three-fiber/targets/shared/web/ResizeContainer";
-import PauseMenu from "@spacesvr/overlays/PauseMenu/";
+import PauseMenu from "@spacesvr/overlays/PauseMenu";
 import { usePortal } from "services/portal";
 import { buildShirtPortal } from "scenes/Shirts/services/shirtPortal";
-import { ShirtsSceneComponent } from "scenes/Shirts";
+import { ShirtsSceneComponent } from "scenes/Shirts/index";
 import { useRouter } from "next/router";
 
 const Container = styled.div`

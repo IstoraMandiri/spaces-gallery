@@ -3,12 +3,9 @@ import { NextPage } from "next";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 
-const Environment = dynamic(
-  import("@spacesvr/core/environments/ShopEnvironment"),
-  {
-    ssr: false,
-  }
-);
+const Environment = dynamic(import("scenes/Shop/environment/ShopEnvironment"), {
+  ssr: false,
+});
 const Shop = dynamic(import("scenes/Shop"), { ssr: false });
 
 const ChadPage: NextPage = () => {

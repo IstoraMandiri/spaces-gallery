@@ -4,7 +4,7 @@ import Head from "next/head";
 import dynamic from "next/dynamic";
 
 const ShirtsEnvironment = dynamic(
-  import("@spacesvr/core/environments/ShirtsEnvironment"),
+  import("scenes/Shirts/environment/ShirtsEnvironment"),
   {
     ssr: false,
   }
