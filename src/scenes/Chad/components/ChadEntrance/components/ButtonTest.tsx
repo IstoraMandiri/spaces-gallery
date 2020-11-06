@@ -1,12 +1,10 @@
 import ToggleEffect from "scenes/Chad/components/ToggleEffect";
-import React, { MutableRefObject, useState } from "react";
-import { Color, Raycaster } from "three";
+import React, { useState } from "react";
+import { Color } from "three";
 import { Text } from "@react-three/drei";
 import Arrow from "@spacesvr/components/Arrow";
 
-const ButtonTest = (props: { raycaster: MutableRefObject<Raycaster> }) => {
-  const { raycaster } = props;
-
+const ButtonTest = () => {
   const [effect, setEffect] = useState(false);
 
   const color = new Color().setHSL(Math.random(), 1, 0.7);
@@ -15,7 +13,6 @@ const ButtonTest = (props: { raycaster: MutableRefObject<Raycaster> }) => {
     <group position={[0, 0, -0.5]}>
       <ToggleEffect
         position={[-6.5, -2, -5]}
-        raycaster={raycaster}
         effect={effect}
         setEffect={setEffect}
         color="purple"

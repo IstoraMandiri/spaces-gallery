@@ -1,5 +1,4 @@
 import React, { Suspense, useEffect, useRef, useState } from "react";
-import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 import { Color, Mesh } from "three";
 import ChadKnight from "scenes/Chad/models/ChadKnight";
 import { useFrame } from "react-three-fiber";
@@ -8,7 +7,6 @@ import LokLok from "./LokLok";
 type ChadKnightProps = {
   isGallery: boolean;
   effects: {
-    bubble: boolean;
     rotate: boolean;
     lok: boolean;
     color?: boolean;

@@ -54,6 +54,7 @@ type StandardEnvironmentProps = {
     rot?: number;
   };
   disableEffects?: boolean;
+  disablePlayer?: boolean;
 };
 
 export const stateContext = React.createContext<EnvironmentState>(
@@ -90,7 +91,7 @@ const StandardEnvironment = (
         </Physics>
       </Canvas>
       <LoadingScreen />
-      {!isMobile && <DesktopPause />}
+      <DesktopPause />
       {isMobile && <MobilePause />}
       <Crosshair />
     </Container>
