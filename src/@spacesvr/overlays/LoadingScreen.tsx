@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { useProgress } from "@react-three/drei";
 
@@ -20,11 +20,26 @@ const Container = styled.div<{ finished: boolean; landing: boolean }>`
   flex-direction: column;
 `;
 
+const TIMEOUT = 500;
+
 const LoadingScreen = () => {
-  const { progress } = useProgress();
+  const { progress, total } = useProgress();
+
+  // wait TIMEOUTms to check if any objects are waiting to be loaded
+  const [counter, setCounter] = useState(0);
+  const [skip, setSkip] = useState(false);
+  useEffect(() => {
+    if (total > 0) {
+      return;
+    } else if (counter > 0) {
+      setSkip(true);
+    } else {
+      setTimeout(() => setCounter(counter + 1), TIMEOUT);
+    }
+  }, [counter]);
 
   return (
-    <Container finished={progress === 100} landing={false}>
+    <Container finished={skip || progress === 100} landing={false}>
       {Math.floor(progress)}%
     </Container>
   );

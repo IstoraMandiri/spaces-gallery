@@ -1,11 +1,10 @@
 import React, { useRef, useEffect, MutableRefObject } from "react";
 import { Vector3 } from "three";
 import nipplejs, { JoystickManager } from "nipplejs";
-import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
+import { useEnvironment } from "../utils/hooks";
 
 type NippleMovementProps = {
   direction: MutableRefObject<Vector3>;
-  useEnvStore: EnvironmentStoreHook;
   nippleContainer: MutableRefObject<HTMLElement | null>;
 };
 
@@ -22,13 +21,13 @@ type NippleMovementProps = {
  * @constructor
  */
 const NippleMovement = (props: NippleMovementProps) => {
-  const { useEnvStore, direction, nippleContainer } = props;
+  const { direction, nippleContainer } = props;
 
   const nipple = useRef<JoystickManager>();
-  const container = useEnvStore((st) => st.container);
+  const { container } = useEnvironment();
 
   useEffect(() => {
-    if (container?.current) {
+    if (container) {
       nippleContainer.current = document.createElement("divs");
       nippleContainer.current.style.position = "fixed";
       nippleContainer.current.style.left = "0";
@@ -40,7 +39,7 @@ const NippleMovement = (props: NippleMovementProps) => {
       nippleContainer.current.style.zIndex = "5";
       // add class identifier to nippleContainer to identify touchEvents
       nippleContainer.current.classList.add("nipple-container");
-      container.current.appendChild(nippleContainer.current);
+      container.appendChild(nippleContainer.current);
 
       nipple.current = nipplejs.create({
         zone: nippleContainer.current,
