@@ -41,7 +41,7 @@ const ToggleEffect = (props: EffectProps) => {
       >
         <mesh position={[0, 1.25, 0]} ref={button}>
           <sphereBufferGeometry attach="geometry" args={[0.25, 50, 50]} />
-          <meshStandardMaterial attach="material" />
+          <meshStandardMaterial attach="material" color={color} />
         </mesh>
       </Interactable>
       <mesh position={[0, 0.3, 0]}>

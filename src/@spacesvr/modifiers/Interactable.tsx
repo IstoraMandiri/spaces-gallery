@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { Group } from "three";
 import { useEnvironment } from "../core/utils/hooks";
 import { useFrame } from "react-three-fiber";
@@ -27,12 +27,14 @@ const Interactable = (props: InteractableProps) => {
   const [hovered, setHovered] = useState(false);
 
   useFrame(() => {
-    if (group.current) {
+    if (group.current && raycaster) {
       const intersections = raycaster.intersectObject(group.current, true);
-      if (!hovered && intersections && intersections.length > 0) {
-        setHovered(true);
-        if (onHover) {
-          onHover();
+      if (intersections && intersections.length > 0) {
+        if (!hovered) {
+          setHovered(true);
+          if (onHover) {
+            onHover();
+          }
         }
       } else if (hovered) {
         setHovered(false);
@@ -43,18 +45,18 @@ const Interactable = (props: InteractableProps) => {
     }
   });
 
-  const checkClick = useCallback(() => {
-    if (hovered && onClick) {
-      onClick();
-    }
-  }, [hovered]);
-
   useEffect(() => {
+    const checkClick = () => {
+      if (hovered && onClick) {
+        onClick();
+      }
+    };
+
     document.addEventListener("click", checkClick);
     return () => {
       document.removeEventListener("click", checkClick);
     };
-  }, []);
+  }, [hovered, onClick]);
 
   return <group ref={group}>{children}</group>;
 };

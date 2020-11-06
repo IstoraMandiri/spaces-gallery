@@ -36,6 +36,7 @@ const Chad = () => {
 
   return (
     <StandardEnvironment
+      disableGround
       canvasProps={{ camera: { far: 150 } }}
       player={{ pos: new Vector3(-2, -3, 62), rot: Math.PI / 2 }}
     >
