@@ -8,15 +8,21 @@ import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 
 type GLTFResult = GLTF & {
   nodes: {
-    test1: THREE.Mesh;
+    Sphere3: THREE.Mesh;
+    Sphere2: THREE.Mesh;
+    Sphere: THREE.Mesh;
+    Sphere1: THREE.Mesh;
   };
   materials: {
-    test: THREE.MeshStandardMaterial;
+    ["Sphere.2"]: THREE.MeshStandardMaterial;
+    ["Sphere.3"]: THREE.MeshStandardMaterial;
+    ["Sphere.1"]: THREE.MeshStandardMaterial;
+    Sphere: THREE.MeshStandardMaterial;
   };
 };
 
 const FILE_URL =
-  "https://d27rt3a60hh1lx.cloudfront.net/models/SpacesVR2-1604639915/spacesvr_01.glb";
+  "https://d27rt3a60hh1lx.cloudfront.net/models/SpacesVR4-1604654936/spacesvr_03.glb";
 
 export default function Model(props: JSX.IntrinsicElements["group"]) {
   const group = useRef<THREE.Group>();
@@ -25,9 +31,30 @@ export default function Model(props: JSX.IntrinsicElements["group"]) {
     <group ref={group} {...props}>
       <group>
         <mesh
-          material={materials.test}
-          geometry={nodes.test1.geometry}
-          name="test1"
+          material={materials["Sphere.2"]}
+          geometry={nodes.Sphere3.geometry}
+          name="Sphere3"
+          position={[0.6928, 1.5157, 10.0922]}
+          rotation={[-Math.PI, 0, -Math.PI]}
+        />
+        <mesh
+          material={materials["Sphere.3"]}
+          geometry={nodes.Sphere2.geometry}
+          name="Sphere2"
+          position={[-11.5352, 1.5157, -2.3516]}
+          rotation={[0, 1.5705, 0]}
+        />
+        <mesh
+          material={materials["Sphere.1"]}
+          geometry={nodes.Sphere.geometry}
+          name="Sphere"
+          position={[12.3248, 1.5157, -2.3516]}
+          rotation={[0, -1.5705, 0]}
+        />
+        <mesh
+          material={materials.Sphere}
+          geometry={nodes.Sphere1.geometry}
+          name="Sphere1"
           position={[-0.0499, 1.5157, -14.6316]}
         />
       </group>
