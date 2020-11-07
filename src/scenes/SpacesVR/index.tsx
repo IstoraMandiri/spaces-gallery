@@ -23,7 +23,13 @@ const physicsProps = {
   },
 };
 
-softShadows({});
+softShadows({
+  frustrum: 3.75, // Frustrum width (default: 3.75)
+  size: 0.001, // World size (default: 0.005)
+  near: 9.5, // Near plane (default: 9.5)
+  samples: 17, // Samples (default: 17)
+  rings: 11, // Rings (default: 11)
+});
 
 const SpacesVR: SceneComponent = (props) => {
   const { useEnvStore, defaultCanvasProps, children } = props;
