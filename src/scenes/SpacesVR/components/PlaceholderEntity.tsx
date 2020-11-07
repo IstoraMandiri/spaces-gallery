@@ -1,6 +1,6 @@
 const PlaceholderEntity = (props: any) => {
   const color = Math.random() * 0xffffff;
-  const dist = Math.random() * 200 + 20;
+  const dist = Math.random() * 100 + 20;
   const angle1 = Math.random() * Math.PI * 2;
   const angle2 = Math.random() * Math.PI - Math.PI / 2;
 

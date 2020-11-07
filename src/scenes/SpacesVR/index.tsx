@@ -14,6 +14,7 @@ import HomePurple from "./models/HomePurple";
 import { Color } from "three";
 import SpacesVREntity from "./components/SpacesVREntity";
 import PlaceholderEntity from "./components/PlaceholderEntity";
+import Floor from "./components/Floor";
 
 const physicsProps = {
   iterations: 20,
@@ -30,20 +31,22 @@ const SpacesVR: SceneComponent = (props) => {
 
   useAnalytics();
 
-  const entities = [...Array(150).keys()];
+  const entities = [...Array(90).keys()];
 
   return (
     <Canvas
       {...defaultCanvasProps}
+      camera={{ near: 0.01, far: 200 }}
       onCreated={({ scene }) => {
         scene.background = new Color(0xffffff);
       }}
     >
-      <fog attach="fog" args={[0xffffff, 50, 150]} />
+      <fog attach="fog" args={[0xfffffff, 10, 60]} />
       {children}
       <Physics {...physicsProps}>
-        <Logo />
+        <Logo position={[4, 0, 0]} />
         <SpacesVREntity />
+        <Floor />
         {entities.map((val, i) => (
           <PlaceholderEntity key={i} />
         ))}
@@ -51,9 +54,8 @@ const SpacesVR: SceneComponent = (props) => {
         <HomeBlue position-z={-10} />
         <HomePurple position-z={10} />
         <HomeRed position-x={10} />
-        <Player useEnvStore={useEnvStore} initPos={[0, 1, 2]} />
+        <Player useEnvStore={useEnvStore} initPos={[0, 1, 5]} />
         <ambientLight intensity={1} />
-        <pointLight intensity={1} color={"white"} distance={55} />
         <RealisticEffects />
       </Physics>
     </Canvas>

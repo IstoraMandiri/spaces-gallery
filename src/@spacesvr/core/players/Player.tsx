@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, MutableRefObject } from "react";
 import { useFrame, useThree } from "react-three-fiber";
 import { Quaternion, Raycaster, Vector3 } from "three";
-import { Event, useSphere } from "@react-three/cannon";
+import { Event, useBox, useSphere } from "@react-three/cannon";
 import { isMobile } from "react-device-detect";
 
 import MobileControls from "../controls/MobileControls";
@@ -34,7 +34,7 @@ const Player = (props: PlayerProps) => {
   const {
     useEnvStore,
     initPos = [0, 1, 0],
-    initLook = [0, 2, 0],
+    initLook = [0, 4, 0],
     raycaster,
     onFrame,
     lockControls,
@@ -45,10 +45,10 @@ const Player = (props: PlayerProps) => {
   const paused = useEnvStore((st) => st.paused);
 
   // physical body
-  const [bodyRef, bodyApi] = useSphere(() => ({
+  const [bodyRef, bodyApi] = useBox(() => ({
     mass: 500,
     position: initPos,
-    args: 1,
+    args: [1, 8, 1],
     fixedRotation: true,
     onCollide: (e: Event) => {
       if (e?.body?.name.includes("teleport")) {
@@ -148,7 +148,7 @@ const Player = (props: PlayerProps) => {
       <mesh ref={bodyRef} name="player">
         {SHOW_PLAYER_HITBOX && (
           <>
-            <sphereBufferGeometry attach="geometry" args={[1]} />
+            <sphereBufferGeometry attach="geometry" args={[4]} />
             <meshPhongMaterial attach="material" color="#172017" />
           </>
         )}
