@@ -8,10 +8,12 @@ import { SceneComponent } from "@spacesvr/core/types/scene";
 import { useAnalytics } from "services/analytics";
 import RealisticEffects from "@spacesvr/core/effects/RealisticEffects";
 import Logo from "@spacesvr/components/Logo";
-import { Sky } from "@react-three/drei";
 import HomeBlue from "./models/HomeBlue";
 import HomeRed from "./models/HomeRed";
 import HomePurple from "./models/HomePurple";
+import { Color } from "three";
+import SpacesVREntity from "./components/SpacesVREntity";
+import PlaceholderEntity from "./components/PlaceholderEntity";
 
 const physicsProps = {
   iterations: 20,
@@ -28,12 +30,23 @@ const SpacesVR: SceneComponent = (props) => {
 
   useAnalytics();
 
+  const entities = [...Array(150).keys()];
+
   return (
-    <Canvas {...defaultCanvasProps}>
+    <Canvas
+      {...defaultCanvasProps}
+      onCreated={({ scene }) => {
+        scene.background = new Color(0xffffff);
+      }}
+    >
+      <fog attach="fog" args={[0xffffff, 50, 150]} />
       {children}
       <Physics {...physicsProps}>
         <Logo />
-        <Sky />
+        <SpacesVREntity />
+        {entities.map((val, i) => (
+          <PlaceholderEntity key={i} />
+        ))}
         <InfinitePlane height={-0.001} />
         <HomeBlue position-z={-10} />
         <HomePurple position-z={10} />
