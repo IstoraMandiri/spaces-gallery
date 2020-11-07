@@ -9,9 +9,9 @@ import { useAnalytics } from "services/analytics";
 import RealisticEffects from "@spacesvr/core/effects/RealisticEffects";
 import { Color } from "three";
 import SpacesVREntity from "./components/SpacesVREntity";
-import PlaceholderEntity from "./components/PlaceholderEntity";
 import Floor from "./components/Floor";
 import { softShadows } from "@react-three/drei";
+import Entities from "./components/Entities";
 
 const physicsProps = {
   iterations: 20,
@@ -23,10 +23,12 @@ const physicsProps = {
   },
 };
 
+export const RENDER_DIST = 50;
+
 softShadows({
   frustrum: 3.75, // Frustrum width (default: 3.75)
   size: 0.001, // World size (default: 0.005)
-  near: 9.5, // Near plane (default: 9.5)
+  near: 7.5, // Near plane (default: 9.5)
   samples: 17, // Samples (default: 17)
   rings: 11, // Rings (default: 11)
 });
@@ -36,37 +38,34 @@ const SpacesVR: SceneComponent = (props) => {
 
   useAnalytics();
 
-  const entities = [...Array(90).keys()];
-
   return (
     <Canvas
       {...defaultCanvasProps}
       shadowMap
       gl={{ depth: true, alpha: true }}
-      camera={{ near: 0.01, far: 200 }}
       onCreated={({ scene }) => {
         scene.background = new Color(0xffffff);
       }}
     >
-      <fog attach="fog" args={[0xfffffff, 0, 60]} />
+      <fog attach="fog" args={[0xfffffff, 0, RENDER_DIST]} />
       {children}
       <Physics {...physicsProps}>
         <SpacesVREntity />
         <Floor />
-        {entities.map((val, i) => (
-          <PlaceholderEntity key={i} />
-        ))}
+        <Entities />
         <InfinitePlane height={-0.001} />
         <Player useEnvStore={useEnvStore} initPos={[0, 1, 5]} />
-        <ambientLight intensity={1} />
+        <ambientLight intensity={0.3} />
         <directionalLight
-          position={[0, 10, 0]}
+          position={[0, RENDER_DIST, 0]}
           intensity={2}
           castShadow
-          shadow-camera-left={-10}
-          shadow-camera-right={10}
-          shadow-camera-top={10}
-          shadow-camera-bottom={-10}
+          shadow-mapSize-height={2048}
+          shadow-mapSize-width={2048}
+          shadow-camera-left={-RENDER_DIST}
+          shadow-camera-right={RENDER_DIST}
+          shadow-camera-top={RENDER_DIST}
+          shadow-camera-bottom={-RENDER_DIST}
         />
         <RealisticEffects />
       </Physics>
