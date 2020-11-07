@@ -9,7 +9,9 @@ import { useAnalytics } from "services/analytics";
 import RealisticEffects from "@spacesvr/core/effects/RealisticEffects";
 import Logo from "@spacesvr/components/Logo";
 import { Sky } from "@react-three/drei";
-import SpacesVRElements from "./models/SpacesVRElements";
+import HomeBlue from "./models/HomeBlue";
+import HomeRed from "./models/HomeRed";
+import HomePurple from "./models/HomePurple";
 
 const physicsProps = {
   iterations: 20,
@@ -33,7 +35,9 @@ const SpacesVR: SceneComponent = (props) => {
         <Logo />
         <Sky />
         <InfinitePlane height={-0.001} />
-        <SpacesVRElements />
+        <HomeBlue position-z={-10} />
+        <HomePurple position-z={10} />
+        <HomeRed position-x={10} />
         <Player useEnvStore={useEnvStore} initPos={[0, 1, 2]} />
         <ambientLight intensity={1} />
         <pointLight intensity={1} color={"white"} distance={55} />
