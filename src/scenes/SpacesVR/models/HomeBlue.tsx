@@ -23,7 +23,7 @@ export default function Model(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(FILE_URL) as GLTFResult;
   return (
     <group ref={group} {...props}>
-      <group>
+      <group position-y={0.55}>
         <mesh
           material={materials.BlueJohnMat}
           geometry={nodes.BlueJohn.geometry}

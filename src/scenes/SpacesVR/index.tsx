@@ -7,14 +7,11 @@ import { SceneComponent } from "@spacesvr/core/types/scene";
 
 import { useAnalytics } from "services/analytics";
 import RealisticEffects from "@spacesvr/core/effects/RealisticEffects";
-import Logo from "@spacesvr/components/Logo";
-import HomeBlue from "./models/HomeBlue";
-import HomeRed from "./models/HomeRed";
-import HomePurple from "./models/HomePurple";
 import { Color } from "three";
 import SpacesVREntity from "./components/SpacesVREntity";
 import PlaceholderEntity from "./components/PlaceholderEntity";
 import Floor from "./components/Floor";
+import { softShadows } from "@react-three/drei";
 
 const physicsProps = {
   iterations: 20,
@@ -26,6 +23,8 @@ const physicsProps = {
   },
 };
 
+softShadows({});
+
 const SpacesVR: SceneComponent = (props) => {
   const { useEnvStore, defaultCanvasProps, children } = props;
 
@@ -36,26 +35,33 @@ const SpacesVR: SceneComponent = (props) => {
   return (
     <Canvas
       {...defaultCanvasProps}
+      shadowMap
+      gl={{ depth: true, alpha: true }}
       camera={{ near: 0.01, far: 200 }}
       onCreated={({ scene }) => {
         scene.background = new Color(0xffffff);
       }}
     >
-      <fog attach="fog" args={[0xfffffff, 10, 60]} />
+      <fog attach="fog" args={[0xfffffff, 0, 60]} />
       {children}
       <Physics {...physicsProps}>
-        <Logo position={[4, 0, 0]} />
         <SpacesVREntity />
         <Floor />
         {entities.map((val, i) => (
           <PlaceholderEntity key={i} />
         ))}
         <InfinitePlane height={-0.001} />
-        <HomeBlue position-z={-10} />
-        <HomePurple position-z={10} />
-        <HomeRed position-x={10} />
         <Player useEnvStore={useEnvStore} initPos={[0, 1, 5]} />
         <ambientLight intensity={1} />
+        <directionalLight
+          position={[0, 10, 0]}
+          intensity={2}
+          castShadow
+          shadow-camera-left={-10}
+          shadow-camera-right={10}
+          shadow-camera-top={10}
+          shadow-camera-bottom={-10}
+        />
         <RealisticEffects />
       </Physics>
     </Canvas>

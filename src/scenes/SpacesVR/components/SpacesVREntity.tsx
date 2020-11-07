@@ -1,23 +1,39 @@
+import Floating from "../modifiers/Floating";
+import SpacesHome from "./SpacesHome";
+
 const RADIUS = 1.85;
-const INNER_RADIUS = RADIUS - 0.01;
+const HEIGHT = RADIUS + 1;
+const INNER_RADIUS = RADIUS + 0.01;
+const SUBDIVISIONS = 32;
 
 const SpacesVREntity = (props: JSX.IntrinsicElements["group"]) => {
   return (
     <group {...props}>
-      <mesh position-y={RADIUS}>
-        <sphereBufferGeometry args={[RADIUS, 20, 20]} />
-        <meshBasicMaterial wireframe={true} color={0} />
-      </mesh>
-      <mesh position-y={RADIUS} rotation-x={Math.PI}>
-        <sphereBufferGeometry
-          args={[INNER_RADIUS, 20, 20, 0, Math.PI * 2, 0, -Math.PI / 2]}
-        />
-        <meshBasicMaterial color={0xffffff} />
-      </mesh>
-      <mesh position-y={RADIUS} rotation-x={-Math.PI / 2}>
-        <circleBufferGeometry args={[INNER_RADIUS, 20]} />
-        <meshBasicMaterial color={0xffffff} />
-      </mesh>
+      <Floating>
+        <SpacesHome position-y={HEIGHT} />
+        <mesh position-y={HEIGHT} castShadow>
+          <sphereBufferGeometry args={[RADIUS, SUBDIVISIONS, SUBDIVISIONS]} />
+          <meshStandardMaterial wireframe={true} color={0} />
+        </mesh>
+        <mesh position-y={HEIGHT} rotation-x={Math.PI} castShadow>
+          <sphereBufferGeometry
+            args={[
+              INNER_RADIUS,
+              SUBDIVISIONS,
+              SUBDIVISIONS,
+              0,
+              Math.PI * 2,
+              0,
+              -Math.PI / 2,
+            ]}
+          />
+          <meshStandardMaterial color={0xffffff} />
+        </mesh>
+        <mesh position-y={HEIGHT} rotation-x={-Math.PI / 2} castShadow>
+          <circleBufferGeometry args={[INNER_RADIUS, SUBDIVISIONS]} />
+          <meshStandardMaterial color={0xffffff} />
+        </mesh>
+      </Floating>
     </group>
   );
 };
