@@ -4,13 +4,13 @@ import { useThree } from "react-three-fiber";
 import { MusicStoreHook } from "scenes/Shirts/stores/music";
 import { useEnvironment } from "@spacesvr/core/utils/hooks";
 
-type OutsideAudioProps = JSX.IntrinsicElements["group"] & {
+type ShirtsAudioProps = JSX.IntrinsicElements["group"] & {
   useMusicStore: MusicStoreHook;
   url: string;
   muted?: boolean;
 };
 
-const ShirtsMusic = (props: OutsideAudioProps) => {
+const ShirtsMusic = (props: ShirtsAudioProps) => {
   const { useMusicStore, url, muted } = props;
 
   const { container, paused } = useEnvironment();
