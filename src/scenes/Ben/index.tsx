@@ -8,7 +8,7 @@ import Balloons from "./components/Balloons";
 import { Color, Vector3 } from "three";
 import Sign from "../Chad/components/Sign";
 import Present from "./components/Present";
-import StandardEnvironment from "@spacesvr/core/environments/StandardEnvironments";
+import StandardEnvironment from "@spacesvr/core/environments/StandardEnvironment";
 
 const Ben = () => {
   useAnalytics();
@@ -49,7 +49,6 @@ const Ben = () => {
       <Balloons />
       <ambientLight intensity={1} />
       <pointLight intensity={5} color={"white"} distance={55} />
-      <RealisticEffects />
     </StandardEnvironment>
   );
 };

@@ -1,13 +1,13 @@
-import React, { useRef, useEffect, MutableRefObject } from "react";
+import React, { useRef, useEffect } from "react";
 import { useFrame, useThree } from "react-three-fiber";
 import { Quaternion, Raycaster, Vector3 } from "three";
-import { Event, useSphere } from "@react-three/cannon";
+import { useSphere } from "@react-three/cannon";
 import { isMobile } from "react-device-detect";
 
 import MobileControls from "../controls/MobileControls";
 import DesktopControls from "../controls/DesktopControls";
-import RaycasterUtil from "../utils/RaycasterUtil";
 import { useEnvironment } from "../utils/hooks";
+import { createPlayerRef } from "../utils/player";
 
 const VELOCITY_FACTOR = 250;
 const SHOW_PLAYER_HITBOX = false;
@@ -15,9 +15,6 @@ const SHOW_PLAYER_HITBOX = false;
 export type PlayerProps = {
   initPos?: Vector3;
   initRot?: number;
-  raycaster?: MutableRefObject<Raycaster>;
-  onFrame?: (bodyApi: any) => void;
-  lockControls?: boolean;
 };
 
 /**
@@ -30,15 +27,9 @@ export type PlayerProps = {
  * @constructor
  */
 const Player = (props: PlayerProps) => {
-  const {
-    initPos = new Vector3(0, 1, 0),
-    initRot = 0,
-    raycaster,
-    onFrame,
-    lockControls,
-  } = props;
+  const { initPos = new Vector3(0, 1, 0), initRot = 0 } = props;
   const { camera } = useThree();
-  const { paused } = useEnvironment();
+  const { paused, setPlayer } = useEnvironment();
 
   // physical body
   const [bodyRef, bodyApi] = useSphere(() => ({
@@ -46,29 +37,20 @@ const Player = (props: PlayerProps) => {
     position: initPos.toArray(),
     args: 1,
     fixedRotation: true,
-    onCollide: (e: Event) => {
-      if (e?.body?.name.includes("teleport")) {
-        const coords = e.body.name.replace("teleport-", "").split(",");
-        const x = parseInt(coords[0]);
-        const y = parseInt(coords[1]);
-        const z = parseInt(coords[2]);
-        position.current = new Vector3(x, y, z);
-        bodyApi.position.set(x, y, z);
-      }
-    },
   }));
 
-  // refs
-  const prevTime = useRef(performance.now());
-
   // producer
+  const prevTime = useRef(performance.now());
   const position = useRef(new Vector3(0, 0, 0));
   const velocity = useRef(new Vector3(0, 0, 0));
+  const lockControls = useRef(false);
+  const raycaster = useRef(new Raycaster(new Vector3(), new Vector3(), 0, 3));
 
   // consumer
   const direction = useRef(new Vector3());
   const quaternion = useRef(new Quaternion(0, 0, 0, 0)); // rad on y axis
 
+  // setup player
   useEffect(() => {
     // store position and velocity
     bodyApi.position.subscribe((p) => {
@@ -79,23 +61,34 @@ const Player = (props: PlayerProps) => {
     const xLook = initPos.x + 100 * Math.cos(initRot);
     const zLook = initPos.z + 100 * Math.sin(initRot);
     camera?.lookAt(xLook, initPos.y, zLook);
+
+    setPlayer(
+      createPlayerRef(bodyApi, position, velocity, lockControls, raycaster)
+    );
   }, []);
 
+  // update player every frame
   useFrame(() => {
-    if (onFrame) {
-      onFrame(bodyApi);
-    }
-
-    // update time
     const time = performance.now();
 
-    if (!paused) {
+    // update raycaster
+    if (position.current && quaternion.current) {
+      raycaster.current.ray.origin.copy(position.current);
+      const lookAt = new Vector3(0, 0, -1);
+      lookAt.applyQuaternion(quaternion.current);
+      raycaster.current.ray.direction.copy(lookAt);
+    }
+
+    if (paused) {
+      // stop player from moving when paused
+      bodyApi?.velocity.set(0, 0, 0);
+    } else {
       // get time since last computation
       const delta = (time - prevTime.current) / 1000;
 
       // get forward/back movement and left/right movement velocities
       const inputVelocity = new Vector3(0, 0, 0);
-      if (!lockControls) {
+      if (!lockControls.current) {
         inputVelocity.x = direction.current.x * delta * 0.75 * VELOCITY_FACTOR;
         inputVelocity.z = direction.current.y * delta * VELOCITY_FACTOR;
       }
@@ -106,17 +99,11 @@ const Player = (props: PlayerProps) => {
       moveQuaternion.z = 0;
       inputVelocity.applyQuaternion(moveQuaternion);
 
-      // keep y velocity intact
+      // keep y velocity intact and update velocity
       inputVelocity.add(new Vector3(0, velocity.current.y, 0));
-
-      // update velocity
       bodyApi?.velocity.set(inputVelocity.x, inputVelocity.y, inputVelocity.z);
-    } else {
-      // stop player from moving when paused
-      bodyApi?.velocity.set(0, 0, 0);
     }
 
-    // update prev time
     prevTime.current = time;
   });
 
@@ -126,22 +113,13 @@ const Player = (props: PlayerProps) => {
         <MobileControls
           quaternion={quaternion}
           position={position}
-          useEnvStore={useEnvStore}
           direction={direction}
         />
       ) : (
         <DesktopControls
           quaternion={quaternion}
           position={position}
-          useEnvStore={useEnvStore}
           direction={direction}
-        />
-      )}
-      {raycaster && raycaster.current && (
-        <RaycasterUtil
-          quaternion={quaternion}
-          position={position}
-          raycaster={raycaster}
         />
       )}
       <mesh ref={bodyRef} name="player">
