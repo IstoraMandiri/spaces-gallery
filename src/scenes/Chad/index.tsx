@@ -10,7 +10,7 @@ import ChadLighting from "./components/ChadLighting";
 import ChadSceneSelector from "./components/ChadSceneSelector";
 import PlatformPlatform from "./components/PlatformPlatform";
 import ToggleEffect from "scenes/Chad/components/ToggleEffect";
-import ChadMusic from "./components/ChadMusic";
+import Audio from "@spacesvr/components/Audio";
 import ChadEntrance from "./components/ChadEntrance";
 import Signs from "./components/Signs";
 import StandardEnvironment from "@spacesvr/core/environments/StandardEnvironment";
@@ -51,7 +51,12 @@ const Chad = () => {
       />
       <ChadPiece isGallery={isGallery} effects={effects} />
       <group position={[0, 0, 23]}>
-        <ChadMusic url="https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/audio/harris+cole+mix.mp3" />
+        <Audio
+          url="https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/audio/harris+cole+mix.mp3"
+          position={new Vector3(0, 10, 1)}
+          volume={10}
+          rollOff={0.2}
+        />
       </group>
       {sceneState === "gallery" && (
         <>
