@@ -3,7 +3,7 @@ import { useThree, useFrame } from "react-three-fiber";
 import { MusicStoreHook } from "scenes/Shirts/stores/music";
 import { Mesh } from "three";
 import ReactivePrimitive from "scenes/Shirts/components/ReactivePrimitive";
-import { useEnvironment } from "../../../@spacesvr/core/utils/hooks";
+import { useEnvironment } from "@spacesvr/core/utils/hooks";
 
 type FloatingProfilePicProps = JSX.IntrinsicElements["group"] & {
   useMusicStore: MusicStoreHook;
