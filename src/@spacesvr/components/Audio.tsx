@@ -8,7 +8,6 @@ type OutsideAudioProps = JSX.IntrinsicElements["group"] & {
   url: string;
   pos?: [number, number, number];
   dCone?: [number, number, number];
-  refDist?: number;
   rollOff?: number;
   volume?: number;
   helper?: boolean;
@@ -18,8 +17,7 @@ const OutsideAudio = (props: OutsideAudioProps) => {
   const {
     url,
     pos = [0, 0, 0],
-    dCone = [Math.PI, Math.PI, 0],
-    refDist = 0.5,
+    dCone,
     rollOff = 1,
     volume = 7,
     helper,
@@ -68,9 +66,9 @@ const OutsideAudio = (props: OutsideAudioProps) => {
       speaker.current = new THREE.PositionalAudio(listener.current);
       speaker.current.setMediaElementSource(audioRef.current);
       speaker.current.position.set(pos[0], pos[1], pos[2]);
-      speaker.current.setDirectionalCone(dCone[0], dCone[1], dCone[2]);
-      speaker.current.setDistanceModel("linear");
-      speaker.current.setRefDistance(refDist);
+      if (dCone) {
+        speaker.current.setDirectionalCone(dCone[0], dCone[1], dCone[2]);
+      }
       speaker.current.setRolloffFactor(rollOff);
       speaker.current.setVolume(volume);
 
