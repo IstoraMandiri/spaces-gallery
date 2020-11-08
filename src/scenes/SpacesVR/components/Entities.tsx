@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { Vector3 } from "three";
-import Floating from "../modifiers/Floating";
+import Floating from "@spacesvr/modifiers/Floating";
 
 const NUM_ENTITIES = 31;
 const HEIGHT_POWER = 6;

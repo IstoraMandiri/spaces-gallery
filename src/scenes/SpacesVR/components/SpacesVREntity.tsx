@@ -1,4 +1,4 @@
-import Floating from "../modifiers/Floating";
+import Floating from "@spacesvr/modifiers/Floating";
 import SpacesHome from "./SpacesHome";
 
 const RADIUS = 1.85;
