@@ -24,7 +24,13 @@ const TIMEOUT = 500;
 
 const LoadingScreen = () => {
   const { progress, total } = useProgress();
-
+  const [prDisplay, setPrDisplay] = useState(Math.floor(progress));
+  useEffect(() => {
+    console.log(`progress: ${Math.floor(progress)}\nprDisplay: ${prDisplay}`);
+    if (Math.floor(progress) > prDisplay) {
+      setPrDisplay(Math.floor(progress));
+    }
+  }, [progress]);
   // wait TIMEOUTms to check if any objects are waiting to be loaded
   const [counter, setCounter] = useState(0);
   const [skip, setSkip] = useState(false);
@@ -40,7 +46,7 @@ const LoadingScreen = () => {
 
   return (
     <Container finished={skip || progress === 100} landing={false}>
-      {Math.floor(progress)}%
+      {prDisplay}%
     </Container>
   );
 };
