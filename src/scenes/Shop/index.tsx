@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Physics, usePlane } from "@react-three/cannon";
 import { Canvas } from "react-three-fiber";
 import { Sky, OrbitControls } from "@react-three/drei";
-import { SceneComponent } from "@spacesvr/core/types/scene";
 import * as THREE from "three";
 
 import { useAnalytics } from "services/analytics";
@@ -10,9 +9,7 @@ import SpacesDisplay from "./components/SpacesDisplay";
 import Prisms from "./components/PrismArray";
 import ShopOverlay from "./components/ShopOverlay";
 
-const Shop: SceneComponent = (props) => {
-  const { defaultCanvasProps } = props;
-
+const Shop = () => {
   const [overlay, setOverlay] = useState<boolean>(false);
 
   const cameraControls = {
@@ -47,10 +44,7 @@ const Shop: SceneComponent = (props) => {
 
   return (
     <>
-      <Canvas
-        {...defaultCanvasProps}
-        camera={{ position: [1, 3, 7], far: 300 }}
-      >
+      <Canvas camera={{ position: [1, 3, 7], far: 300 }}>
         <Sky />
         <OrbitControls target={[0, 2, 0]} {...cameraControls} />
         <ambientLight intensity={0.2} />
