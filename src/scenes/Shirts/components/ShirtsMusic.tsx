@@ -1,22 +1,19 @@
 import * as THREE from "three";
 import React, { useEffect, useRef } from "react";
 import { useThree } from "react-three-fiber";
-import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 import { MusicStoreHook } from "scenes/Shirts/stores/music";
+import { useEnvironment } from "@spacesvr/core/utils/hooks";
 
 type OutsideAudioProps = JSX.IntrinsicElements["group"] & {
-  useEnvStore: EnvironmentStoreHook;
   useMusicStore: MusicStoreHook;
   url: string;
   muted?: boolean;
 };
 
 const ShirtsMusic = (props: OutsideAudioProps) => {
-  const { useEnvStore, useMusicStore, url, muted } = props;
+  const { useMusicStore, url, muted } = props;
 
-  const paused = useEnvStore((st) => st.paused);
-
-  const container = useEnvStore((st) => st.container);
+  const { container, paused } = useEnvironment();
   const audioRef = useRef<HTMLAudioElement>();
   const speaker = useRef<THREE.PositionalAudio>();
   const { camera, scene } = useThree();
@@ -25,14 +22,14 @@ const ShirtsMusic = (props: OutsideAudioProps) => {
   const setAudioRef = useMusicStore((st) => st.setAudioRef);
 
   useEffect(() => {
-    if (container?.current && !audioRef.current) {
+    if (container && !audioRef.current) {
       const audio = document.createElement("audio");
       audio.src = `https://d27rt3a60hh1lx.cloudfront.net/audio/portal-shirt/${url}`;
       audio.autoplay = false;
       audio.preload = "auto";
       audio.crossOrigin = "anonymous";
       audio.loop = true;
-      container?.current?.appendChild(audio);
+      container?.appendChild(audio);
 
       if (muted) {
         audio.muted = true;
@@ -50,12 +47,13 @@ const ShirtsMusic = (props: OutsideAudioProps) => {
           speaker.current.disconnect();
           speaker.current = undefined;
         }
+
         if (listener.current) {
           camera.remove(listener.current);
         }
       };
     }
-  }, [container?.current, audioRef.current]);
+  }, [container, audioRef.current]);
 
   // audio
   useEffect(() => {
