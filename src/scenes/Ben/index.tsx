@@ -9,6 +9,7 @@ import { Color, Vector3 } from "three";
 import Sign from "../Chad/components/Sign";
 import Present from "./components/Present";
 import StandardEnvironment from "@spacesvr/core/environments/StandardEnvironment";
+import Background from "../../@spacesvr/components/Background";
 
 const Ben = () => {
   useAnalytics();
@@ -31,14 +32,8 @@ const Ben = () => {
   ];
 
   return (
-    <StandardEnvironment
-      canvasProps={{
-        onCreated: ({ scene }) => {
-          scene.background = new Color(0xe7e7e7);
-        },
-      }}
-      player={{ pos: INIT_COORDS, rot: ANGLE + Math.PI }}
-    >
+    <StandardEnvironment player={{ pos: INIT_COORDS, rot: ANGLE + Math.PI }}>
+      <Background color={0xe7e7e7} />
       <fog attach="fog" args={[0xe7e7e7, 1, 10]} />
       <InfinitePlane height={-0.001} />
       <group position={SIGN_COORDS}>
