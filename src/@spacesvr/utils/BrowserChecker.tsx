@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { keyframes } from "@emotion/core";
 import styled from "@emotion/styled";
 
@@ -52,7 +52,7 @@ const Image = styled.div`
 `;
 
 type BrowserCheckerProps = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 const INVALID_KEYWORDS = ["FBAN", "FBAV", "Instagram"];

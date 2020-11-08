@@ -7,7 +7,7 @@ const LIGHT_COLOR = 0xffffff;
 
 const AMBIENT_INTENSITY = 0.03;
 
-const OutsideLighting: React.FC = (props) => {
+const OutsideLighting = () => {
   const light1 = useMemo(() => new SpotLight(), []);
 
   const spotlightAttrs = {

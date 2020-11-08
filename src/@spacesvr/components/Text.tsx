@@ -16,7 +16,7 @@ type TextProps = JSX.IntrinsicElements["group"] & {
   material?: THREE.Material;
 };
 
-const Text: React.FC<TextProps> = (props) => {
+const Text = (props: TextProps) => {
   const {
     text,
     vAlign = "center",

@@ -1,4 +1,4 @@
-import { Suspense, useRef } from "react";
+import { Dispatch, SetStateAction, Suspense, useRef } from "react";
 import { Text } from "@react-three/drei";
 
 import SpacesShirt from "scenes/Shop/models/SpacesShirt";
@@ -8,7 +8,7 @@ type DisplayProps = {
   shopifyState?: any;
   position: [number, number, number];
   overlay: boolean;
-  setOverlay: React.Dispatch<React.SetStateAction<boolean>>;
+  setOverlay: Dispatch<SetStateAction<boolean>>;
 };
 
 const SpacesDisplay = (props: DisplayProps) => {

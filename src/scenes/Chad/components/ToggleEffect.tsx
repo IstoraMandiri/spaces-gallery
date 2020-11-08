@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { Dispatch, SetStateAction, useRef } from "react";
 import { MeshStandardMaterial } from "three";
 import { useFrame } from "react-three-fiber";
 import { Text } from "@react-three/drei";
@@ -8,7 +8,7 @@ type EffectProps = {
   position: [number, number, number];
   rotation?: [number, number, number];
   effect: boolean;
-  setEffect: React.Dispatch<React.SetStateAction<boolean>>;
+  setEffect: Dispatch<SetStateAction<boolean>>;
   color?: string;
   label?: string;
 };

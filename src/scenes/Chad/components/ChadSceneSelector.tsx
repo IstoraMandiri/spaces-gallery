@@ -1,10 +1,11 @@
 import { useFrame, useThree } from "react-three-fiber";
 import { Vector3 } from "three";
 import { useEnvironment } from "@spacesvr/core/utils/hooks";
+import { Dispatch, SetStateAction } from "react";
 
 type SceneSelectorProps = {
   sceneState: "gallery" | "piece";
-  setSceneState: React.Dispatch<React.SetStateAction<"gallery" | "piece">>;
+  setSceneState: Dispatch<SetStateAction<"gallery" | "piece">>;
 };
 
 const ChadSceneSelector = (props: SceneSelectorProps) => {
