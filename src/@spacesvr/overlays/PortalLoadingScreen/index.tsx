@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Transition from "./components/Transition";
 import Loading from "./components/Loading";
-import { useProgress } from "@react-three/drei";
-import { useEnvironment } from "@spacesvr/core/utils/hooks";
+import {
+  useControlledProgress,
+  useEnvironment,
+} from "@spacesvr/core/utils/hooks";
 
 type LoadingScreenProps = {
   setFixedPath: React.Dispatch<React.SetStateAction<boolean>>;
@@ -25,7 +27,7 @@ const PortalLoadingScreen = (props: LoadingScreenProps) => {
     beginExperience();
   };
 
-  const { progress } = useProgress();
+  const progress = useControlledProgress();
 
   return (
     <>
