@@ -1,13 +1,14 @@
 import React, { useMemo } from "react";
 import { Vector3 } from "three";
-import { RENDER_DIST } from "../index";
+import Floating from "../modifiers/Floating";
 
-const NUM_ENTITIES = 30;
+const NUM_ENTITIES = 31;
 const HEIGHT_POWER = 6;
 const ENTITY_RADIUS = 2;
-const SPAWN_X = RENDER_DIST * 2.2; // [-SPAWN / 2, SPAWN / 2]
-const SPAWN_Y = RENDER_DIST * 1.1; // [0, SPAWN]
-const SPAWN_Z = RENDER_DIST * 2.2; // [-SPAWN / 2, SPAWN / 2]
+const SPAWN_X_MULT = 2.2; // [-SPAWN / 2, SPAWN / 2]
+const SPAWN_Y_MULT = 1.1; // [0, SPAWN]
+const SPAWN_Z_MULT = 2.2; // [-SPAWN / 2, SPAWN / 2]
+const SPACESVR_ENTITY = new Vector3(0, ENTITY_RADIUS + 1, 0);
 
 type GenericEntityProps = {
   seed: number;
@@ -17,29 +18,35 @@ type GenericEntityProps = {
 const GenericEntity = (props: GenericEntityProps) => {
   const { seed, position } = props;
 
-  const color = Math.random() * 0xffffff;
+  const color = seed * 0xffffff;
 
   return (
-    <group position={position} key={seed}>
-      <mesh castShadow receiveShadow>
-        <sphereBufferGeometry args={[ENTITY_RADIUS, 20, 20]} />
-        <meshStandardMaterial color={color} />
-      </mesh>
+    <group position={position}>
+      <Floating>
+        <mesh castShadow receiveShadow>
+          <sphereBufferGeometry args={[ENTITY_RADIUS, 20, 20]} />
+          <meshStandardMaterial color={color} />
+        </mesh>
+      </Floating>
     </group>
   );
 };
 
-const Entities = () => {
+const Entities = (props: { renderdist: number }) => {
+  const { renderdist } = props;
+
+  const SPAWN_X = renderdist * SPAWN_X_MULT;
+  const SPAWN_Y = renderdist * SPAWN_Y_MULT;
+  const SPAWN_Z = renderdist * SPAWN_Z_MULT;
+
   const entities: GenericEntityProps[] = useMemo(() => {
     const arr: GenericEntityProps[] = [];
     for (let i = 0; i < NUM_ENTITIES; i++) {
       const position = new Vector3();
 
+      // checks if entity is colliding with spacesvr entity or any other generic entity
       const posIsValid = (pos: Vector3) => {
-        if (
-          pos.distanceTo(new Vector3(0, ENTITY_RADIUS + 1, 0)) <
-          ENTITY_RADIUS * 2
-        ) {
+        if (pos.distanceTo(SPACESVR_ENTITY) < ENTITY_RADIUS * 2) {
           return false;
         }
 
@@ -73,11 +80,11 @@ const Entities = () => {
   }
 
   return (
-    <>
+    <group>
       {entities.map((props) => (
         <GenericEntity {...props} key={props.seed} />
       ))}
-    </>
+    </group>
   );
 };
 

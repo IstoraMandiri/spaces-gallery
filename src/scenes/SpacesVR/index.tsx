@@ -23,7 +23,7 @@ const physicsProps = {
   },
 };
 
-export const RENDER_DIST = 50;
+const RENDER_DIST = 50;
 
 softShadows({
   frustrum: 3.75, // Frustrum width (default: 3.75)
@@ -52,9 +52,9 @@ const SpacesVR: SceneComponent = (props) => {
       <Physics {...physicsProps}>
         <SpacesVREntity />
         <Floor />
-        <Entities />
+        <Entities renderdist={RENDER_DIST} />
         <InfinitePlane height={-0.001} />
-        <Player useEnvStore={useEnvStore} initPos={[0, 1, 5]} />
+        <Player useEnvStore={useEnvStore} initPos={[0, 8, 5]} />
         <ambientLight intensity={0.3} />
         <directionalLight
           position={[0, RENDER_DIST, 0]}
