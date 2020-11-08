@@ -1,24 +1,24 @@
 import React, { Suspense, useMemo } from "react";
-import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 import { MusicStoreHook } from "scenes/Shirts/stores/music";
 import ClothImage from "@spacesvr/components/ClothImage";
 import ReactivePrimitive from "scenes/Shirts/components/ReactivePrimitive";
-import HypedAsset from "./HypedAsset";
+import HypedAsset from "../modifiers/HypedAsset";
 import Video from "@spacesvr/components/Video";
+import { useEnvironment } from "@spacesvr/core/utils/hooks";
 
 type ShirtsAssetsProps = {
-  useEnvStore: EnvironmentStoreHook;
   useMusicStore: MusicStoreHook;
-  portal?: Portal;
 };
 
 const DIST_RANGE = [22, 50];
 const VIDEO_LIMIT = 9;
 
 const ShirtsAssets = (props: ShirtsAssetsProps) => {
-  const { useEnvStore, useMusicStore, portal } = props;
+  const { useMusicStore } = props;
   const locAssetts: Array<any> = [];
   let videoCount = 0;
+
+  const { portal } = useEnvironment();
 
   const assets: Array<any> = useMemo(() => {
     if (!portal || !portal.assets) {
@@ -75,7 +75,6 @@ const ShirtsAssets = (props: ShirtsAssetsProps) => {
                 sizeScale={10 + 1 * Math.random()}
                 position={position}
                 rotation={[0, 2 * Math.PI * Math.random(), 0]}
-                useEnvStore={useEnvStore}
                 muted
                 framed
                 doubleSided

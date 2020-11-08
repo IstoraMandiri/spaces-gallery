@@ -19,4 +19,5 @@ type EnvironmentState = {
   setPlayer: (p: PlayerRef) => void;
   setPaused: (p: boolean, overlay?: string) => void;
   addEvent: (name: string, callback: (...args: any[]) => void) => void;
+  portal?: Portal;
 };
