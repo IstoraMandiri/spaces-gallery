@@ -17,7 +17,7 @@ import StandardEnvironment from "@spacesvr/core/environments/StandardEnvironment
 import Audio from "@spacesvr/components/Audio";
 
 const Opening = () => {
-  const [renderer] = useState<WebGLRenderer>();
+  const [renderer, setRenderer] = useState<WebGLRenderer>();
 
   const initAngle = Math.PI * 0.4;
   const RADIUS = 7;
@@ -32,7 +32,14 @@ const Opening = () => {
   useAnalytics();
 
   return (
-    <StandardEnvironment player={{ pos: INIT_POS, rot: INIT_ROT }}>
+    <StandardEnvironment
+      canvasProps={{
+        onCreated: (props) => {
+          setRenderer(props.gl);
+        },
+      }}
+      player={{ pos: INIT_POS, rot: INIT_ROT }}
+    >
       <HDRI src="https://d27rt3a60hh1lx.cloudfront.net/images/hdriuno.hdr" />
       <RobertRoom />
       <HectorRoom />
