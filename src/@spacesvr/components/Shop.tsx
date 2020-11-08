@@ -1,14 +1,13 @@
 import React from "react";
 import { useShopify } from "@spacesvr/services/shopify";
 import Image from "@spacesvr/components/Image";
-import { Raycaster } from "three";
+import Interactable from "../modifiers/Interactable";
 const { NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS } = process.env;
 
 type ShopProps = {
   domain?: string;
   token?: string;
   localProducts?: string[][];
-  raycaster?: React.MutableRefObject<Raycaster>;
   paused?: boolean;
   itemSize?: number;
   itemRatio?: [number, number];
@@ -22,8 +21,6 @@ const Shop = (props: ShopProps) => {
     domain,
     token,
     localProducts,
-    raycaster,
-    paused = false,
     itemSize = 4,
     itemRatio = [1, 1],
     spaceBetween = 9,
@@ -37,23 +34,23 @@ const Shop = (props: ShopProps) => {
   if (localProducts) {
     for (const product of localProducts) {
       const productImage = (
-        <Image
-          src={product[0]}
-          ratio={itemRatio}
-          sizeScale={itemSize}
-          position={[
-            Math.cos(offset) * 19 + spaceBetween,
-            2,
-            Math.sin(offset) * 19,
-          ]}
-          rotation={[0, Math.PI / 2 - offset + Math.PI, 0]}
-          link={product[1]}
-          raycaster={raycaster ? raycaster : undefined}
-          paused={paused}
-          framed
-          crazyMaterial
+        <Interactable
+          onClick={() => (window.location.href = product[1])}
           key={product[0]}
-        />
+        >
+          <Image
+            src={product[0]}
+            ratio={itemRatio}
+            sizeScale={itemSize}
+            position={[
+              Math.cos(offset) * 19 + spaceBetween,
+              2,
+              Math.sin(offset) * 19,
+            ]}
+            rotation={[0, Math.PI / 2 - offset + Math.PI, 0]}
+            framed
+          />
+        </Interactable>
       );
       productImages.push(productImage);
       offset += (2 * Math.PI) / localProducts.length;
