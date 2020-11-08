@@ -23,7 +23,7 @@ export type EnvironmentState = {
   portal?: Portal;
 };
 
-interface EnvironmentEvent {
+export interface EnvironmentEvent {
   name: string;
   callback: (...args: any[]) => void;
 }
