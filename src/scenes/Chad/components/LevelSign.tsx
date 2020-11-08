@@ -1,4 +1,3 @@
-import React from "react";
 import { useLoader } from "react-three-fiber";
 import { TextureLoader, Vector2 } from "three";
 

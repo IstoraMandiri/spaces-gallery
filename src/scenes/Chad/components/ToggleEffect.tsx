@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { MeshStandardMaterial } from "three";
 import { useFrame } from "react-three-fiber";
 import { Text } from "@react-three/drei";

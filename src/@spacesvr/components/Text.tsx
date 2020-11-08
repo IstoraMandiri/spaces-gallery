@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { FontLoader, Vector3 } from "three";
 import { useLoader, useUpdate } from "react-three-fiber";
 import * as THREE from "three";

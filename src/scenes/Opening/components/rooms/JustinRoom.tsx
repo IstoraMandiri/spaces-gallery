@@ -1,4 +1,4 @@
-import React, { Suspense, useMemo } from "react";
+import { Suspense, useMemo } from "react";
 import Video from "@spacesvr/components/Video";
 import JustinSkull from "scenes/Opening/models/JustinSkull";
 import { SpotLight } from "three";

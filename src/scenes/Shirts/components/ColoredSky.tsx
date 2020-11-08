@@ -1,4 +1,3 @@
-import React from "react";
 import { Sky } from "@react-three/drei";
 import * as THREE from "three";
 import { useEnvironment } from "@spacesvr/core/utils/hooks";

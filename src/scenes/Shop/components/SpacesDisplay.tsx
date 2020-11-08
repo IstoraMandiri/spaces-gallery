@@ -1,4 +1,4 @@
-import React, { Suspense, useRef } from "react";
+import { Suspense, useRef } from "react";
 import { Text } from "@react-three/drei";
 
 import SpacesShirt from "scenes/Shop/models/SpacesShirt";

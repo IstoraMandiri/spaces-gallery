@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { MusicStoreHook } from "scenes/Shirts/stores/music";
 import { getOpenIndex } from "../services/musicManager";

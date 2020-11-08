@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Transition from "./components/Transition";
 import Loading from "./components/Loading";
 import {

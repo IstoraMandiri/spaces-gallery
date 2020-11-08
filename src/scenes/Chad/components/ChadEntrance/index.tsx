@@ -1,4 +1,3 @@
-import React from "react";
 import RightWall from "./components/RightWall";
 import Credits from "./components/Credits";
 import Statement from "./components/Statement";

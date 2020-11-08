@@ -1,4 +1,3 @@
-import React from "react";
 import Prism from "./Prism";
 
 const prismColors = ["#af9fff", "#fcfdfe", "#d7dbe2", "#dc7da8", "#8b8c89"];

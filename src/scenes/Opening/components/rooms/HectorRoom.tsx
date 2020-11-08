@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "@spacesvr/components/Image";
 import Video from "@spacesvr/components/Video";
 

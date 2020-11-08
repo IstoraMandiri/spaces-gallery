@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, ReactNode } from "react";
+import { useRef, useEffect, ReactNode } from "react";
 import { useFrame, useThree } from "react-three-fiber";
 import { Quaternion, Raycaster, Vector3 } from "three";
 import { useSphere } from "@react-three/cannon";

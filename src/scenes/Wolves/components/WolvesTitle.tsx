@@ -1,4 +1,4 @@
-import React, { Suspense, useRef } from "react";
+import { Suspense, useRef } from "react";
 import WolfHead from "../models/WolfHead";
 import { Mesh } from "three";
 import { useFrame, useThree } from "react-three-fiber";

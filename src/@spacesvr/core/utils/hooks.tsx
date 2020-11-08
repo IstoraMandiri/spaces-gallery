@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { EnvironmentEvent } from "../types/events";
 import { EnvironmentState } from "../types/environment";
 import { PlayerRef } from "./player";

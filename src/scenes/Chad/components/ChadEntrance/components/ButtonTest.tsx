@@ -1,5 +1,5 @@
 import ToggleEffect from "scenes/Chad/components/ToggleEffect";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Color } from "three";
 import { Text } from "@react-three/drei";
 import Arrow from "@spacesvr/components/Arrow";

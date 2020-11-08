@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "@emotion/styled";
 import Crosshair from "../ui/Crosshair";
 import LoadingScreen from "../../overlays/LoadingScreen";

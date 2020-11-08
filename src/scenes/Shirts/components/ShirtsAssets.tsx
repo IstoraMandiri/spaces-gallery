@@ -1,4 +1,4 @@
-import React, { Suspense, useMemo } from "react";
+import { Suspense, useMemo } from "react";
 import { MusicStoreHook } from "scenes/Shirts/stores/music";
 import ReactivePrimitive from "scenes/Shirts/components/ReactivePrimitive";
 import HypedAsset from "../modifiers/HypedAsset";

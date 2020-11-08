@@ -1,4 +1,4 @@
-import React, { Suspense, useRef } from "react";
+import { Suspense, useRef } from "react";
 import SpacesSphere from "@spacesvr/models/SpacesSphere";
 import { useFrame } from "react-three-fiber";
 

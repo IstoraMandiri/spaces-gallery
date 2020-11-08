@@ -1,4 +1,3 @@
-import React from "react";
 import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 
 type PedestalModelProps = JSX.IntrinsicElements["group"] & {

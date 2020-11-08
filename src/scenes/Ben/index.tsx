@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import InfinitePlane from "@spacesvr/components/InfinitePlane";
 import Logo from "@spacesvr/components/Logo";
 

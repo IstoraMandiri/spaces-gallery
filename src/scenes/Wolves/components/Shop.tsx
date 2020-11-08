@@ -1,4 +1,3 @@
-import React from "react";
 import Shopify from "@spacesvr/components/Shop";
 import { useEnvironment } from "@spacesvr/core/utils/hooks";
 const { NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS } = process.env;

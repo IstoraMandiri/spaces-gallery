@@ -1,6 +1,5 @@
 import Image from "@spacesvr/components/Image";
 import { Text } from "@react-three/drei";
-import React from "react";
 import { Color } from "three";
 
 const FRAME_COLOR = new Color(0xffffff);

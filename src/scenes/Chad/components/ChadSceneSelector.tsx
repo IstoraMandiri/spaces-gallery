@@ -1,4 +1,3 @@
-import React from "react";
 import { useFrame, useThree } from "react-three-fiber";
 import { Vector3 } from "three";
 import { useEnvironment } from "@spacesvr/core/utils/hooks";

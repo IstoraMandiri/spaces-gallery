@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { SpotLight } from "three";
 
 const LIGHT_INTENSITY = 4.4;

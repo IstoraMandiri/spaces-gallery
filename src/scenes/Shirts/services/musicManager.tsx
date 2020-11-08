@@ -1,4 +1,3 @@
-import React from "react";
 import { useFrame } from "react-three-fiber";
 import { MusicStoreHook } from "scenes/Shirts/stores/music";
 

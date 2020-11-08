@@ -1,4 +1,3 @@
-import React from "react";
 import { useShopify } from "@spacesvr/services/shopify";
 import Image from "@spacesvr/components/Image";
 import Interactable from "../modifiers/Interactable";

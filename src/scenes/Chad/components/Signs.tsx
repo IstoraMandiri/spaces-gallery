@@ -1,7 +1,5 @@
 import LevelSign from "./LevelSign";
 import Sign from "./Sign";
-import React from "react";
-
 const Signs = () => {
   return (
     <>

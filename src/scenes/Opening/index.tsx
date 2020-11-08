@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import { Suspense, useState } from "react";
 import Logo from "@spacesvr/components/Logo";
 
 import SpacesGallery from "scenes/Opening/models/SpacesGallery";

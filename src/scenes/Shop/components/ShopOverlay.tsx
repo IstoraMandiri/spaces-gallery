@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useShopify } from "services/shopify";
 import {
   Overlay,

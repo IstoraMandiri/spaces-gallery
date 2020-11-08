@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 import { useThree } from "react-three-fiber";
 import { PMREMGenerator, UnsignedByteType } from "three";

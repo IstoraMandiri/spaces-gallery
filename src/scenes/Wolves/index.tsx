@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import InfinitePlane from "@spacesvr/components/InfinitePlane";
 
 import { useAnalytics } from "services/analytics";

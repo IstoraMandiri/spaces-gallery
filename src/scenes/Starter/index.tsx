@@ -1,5 +1,3 @@
-import React from "react";
-
 import { useAnalytics } from "services/analytics";
 import StandardEnvironment from "@spacesvr/core/environments/StandardEnvironment";
 

@@ -1,4 +1,4 @@
-import React, { MutableRefObject } from "react";
+import { MutableRefObject } from "react";
 import { Quaternion, Vector3 } from "three";
 import KeyboardMovement from "./KeyboardMovement";
 import MouseFPSCamera from "./MouseFPSCamera";

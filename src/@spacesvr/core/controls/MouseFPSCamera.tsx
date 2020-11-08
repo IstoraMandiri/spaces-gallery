@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import React, { useRef, useEffect, MutableRefObject } from "react";
+import { useRef, useEffect, MutableRefObject } from "react";
 import { extend, useFrame, useThree } from "react-three-fiber";
 import { Quaternion, Vector3 } from "three";
 import { PointerLockControls } from "three/examples/jsm/controls/PointerLockControls";

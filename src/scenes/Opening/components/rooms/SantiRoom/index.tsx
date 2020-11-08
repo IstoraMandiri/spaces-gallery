@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { default as THREE, Group, WebGLRenderer } from "three";
 import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import Room from "./room";

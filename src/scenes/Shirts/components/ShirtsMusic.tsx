@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useThree } from "react-three-fiber";
 import { MusicStoreHook } from "scenes/Shirts/stores/music";
 import { useEnvironment } from "@spacesvr/core/utils/hooks";
