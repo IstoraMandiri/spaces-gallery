@@ -5,7 +5,7 @@ import { useEnvironment } from "@spacesvr/core/utils/hooks";
 import { Vector3 } from "three";
 import { PositionalAudioHelper } from "three/examples/jsm/helpers/PositionalAudioHelper";
 
-type OutsideAudioProps = {
+type AudioProps = {
   url: string;
   position?: Vector3;
   dCone?: Vector3;
@@ -14,7 +14,7 @@ type OutsideAudioProps = {
   helper?: boolean;
 };
 
-const OutsideAudio = (props: OutsideAudioProps) => {
+const Audio = (props: AudioProps) => {
   const {
     url,
     position = new Vector3(0, 0, 0),
@@ -85,4 +85,4 @@ const OutsideAudio = (props: OutsideAudioProps) => {
   return <></>;
 };
 
-export default OutsideAudio;
+export default Audio;
