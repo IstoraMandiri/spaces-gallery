@@ -17,15 +17,15 @@ import { useRouter } from "next/router";
 import PortalEnvironment from "@spacesvr/core/environments/PortalEnvironment";
 import Credits from "./components/Credits";
 import { buildShirtPortal } from "./services/shirtPortal";
+import ShirtsMusic from "./components/ShirtsMusic";
 
 const Shirts = () => {
   useAnalytics();
 
-  const useMusicStore = getMusicStore(() => ({ song, eventIndex: 0 }));
-
   const router = useRouter();
   const { id } = router.query;
   const song = getSong(id as string, SHIRT_SONGS);
+  const useMusicStore = getMusicStore(() => ({ song }));
 
   return (
     <PortalEnvironment
@@ -37,9 +37,9 @@ const Shirts = () => {
       <InfinitePlane height={-0.001} />
       <ambientLight intensity={0.2} />
       <ShirtsLighting />
-      {/*<group position={[0, 0, 23]}>*/}
-      {/*  <ShirtsMusic useMusicStore={useMusicStore} url={song.url} />*/}
-      {/*</group>*/}
+      <group position={[0, 0, 23]}>
+        <ShirtsMusic useMusicStore={useMusicStore} url={song.url} />
+      </group>
       <Suspense fallback={null}>
         <WallPiece useMusicStore={useMusicStore} />
         <ShirtsAssets useMusicStore={useMusicStore} />
