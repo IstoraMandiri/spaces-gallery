@@ -43,7 +43,7 @@ const Opening = () => {
       <Logo floating rotating position={[0, 1.25, 0]} />
       <Audio
         url="https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/audio/LucidMondayMix.mp3"
-        pos={[0, 7, 0]}
+        position={new Vector3(0, 7, 0)}
       />
       <OutsideLighting />
       <Suspense fallback={null}>
