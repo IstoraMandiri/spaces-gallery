@@ -1,16 +1,9 @@
 import React, { Suspense, useMemo } from "react";
 import Video from "@spacesvr/components/Video";
-import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 import JustinSkull from "scenes/Opening/models/JustinSkull";
 import { SpotLight } from "three";
 
-type JustinProps = {
-  useEnvStore: EnvironmentStoreHook;
-};
-
-const JustinRoom = (props: JustinProps) => {
-  const { useEnvStore } = props;
-
+const JustinRoom = () => {
   const light = useMemo(() => new SpotLight(), []);
   const lightArgs = {
     distance: 8,
@@ -29,7 +22,6 @@ const JustinRoom = (props: JustinProps) => {
           sizeScale={6.25}
           rotation={[0, -Math.PI / 3, 0]}
           position={[6, 0, -3]}
-          useEnvStore={useEnvStore}
           muted
           framed
         />

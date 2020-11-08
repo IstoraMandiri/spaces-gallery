@@ -1,24 +1,23 @@
 import React, { Suspense, useMemo } from "react";
-import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 import { MusicStoreHook } from "scenes/Shirts/stores/music";
-import ClothImage from "@spacesvr/components/ClothImage";
 import ReactivePrimitive from "scenes/Shirts/components/ReactivePrimitive";
-import HypedAsset from "./HypedAsset";
+import HypedAsset from "../modifiers/HypedAsset";
 import Video from "@spacesvr/components/Video";
+import { useEnvironment } from "@spacesvr/core/utils/hooks";
 
 type ShirtsAssetsProps = {
-  useEnvStore: EnvironmentStoreHook;
   useMusicStore: MusicStoreHook;
-  portal?: Portal;
 };
 
 const DIST_RANGE = [22, 50];
 const VIDEO_LIMIT = 9;
 
 const ShirtsAssets = (props: ShirtsAssetsProps) => {
-  const { useEnvStore, useMusicStore, portal } = props;
+  const { useMusicStore } = props;
   const locAssetts: Array<any> = [];
   let videoCount = 0;
+
+  const { portal } = useEnvironment();
 
   const assets: Array<any> = useMemo(() => {
     if (!portal || !portal.assets) {
@@ -37,33 +36,17 @@ const ShirtsAssets = (props: ShirtsAssetsProps) => {
       const position: [number, number, number] = [x, 3 + 5 * Math.random(), z];
 
       if (type === "image") {
-        if (Math.random() < 0.35) {
-          locAssetts.push(
-            <HypedAsset useMusicStore={useMusicStore} key={url}>
-              <ClothImage
-                src={url}
-                ratio={[1, 1]}
-                sizeScale={5 + 1 * Math.random()}
-                position={position}
-                rotation={[0, 4 * Math.PI * Math.random(), 0]}
-                useMusicStore={useMusicStore}
-                floating
-              />
-            </HypedAsset>
-          );
-        } else {
-          locAssetts.push(
-            <HypedAsset useMusicStore={useMusicStore} key={url}>
-              <ReactivePrimitive
-                url={url}
-                position={position}
-                rotation={[0, 4 * Math.PI * Math.random(), 0]}
-                useMusicStore={useMusicStore}
-                scale={[2, 2, 2]}
-              />
-            </HypedAsset>
-          );
-        }
+        locAssetts.push(
+          <HypedAsset useMusicStore={useMusicStore} key={url}>
+            <ReactivePrimitive
+              url={url}
+              position={position}
+              rotation={[0, 4 * Math.PI * Math.random(), 0]}
+              useMusicStore={useMusicStore}
+              scale={[2, 2, 2]}
+            />
+          </HypedAsset>
+        );
       } else if (type === "video") {
         videoCount++;
         if (videoCount < VIDEO_LIMIT)
@@ -75,7 +58,6 @@ const ShirtsAssets = (props: ShirtsAssetsProps) => {
                 sizeScale={10 + 1 * Math.random()}
                 position={position}
                 rotation={[0, 2 * Math.PI * Math.random(), 0]}
-                useEnvStore={useEnvStore}
                 muted
                 framed
                 doubleSided

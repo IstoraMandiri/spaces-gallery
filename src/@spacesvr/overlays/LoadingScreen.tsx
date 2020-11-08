@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { useProgress } from "@react-three/drei";
+import { useControlledProgress } from "../core/utils/hooks";
 
 const Container = styled.div<{ finished: boolean; landing: boolean }>`
   width: 100%;
@@ -21,11 +21,11 @@ const Container = styled.div<{ finished: boolean; landing: boolean }>`
 `;
 
 const LoadingScreen = () => {
-  const { progress } = useProgress();
+  const progress = useControlledProgress();
 
   return (
-    <Container finished={progress === 100} landing={false}>
-      {Math.floor(progress)}%
+    <Container finished={progress == 100} landing={false}>
+      {progress}%
     </Container>
   );
 };

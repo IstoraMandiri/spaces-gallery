@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 import { default as THREE, Group, WebGLRenderer } from "three";
 import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import Room from "./room";
@@ -7,7 +6,6 @@ import { useFrame, useThree } from "react-three-fiber";
 import { useGLTF } from "@react-three/drei";
 
 type SantiProps = {
-  useEnvStore: EnvironmentStoreHook;
   renderer: WebGLRenderer | undefined;
 };
 

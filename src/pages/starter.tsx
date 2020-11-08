@@ -3,12 +3,9 @@ import { NextPage } from "next";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 
-const Environment = dynamic(import("@spacesvr/core/environments/Environment"), {
-  ssr: false,
-});
-const Refactor = dynamic(import("scenes/Refactor"), { ssr: false });
+const Starter = dynamic(import("scenes/Starter"), { ssr: false });
 
-const RefactorPage: NextPage = () => {
+const StarterPage: NextPage = () => {
   return (
     <>
       <Head>
@@ -18,9 +15,9 @@ const RefactorPage: NextPage = () => {
           rel="stylesheet"
         />
       </Head>
-      <Environment scene={Refactor} />
+      <Starter />
     </>
   );
 };
 
-export default RefactorPage;
+export default StarterPage;

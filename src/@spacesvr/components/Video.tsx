@@ -2,11 +2,10 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { useFrame, useThree } from "react-three-fiber";
 import { Vector2 } from "three";
-import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 import { Group } from "three";
+import { useEnvironment } from "../core/utils/hooks";
 
 type VideoProps = JSX.IntrinsicElements["group"] & {
-  useEnvStore: EnvironmentStoreHook;
   src: string;
   ratio: [number, number];
   sizeScale: number;
@@ -26,7 +25,6 @@ const Video = (props: VideoProps) => {
     src,
     sizeScale,
     ratio,
-    useEnvStore,
     framed,
     position,
     rotation,
@@ -35,6 +33,7 @@ const Video = (props: VideoProps) => {
   } = props;
 
   const { camera, scene } = useThree();
+  const { container, paused } = useEnvironment();
   const group = useRef<Group>();
 
   // video state
@@ -45,9 +44,6 @@ const Video = (props: VideoProps) => {
   // audio refs
   const listener = useRef<THREE.AudioListener>();
   const speaker = useRef<THREE.PositionalAudio>();
-
-  const container = useEnvStore((st) => st.container);
-  const paused = useEnvStore((st) => st.paused);
 
   useFrame(() => {
     if (!texReady && videoRef?.current && videoRef?.current?.currentTime > 0) {
@@ -72,7 +68,7 @@ const Video = (props: VideoProps) => {
 
   // video textures use effect
   useEffect(() => {
-    if (container?.current && !videoRef.current) {
+    if (container && !videoRef.current) {
       // build video dom element
       const video = document.createElement("video");
       const source = document.createElement("source");
@@ -90,7 +86,7 @@ const Video = (props: VideoProps) => {
       video.style.visibility = "hidden";
 
       // add to parent container
-      container.current.appendChild(video);
+      container.appendChild(video);
       video.appendChild(source);
 
       // create video texture
@@ -124,7 +120,7 @@ const Video = (props: VideoProps) => {
         setTexReady(false);
       };
     }
-  }, [container?.current, videoRef?.current]);
+  }, [container, videoRef?.current]);
 
   // audio useeffect
   useEffect(() => {

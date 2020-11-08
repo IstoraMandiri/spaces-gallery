@@ -1,14 +1,13 @@
 import React from "react";
 import { Sky } from "@react-three/drei";
 import * as THREE from "three";
-import { Color } from "three";
+import { useEnvironment } from "@spacesvr/core/utils/hooks";
+import { COLORS } from "../assets/colors";
 
-type ColoredSkyProps = {
-  color: Color | number | string;
-};
+const ColoredSky = () => {
+  const { portal } = useEnvironment();
+  const color = COLORS[Math.abs(portal?.seed) % COLORS.length];
 
-const ColoredSky = (props: ColoredSkyProps) => {
-  const { color } = props;
   return (
     <>
       <group scale={[100, 100, 100]}>

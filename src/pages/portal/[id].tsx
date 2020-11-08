@@ -3,12 +3,6 @@ import { NextPage } from "next";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 
-const ShirtsEnvironment = dynamic(
-  import("@spacesvr/core/environments/ShirtsEnvironment"),
-  {
-    ssr: false,
-  }
-);
 const Shirts = dynamic(import("scenes/Shirts"), { ssr: false });
 
 const ShirtsPage: NextPage = () => {
@@ -21,7 +15,7 @@ const ShirtsPage: NextPage = () => {
           rel="stylesheet"
         />
       </Head>
-      <ShirtsEnvironment scene={Shirts} />
+      <Shirts />
     </>
   );
 };

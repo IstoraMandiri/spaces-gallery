@@ -1,10 +1,8 @@
 import React from "react";
 import Shopify from "@spacesvr/components/Shop";
-import { Raycaster } from "three";
-import { EnvironmentStoreHook } from "../../../@spacesvr/core/stores/environment";
+import { useEnvironment } from "@spacesvr/core/utils/hooks";
 const { NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS } = process.env;
 
-// const domain = "spaceslabs.myshopify.com";
 const domain = "awge-2018.myshopify.com";
 const token = "c5d54a8eba89e37765872377e087d987";
 const localProducts = [
@@ -54,24 +52,12 @@ const localProducts = [
   ],
 ];
 
-type ShopProps = {
-  raycaster: React.MutableRefObject<Raycaster>;
-  useEnvStore: EnvironmentStoreHook;
-};
+const Shop = () => {
+  const { paused } = useEnvironment();
 
-const Shop = (props: ShopProps) => {
-  const { raycaster, useEnvStore } = props;
-  const paused = useEnvStore((st) => st.paused);
   return (
     <group>
-      <Shopify
-        // domain={domain}
-        // token={`${NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS}`}
-        // token={token}
-        localProducts={localProducts}
-        raycaster={raycaster}
-        paused={paused}
-      />
+      <Shopify localProducts={localProducts} paused={paused} />
     </group>
   );
 };

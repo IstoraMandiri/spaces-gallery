@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 import { isMobile } from "react-device-detect";
+import { useEnvironment } from "../core/utils/hooks";
 
 const { NEXT_PUBLIC_VERSION } = process.env;
 
@@ -91,27 +91,6 @@ const Instagram = styled.div`
   }
 `;
 
-const MusicCreds = styled.div`
-  position: absolute;
-  width: 100%;
-  bottom: 14px;
-  font-size: 0.6em;
-  cursor: pointer;
-  transition: opacity 0.1s linear;
-  text-align: center;
-
-  & > a {
-    text-decoration: underline;
-  }
-
-  #artist {
-    :hover {
-      opacity: 0.5;
-      transition: opacity 0.1s linear;
-    }
-  }
-`;
-
 const Header = styled.div`
   margin-top: 8%;
   width: auto;
@@ -128,12 +107,6 @@ const Title = styled.div`
   line-height: 1em;
 `;
 
-const SubHeader = styled.div`
-  width: auto;
-  height: auto;
-  font-size: 0.6em;
-`;
-
 const Text = styled.div`
   width: 100%;
   height: auto;
@@ -146,20 +119,8 @@ const Text = styled.div`
   justify-content: center;
 `;
 
-type OverlayProps = {
-  useEnvStore: EnvironmentStoreHook;
-  artist?: string;
-  link?: string;
-  title?: string;
-};
-
-const DesktopPause: React.FC<OverlayProps> = (props) => {
-  const { useEnvStore, artist, title, link } = props;
-
-  const paused = useEnvStore((st) => st.paused);
-  const overlay = useEnvStore((st) => st.overlay);
-  const setPaused = useEnvStore((st) => st.setPaused);
-
+const DesktopPause = () => {
+  const { paused, overlay, setPaused } = useEnvironment();
   const closeOverlay = () => setPaused(false);
 
   if (overlay) {
@@ -178,17 +139,8 @@ const DesktopPause: React.FC<OverlayProps> = (props) => {
         >
           @spaces3.0
         </Instagram>
-        {artist && (
-          <MusicCreds>
-            music provided by{" "}
-            <a id="artist" href={link} target="_blank" rel="noreferrer">
-              {artist}
-            </a>
-          </MusicCreds>
-        )}
         <Header>
           <Title>SPACES</Title>
-          <SubHeader>{title}</SubHeader>
         </Header>
         <Text>
           <p>Move around: {isMobile ? "Joystick" : "W/A/S/D"}</p>
