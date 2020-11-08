@@ -26,7 +26,6 @@ const LoadingScreen = () => {
   const { progress, total } = useProgress();
   const [prDisplay, setPrDisplay] = useState(Math.floor(progress));
   useEffect(() => {
-    console.log(`progress: ${Math.floor(progress)}\nprDisplay: ${prDisplay}`);
     if (Math.floor(progress) > prDisplay) {
       setPrDisplay(Math.floor(progress));
     }
