@@ -1,20 +1,20 @@
 import React from "react";
 import styled from "@emotion/styled";
-import Crosshair from "../../ui/Crosshair";
-import LoadingScreen from "../../../overlays/LoadingScreen";
+import Crosshair from "../ui/Crosshair";
+import LoadingScreen from "../../overlays/LoadingScreen";
 import { ContainerProps } from "react-three-fiber/targets/shared/web/ResizeContainer";
-import { EnvironmentState, EnvironmentProps } from "../../types/environment";
+import { EnvironmentProps } from "../types/environment";
 import { ProviderProps } from "@react-three/cannon/dist/Provider";
 import { Physics } from "@react-three/cannon";
 import { Canvas } from "react-three-fiber";
-import Player from "../../players/Player";
+import Player from "../players/Player";
 import { Vector3 } from "three";
-import InfinitePlane from "../../../components/InfinitePlane";
-import RealisticEffects from "../../effects/RealisticEffects";
-import { useEnvironmentState } from "../../utils/hooks";
-import DesktopPause from "../../../overlays/DesktopPause";
+import InfinitePlane from "../../components/InfinitePlane";
+import RealisticEffects from "../effects/RealisticEffects";
+import { useEnvironmentState, environmentStateContext } from "../utils/hooks";
+import DesktopPause from "../../overlays/DesktopPause";
 import { isMobile } from "react-device-detect";
-import MobilePause from "../../../overlays/MobilePause";
+import MobilePause from "../../overlays/MobilePause";
 
 const Container = styled.div`
   position: absolute;
@@ -56,10 +56,6 @@ type StandardEnvironmentProps = {
   disableEffects?: boolean;
 };
 
-export const stateContext = React.createContext<EnvironmentState>(
-  {} as EnvironmentState
-);
-
 /**
  *
  * The most common environemnt
@@ -88,20 +84,20 @@ const StandardEnvironment = (
     <Container ref={state.containerRef}>
       <Canvas {...defaultCanvasProps} {...canvasProps}>
         <Physics {...defaultPhysicsProps} {...physicsProps}>
-          <stateContext.Provider value={state}>
+          <environmentStateContext.Provider value={state}>
             <Player initPos={player?.pos} initRot={player?.rot} />
             {!disableGround && <InfinitePlane height={-0.001} />}
             {!disableEffects && <RealisticEffects />}
             {children}
-          </stateContext.Provider>
+          </environmentStateContext.Provider>
         </Physics>
       </Canvas>
-      <stateContext.Provider value={state}>
+      <environmentStateContext.Provider value={state}>
         <LoadingScreen />
         <DesktopPause />
         {isMobile && <MobilePause />}
         <Crosshair />
-      </stateContext.Provider>
+      </environmentStateContext.Provider>
     </Container>
   );
 };

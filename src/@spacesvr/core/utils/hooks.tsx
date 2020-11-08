@@ -1,11 +1,14 @@
-import { useCallback, useContext, useRef, useState } from "react";
+import React, { useCallback, useContext, useRef, useState } from "react";
 import { EnvironmentEvent } from "../types/events";
 import { EnvironmentState } from "../types/environment";
-import { stateContext } from "../environments/StandardEnvironment";
 import { PlayerRef } from "./player";
 
+export const environmentStateContext = React.createContext<EnvironmentState>(
+  {} as EnvironmentState
+);
+
 export function useEnvironment(): EnvironmentState {
-  return useContext(stateContext);
+  return useContext(environmentStateContext);
 }
 
 export function useEnvironmentState(): EnvironmentState {

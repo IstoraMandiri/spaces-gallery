@@ -3,14 +3,17 @@ import { useThree, useFrame } from "react-three-fiber";
 import { MusicStoreHook } from "scenes/Shirts/stores/music";
 import { Mesh } from "three";
 import ReactivePrimitive from "scenes/Shirts/components/ReactivePrimitive";
+import { useEnvironment } from "../../../@spacesvr/core/utils/hooks";
 
 type FloatingProfilePicProps = JSX.IntrinsicElements["group"] & {
   useMusicStore: MusicStoreHook;
-  src?: string;
 };
 
 const FloatingProfilePic = (props: FloatingProfilePicProps) => {
-  const { useMusicStore, src } = props;
+  const { useMusicStore } = props;
+
+  const { portal } = useEnvironment();
+  const src = portal?.instagram?.profile_pic_url_hd;
 
   const { camera } = useThree();
   const group = useRef<Mesh>();

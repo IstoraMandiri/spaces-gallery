@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { MusicStoreHook } from "scenes/Shirts/stores/music";
-import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 import { getOpenIndex } from "../services/musicManager";
+import { useEnvironment } from "@spacesvr/core/utils/hooks";
 
 const Container = styled.div<{ open: boolean }>`
   position: absolute;
@@ -34,19 +34,18 @@ const INTRO_MESSAGES = [
 ];
 
 type CreditProps = {
-  name: string;
   useMusicStore: MusicStoreHook;
-  useEnvStore: EnvironmentStoreHook;
 };
 
 const Credits = (props: CreditProps) => {
-  const { name, useMusicStore, useEnvStore } = props;
+  const { useMusicStore } = props;
 
+  const { paused, portal } = useEnvironment();
+  const name = (portal && portal.firstName) || "❤";
   const [counter, setCounter] = useState(0);
   const [message, setMessage] = useState<string>();
   const [open, setOpen] = useState(false);
 
-  const paused = useEnvStore((st) => st.paused);
   const song = useMusicStore((st) => st.song);
   const eventIndex = useMusicStore((st) => st.eventIndex);
   const audioRef = useMusicStore((st) => st.audioRef);
