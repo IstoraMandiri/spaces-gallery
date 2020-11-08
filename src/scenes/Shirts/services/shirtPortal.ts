@@ -32,6 +32,7 @@ export const buildShirtPortal = (portalResult: Portal): Portal => {
   }
 
   // calc seed
+  console.log(portalResult);
   const seed = instagram ? instagram.id : getNumFromString(firstName);
 
   console.log(`seed: ${seed}`);

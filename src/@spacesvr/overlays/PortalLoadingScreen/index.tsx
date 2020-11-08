@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 import Transition from "./components/Transition";
 import Loading from "./components/Loading";
 import { useProgress } from "@react-three/drei";
+import { useEnvironment } from "@spacesvr/core/utils/hooks";
 
 type LoadingScreenProps = {
-  useEnvStore: EnvironmentStoreHook;
   setFixedPath: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const ShirtsLoading = (props: LoadingScreenProps) => {
-  const { useEnvStore, setFixedPath } = props;
+const PortalLoadingScreen = (props: LoadingScreenProps) => {
+  const { setFixedPath } = props;
 
-  const setPaused = useEnvStore((st) => st.setPaused);
+  const { setPaused } = useEnvironment();
+
   const [start, setStart] = useState(false);
 
   const beginExperience = () => {
@@ -39,4 +39,4 @@ const ShirtsLoading = (props: LoadingScreenProps) => {
   );
 };
 
-export default ShirtsLoading;
+export default PortalLoadingScreen;
