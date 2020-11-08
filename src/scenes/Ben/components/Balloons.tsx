@@ -1,5 +1,4 @@
 import React, { useMemo } from "react";
-import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 import { Color } from "three";
 
 type BallonPos = {

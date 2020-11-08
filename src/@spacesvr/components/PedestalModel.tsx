@@ -1,11 +1,9 @@
 import React from "react";
 import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
-import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 
 type PedestalModelProps = JSX.IntrinsicElements["group"] & {
   width?: number;
   height?: number;
-  useEnvStore: EnvironmentStoreHook;
 };
 
 const frameLipWidth = 0.1;
@@ -17,7 +15,7 @@ type DefaultGLTFResult = GLTF & {
 };
 
 const PedestalModel = (props: PedestalModelProps) => {
-  const { width = 0.5, height = 1.25, useEnvStore, children } = props;
+  const { width = 0.5, height = 1.25, children } = props;
 
   return (
     <group {...props}>

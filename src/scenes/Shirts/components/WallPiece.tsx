@@ -1,7 +1,6 @@
-import React, { Suspense, useRef } from "react";
+import React, { useRef } from "react";
 import * as THREE from "three";
 import Wall from "./ReactiveWall";
-import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
 import { MusicStoreHook } from "scenes/Shirts/stores/music";
 import { useFrame } from "react-three-fiber";
 
