@@ -11,7 +11,6 @@ import DennisRoom from "./components/rooms/DennisRoom";
 import OutsideLighting from "./components/rooms/OutsideLighting";
 import HectorRoom from "./components/rooms/HectorRoom";
 import JustinRoom from "./components/rooms/JustinRoom";
-// import OutsideAudio from "./components/rooms/OutsideAudio";
 import SantiRoom from "./components/rooms/SantiRoom";
 import { Vector3, WebGLRenderer } from "three";
 import StandardEnvironment from "@spacesvr/core/environments/StandardEnvironment";
