@@ -3,7 +3,7 @@ import BrowserChecker from "../utils/BrowserChecker";
 import styled from "@emotion/styled";
 import ShirtsLoading from "../overlays/PortalLoadingScreen";
 import { ContainerProps } from "react-three-fiber/targets/shared/web/ResizeContainer";
-import { usePortal } from "services/portal";
+import { usePortal } from "@spacesvr/services/portal";
 import { useRouter } from "next/router";
 import {
   EnvironmentProps,
