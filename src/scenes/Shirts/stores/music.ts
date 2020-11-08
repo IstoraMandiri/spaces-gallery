@@ -1,5 +1,4 @@
-import { AudioAnalyser } from "three";
-import create, { StoreApi, UseStore } from "zustand";
+import create, { UseStore } from "zustand";
 import { MutableRefObject } from "react";
 
 /**

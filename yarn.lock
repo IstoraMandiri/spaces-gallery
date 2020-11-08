@@ -7825,10 +7825,6 @@ text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
 
-"three.modifiers@https://github.com/EvanDElia/threejs-mesh-modifiers.git":
-  version "2.2.3"
-  resolved "https://github.com/EvanDElia/threejs-mesh-modifiers.git#92419279f96bc0bcb30a40ad087049aa6c42c276"
-
 three@^0.121.1:
   version "0.121.1"
   resolved "https://registry.yarnpkg.com/three/-/three-0.121.1.tgz#fda39cf4701d02be9c3be5c27ccea24b7a1ea59b"
