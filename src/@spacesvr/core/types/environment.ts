@@ -1,7 +1,6 @@
 import { ProviderProps } from "@react-three/cannon/dist/Provider";
 import { ContainerProps } from "react-three-fiber/targets/shared/web/ResizeContainer";
-import { EnvironmentEvent } from "./events";
-import { PlayerRef } from "../utils/player";
+import { PlayerRef } from "./player";
 import { MutableRefObject, ReactNode } from "react";
 import { Portal } from "./portal";
 
