@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "@emotion/styled";
-import { useProgress } from "@react-three/drei";
+import { useControlledProgress } from "../core/utils/hooks";
 
 const Container = styled.div<{ finished: boolean; landing: boolean }>`
   width: 100%;
@@ -20,27 +20,12 @@ const Container = styled.div<{ finished: boolean; landing: boolean }>`
   flex-direction: column;
 `;
 
-const TIMEOUT = 500;
-
 const LoadingScreen = () => {
-  const { progress, total } = useProgress();
-
-  // wait TIMEOUTms to check if any objects are waiting to be loaded
-  const [counter, setCounter] = useState(0);
-  const [skip, setSkip] = useState(false);
-  useEffect(() => {
-    if (total > 0) {
-      return;
-    } else if (counter > 0) {
-      setSkip(true);
-    } else {
-      setTimeout(() => setCounter(counter + 1), TIMEOUT);
-    }
-  }, [counter]);
+  const progress = useControlledProgress();
 
   return (
-    <Container finished={skip || progress === 100} landing={false}>
-      {Math.floor(progress)}%
+    <Container finished={progress == 100} landing={false}>
+      {progress}%
     </Container>
   );
 };
