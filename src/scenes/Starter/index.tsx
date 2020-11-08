@@ -3,7 +3,7 @@ import React from "react";
 import { useAnalytics } from "services/analytics";
 import StandardEnvironment from "@spacesvr/core/environments/StandardEnvironment";
 
-const Refactor = () => {
+const Starter = () => {
   useAnalytics();
 
   return (
@@ -15,4 +15,4 @@ const Refactor = () => {
   );
 };
 
-export default Refactor;
+export default Starter;
