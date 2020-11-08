@@ -111,5 +111,5 @@ export const useControlledProgress = () => {
     }
   }, [counter]);
 
-  return skip ? 100 : controlledProgress.current;
+  return skip ? 100 : Math.floor(controlledProgress.current);
 };

@@ -2,12 +2,13 @@ import * as THREE from "three";
 import React, { useEffect, useRef } from "react";
 import { useThree } from "react-three-fiber";
 import { useEnvironment } from "@spacesvr/core/utils/hooks";
+import { Vector3 } from "three";
 import { PositionalAudioHelper } from "three/examples/jsm/helpers/PositionalAudioHelper";
 
-type OutsideAudioProps = JSX.IntrinsicElements["group"] & {
+type OutsideAudioProps = {
   url: string;
-  pos?: [number, number, number];
-  dCone?: [number, number, number];
+  position?: Vector3;
+  dCone?: Vector3;
   rollOff?: number;
   volume?: number;
   helper?: boolean;
@@ -16,7 +17,7 @@ type OutsideAudioProps = JSX.IntrinsicElements["group"] & {
 const OutsideAudio = (props: OutsideAudioProps) => {
   const {
     url,
-    pos = [0, 0, 0],
+    position = new Vector3(0, 0, 0),
     dCone,
     rollOff = 1,
     volume = 7,
@@ -43,13 +44,7 @@ const OutsideAudio = (props: OutsideAudioProps) => {
 
       return () => {
         audio.pause();
-        // audio.remove();
-        // audioRef.current = undefined;
 
-        if (speaker.current) {
-          speaker.current.disconnect();
-          speaker.current = undefined;
-        }
         if (listener.current) {
           camera.remove(listener.current);
         }
@@ -65,9 +60,9 @@ const OutsideAudio = (props: OutsideAudioProps) => {
 
       speaker.current = new THREE.PositionalAudio(listener.current);
       speaker.current.setMediaElementSource(audioRef.current);
-      speaker.current.position.set(pos[0], pos[1], pos[2]);
+      speaker.current.position.copy(position);
       if (dCone) {
-        speaker.current.setDirectionalCone(dCone[0], dCone[1], dCone[2]);
+        speaker.current.setDirectionalCone(dCone.x, dCone.y, dCone.z);
       }
       speaker.current.setRolloffFactor(rollOff);
       speaker.current.setVolume(volume);
