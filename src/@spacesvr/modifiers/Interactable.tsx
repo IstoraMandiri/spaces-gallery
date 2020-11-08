@@ -1,6 +1,6 @@
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { Group } from "three";
-import { useEnvironment } from "../core/utils/hooks";
+import { useEnvironment } from "../core/";
 import { useFrame } from "react-three-fiber";
 
 type InteractableProps = {
@@ -17,7 +17,7 @@ type InteractableProps = {
  * @param props
  * @constructor
  */
-const Interactable = (props: InteractableProps) => {
+export const Interactable = (props: InteractableProps) => {
   const { children, onClick, onHover, onUnHover } = props;
 
   const { player } = useEnvironment();
@@ -60,5 +60,3 @@ const Interactable = (props: InteractableProps) => {
 
   return <group ref={group}>{children}</group>;
 };
-
-export default Interactable;

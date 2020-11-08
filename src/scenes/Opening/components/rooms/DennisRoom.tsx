@@ -1,5 +1,4 @@
-import Image from "@spacesvr/components/Image";
-import Video from "@spacesvr/components/Video";
+import { Image, Video } from "@spacesvr/components";
 
 const DennisRoom = () => {
   return (

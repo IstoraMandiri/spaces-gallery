@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { isMobile } from "react-device-detect";
-import { useEnvironment } from "../core/utils/hooks";
+import { useEnvironment } from "../index";
 
 const { NEXT_PUBLIC_VERSION } = process.env;
 

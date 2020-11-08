@@ -1,26 +1,27 @@
 import { ReactNode, useState } from "react";
+import "./styles/global.css";
+import BrowserChecker from "../utils/BrowserChecker";
 import styled from "@emotion/styled";
-import ShirtsLoading from "@spacesvr/overlays/PortalLoadingScreen";
+import ShirtsLoading from "../overlays/PortalLoadingScreen";
 import { ContainerProps } from "react-three-fiber/targets/shared/web/ResizeContainer";
 import { usePortal } from "services/portal";
 import { useRouter } from "next/router";
 import {
   EnvironmentProps,
   EnvironmentState,
-} from "@spacesvr/core/types/environment";
-import { Canvas } from "react-three-fiber";
-import Player from "@spacesvr/core/players/Player";
-import {
   useEnvironmentState,
   environmentStateContext,
-} from "@spacesvr/core/utils/hooks";
+  Portal,
+} from "../";
+import { Canvas } from "react-three-fiber";
 import { Physics } from "@react-three/cannon";
 import { ProviderProps } from "@react-three/cannon/dist/Provider";
-import TrackPlayer from "@spacesvr/core/players/TrackPlayer";
 import { Vector3 } from "three";
-import DesktopPause from "@spacesvr/overlays/DesktopPause";
+import TrackPlayer from "../players/TrackPlayer";
+import Player from "../players/TrackPlayer";
+import DesktopPause from "../overlays/DesktopPause";
+import MobilePause from "../overlays/MobilePause";
 import { isMobile } from "react-device-detect";
-import MobilePause from "@spacesvr/overlays/MobilePause";
 
 const Container = styled.div`
   position: absolute;
@@ -70,7 +71,17 @@ type PortalEnvironmentProps = {
   children2d?: ReactNode;
 };
 
-const PortalEnvironment = (
+/**
+ *
+ * Provides an environment that loads a portal based on the url
+ *
+ * Player Type: First Person on a track or with WASD/Joystick
+ * Physics: Enabled with default y=0 floor plane
+ * Loading Screen: Spaces Portal Edition
+ * Pause Menu: Spaces Edition
+ *
+ */
+export const PortalEnvironment = (
   props: EnvironmentProps & PortalEnvironmentProps
 ) => {
   const {
@@ -95,27 +106,27 @@ const PortalEnvironment = (
   }
 
   return (
-    <Container ref={state.containerRef}>
-      <Canvas {...defaultCanvasProps} {...canvasProps}>
-        <Physics {...defaultPhysicsProps} {...physicsProps}>
-          <environmentStateContext.Provider value={localState}>
-            {fixedPath ? (
-              <TrackPlayer />
-            ) : (
-              <Player initPos={new Vector3(0, 2, 53)} />
-            )}
-            {children}
-          </environmentStateContext.Provider>
-        </Physics>
-      </Canvas>
-      <environmentStateContext.Provider value={localState}>
-        {children2d}
-        <ShirtsLoading setFixedPath={setFixedPath} />
-        <DesktopPause />
-        {isMobile && <MobilePause />}
-      </environmentStateContext.Provider>
-    </Container>
+    <BrowserChecker>
+      <Container ref={state.containerRef}>
+        <Canvas {...defaultCanvasProps} {...canvasProps}>
+          <Physics {...defaultPhysicsProps} {...physicsProps}>
+            <environmentStateContext.Provider value={localState}>
+              {fixedPath ? (
+                <TrackPlayer />
+              ) : (
+                <Player initPos={new Vector3(0, 2, 53)} />
+              )}
+              {children}
+            </environmentStateContext.Provider>
+          </Physics>
+        </Canvas>
+        <environmentStateContext.Provider value={localState}>
+          {children2d}
+          <ShirtsLoading setFixedPath={setFixedPath} />
+          <DesktopPause />
+          {isMobile && <MobilePause />}
+        </environmentStateContext.Provider>
+      </Container>
+    </BrowserChecker>
   );
 };
-
-export default PortalEnvironment;

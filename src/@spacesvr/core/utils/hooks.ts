@@ -6,9 +6,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { EnvironmentEvent } from "../types/events";
-import { EnvironmentState } from "../types/environment";
-import { PlayerRef } from "./player";
+import { EnvironmentState, EnvironmentEvent, PlayerRef } from "../";
 import { useProgress } from "@react-three/drei";
 
 export const environmentStateContext = createContext<EnvironmentState>(

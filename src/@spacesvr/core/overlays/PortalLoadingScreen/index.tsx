@@ -1,10 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import Transition from "./components/Transition";
 import Loading from "./components/Loading";
-import {
-  useControlledProgress,
-  useEnvironment,
-} from "@spacesvr/core/utils/hooks";
+import { useControlledProgress, useEnvironment } from "../../index";
 
 type LoadingScreenProps = {
   setFixedPath: Dispatch<SetStateAction<boolean>>;

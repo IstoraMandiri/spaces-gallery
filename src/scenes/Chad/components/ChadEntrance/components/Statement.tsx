@@ -1,5 +1,5 @@
 import { Text } from "@react-three/drei";
-import Arrow from "@spacesvr/components/Arrow";
+import { Arrow } from "@spacesvr/components";
 
 const Statement = () => {
   return (

@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { useEffect, useRef } from "react";
 import { useThree } from "react-three-fiber";
-import { useEnvironment } from "@spacesvr/core/utils/hooks";
+import { useEnvironment } from "../core";
 import { Vector3 } from "three";
 import { PositionalAudioHelper } from "three/examples/jsm/helpers/PositionalAudioHelper";
 
@@ -14,7 +14,7 @@ type AudioProps = {
   helper?: boolean;
 };
 
-const Audio = (props: AudioProps) => {
+export const Audio = (props: AudioProps) => {
   const {
     url,
     position = new Vector3(0, 0, 0),
@@ -84,5 +84,3 @@ const Audio = (props: AudioProps) => {
 
   return <></>;
 };
-
-export default Audio;

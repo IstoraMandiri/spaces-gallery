@@ -1,4 +1,4 @@
-import { useRef, useEffect, ReactNode } from "react";
+import { useRef, useEffect } from "react";
 import { useFrame, useThree } from "react-three-fiber";
 import { Quaternion, Raycaster, Vector3 } from "three";
 import { useSphere } from "@react-three/cannon";
@@ -6,7 +6,7 @@ import { isMobile } from "react-device-detect";
 
 import MobileControls from "../controls/MobileControls";
 import DesktopControls from "../controls/DesktopControls";
-import { useEnvironment } from "../utils/hooks";
+import { useEnvironment } from "../";
 import { createPlayerRef } from "../utils/player";
 
 const VELOCITY_FACTOR = 250;

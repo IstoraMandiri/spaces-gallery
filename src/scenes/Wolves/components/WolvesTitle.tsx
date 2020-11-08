@@ -2,7 +2,7 @@ import { Suspense, useRef } from "react";
 import WolfHead from "../models/WolfHead";
 import { Mesh } from "three";
 import { useFrame, useThree } from "react-three-fiber";
-import Text from "@spacesvr/components/Text";
+import { Text } from "@spacesvr/components";
 import CrazyMaterial from "../shaders/crazy";
 
 const WolvesTitle = () => {

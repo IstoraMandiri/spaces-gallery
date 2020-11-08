@@ -16,7 +16,7 @@ type TextProps = JSX.IntrinsicElements["group"] & {
   material?: THREE.Material;
 };
 
-const Text = (props: TextProps) => {
+export const Text = (props: TextProps) => {
   const {
     text,
     vAlign = "center",
@@ -74,5 +74,3 @@ const Text = (props: TextProps) => {
     </group>
   );
 };
-
-export default Text;

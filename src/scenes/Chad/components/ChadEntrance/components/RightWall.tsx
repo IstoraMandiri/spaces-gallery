@@ -1,4 +1,4 @@
-import Image from "@spacesvr/components/Image";
+import { Image } from "@spacesvr/components";
 import { Text } from "@react-three/drei";
 import { Color } from "three";
 

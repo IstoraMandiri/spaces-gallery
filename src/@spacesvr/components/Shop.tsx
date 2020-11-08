@@ -1,13 +1,11 @@
-import { useShopify } from "@spacesvr/services/shopify";
-import Image from "@spacesvr/components/Image";
-import Interactable from "../modifiers/Interactable";
-const { NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS } = process.env;
+import { useShopify } from "../services";
+import { Image } from "./";
+import { Interactable } from "../modifiers";
 
 type ShopProps = {
   domain?: string;
   token?: string;
   localProducts?: string[][];
-  paused?: boolean;
   itemSize?: number;
   itemRatio?: [number, number];
   spaceBetween?: number;
@@ -15,7 +13,7 @@ type ShopProps = {
   rotation?: [number, number, number];
 };
 
-const Shop = (props: ShopProps) => {
+export const Shop = (props: ShopProps) => {
   const {
     domain,
     token,
@@ -100,5 +98,3 @@ const Shop = (props: ShopProps) => {
     </group>
   );
 };
-
-export default Shop;

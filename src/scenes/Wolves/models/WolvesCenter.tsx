@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { useGLTF } from "@react-three/drei/useGLTF";
 import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import * as THREE from "three";
-import { useTrimeshCollision } from "../../../@spacesvr/services/collision";
+import { useTrimeshCollision } from "@spacesvr/services/collision";
 import { BufferGeometry } from "three";
 
 type GLTFResult = GLTF & {

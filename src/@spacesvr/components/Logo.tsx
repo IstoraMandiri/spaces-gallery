@@ -1,6 +1,17 @@
 import { Suspense, useRef } from "react";
-import SpacesSphere from "@spacesvr/models/SpacesSphere";
 import { useFrame } from "react-three-fiber";
+import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
+import * as THREE from "three";
+import { useGLTF } from "@react-three/drei";
+
+type GLTFResult = GLTF & {
+  nodes: {
+    Sphere: THREE.Mesh;
+  };
+  materials: {
+    Sphere: THREE.MeshStandardMaterial;
+  };
+};
 
 const SPEED = 0.2;
 
@@ -9,10 +20,15 @@ type LogoProps = {
   rotating?: boolean;
 } & JSX.IntrinsicElements["group"];
 
-const Logo = (props: LogoProps) => {
+const FILE_URL =
+  "https://d27rt3a60hh1lx.cloudfront.net/models/SpacesSphere1/SpacesSphere1.glb";
+
+export const Logo = (props: LogoProps) => {
   const { rotating, floating, ...restProps } = props;
 
   const group = useRef<THREE.Group>();
+  const sphereGroup = useRef<THREE.Group>();
+  const { nodes, materials } = useGLTF(FILE_URL) as GLTFResult;
 
   useFrame(({ clock }) => {
     if (group.current && rotating) {
@@ -29,11 +45,19 @@ const Logo = (props: LogoProps) => {
     <group {...restProps}>
       <group ref={group}>
         <Suspense fallback={null}>
-          <SpacesSphere />
+          <group ref={sphereGroup} scale={[100, 100, 100]} dispose={null}>
+            <group position={[0, 0, 0]}>
+              <mesh
+                material={materials.Sphere}
+                geometry={nodes.Sphere.geometry}
+                castShadow
+              />
+            </group>
+          </group>
         </Suspense>
       </group>
     </group>
   );
 };
 
-export default Logo;
+useGLTF.preload(FILE_URL);

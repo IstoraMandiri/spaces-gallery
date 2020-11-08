@@ -10,10 +10,10 @@ import ChadLighting from "./components/ChadLighting";
 import ChadSceneSelector from "./components/ChadSceneSelector";
 import PlatformPlatform from "./components/PlatformPlatform";
 import ToggleEffect from "scenes/Chad/components/ToggleEffect";
-import Audio from "@spacesvr/components/Audio";
 import ChadEntrance from "./components/ChadEntrance";
 import Signs from "./components/Signs";
-import StandardEnvironment from "@spacesvr/core/environments/StandardEnvironment";
+import { StandardEnvironment } from "@spacesvr/core";
+import { Audio } from "@spacesvr/components";
 
 export const CHAD_COLOR = new Color(0x28fa92);
 

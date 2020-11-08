@@ -3,14 +3,15 @@ import { ContainerProps } from "react-three-fiber/targets/shared/web/ResizeConta
 import { EnvironmentEvent } from "./events";
 import { PlayerRef } from "../utils/player";
 import { MutableRefObject, ReactNode } from "react";
+import { Portal } from "./portal";
 
-type EnvironmentProps = {
+export type EnvironmentProps = {
   children: ReactNode;
   canvasProps?: Partial<ContainerProps>;
   physicsProps?: Partial<ProviderProps>;
 };
 
-type EnvironmentState = {
+export type EnvironmentState = {
   paused: boolean;
   player: PlayerRef;
   overlay: string | null;
@@ -22,3 +23,8 @@ type EnvironmentState = {
   addEvent: (name: string, callback: (...args: any[]) => void) => void;
   portal?: Portal;
 };
+
+interface EnvironmentEvent {
+  name: string;
+  callback: (...args: any[]) => void;
+}

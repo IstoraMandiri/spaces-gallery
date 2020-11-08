@@ -3,7 +3,7 @@ import * as THREE from "three";
 import { useFrame, useThree } from "react-three-fiber";
 import { Vector2 } from "three";
 import { Group } from "three";
-import { useEnvironment } from "../core/utils/hooks";
+import { useEnvironment } from "../core";
 
 type VideoProps = JSX.IntrinsicElements["group"] & {
   src: string;
@@ -20,7 +20,7 @@ const borderThickness = 0.2;
 const borderDepth = 0.2;
 const meshOffset = 0.0005;
 
-const Video = (props: VideoProps) => {
+export const Video = (props: VideoProps) => {
   const {
     src,
     sizeScale,
@@ -223,5 +223,3 @@ const Video = (props: VideoProps) => {
     </group>
   );
 };
-
-export default Video;

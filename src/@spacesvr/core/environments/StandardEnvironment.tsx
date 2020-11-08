@@ -1,19 +1,24 @@
+import "./styles/global.css";
+import BrowserChecker from "../utils/BrowserChecker";
 import styled from "@emotion/styled";
 import Crosshair from "../ui/Crosshair";
-import LoadingScreen from "../../overlays/LoadingScreen";
-import { ContainerProps } from "react-three-fiber/targets/shared/web/ResizeContainer";
-import { EnvironmentProps } from "../types/environment";
 import { ProviderProps } from "@react-three/cannon/dist/Provider";
 import { Physics } from "@react-three/cannon";
 import { Canvas } from "react-three-fiber";
-import Player from "../players/Player";
 import { Vector3 } from "three";
-import InfinitePlane from "../../components/InfinitePlane";
-import RealisticEffects from "../../effects/RealisticEffects";
-import { useEnvironmentState, environmentStateContext } from "../utils/hooks";
-import DesktopPause from "../../overlays/DesktopPause";
+import { ContainerProps } from "react-three-fiber/targets/shared/web/ResizeContainer";
+import Player from "../players/Player";
+import {
+  useEnvironmentState,
+  environmentStateContext,
+  EnvironmentProps,
+} from "..";
+import LoadingScreen from "../overlays/LoadingScreen";
+import { InfinitePlane } from "../../components/";
+import { RealisticEffects } from "../../effects";
+import DesktopPause from "../overlays/DesktopPause";
+import MobilePause from "../overlays/MobilePause";
 import { isMobile } from "react-device-detect";
-import MobilePause from "../../overlays/MobilePause";
 
 const Container = styled.div`
   position: absolute;
@@ -57,15 +62,15 @@ type StandardEnvironmentProps = {
 
 /**
  *
- * The most common environemnt
+ * Standard environment should be your first choice for an environment
  *
- * Player Type: First Person
+ * Player Type: First Person w/ WASD, Joystick controls
  * Physics: Enabled with default y=0 floor plane
  * Loading Screen: Spaces Edition
  * Pause Menu: Spaces Edition
  *
  */
-const StandardEnvironment = (
+export const StandardEnvironment = (
   props: EnvironmentProps & StandardEnvironmentProps
 ) => {
   const {
@@ -80,25 +85,25 @@ const StandardEnvironment = (
   const state = useEnvironmentState();
 
   return (
-    <Container ref={state.containerRef}>
-      <Canvas {...defaultCanvasProps} {...canvasProps}>
-        <Physics {...defaultPhysicsProps} {...physicsProps}>
-          <environmentStateContext.Provider value={state}>
-            <Player initPos={player?.pos} initRot={player?.rot} />
-            {!disableGround && <InfinitePlane height={-0.001} />}
-            {!disableEffects && <RealisticEffects />}
-            {children}
-          </environmentStateContext.Provider>
-        </Physics>
-      </Canvas>
-      <environmentStateContext.Provider value={state}>
-        <LoadingScreen />
-        <DesktopPause />
-        {isMobile && <MobilePause />}
-        <Crosshair />
-      </environmentStateContext.Provider>
-    </Container>
+    <BrowserChecker>
+      <Container ref={state.containerRef}>
+        <Canvas {...defaultCanvasProps} {...canvasProps}>
+          <Physics {...defaultPhysicsProps} {...physicsProps}>
+            <environmentStateContext.Provider value={state}>
+              <Player initPos={player?.pos} initRot={player?.rot} />
+              {!disableGround && <InfinitePlane height={-0.001} />}
+              {!disableEffects && <RealisticEffects />}
+              {children}
+            </environmentStateContext.Provider>
+          </Physics>
+        </Canvas>
+        <environmentStateContext.Provider value={state}>
+          <LoadingScreen />
+          <DesktopPause />
+          {isMobile && <MobilePause />}
+          <Crosshair />
+        </environmentStateContext.Provider>
+      </Container>
+    </BrowserChecker>
   );
 };
-
-export default StandardEnvironment;

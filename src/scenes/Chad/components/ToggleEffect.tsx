@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useRef } from "react";
 import { MeshStandardMaterial } from "three";
 import { useFrame } from "react-three-fiber";
 import { Text } from "@react-three/drei";
-import Interactable from "@spacesvr/modifiers/Interactable";
+import { Interactable } from "@spacesvr/modifiers";
 
 type EffectProps = {
   position: [number, number, number];
