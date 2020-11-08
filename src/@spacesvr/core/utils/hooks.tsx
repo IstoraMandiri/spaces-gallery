@@ -1,10 +1,21 @@
-import { useCallback, useContext, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { EnvironmentEvent } from "../types/events";
 import { EnvironmentState } from "../types/environment";
-import { stateContext } from "../environments/StandardEnvironments";
+import { PlayerRef } from "./player";
+import { useProgress } from "@react-three/drei";
+
+export const environmentStateContext = React.createContext<EnvironmentState>(
+  {} as EnvironmentState
+);
 
 export function useEnvironment(): EnvironmentState {
-  return useContext(stateContext);
+  return useContext(environmentStateContext);
 }
 
 export function useEnvironmentState(): EnvironmentState {
@@ -12,6 +23,7 @@ export function useEnvironmentState(): EnvironmentState {
   const [overlay, setOverlayState] = useState(null);
   const container = useRef<HTMLDivElement>(null);
   const events = useRef<EnvironmentEvent[]>([]);
+  const player = useRef<PlayerRef>({} as PlayerRef);
 
   const setPaused = useCallback(
     (p, o) => {
@@ -36,6 +48,10 @@ export function useEnvironmentState(): EnvironmentState {
     [events]
   );
 
+  const setPlayer = (p: PlayerRef) => {
+    player.current = p;
+  };
+
   const addEvent = useCallback(
     (name: string, callback: (...args: any[]) => void) => {
       const event: EnvironmentEvent = {
@@ -51,12 +67,49 @@ export function useEnvironmentState(): EnvironmentState {
   const context: EnvironmentState = {
     paused,
     overlay,
+    player: player.current,
     containerRef: container,
     container: container.current,
     events: events.current,
     setPaused,
+    setPlayer,
     addEvent,
   };
 
   return context;
 }
+
+export const useControlledProgress = () => {
+  const TIMEOUT = 750;
+
+  const { progress, total } = useProgress();
+
+  const startTime = useRef(new Date());
+  const controlledProgress = useRef(0);
+  useEffect(() => {
+    const newTime = new Date();
+    const timeElapsed = newTime.getTime() - startTime.current.getTime();
+    const diff = Math.min(
+      progress - controlledProgress.current,
+      timeElapsed < TIMEOUT ? 99 : 100
+    );
+    if (diff > 0) {
+      controlledProgress.current = progress;
+    }
+  }, [progress]);
+
+  // wait TIMEOUT (ms) to check if any objects are waiting to be loaded
+  const [counter, setCounter] = useState(0);
+  const [skip, setSkip] = useState(false);
+  useEffect(() => {
+    if (total > 0) {
+      return;
+    } else if (counter > 0) {
+      setSkip(true);
+    } else {
+      setTimeout(() => setCounter(counter + 1), TIMEOUT);
+    }
+  }, [counter]);
+
+  return skip ? 100 : Math.floor(controlledProgress.current);
+};

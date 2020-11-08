@@ -3,14 +3,13 @@ import React, { useRef, useEffect, MutableRefObject } from "react";
 import { extend, useFrame, useThree } from "react-three-fiber";
 import { Quaternion, Vector3 } from "three";
 import { PointerLockControls } from "three/examples/jsm/controls/PointerLockControls";
-import { EnvironmentStoreHook } from "@spacesvr/core/stores/environment";
+import { useEnvironment } from "../utils/hooks";
 
 extend({ PointerLockControls });
 
 type MouseFPSCameraProps = {
   quaternion: MutableRefObject<Quaternion>;
   position: MutableRefObject<Vector3>;
-  useEnvStore: EnvironmentStoreHook;
 };
 
 /**
@@ -23,11 +22,10 @@ type MouseFPSCameraProps = {
  * @constructor
  */
 const MouseFPSCamera = (props: MouseFPSCameraProps) => {
-  const { quaternion, position, useEnvStore } = props;
+  const { quaternion, position } = props;
 
-  const setPaused = useEnvStore((st) => st.setPaused);
-  const paused = useEnvStore((st) => st.paused);
-  const addEvent = useEnvStore((st) => st.addEvent);
+  const { setPaused, paused, addEvent } = useEnvironment();
+
   const { camera, gl } = useThree();
 
   const controls = useRef<PointerLockControls>();

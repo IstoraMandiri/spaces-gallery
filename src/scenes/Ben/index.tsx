@@ -3,12 +3,12 @@ import InfinitePlane from "@spacesvr/components/InfinitePlane";
 import Logo from "@spacesvr/components/Logo";
 
 import { useAnalytics } from "services/analytics";
-import RealisticEffects from "@spacesvr/core/effects/RealisticEffects";
 import Balloons from "./components/Balloons";
-import { Color, Vector3 } from "three";
+import { Vector3 } from "three";
 import Sign from "../Chad/components/Sign";
 import Present from "./components/Present";
-import StandardEnvironment from "@spacesvr/core/environments/StandardEnvironments";
+import StandardEnvironment from "@spacesvr/core/environments/StandardEnvironment";
+import Background from "@spacesvr/components/Background";
 
 const Ben = () => {
   useAnalytics();
@@ -31,14 +31,8 @@ const Ben = () => {
   ];
 
   return (
-    <StandardEnvironment
-      canvasProps={{
-        onCreated: ({ scene }) => {
-          scene.background = new Color(0xe7e7e7);
-        },
-      }}
-      player={{ pos: INIT_COORDS, rot: ANGLE + Math.PI }}
-    >
+    <StandardEnvironment player={{ pos: INIT_COORDS, rot: ANGLE + Math.PI }}>
+      <Background color={0xe7e7e7} />
       <fog attach="fog" args={[0xe7e7e7, 1, 10]} />
       <InfinitePlane height={-0.001} />
       <group position={SIGN_COORDS}>
@@ -49,7 +43,6 @@ const Ben = () => {
       <Balloons />
       <ambientLight intensity={1} />
       <pointLight intensity={5} color={"white"} distance={55} />
-      <RealisticEffects />
     </StandardEnvironment>
   );
 };

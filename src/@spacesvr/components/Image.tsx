@@ -1,25 +1,16 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useMemo, useRef } from "react";
 import * as THREE from "three";
-import { useFrame, useLoader } from "react-three-fiber";
-import { Color, Group, Raycaster, Vector2 } from "three";
-import CrazyMaterial from "../../scenes/Wolves/shaders/crazy";
+import { useLoader } from "react-three-fiber";
+import { Color, Group, Vector2, Material } from "three";
 
 type ImageProps = JSX.IntrinsicElements["group"] & {
   src: string;
   ratio: [number, number];
   sizeScale: number;
   framed?: boolean;
-  link?: string;
-  raycaster?: React.MutableRefObject<Raycaster>;
-  crazyMaterial?: boolean;
   paused?: boolean;
   doubleSided?: boolean;
+  material?: Material;
   color?: Color;
 };
 
@@ -35,11 +26,8 @@ const Image = (props: ImageProps) => {
     sizeScale,
     ratio,
     framed,
-    link,
-    raycaster,
-    crazyMaterial,
-    paused = false,
     doubleSided,
+    material: passedMaterial,
     color = 0x111111,
   } = props;
 
@@ -52,31 +40,9 @@ const Image = (props: ImageProps) => {
   const width = normalizedRatio.x * sizeScale;
   const height = normalizedRatio.y * sizeScale;
 
-  const [hovered, setHovered] = useState<boolean>(false);
-  const crazyMat = useRef(new CrazyMaterial());
-
-  useFrame(({ clock }, delta) => {
-    if (raycaster && image.current) {
-      // @ts-ignore
-      const intersections = raycaster.current.intersectObject(image.current);
-      if (intersections && intersections.length > 0) {
-        if (!hovered) {
-          setHovered(true);
-        }
-      } else {
-        if (hovered) {
-          setHovered(false);
-        }
-      }
-    }
-    if (crazyMat?.current) {
-      // @ts-ignore
-      crazyMat.current.time += delta;
-    }
-  });
-
   const material = useMemo(
     () =>
+      passedMaterial ||
       new THREE.MeshStandardMaterial({
         color: color,
         roughness: 0.8,
@@ -84,22 +50,6 @@ const Image = (props: ImageProps) => {
       }),
     []
   );
-
-  const onClick = useCallback(() => {
-    if (hovered) {
-      // window.open(link);
-      window.location.href = `${link}`;
-    }
-  }, [hovered]);
-
-  useEffect(() => {
-    if (!paused) {
-      document.addEventListener("click", onClick);
-    }
-    return () => {
-      document.removeEventListener("click", onClick);
-    };
-  });
 
   return (
     <group {...props}>
@@ -115,10 +65,7 @@ const Image = (props: ImageProps) => {
         {framed && (
           <>
             {!doubleSided && (
-              <mesh
-                position-z={[-0.1 - meshOffset]}
-                material={crazyMaterial ? crazyMat.current : material}
-              >
+              <mesh position-z={[-0.1 - meshOffset]} material={material}>
                 <boxBufferGeometry
                   attach="geometry"
                   args={[width + frameWidth, height + frameWidth, frameDepth]}
@@ -128,7 +75,7 @@ const Image = (props: ImageProps) => {
             {/* top */}
             <mesh
               position-y={height / 2 + frameWidth / 2 - borderThickness / 2}
-              material={crazyMaterial ? undefined : material}
+              material={material}
             >
               <boxBufferGeometry
                 attach="geometry"
@@ -138,7 +85,7 @@ const Image = (props: ImageProps) => {
             {/* bottom */}
             <mesh
               position-y={-height / 2 - frameWidth / 2 + borderThickness / 2}
-              material={crazyMaterial ? undefined : material}
+              material={material}
             >
               <boxBufferGeometry
                 attach="geometry"
@@ -148,7 +95,7 @@ const Image = (props: ImageProps) => {
             {/* left */}
             <mesh
               position-x={-width / 2 - frameWidth / 2 + borderThickness / 2}
-              material={crazyMaterial ? undefined : material}
+              material={material}
             >
               <boxBufferGeometry
                 attach="geometry"
@@ -158,7 +105,7 @@ const Image = (props: ImageProps) => {
             {/* right */}
             <mesh
               position-x={width / 2 + frameWidth / 2 - borderThickness / 2}
-              material={crazyMaterial ? undefined : material}
+              material={material}
             >
               <boxBufferGeometry
                 attach="geometry"

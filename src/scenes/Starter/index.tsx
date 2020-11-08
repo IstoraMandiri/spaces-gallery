@@ -1,21 +1,18 @@
-import Logo from "@spacesvr/components/Logo";
+import React from "react";
+
 import { useAnalytics } from "services/analytics";
-import Grid from "./components/Grid";
 import StandardEnvironment from "@spacesvr/core/environments/StandardEnvironment";
 
-const Eighties = () => {
+const Starter = () => {
   useAnalytics();
 
   return (
     <StandardEnvironment>
-      <Grid />
-      <Grid position-y={8} />
-      <Logo floating rotating position={[0, 1.25, 0]} />
-      <fog attach="fog" args={[0x000000, 1, 100]} />
+      <fog attach="fog" args={[0xe7e7e7, 1, 10]} />
       <ambientLight intensity={1} />
       <pointLight intensity={5} color={"white"} distance={55} />
     </StandardEnvironment>
   );
 };
 
-export default Eighties;
+export default Starter;

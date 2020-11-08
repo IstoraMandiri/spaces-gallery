@@ -11,10 +11,10 @@ import DennisRoom from "./components/rooms/DennisRoom";
 import OutsideLighting from "./components/rooms/OutsideLighting";
 import HectorRoom from "./components/rooms/HectorRoom";
 import JustinRoom from "./components/rooms/JustinRoom";
-import OutsideAudio from "./components/rooms/OutsideAudio";
 import SantiRoom from "./components/rooms/SantiRoom";
 import { Vector3, WebGLRenderer } from "three";
-import StandardEnvironment from "@spacesvr/core/environments/StandardEnvironments";
+import StandardEnvironment from "@spacesvr/core/environments/StandardEnvironment";
+import Audio from "@spacesvr/components/Audio";
 
 const Opening = () => {
   const [renderer] = useState<WebGLRenderer>();
@@ -41,9 +41,9 @@ const Opening = () => {
       <SantiRoom renderer={renderer} />
       <DennisRoom />
       <Logo floating rotating position={[0, 1.25, 0]} />
-      <OutsideAudio
+      <Audio
         url="https://spaces-gallery-assets.s3-us-west-1.amazonaws.com/audio/LucidMondayMix.mp3"
-        position={[0, 0, 0]}
+        position={new Vector3(0, 7, 0)}
       />
       <OutsideLighting />
       <Suspense fallback={null}>

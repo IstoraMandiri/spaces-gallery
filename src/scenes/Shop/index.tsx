@@ -1,18 +1,31 @@
 import React, { useState } from "react";
-import { Physics, usePlane } from "@react-three/cannon";
 import { Canvas } from "react-three-fiber";
 import { Sky, OrbitControls } from "@react-three/drei";
-import { SceneComponent } from "@spacesvr/core/types/scene";
 import * as THREE from "three";
 
 import { useAnalytics } from "services/analytics";
 import SpacesDisplay from "./components/SpacesDisplay";
 import Prisms from "./components/PrismArray";
 import ShopOverlay from "./components/ShopOverlay";
+import styled from "@emotion/styled";
 
-const Shop: SceneComponent = (props) => {
-  const { defaultCanvasProps } = props;
+const Container = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 
+  canvas {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    outline: 0;
+  }
+`;
+
+const Shop = () => {
   const [overlay, setOverlay] = useState<boolean>(false);
 
   const cameraControls = {
@@ -35,23 +48,10 @@ const Shop: SceneComponent = (props) => {
 
   useAnalytics();
 
-  const Plane = (props: any) => {
-    const [ref] = usePlane(() => ({ mass: 0, ...props }));
-    return (
-      <mesh ref={ref} receiveShadow>
-        <planeBufferGeometry attach="geometry" args={[500, 500]} />
-        <shadowMaterial attach="material" opacity={0.5} />
-      </mesh>
-    );
-  };
-
   return (
-    <>
-      <Canvas
-        {...defaultCanvasProps}
-        camera={{ position: [1, 3, 7], far: 300 }}
-      >
-        <Sky />
+    <Container>
+      <Canvas shadowMap camera={{ position: [1, 3, 7], far: 300 }}>
+        <Sky sunPosition={[0, 1, 0]} />
         <OrbitControls target={[0, 2, 0]} {...cameraControls} />
         <ambientLight intensity={0.2} />
         <pointLight
@@ -61,17 +61,18 @@ const Shop: SceneComponent = (props) => {
           castShadow
         />
         <Prisms />
-        <Physics>
-          <SpacesDisplay
-            position={[0, 0, 0]}
-            overlay={overlay}
-            setOverlay={setOverlay}
-          />
-          <Plane position={[0, -0.1, 0]} rotation={[-Math.PI / 2, 0, 0]} />
-        </Physics>
+        <SpacesDisplay
+          position={[0, 0, 0]}
+          overlay={overlay}
+          setOverlay={setOverlay}
+        />
+        <mesh receiveShadow rotation-x={-Math.PI / 2}>
+          <planeBufferGeometry attach="geometry" args={[500, 500]} />
+          <shadowMaterial attach="material" opacity={0.5} />
+        </mesh>
       </Canvas>
       <ShopOverlay overlay={overlay} setOverlay={setOverlay} />
-    </>
+    </Container>
   );
 };
 
