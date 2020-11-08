@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import InfinitePlane from "@spacesvr/components/InfinitePlane";
 
 import { useAnalytics } from "services/analytics";
-import RealisticEffects from "@spacesvr/core/effects/RealisticEffects";
+import RealisticEffects from "@spacesvr/effects/RealisticEffects";
 import WolvesCenter from "./models/WolvesCenter";
 import { Vector3 } from "three";
 import WolvesDecorations from "./models/WolvesDecorations";

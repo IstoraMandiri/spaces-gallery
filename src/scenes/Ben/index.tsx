@@ -3,13 +3,12 @@ import InfinitePlane from "@spacesvr/components/InfinitePlane";
 import Logo from "@spacesvr/components/Logo";
 
 import { useAnalytics } from "services/analytics";
-import RealisticEffects from "@spacesvr/core/effects/RealisticEffects";
 import Balloons from "./components/Balloons";
-import { Color, Vector3 } from "three";
+import { Vector3 } from "three";
 import Sign from "../Chad/components/Sign";
 import Present from "./components/Present";
 import StandardEnvironment from "@spacesvr/core/environments/StandardEnvironment";
-import Background from "../../@spacesvr/components/Background";
+import Background from "@spacesvr/components/Background";
 
 const Ben = () => {
   useAnalytics();

@@ -10,7 +10,7 @@ import { Canvas } from "react-three-fiber";
 import Player from "../players/Player";
 import { Vector3 } from "three";
 import InfinitePlane from "../../components/InfinitePlane";
-import RealisticEffects from "../effects/RealisticEffects";
+import RealisticEffects from "../../effects/RealisticEffects";
 import { useEnvironmentState, environmentStateContext } from "../utils/hooks";
 import DesktopPause from "../../overlays/DesktopPause";
 import { isMobile } from "react-device-detect";

@@ -4,7 +4,6 @@ import { Color } from "three";
 import { Vector3 } from "three";
 
 import { useAnalytics } from "services/analytics";
-import RealisticEffects from "@spacesvr/core/effects/RealisticEffects";
 import ChadGallery from "scenes/Chad/models/ChadGallery";
 import ChadPiece from "./components/ChadPiece";
 import ChadLighting from "./components/ChadLighting";
