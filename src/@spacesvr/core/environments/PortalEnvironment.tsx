@@ -1,5 +1,4 @@
 import { ReactNode, useState } from "react";
-import "./styles/global.css";
 import BrowserChecker from "../utils/BrowserChecker";
 import styled from "@emotion/styled";
 import ShirtsLoading from "../overlays/PortalLoadingScreen";
@@ -22,6 +21,7 @@ import Player from "../players/TrackPlayer";
 import DesktopPause from "../overlays/DesktopPause";
 import MobilePause from "../overlays/MobilePause";
 import { isMobile } from "react-device-detect";
+import GlobalStyles from "../styles/GlobalStyles";
 
 const Container = styled.div`
   position: absolute;
@@ -107,6 +107,7 @@ export const PortalEnvironment = (
 
   return (
     <BrowserChecker>
+      <GlobalStyles />
       <Container ref={state.containerRef}>
         <Canvas {...defaultCanvasProps} {...canvasProps}>
           <Physics {...defaultPhysicsProps} {...physicsProps}>

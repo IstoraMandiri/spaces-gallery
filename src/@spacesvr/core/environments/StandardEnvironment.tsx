@@ -1,4 +1,3 @@
-import "./styles/global.css";
 import BrowserChecker from "../utils/BrowserChecker";
 import styled from "@emotion/styled";
 import Crosshair from "../ui/Crosshair";
@@ -19,6 +18,7 @@ import { RealisticEffects } from "../../effects";
 import DesktopPause from "../overlays/DesktopPause";
 import MobilePause from "../overlays/MobilePause";
 import { isMobile } from "react-device-detect";
+import GlobalStyles from "../styles/GlobalStyles";
 
 const Container = styled.div`
   position: absolute;
@@ -86,6 +86,7 @@ export const StandardEnvironment = (
 
   return (
     <BrowserChecker>
+      <GlobalStyles />
       <Container ref={state.containerRef}>
         <Canvas {...defaultCanvasProps} {...canvasProps}>
           <Physics {...defaultPhysicsProps} {...physicsProps}>
