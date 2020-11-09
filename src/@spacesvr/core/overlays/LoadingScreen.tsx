@@ -1,6 +1,5 @@
-import React from "react";
 import styled from "@emotion/styled";
-import { useControlledProgress } from "../core/utils/hooks";
+import { useControlledProgress } from "../index";
 
 const Container = styled.div<{ finished: boolean; landing: boolean }>`
   width: 100%;

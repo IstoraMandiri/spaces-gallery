@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { useFrame, useThree } from "react-three-fiber";
 import { MusicStoreHook } from "scenes/Shirts/stores/music";
 

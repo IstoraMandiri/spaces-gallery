@@ -6,7 +6,7 @@ type BackgroundProps = {
   color: Color | string | number;
 };
 
-const Background = (props: BackgroundProps) => {
+export const Background = (props: BackgroundProps) => {
   const { color } = props;
   const { scene } = useThree();
   const [setup, setSetup] = useState(false);
@@ -20,5 +20,3 @@ const Background = (props: BackgroundProps) => {
 
   return null;
 };
-
-export default Background;

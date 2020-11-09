@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useRef } from "react";
+import { MutableRefObject, useRef } from "react";
 import { Quaternion, Vector3 } from "three";
 import TouchFPSCamera from "./TouchFPSCamera";
 import NippleMovement from "./NippleMovement";

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 
 type PrismProps = {
   scale?: [number, number, number];

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { useShopify } from "services/shopify";
 import {
   Overlay,
@@ -17,7 +17,7 @@ import {
 
 type ShopProps = {
   overlay: boolean;
-  setOverlay: React.Dispatch<React.SetStateAction<boolean>>;
+  setOverlay: Dispatch<SetStateAction<boolean>>;
 };
 
 const ShopOverlay = (props: ShopProps) => {

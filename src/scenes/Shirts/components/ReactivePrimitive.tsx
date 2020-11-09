@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from "react";
+import { useMemo, useRef } from "react";
 import { MusicStoreHook } from "scenes/Shirts/stores/music";
 import { useFrame, useLoader } from "react-three-fiber";
 import * as THREE from "three";

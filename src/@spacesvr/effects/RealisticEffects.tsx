@@ -9,7 +9,7 @@ import { BloomPass } from "three/examples/jsm/postprocessing/BloomPass";
 import { FXAAShader } from "three/examples/jsm/shaders/FXAAShader";
 extend({ EffectComposer, RenderPass, GlitchPass, ShaderPass, BloomPass });
 
-const RealisticEffects = () => {
+export const RealisticEffects = () => {
   const { gl, scene, camera, size } = useThree();
 
   const gammaCorrection = new ShaderPass(GammaCorrectionShader);
@@ -52,5 +52,3 @@ const RealisticEffects = () => {
     </>
   );
 };
-
-export default RealisticEffects;

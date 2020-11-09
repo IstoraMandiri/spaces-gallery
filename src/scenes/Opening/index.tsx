@@ -1,11 +1,11 @@
-import React, { Suspense, useState } from "react";
-import Logo from "@spacesvr/components/Logo";
+import { Suspense, useState } from "react";
+import { Logo, HDRI, Audio } from "@spacesvr/components";
+import { StandardEnvironment } from "@spacesvr/core";
 
 import SpacesGallery from "scenes/Opening/models/SpacesGallery";
 import SpacesPlaques from "scenes/Opening/models/SpacesPlaques";
 import { useAnalytics } from "services/analytics";
 import RobertRoom from "./components/rooms/RobertRoom";
-import HDRI from "@spacesvr/components/HDRI";
 import ZachRoom from "./components/rooms/ZachRoom";
 import DennisRoom from "./components/rooms/DennisRoom";
 import OutsideLighting from "./components/rooms/OutsideLighting";
@@ -13,8 +13,6 @@ import HectorRoom from "./components/rooms/HectorRoom";
 import JustinRoom from "./components/rooms/JustinRoom";
 import SantiRoom from "./components/rooms/SantiRoom";
 import { Vector3, WebGLRenderer } from "three";
-import StandardEnvironment from "@spacesvr/core/environments/StandardEnvironment";
-import Audio from "@spacesvr/components/Audio";
 
 const Opening = () => {
   const [renderer, setRenderer] = useState<WebGLRenderer>();

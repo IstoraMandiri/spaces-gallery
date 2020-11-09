@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { fetchAccount } from "services/instagram";
+import { Portal } from "../core";
 
 const BACKEND_ROUTE = process.env.NEXT_PUBLIC_BACKEND_ROUTE;
 

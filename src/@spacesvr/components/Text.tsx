@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { FontLoader, Vector3 } from "three";
 import { useLoader, useUpdate } from "react-three-fiber";
 import * as THREE from "three";
@@ -16,7 +16,7 @@ type TextProps = JSX.IntrinsicElements["group"] & {
   material?: THREE.Material;
 };
 
-const Text: React.FC<TextProps> = (props) => {
+export const Text = (props: TextProps) => {
   const {
     text,
     vAlign = "center",
@@ -74,5 +74,3 @@ const Text: React.FC<TextProps> = (props) => {
     </group>
   );
 };
-
-export default Text;

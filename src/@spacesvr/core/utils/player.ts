@@ -2,24 +2,7 @@ import { Vector3 } from "three";
 import { Api } from "@react-three/cannon";
 import { MutableRefObject } from "react";
 import * as THREE from "three";
-
-export type PlayerRef = {
-  position: PlayerVec;
-  velocity: PlayerVec;
-  controls: PlayerControls;
-  raycaster: THREE.Raycaster;
-};
-
-type PlayerVec = {
-  set: (vec: Vector3) => void;
-  get: () => Vector3;
-};
-
-type PlayerControls = {
-  lock: () => void;
-  unlock: () => void;
-  isLocked: () => boolean;
-};
+import { PlayerControls, PlayerRef, PlayerVec } from "../types";
 
 export function createPlayerRef(
   bodyApi: Api[1],

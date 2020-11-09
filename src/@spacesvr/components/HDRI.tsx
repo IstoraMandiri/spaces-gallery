@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 import { useThree } from "react-three-fiber";
 import { PMREMGenerator, UnsignedByteType } from "three";
@@ -8,7 +8,7 @@ type HDRIProps = {
   src: string;
 };
 
-const HDRI = (props: HDRIProps) => {
+export const HDRI = (props: HDRIProps) => {
   const { src } = props;
   const { gl, scene } = useThree();
 
@@ -35,5 +35,3 @@ const HDRI = (props: HDRIProps) => {
 
   return null;
 };
-
-export default HDRI;

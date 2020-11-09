@@ -1,5 +1,3 @@
-import React from "react";
-
 import { useBox } from "@react-three/cannon";
 import { CHAD_COLOR } from "../index";
 

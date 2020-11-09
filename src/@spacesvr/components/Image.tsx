@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from "react";
+import { useMemo, useRef } from "react";
 import * as THREE from "three";
 import { useLoader } from "react-three-fiber";
 import { Color, Group, Vector2, Material } from "three";
@@ -20,7 +20,7 @@ const borderThickness = 0.2;
 const borderDepth = 0.2;
 const meshOffset = 0.0005;
 
-const Image = (props: ImageProps) => {
+export const Image = (props: ImageProps) => {
   const {
     src,
     sizeScale,
@@ -118,5 +118,3 @@ const Image = (props: ImageProps) => {
     </group>
   );
 };
-
-export default Image;

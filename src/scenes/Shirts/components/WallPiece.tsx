@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import * as THREE from "three";
 import Wall from "./ReactiveWall";
 import { MusicStoreHook } from "scenes/Shirts/stores/music";

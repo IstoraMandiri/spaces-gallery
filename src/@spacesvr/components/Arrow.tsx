@@ -1,4 +1,3 @@
-import React from "react";
 import { useLoader } from "react-three-fiber";
 import * as THREE from "three";
 
@@ -8,7 +7,7 @@ const IMAGE_SRC = "https://d27rt3a60hh1lx.cloudfront.net/images/whiteArrow.png";
 const IMAGE_SRC_DARK =
   "https://d27rt3a60hh1lx.cloudfront.net/images/blackArrow.png";
 
-const Arrow = (props: ArrowProps) => {
+export const Arrow = (props: ArrowProps) => {
   const { dark, ...restProps } = props;
 
   const texture = useLoader(
@@ -31,5 +30,3 @@ const Arrow = (props: ArrowProps) => {
     </group>
   );
 };
-
-export default Arrow;

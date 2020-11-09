@@ -1,4 +1,3 @@
-import React from "react";
 import { usePlane } from "@react-three/cannon";
 
 type InfinitePlaneProps = {
@@ -7,7 +6,7 @@ type InfinitePlaneProps = {
   visible?: boolean;
 };
 
-const InfinitePlane = (props: InfinitePlaneProps) => {
+export const InfinitePlane = (props: InfinitePlaneProps) => {
   const { height, size = [100, 100], visible } = props;
 
   const [ref] = usePlane(() => ({
@@ -28,5 +27,3 @@ const InfinitePlane = (props: InfinitePlaneProps) => {
     </mesh>
   );
 };
-
-export default InfinitePlane;

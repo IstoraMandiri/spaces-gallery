@@ -1,8 +1,8 @@
 import * as THREE from "three";
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useThree } from "react-three-fiber";
 import { MusicStoreHook } from "scenes/Shirts/stores/music";
-import { useEnvironment } from "@spacesvr/core/utils/hooks";
+import { useEnvironment } from "@spacesvr/core";
 
 type ShirtsAudioProps = JSX.IntrinsicElements["group"] & {
   useMusicStore: MusicStoreHook;

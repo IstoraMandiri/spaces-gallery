@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import Transition from "./components/Transition";
 import Loading from "./components/Loading";
-import {
-  useControlledProgress,
-  useEnvironment,
-} from "@spacesvr/core/utils/hooks";
+import { useControlledProgress, useEnvironment } from "../../index";
 
 type LoadingScreenProps = {
-  setFixedPath: React.Dispatch<React.SetStateAction<boolean>>;
+  setFixedPath: Dispatch<SetStateAction<boolean>>;
 };
 
 const PortalLoadingScreen = (props: LoadingScreenProps) => {

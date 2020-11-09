@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Canvas } from "react-three-fiber";
 import { Sky, OrbitControls } from "@react-three/drei";
 import * as THREE from "three";

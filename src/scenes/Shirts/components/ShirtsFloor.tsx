@@ -1,5 +1,3 @@
-import React from "react";
-
 import ReactiveCube from "./ReactiveCube";
 
 type FloorProps = {

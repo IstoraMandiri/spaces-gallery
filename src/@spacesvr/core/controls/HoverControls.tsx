@@ -1,4 +1,3 @@
-import React from "react";
 import { useFrame, useThree } from "react-three-fiber";
 
 type HoverControlsProps = {

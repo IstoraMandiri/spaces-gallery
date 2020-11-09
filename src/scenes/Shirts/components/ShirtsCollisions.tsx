@@ -1,4 +1,3 @@
-import React from "react";
 import { useBox, useSphere } from "@react-three/cannon";
 
 type SphereColliderProps = {

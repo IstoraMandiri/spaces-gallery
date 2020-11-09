@@ -1,14 +1,12 @@
-import React, { useMemo } from "react";
-import InfinitePlane from "@spacesvr/components/InfinitePlane";
-import Logo from "@spacesvr/components/Logo";
+import { useMemo } from "react";
+import { InfinitePlane, Logo, Background } from "@spacesvr/components";
+import { StandardEnvironment } from "@spacesvr/core";
 
 import { useAnalytics } from "services/analytics";
 import Balloons from "./components/Balloons";
 import { Vector3 } from "three";
 import Sign from "../Chad/components/Sign";
 import Present from "./components/Present";
-import StandardEnvironment from "@spacesvr/core/environments/StandardEnvironment";
-import Background from "@spacesvr/components/Background";
 
 const Ben = () => {
   useAnalytics();

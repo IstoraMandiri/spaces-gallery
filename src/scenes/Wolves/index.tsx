@@ -1,16 +1,15 @@
-import React, { Suspense } from "react";
-import InfinitePlane from "@spacesvr/components/InfinitePlane";
+import { Suspense } from "react";
+import { InfinitePlane, Shop as Shopify } from "@spacesvr/components";
 
 import { useAnalytics } from "services/analytics";
-import RealisticEffects from "@spacesvr/effects/RealisticEffects";
 import WolvesCenter from "./models/WolvesCenter";
 import { Vector3 } from "three";
 import WolvesDecorations from "./models/WolvesDecorations";
 import WolvesTitle from "./components/WolvesTitle";
 import SpacesTitle from "./components/SpacesTitle";
-import StandardEnvironment from "@spacesvr/core/environments/StandardEnvironment";
-import Background from "@spacesvr/components/Background";
-import Shop from "./components/Shop";
+import { StandardEnvironment } from "@spacesvr/core";
+import { Background } from "@spacesvr/components";
+import { localProducts } from "./assets/localProducts";
 
 const Wolves = () => {
   useAnalytics();
@@ -27,7 +26,6 @@ const Wolves = () => {
       <InfinitePlane height={-0.001} />
       <ambientLight intensity={1} />
       <directionalLight intensity={1} />
-      <RealisticEffects />
       <WolvesTitle />
       <SpacesTitle />
       <Suspense fallback={null}>
@@ -36,7 +34,7 @@ const Wolves = () => {
       <Suspense fallback={null}>
         <WolvesDecorations />
       </Suspense>
-      <Shop />
+      <Shopify localProducts={localProducts} />
     </StandardEnvironment>
   );
 };
