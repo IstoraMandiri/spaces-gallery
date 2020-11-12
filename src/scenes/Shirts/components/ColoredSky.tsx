@@ -1,6 +1,6 @@
 import { Sky } from "@react-three/drei";
 import * as THREE from "three";
-import { useEnvironment } from "@spacesvr/core";
+import { useEnvironment } from "spacesvr/core";
 import { COLORS } from "../assets/colors";
 
 const ColoredSky = () => {

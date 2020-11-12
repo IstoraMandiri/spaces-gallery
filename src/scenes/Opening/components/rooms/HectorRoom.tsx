@@ -1,4 +1,4 @@
-import { Video, Image } from "@spacesvr/components";
+import { Video, Image } from "spacesvr/components";
 
 const HectorRoom = () => {
   return (

@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { InfinitePlane, Shop as Shopify } from "@spacesvr/components";
+import { InfinitePlane, Shop as Shopify } from "spacesvr/components";
 
 import { useAnalytics } from "services/analytics";
 import WolvesCenter from "./models/WolvesCenter";
@@ -7,8 +7,8 @@ import { Vector3 } from "three";
 import WolvesDecorations from "./models/WolvesDecorations";
 import WolvesTitle from "./components/WolvesTitle";
 import SpacesTitle from "./components/SpacesTitle";
-import { StandardEnvironment } from "@spacesvr/core";
-import { Background } from "@spacesvr/components";
+import { StandardEnvironment } from "spacesvr/core";
+import { Background } from "spacesvr/components";
 import { localProducts } from "./assets/localProducts";
 
 const Wolves = () => {

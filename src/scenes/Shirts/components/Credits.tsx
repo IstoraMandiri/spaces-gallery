@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { MusicStoreHook } from "scenes/Shirts/stores/music";
 import { getOpenIndex } from "../services/musicManager";
-import { useEnvironment } from "@spacesvr/core";
+import { useEnvironment } from "spacesvr/core";
 
 const Container = styled.div<{ open: boolean }>`
   position: absolute;

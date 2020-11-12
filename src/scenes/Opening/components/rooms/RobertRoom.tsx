@@ -1,4 +1,4 @@
-import { Image } from "@spacesvr/components";
+import { Image } from "spacesvr/components";
 import RobertPlaque from "scenes/Opening/components/RobertPlaque";
 
 const RobertRoom = () => {

@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { DirectionalLight, SpotLight } from "three";
 import { COLORS } from "../assets/colors";
-import { useEnvironment } from "@spacesvr/core";
+import { useEnvironment } from "spacesvr/core";
 
 const ShirtsLighting = () => {
   const { portal } = useEnvironment();

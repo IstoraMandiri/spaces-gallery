@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { Mesh } from "three";
 import { useFrame } from "react-three-fiber";
 import CrazyMaterial from "../shaders/crazy";
-import { Logo, Text } from "@spacesvr/components";
+import { Logo, Text } from "spacesvr/components";
 
 const SpacesTitle = () => {
   const group = useRef<Mesh>();

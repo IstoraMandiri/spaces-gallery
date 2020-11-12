@@ -1,6 +1,6 @@
 import { Suspense, useState } from "react";
-import { Logo, HDRI, Audio } from "@spacesvr/components";
-import { StandardEnvironment } from "@spacesvr/core";
+import { Logo, HDRI, Audio } from "spacesvr/components";
+import { StandardEnvironment } from "spacesvr/core";
 
 import SpacesGallery from "scenes/Opening/models/SpacesGallery";
 import SpacesPlaques from "scenes/Opening/models/SpacesPlaques";

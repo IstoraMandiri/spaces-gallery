@@ -1,5 +1,5 @@
 import { Suspense, useMemo } from "react";
-import { Video } from "@spacesvr/components";
+import { Video } from "spacesvr/components";
 import JustinSkull from "scenes/Opening/models/JustinSkull";
 import { SpotLight } from "three";
 

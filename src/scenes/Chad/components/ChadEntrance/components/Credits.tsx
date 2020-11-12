@@ -1,6 +1,6 @@
 import { Text } from "@react-three/drei";
 import ChadLogo from "../../ChadLogo";
-import { Logo } from "@spacesvr/components";
+import { Logo } from "spacesvr/components";
 
 const Credits = () => {
   return (
